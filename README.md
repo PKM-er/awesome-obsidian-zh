@@ -2,13 +2,14 @@
 
 ![](https://img.shields.io/badge/language-Chinese-white.svg)
 
-- 本项目将陆续收录 GitHub 上所有等待汉化 [Obsidian](https://obsidian.md/) 插件；
+## 项目与汉化相关
+
+- 本项目将陆续收录 GitHub 上所有等待汉化的 [Obsidian](https://obsidian.md/) 插件；
 - 优先收录完全不会代码的人也可参与的汉化项目，其汉化文件通常位于该插件官方 Repository 目录下；
 - 通用汉化教程：找到汉化文件 - 复制同目录英文文件所有代码 - 将重复出现的英文翻译为中文 - Pull Request - 等待作者审核通过后 Merge ;
-- 通用列表格式：插件官方名称 - 插件官方 Repository 汉化文件路径；
-- 请参考 Obsidian 本体汉化 🔗 [`obsidian-translations/zh.json`](https://github.com/obsidianmd/obsidian-translations/blob/master/zh.json) 常用译名。
+- 请参考 Obsidian 本体汉化 🔗 [`obsidian-translations/zh.json`](https://github.com/obsidianmd/obsidian-translations/blob/master/zh.json) 常用译名；
 
-## ❎等待汉化中
+## 🈳等待汉化中
 
 ### 🆙自带汉化文件
 | 📁 插件官方名称 | 🔗 汉化文件路径 |
@@ -28,13 +29,13 @@
 
 - [GitHub - Stardusten/ob-table-enhancer: 一个 Obsidian 表格增强插件](https://github.com/Stardusten/ob-table-enhancer)
 
-# 🔗汉化文件常见路径
+## 🔗汉化文件常见路径
 
 - `./l10n` (l10n意为localization，本地化，l和n之间有10个字母)
 - `./lang`
 - `./language`
 - `./locale`
 
-# 👍Thanks
+## 👍Thanks
 
 - [obsidian-community-list](https://github.com/konhi/obsidian-community-list/blob/main/lists/plugins.md)
