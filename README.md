@@ -1,2 +1,2 @@
-# obsidian-plugin-WeNeedChinese
+# obsidian-plugins-WeNeedChinese
 等待汉化的 Obsidian 插件列表
