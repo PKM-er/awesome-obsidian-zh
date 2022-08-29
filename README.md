@@ -11,7 +11,7 @@
 
 ## 已汉化或汉化中（可能需要更新维护）
 
-1. [Dictionary](https://github.com/phibr0/obsidian-dictionary)- [obsidian-dictionary/src/l10n/locale/zh-cn.ts/](https://github.com/phibr0/obsidian-dictionary/blob/master/src/l10n/locale/zh-cn.ts)
+1. [Dictionary](https://github.com/phibr0/obsidian-dictionary) - [obsidian-dictionary/src/l10n/locale/zh-cn.ts/](https://github.com/phibr0/obsidian-dictionary/blob/master/src/l10n/locale/zh-cn.ts)
 
 # 汉化文件常见路径
 
