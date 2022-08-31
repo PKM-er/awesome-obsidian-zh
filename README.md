@@ -1,8 +1,8 @@
 # obsidian-plugins-WeNeedChinese
 
-*List of Obsidian plugins for Simplified Chinese users. Easy for contributors to find which plugins are not yet localized.*
-
 ![](https://img.shields.io/badge/language-Chinese-white.svg)
+
+%% List of Obsidian plugins for Simplified Chinese users. Easy for contributors to find which plugins are not yet localized. %%
 
 ## 项目与汉化相关
 
@@ -25,11 +25,12 @@
 
 ## 原生中文插件
 
-- [GitHub - Stardusten/ob-table-enhancer: 一个 Obsidian 表格增强插件](https://github.com/Stardusten/ob-table-enhancer)
+- [ob-table-enhancer](https://github.com/Stardusten/ob-table-enhancer)
+- [Obsidian-Memos](https://github.com/Quorafind/Obsidian-Memos)
 
 ## 汉化文件常见路径
 
-- `./l10n` (l10n意为localization，本地化，l和n之间有10个字母)
+- `./l10n` %% l10n意为localization，本地化，l和n之间有10个字母。 %%
 - `./lang`
 - `./language`
 - `./locale`
