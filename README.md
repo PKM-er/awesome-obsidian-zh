@@ -7,7 +7,7 @@
 ## 项目与汉化相关
 
 - 🀄本项目将陆续收录 GitHub 上所有等待汉化的 [Obsidian](https://obsidian.md/) 插件；
-- 🆙优先收录完全不会代码的人也可参与的汉化项目，其汉化文件通常位于该插件官方 Repository 目录下；
+- 🆙初期优先收录完全不会代码的人也可参与的汉化项目，其汉化文件通常位于该插件官方 Repository 目录下；
 - 📝通用汉化教程：找到汉化文件 - 复制同目录英文文件所有代码 - 将重复出现的英文翻译为中文 - Pull Request - 等待作者审核通过后 Merge ;
 - 📌请参考 Obsidian 本体汉化  [`obsidian-translations/zh.json`](https://github.com/obsidianmd/obsidian-translations/blob/master/zh.json) 常用译名；
 
@@ -21,7 +21,7 @@
 | ------------------- | ------------------ |
 | [Commander](https://github.com/phibr0/obsidian-commander)  | [`obsidian-commander/locale/zh-cn.json`](https://github.com/phibr0/obsidian-commander/blob/main/locale/zh-cn.json) |
 | [Dictionary](https://github.com/phibr0/obsidian-dictionary) | [`obsidian-dictionary/src/l10n/locale/zh-cn.ts/`](https://github.com/phibr0/obsidian-dictionary/blob/master/src/l10n/locale/zh-cn.ts) |
-|                                |                               |
+| [Kanban](https://github.com/mgmeyers/obsidian-kanban) |[`obsidian-kanban/src/lang/locale/zh-cn.ts/`](https://github.com/mgmeyers/obsidian-kanban/blob/main/src/lang/locale/zh-cn.ts) |
 
 ## 原生中文插件
 
