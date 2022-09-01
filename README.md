@@ -6,8 +6,8 @@
 
 ## 项目与汉化相关
 
-- 🀄本项目将陆续收录 GitHub 上所有等待汉化的 [Obsidian](https://obsidian.md/) 插件；
-- 🆙初期优先收录完全不会代码的人也可参与的汉化项目，其汉化文件通常位于该插件官方 Repository 目录下；
+- 🀄本项目将陆续收录 GitHub 上通过 Pull Request 就可以参与汉化的 [Obsidian](https://obsidian.md/) 插件；
+- 🆙完全不会代码的人也可参与此类汉化，其汉化文件通常位于该插件官方 Repository 目录下；
 - 📝通用汉化教程：找到汉化文件 - 复制同目录英文文件所有代码 - 将重复出现的英文翻译为中文 - Pull Request - 等待作者审核通过后 Merge ;
 - 📌请参考 Obsidian 本体汉化  [`obsidian-translations/zh.json`](https://github.com/obsidianmd/obsidian-translations/blob/master/zh.json) 常用译名；
 
