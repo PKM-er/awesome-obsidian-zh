@@ -11,7 +11,7 @@
 - 📝通用汉化教程：找到汉化文件 - 复制同目录英文文件所有代码 - 将重复出现的英文翻译为中文 -PullRequest- 等待作者审核通过后 Merge;
 - 📌请参考 Obsidian 本体汉化 [`obsidian-translations/zh.json`]( https://github.com/obsidianmd/obsidian-translations/blob/master/zh.json ) 常用译名；
 
-## 已汉化，欢迎维护
+## 自带汉化路径，欢迎更新与维护
 
 - [Admonition](https://github.com/valentine195/obsidian-admonition)：[`obsidian-admonition/src/lang/locale/zh-cn.ts`]( https://github.com/valentine195/obsidian-admonition/blob/master/src/lang/locale/zh-cn.ts )
 - [Commander](https://github.com/phibr0/obsidian-commander)：[`obsidian-commander/locale/zh-cn.json`]( https://github.com/phibr0/obsidian-commander/blob/main/locale/zh-cn.json )
@@ -24,9 +24,12 @@
 
 ## 原生中文插件，欢迎支持
 
+- [aidenlx/cm-chs-patch](https://github.com/aidenlx/cm-chs-patch)
 - [EasyChris/obsidian-to-notion](https://github.com/EasyChris/obsidian-to-notion)
+- [Natumsol/obsidian-pangu](https://github.com/Natumsol/obsidian-pangu)
 - [Stardusten/ob-table-enhancer](https://github.com/Stardusten/ob-table-enhancer)
 - [Yaozhuwa/easy-typing-obsidian](https://github.com/Yaozhuwa/easy-typing-obsidian)
+- [zhaohongxuan/obsidian-weread-plugin](https://github.com/zhaohongxuan/obsidian-weread-plugin)
 
 ## 汉化文件常见路径
 
