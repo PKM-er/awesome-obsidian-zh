@@ -13,14 +13,16 @@
 
 ## 自带汉化路径，欢迎更新与维护
 
-- [Admonition](https://github.com/valentine195/obsidian-admonition)：[`obsidian-admonition/src/lang/locale/zh-cn.ts`]( https://github.com/valentine195/obsidian-admonition/blob/master/src/lang/locale/zh-cn.ts )
-- [Commander](https://github.com/phibr0/obsidian-commander)：[`obsidian-commander/locale/zh-cn.json`]( https://github.com/phibr0/obsidian-commander/blob/main/locale/zh-cn.json )
-- [Dictionary](https://github.com/phibr0/obsidian-dictionary)：[`obsidian-dictionary/src/l10n/locale/zh-cn.ts`]( https://github.com/phibr0/obsidian-dictionary/blob/master/src/l10n/locale/zh-cn.ts )
-- [Excalidraw](https://github.com/zsviczian/obsidian-excalidraw-plugin)：[`obsidian-excalidraw-plugin/src/lang/locale/zh-cn.ts`]( https://github.com/zsviczian/obsidian-excalidraw-plugin/blob/master/src/lang/locale/zh-cn.ts )
-- [GithubPublisher](https://github.com/ObsidianPublisher/obsidian-github-publisher)：[`obsidian-github-publisher/plugin/i18n/locales/zh-cn.ts`]( https://github.com/ObsidianPublisher/obsidian-github-publisher/blob/master/plugin/i18n/locales/zh-cn.ts )
-- [Kanban](https://github.com/mgmeyers/obsidian-kanban)：[`obsidian-kanban/src/lang/locale/zh-cn.ts`]( https://github.com/mgmeyers/obsidian-kanban/blob/main/src/lang/locale/zh-cn.ts )
-- [ObsidianMemos](https://github.com/Quorafind/Obsidian-Memos)：[`Obsidian-Memos/src/translations/locale/zh-cn.ts`]( https://github.com/Quorafind/Obsidian-Memos/blob/main/src/translations/locale/zh-cn.ts )
-- [RSSReader](https://github.com/joethei/obsidian-rss)：[`obsidian-rss/src/l10n/locales/zh.ts`]( https://github.com/joethei/obsidian-rss/blob/master/src/l10n/locales/zh.ts )
+|                                     插件名称                                      |                                                                               汉化路径                                                                                |
+|:---------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+|         [Admonition](https://github.com/valentine195/obsidian-admonition)         |             [`obsidian-admonition/src/lang/locale/zh-cn.ts`]( https://github.com/valentine195/obsidian-admonition/blob/master/src/lang/locale/zh-cn.ts )              |
+|             [Commander](https://github.com/phibr0/obsidian-commander)             |                         [`obsidian-commander/locale/zh-cn.json`]( https://github.com/phibr0/obsidian-commander/blob/main/locale/zh-cn.json )                          |
+|            [Dictionary](https://github.com/phibr0/obsidian-dictionary)            |                [`obsidian-dictionary/src/l10n/locale/zh-cn.ts`]( https://github.com/phibr0/obsidian-dictionary/blob/master/src/l10n/locale/zh-cn.ts )                 |
+|       [Excalidraw](https://github.com/zsviczian/obsidian-excalidraw-plugin)       |        [`obsidian-excalidraw-plugin/src/lang/locale/zh-cn.ts`]( https://github.com/zsviczian/obsidian-excalidraw-plugin/blob/master/src/lang/locale/zh-cn.ts )        |
+| [GithubPublisher](https://github.com/ObsidianPublisher/obsidian-github-publisher) | [`obsidian-github-publisher/plugin/i18n/locales/zh-cn.ts`]( https://github.com/ObsidianPublisher/obsidian-github-publisher/blob/master/plugin/i18n/locales/zh-cn.ts ) |
+|               [Kanban](https://github.com/mgmeyers/obsidian-kanban)               |                    [`obsidian-kanban/src/lang/locale/zh-cn.ts`]( https://github.com/mgmeyers/obsidian-kanban/blob/main/src/lang/locale/zh-cn.ts )                     |
+|           [ObsidianMemos](https://github.com/Quorafind/Obsidian-Memos)            |             [`Obsidian-Memos/src/translations/locale/zh-cn.ts`]( https://github.com/Quorafind/Obsidian-Memos/blob/main/src/translations/locale/zh-cn.ts )             |
+|               [RSSReader](https://github.com/joethei/obsidian-rss)                |                         [`obsidian-rss/src/l10n/locales/zh.ts`]( https://github.com/joethei/obsidian-rss/blob/master/src/l10n/locales/zh.ts )                         |
 
 ## 原生中文插件，欢迎支持
 
