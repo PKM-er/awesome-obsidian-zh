@@ -35,8 +35,10 @@
 - [cumany/obsidian-floating-toc-plugin](https://github.com/cumany/obsidian-floating-toc-plugin) ：浮动标题大纲
 - [guopenghui/obsidian-quiet-outline](https://github.com/guopenghui/obsidian-quiet-outline) ：大纲优化
 
-### 反向链接相关
+### 链接相关
 
+- [chenghongyao/obsidian-linkcard-plugin](https://github.com/chenghongyao/obsidian-linkcard-plugin) ：将链接转换为小卡片
+- [Quorafind/Obsidian-Surfing](https://github.com/Quorafind/Obsidian-Surfing) ：将 Obsidian 变成网页浏览器
 - [val3344/obsidian-update-relative-links](https://github.com/val3344/obsidian-update-relative-links) : 自动更新相对路径
 
 ### 图片相关
@@ -56,14 +58,12 @@
 ### 杂项
 
 - [chenghongyao/obsidian-booknote-plugin](https://github.com/chenghongyao/obsidian-booknote-plugin)  ：书籍管理、PDF 标注
-- [chenghongyao/obsidian-linkcard-plugin](https://github.com/chenghongyao/obsidian-linkcard-plugin) ：将链接转换为小卡片
 - [JuckZ/obsidian-manager](https://github.com/JuckZ/obsidian-manager) ：琐碎问题工具包，如日程提醒
 - [LincZero/obsidian-chat-view-qq at v0.4.0](https://github.com/LincZero/obsidian-chat-view-qq/tree/v0.4.0) ：QQ 聊天视图
 - [ivaneye/obsidian-files-cooker](https://github.com/ivaneye/obsidian-files-cooker) ：文件批量操作
 - [moelody/link-info-server](https://github.com/moelody/link-info-server) ：打开反向代理服务器获取文件信息
-- [Quorafind/Obsidian-Surfing](https://github.com/Quorafind/Obsidian-Surfing) ：将 Obsidian 变成网页浏览器
 - [Rainbell129/Obsidian-Homepage](https://github.com/Rainbell129/Obsidian-Homepage) ：主页功能
-[zjhcn/obsidian-code-preview](https://github.com/zjhcn/obsidian-code-preview) ：通过文件路径实现代码块渲染
+- [zjhcn/obsidian-code-preview](https://github.com/zjhcn/obsidian-code-preview) ：通过文件路径实现代码块渲染
 
 ### 已停止维护
 
