@@ -58,6 +58,7 @@
 ### 杂项
 
 - [chenghongyao/obsidian-booknote-plugin](https://github.com/chenghongyao/obsidian-booknote-plugin)  ：书籍管理、PDF 标注
+- [guopenghui/obsidian-language-learner](https://github.com/guopenghui/obsidian-language-learner) ：辅助英语学习
 - [JuckZ/obsidian-manager](https://github.com/JuckZ/obsidian-manager) ：琐碎问题工具包，如日程提醒
 - [LincZero/obsidian-chat-view-qq at v0.4.0](https://github.com/LincZero/obsidian-chat-view-qq/tree/v0.4.0) ：QQ 聊天视图
 - [ivaneye/obsidian-files-cooker](https://github.com/ivaneye/obsidian-files-cooker) ：文件批量操作
