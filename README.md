@@ -45,6 +45,7 @@
 
 - [yaleiyale/obsidian-emo-uploader](https://github.com/yaleiyale/obsidian-emo-uploader) ：将 Github 作为图床
 - [sissilab/obsidian-image-toolkit](https://github.com/sissilab/obsidian-image-toolkit) ：点击查看图片
+- [renmu123/obsidian-image-auto-upload-plugin](https://github.com/renmu123/obsidian-image-auto-upload-plugin) ：支持 PicGo、PicGo-Core 上传图片到图床
 
 ### Obsidian × 其他应用
 
