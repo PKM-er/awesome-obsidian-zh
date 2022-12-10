@@ -43,9 +43,9 @@
 
 ### 图片相关
 
-- [yaleiyale/obsidian-emo-uploader](https://github.com/yaleiyale/obsidian-emo-uploader) ：将 Github 作为图床
-- [sissilab/obsidian-image-toolkit](https://github.com/sissilab/obsidian-image-toolkit) ：点击查看图片
 - [renmu123/obsidian-image-auto-upload-plugin](https://github.com/renmu123/obsidian-image-auto-upload-plugin) ：支持 PicGo、PicGo-Core 上传图片到图床
+- [sissilab/obsidian-image-toolkit](https://github.com/sissilab/obsidian-image-toolkit) ：点击查看图片
+- [yaleiyale/obsidian-emo-uploader](https://github.com/yaleiyale/obsidian-emo-uploader) ：图床聚合 & GitHub 上传器
 
 ### Obsidian × 其他应用
 
@@ -100,7 +100,7 @@
 |[GithubPublisher](https://github.com/ObsidianPublisher/obsidian-github-publisher)| [`obsidian-github-publisher/plugin/i18n/locales/zh-cn.ts`]( https://github.com/ObsidianPublisher/obsidian-github-publisher/blob/master/plugin/i18n/locales/zh-cn.ts ) |
 |               [Kanban](https://github.com/mgmeyers/obsidian-kanban)               |                    [`obsidian-kanban/src/lang/locale/zh-cn.ts`]( https://github.com/mgmeyers/obsidian-kanban/blob/main/src/lang/locale/zh-cn.ts )                     |
 |           [ObsidianMemos](https://github.com/Quorafind/Obsidian-Memos)            |             [`Obsidian-Memos/src/translations/locale/zh-cn.ts`]( https://github.com/Quorafind/Obsidian-Memos/blob/main/src/translations/locale/zh-cn.ts )             |
-|               [RSSReader](https://github.com/joethei/obsidian-rss)                |                         [`obsidian-rss/src/l10n/locales/zh.ts`]( https://github.com/joethei/obsidian-rss/blob/master/src/l10n/locales/zh.ts )                         |
+|[RSSReader](https://github.com/joethei/obsidian-rss)|                         [`obsidian-rss/src/l10n/locales/zh.ts`]( https://github.com/joethei/obsidian-rss/blob/master/src/l10n/locales/zh.ts )                         |
 
 ### 汉化文件常见路径
 
