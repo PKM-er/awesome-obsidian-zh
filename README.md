@@ -73,6 +73,7 @@
 
 ## 原生中文主题，欢迎支持
 
+- [Akifyss/obsidian-border](https://github.com/Akifyss/obsidian-border)
 - [ennyxguo/Obsidian-Obsidianite](https://github.com/bennyxguo/Obsidian-Obsidianite)
 - [subframe7536/obsidian-theme-maple](https://github.com/subframe7536/obsidian-theme-maple)
 - [whyt-byte/Blue-Topaz_Obsidian-css](https://github.com/whyt-byte/Blue-Topaz_Obsidian-css)
