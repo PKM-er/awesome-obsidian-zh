@@ -102,6 +102,7 @@
 |               [Kanban](https://github.com/mgmeyers/obsidian-kanban)               |                    [`obsidian-kanban/src/lang/locale/zh-cn.ts`]( https://github.com/mgmeyers/obsidian-kanban/blob/main/src/lang/locale/zh-cn.ts )                     |
 |           [ObsidianMemos](https://github.com/Quorafind/Obsidian-Memos)            |             [`Obsidian-Memos/src/translations/locale/zh-cn.ts`]( https://github.com/Quorafind/Obsidian-Memos/blob/main/src/translations/locale/zh-cn.ts )             |
 |[RSSReader](https://github.com/joethei/obsidian-rss)|                         [`obsidian-rss/src/l10n/locales/zh.ts`]( https://github.com/joethei/obsidian-rss/blob/master/src/l10n/locales/zh.ts )                         |
+|[DB Folder](https://github.com/RafaelGB/obsidian-db-folder)|                         [`obsidian-db-folder/src/lang/locale/zh-cn.ts`](https://github.com/RafaelGB/obsidian-db-folder/blob/master/src/lang/locale/zh-cn.ts)                         |
 
 ### 汉化文件常见路径
 
