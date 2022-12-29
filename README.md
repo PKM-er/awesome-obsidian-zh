@@ -1,4 +1,4 @@
-Awesome-Obsidian-zh
+## Awesome-Obsidian-zh
 
 ![](https://img.shields.io/badge/language-Chinese-white.svg)
 
@@ -50,6 +50,7 @@ Awesome-Obsidian-zh
 ### Obsidian × 其他应用
 
 - [EasyChris/obsidian-to-notion](https://github.com/EasyChris/obsidian-to-notion) ：分享至 Notion
+- [mokeyish/obsidian-enhancing-export](https://github.com/mokeyish/obsidian-enhancing-export) ：pandoc 增强导出
 - [romantic-black/obsidain-vika-sync](https://github.com/romantic-black/obsidain-vika-sync) ：Vika 同步
 - [tansongchen/obsidian-note-synchronizer](https://github.com/tansongchen/obsidian-note-synchronizer)  ：Anki 同步
 - [Wanxp/obsidian-douban](https://github.com/Wanxp/obsidian-douban) ：导入豆瓣数据
