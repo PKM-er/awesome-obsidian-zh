@@ -1,4 +1,4 @@
-## Awesome-Obsidian-zh
+# Awesome-Obsidian-zh
 
 ![](https://img.shields.io/badge/language-Chinese-white.svg)
 
@@ -66,7 +66,10 @@
 - [ivaneye/obsidian-files-cooker](https://github.com/ivaneye/obsidian-files-cooker) ：文件批量操作
 - [moelody/link-info-server](https://github.com/moelody/link-info-server) ：打开反向代理服务器获取文件信息
 - [Rainbell129/Obsidian-Homepage](https://github.com/Rainbell129/Obsidian-Homepage) ：主页功能
+- [vrtmrz/obsidian-livesync](https://github.com/vrtmrz/obsidian-livesync) ：在线同步
+- [wenlzhang/obsidian-task-marker](https://github.com/wenlzhang/obsidian-task-marker) ：利用快捷键和右键菜单栏改变任务的状态
 - [zjhcn/obsidian-code-preview](https://github.com/zjhcn/obsidian-code-preview) ：通过文件路径实现代码块渲染
+- [MarkMindCkm/obsidian-markmind](https://github.com/MarkMindCkm/obsidian-markmind) ：一个思维导图和 PDF 文件标注工具
 
 ### 已停止维护
 
