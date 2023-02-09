@@ -28,6 +28,7 @@
 ### 表格相关
 
 - [ganesshkumar/obsidian-table-editor](https://github.com/ganesshkumar/obsidian-table-editor) ：表格编辑
+- [LincZero/obsidian-any-block](https://github.com/LincZero/obsidian-any-block) ：块转化、列表转表格
 - [Stardusten/ob-table-enhancer](https://github.com/Stardusten/ob-table-enhancer) ：多项表格优化，如选中单元格编辑
 
 ### 大纲相关
