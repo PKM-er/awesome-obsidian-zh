@@ -40,6 +40,7 @@
 
 - [chenghongyao/obsidian-linkcard-plugin](https://github.com/chenghongyao/obsidian-linkcard-plugin) ：将链接转换为小卡片
 - [Quorafind/Obsidian-Surfing](https://github.com/Quorafind/Obsidian-Surfing) ：将 Obsidian 变成网页浏览器
+- [Fetching Title#m3pk](https://github.com/PKM-er/Obsidian-Surfing) ：将 Obsidian 变成网页浏览器
 - [val3344/obsidian-update-relative-links](https://github.com/val3344/obsidian-update-relative-links) : 自动更新相对路径
 - [giselle197/obsidian-external-links-in-document](https://github.com/giselle197/obsidian-external-links-in-document) : 将外部链接显示在侧边栏
 
@@ -53,6 +54,7 @@
 ### Obsidian × 其他应用
 
 - [EasyChris/obsidian-to-notion](https://github.com/EasyChris/obsidian-to-notion) ：分享至 Notion
+- [eightHundreds/obsidian-dida-sync](https://github.com/eightHundreds/obsidian-dida-sync) ：滴答清单同步
 - [mokeyish/obsidian-enhancing-export](https://github.com/mokeyish/obsidian-enhancing-export) ：pandoc 增强导出
 - [romantic-black/obsidain-vika-sync](https://github.com/romantic-black/obsidain-vika-sync) ：Vika 同步
 - [tansongchen/obsidian-note-synchronizer](https://github.com/tansongchen/obsidian-note-synchronizer)  ：Anki 同步
