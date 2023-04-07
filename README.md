@@ -39,8 +39,7 @@
 ### 链接相关
 
 - [chenghongyao/obsidian-linkcard-plugin](https://github.com/chenghongyao/obsidian-linkcard-plugin) ：将链接转换为小卡片
-- [Quorafind/Obsidian-Surfing](https://github.com/Quorafind/Obsidian-Surfing) ：将 Obsidian 变成网页浏览器
-- [Fetching Title#m3pk](https://github.com/PKM-er/Obsidian-Surfing) ：将 Obsidian 变成网页浏览器
+- [PKM-er/Obsidian-Surfing](https://github.com/PKM-er/Obsidian-Surfing)：将 Obsidian 变成网页浏览器
 - [val3344/obsidian-update-relative-links](https://github.com/val3344/obsidian-update-relative-links) : 自动更新相对路径
 - [giselle197/obsidian-external-links-in-document](https://github.com/giselle197/obsidian-external-links-in-document) : 将外部链接显示在侧边栏
 
@@ -121,6 +120,10 @@
 - `./lang`
 - `./language`
 - `./locale`
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=ouatis/awesome-obsidian-zh&type=Date)](https://star-history. Com/ #ouatis/awesome -obsidian-zh&Date)
 
 ## Thanks
 
