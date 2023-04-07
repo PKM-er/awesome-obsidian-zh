@@ -121,8 +121,10 @@
 - `./language`
 - `./locale`
 
-[![Star History Chart](https://api.star-history.com/svg?repos=ouatis/awesome-obsidian-zh&type=Date)](https://star-history.com/#ouatis/awesome-obsidian-zh&Date)
-
 ## Thanks
 
 - [obsidian-community-list](https://github.com/konhi/obsidian-community-list/blob/main/lists/plugins.md)
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=ouatis/awesome-obsidian-zh&type=Date)](https://star-history.com/#ouatis/awesome-obsidian-zh&Date)
