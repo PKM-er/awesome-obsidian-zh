@@ -121,9 +121,7 @@
 - `./language`
 - `./locale`
 
-## Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=ouatis/awesome-obsidian-zh&type=Date)](https://star-history. Com/ #ouatis/awesome -obsidian-zh&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=ouatis/awesome-obsidian-zh&type=Date)](https://star-history.com/#ouatis/awesome-obsidian-zh&Date)
 
 ## Thanks
 
