@@ -4,7 +4,7 @@
 
 ## 简介
 
-- 🀄本项目将陆续收录 Github 上的 [Obsidian](https://obsidian.md/) 优秀中文插件、主题和相关资源；一些自带汉化路径的插件也会在此展示，方便中文用户更新与维护。
+- 🀄本项目将持续收录 Github 上的 [Obsidian](https://obsidian.md/) 优秀中文插件、主题和相关资源；一些自带汉化路径的插件也会在此展示，方便中文用户更新与维护。
 
 ## 官方中文社区
 
@@ -54,22 +54,26 @@
 
 - [EasyChris/obsidian-to-notion](https://github.com/EasyChris/obsidian-to-notion) ：分享至 Notion
 - [eightHundreds/obsidian-dida-sync](https://github.com/eightHundreds/obsidian-dida-sync) ：滴答清单同步
+- [makediff/obsidian-wucai](https://github.com/makediff/obsidian-wucai) ：五彩插件
 - [mokeyish/obsidian-enhancing-export](https://github.com/mokeyish/obsidian-enhancing-export) ：pandoc 增强导出
 - [romantic-black/obsidain-vika-sync](https://github.com/romantic-black/obsidain-vika-sync) ：Vika 同步
-- [tansongchen/obsidian-note-synchronizer](https://github.com/tansongchen/obsidian-note-synchronizer)  ：Anki 同步
+- [tansongchen/obsidian-note-synchronizer](https://github.com/tansongchen/obsidian-note-synchronizer) ：Anki 同步
 - [Wanxp/obsidian-douban](https://github.com/Wanxp/obsidian-douban) ：导入豆瓣数据
 - [YHaoNan/obsidian-metaweblog](https://github.com/YHaoNan/obsidian-metaweblog) ：Metaweblog API 整合
 - [zhaohongxuan/obsidian-weread-plugin](https://github.com/zhaohongxuan/obsidian-weread-plugin) ：与微信读书相关的各项功能
 
 ### 杂项
 
-- [chenghongyao/obsidian-booknote-plugin](https://github.com/chenghongyao/obsidian-booknote-plugin)  ：书籍管理、PDF 标注
+- [Acylation/obsidian-chem](https://github.com/Acylation/obsidian-chem) ：将字符串渲染为化学结构式等化学相关体验提升
+- [chenghongyao/obsidian-booknote-plugin](https://github.com/chenghongyao/obsidian-booknote-plugin) ：书籍管理、PDF 标注
+- [edonyzpc/personal-assistant](https://github.com/edonyzpc/personal-assistant) ：自动管理 Obsidian
 - [guopenghui/obsidian-language-learner](https://github.com/guopenghui/obsidian-language-learner) ：辅助英语学习
 - [JuckZ/obsidian-manager](https://github.com/JuckZ/obsidian-manager) ：琐碎问题工具包，如日程提醒
 - [LincZero/obsidian-chat-view-qq at v0.4.0](https://github.com/LincZero/obsidian-chat-view-qq/tree/v0.4.0) ：QQ 聊天视图
 - [ivaneye/obsidian-files-cooker](https://github.com/ivaneye/obsidian-files-cooker) ：文件批量操作
 - [moelody/link-info-server](https://github.com/moelody/link-info-server) ：打开反向代理服务器获取文件信息
 - [Rainbell129/Obsidian-Homepage](https://github.com/Rainbell129/Obsidian-Homepage) ：主页功能
+- [valentine195/obsidian-leaflet-plugin](https://github.com/valentine195/obsidian-leaflet-plugin) ：可交互地图
 - [vrtmrz/obsidian-livesync](https://github.com/vrtmrz/obsidian-livesync)：自搭建在线同步
 - [wenlzhang/obsidian-task-marker](https://github.com/wenlzhang/obsidian-task-marker) ：利用快捷键和右键菜单栏改变任务的状态
 - [zjhcn/obsidian-code-preview](https://github.com/zjhcn/obsidian-code-preview) ：通过文件路径实现代码块渲染
@@ -93,9 +97,9 @@
 
 ## 自带汉化路径
 
-%% List of Obsidian plugins and themes for Simplified Chinese users. Easy for contributors to find those plugins that can be localized via PullRequest. %%
+%% List of Obsidian plugins and themes for Simplified Chinese users. Easy for contributors to find those plugins that can be localized via Pull request. %%
 
-- 🌏陆续收录 GitHub 上通过 PullRequest 就可以参与汉化更新与维护的 Obsidian 插件；
+- 🌏持续收录 GitHub 上通过 Pull request 就可以参与汉化更新与维护的 Obsidian 插件；
 - 🆙完全不会代码的人也可参与此类汉化，其汉化文件通常位于该插件官方 Repository 目录下；
 - 📝通用汉化教程：找到汉化文件 - 复制同目录英文文件所有代码 - 将重复出现的英文翻译为中文 -PullRequest- 等待作者审核通过后 Merge;
 - 📌请参考 Obsidian 本体汉化 [`obsidian-translations/zh. json`]( https://github.com/obsidianmd/obsidian-translations/blob/master/zh.json ) 常用译名；
