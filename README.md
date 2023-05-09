@@ -15,13 +15,17 @@
 
 %% 包含自带中文文档的插件 %%
 
-### 编辑模式相关
+### 中文相关
 
 - [aidenlx/cm-chs-patch](https://github.com/aidenlx/cm-chs-patch)：双击可选中中文词
-- [cloudhao1999/obsidian-scroll-to-top-plugin](https://github.com/cloudhao1999/obsidian-scroll-to-top-plugin)：滚动到顶部
-- [cumany/obsidian-editing-toolbar](https://github.com/cumany/obsidian-editing-toolbar)：加入编辑栏
+- [lazyloong/obsidian-fuzzy-chinese](https://github.com/lazyloong/obsidian-fuzzy-chinese) ：提供中文拼音搜索的功能
 - [Natumsol/obsidian-pangu](https://github.com/Natumsol/obsidian-pangu) ：为中英文之间加入“盘古之白”
 - [renmu123/obsidian-auto-pair-chinese-symbol](https://github.com/renmu123/obsidian-auto-pair-chinese-symbol) ：中文符号自动补齐
+
+### 编辑模式相关
+
+- [cloudhao1999/obsidian-scroll-to-top-plugin](https://github.com/cloudhao1999/obsidian-scroll-to-top-plugin)：滚动到顶部
+- [cumany/obsidian-editing-toolbar](https://github.com/cumany/obsidian-editing-toolbar)：加入编辑栏
 - [obsidian-canzi/Enhanced-editing](https://github.com/obsidian-canzi/Enhanced-editing) ：多项编辑优化
 - [Yaozhuwa/easy-typing-obsidian](https://github.com/Yaozhuwa/easy-typing-obsidian) ：多项编辑优化，如重复输入全角标点自动转半角
 
@@ -46,7 +50,7 @@
 ### 图片相关
 
 - [martinniee/Obsidian-fast-image-cleaner](https://github.com/martinniee/Obsidian-fast-image-cleaner/blob/master/ZH.md) ：快速删除文档中的图片附件文件以及引用链接
-- [renmu123/obsidian-image-auto-upload-plugin](https://github.com/renmu123/obsidian-image-auto-upload-plugin) ：支持 PicGo、PicGo-Core 上传图片到图床
+- [renmu123/obsidian-image-auto-upload-plugin](https://github.com/renmu123/obsidian-image-auto-upload-plugin) ：支持 PicGo 上传图片到图床
 - [sissilab/obsidian-image-toolkit](https://github.com/sissilab/obsidian-image-toolkit) ：点击查看图片
 - [yaleiyale/obsidian-emo-uploader](https://github.com/yaleiyale/obsidian-emo-uploader) ：图床聚合 & GitHub 上传器
 
