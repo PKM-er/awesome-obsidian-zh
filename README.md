@@ -58,6 +58,7 @@
 
 - [EasyChris/obsidian-to-notion](https://github.com/EasyChris/obsidian-to-notion) ：分享至 Notion
 - [eightHundreds/obsidian-dida-sync](https://github.com/eightHundreds/obsidian-dida-sync) ：滴答清单同步
+- [ittuann/obsidian-gpt-liteinquirer-plugin](https://github.com/ittuann/obsidian-gpt-liteinquirer-plugin) ：ChatGPT 助手
 - [makediff/obsidian-wucai](https://github.com/makediff/obsidian-wucai) ：五彩插件
 - [mokeyish/obsidian-enhancing-export](https://github.com/mokeyish/obsidian-enhancing-export) ：pandoc 增强导出
 - [romantic-black/obsidain-vika-sync](https://github.com/romantic-black/obsidain-vika-sync) ：Vika 同步
@@ -97,6 +98,7 @@
 ## 更多中文资源
 
 - [Obsidian 官方中文文档](https://publish.obsidian.md/help-zh/%E7%94%B1%E6%AD%A4%E5%BC%80%E5%A7%8B) ：相对英文文档稍有延迟
+- [Pkmer知识管理共建项目](https://github.com/PKM-er/Pkmer-Docs) ：一个开源项目，旨在总结和归纳知识管理相关知识和用法技巧
 - [juestchaos/Obsidian-Plug-and-Play](https://github.com/juestchaos/Obsidian-Plug-and-Play)：一个即插即用的资源库
 
 ## 自带汉化路径
