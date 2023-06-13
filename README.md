@@ -22,10 +22,10 @@
 - [Natumsol/obsidian-pangu](https://github.com/Natumsol/obsidian-pangu) ：为中英文之间加入“盘古之白”
 - [renmu123/obsidian-auto-pair-chinese-symbol](https://github.com/renmu123/obsidian-auto-pair-chinese-symbol) ：中文符号自动补齐
 
-### 编辑模式相关
+### 编辑增强
 
-- [cloudhao1999/obsidian-scroll-to-top-plugin](https://github.com/cloudhao1999/obsidian-scroll-to-top-plugin)：滚动到顶部
-- [cumany/obsidian-editing-toolbar](https://github.com/cumany/obsidian-editing-toolbar)：加入编辑栏
+- [cumany/obsidian-editing-toolbar](https://github.com/cumany/obsidian-editing-toolbar)：加入类似 Word 的可视化编辑工具栏
+	- 进阶使用详见👉 [PKMer文档](https://pkmer.cn/Pkmer-Docs/10-obsidian/obsidian%E7%A4%BE%E5%8C%BA%E6%8F%92%E4%BB%B6/editing-toolbar/)
 - [obsidian-canzi/Enhanced-editing](https://github.com/obsidian-canzi/Enhanced-editing) ：多项编辑优化
 - [Yaozhuwa/easy-typing-obsidian](https://github.com/Yaozhuwa/easy-typing-obsidian) ：多项编辑优化，如重复输入全角标点自动转半角
 
@@ -64,6 +64,7 @@
 - [romantic-black/obsidain-vika-sync](https://github.com/romantic-black/obsidain-vika-sync) ：Vika 同步
 - [tansongchen/obsidian-note-synchronizer](https://github.com/tansongchen/obsidian-note-synchronizer) ：Anki 同步
 - [Wanxp/obsidian-douban](https://github.com/Wanxp/obsidian-douban) ：导入豆瓣数据
+	- 进阶使用详见👉 [PKMer文档](https://pkmer.cn/Pkmer-Docs/10-obsidian/obsidian%E7%A4%BE%E5%8C%BA%E6%8F%92%E4%BB%B6/obsidian-douban-plugin/)
 - [YHaoNan/obsidian-metaweblog](https://github.com/YHaoNan/obsidian-metaweblog) ：Metaweblog API 整合
 - [zhaohongxuan/obsidian-weread-plugin](https://github.com/zhaohongxuan/obsidian-weread-plugin) ：与微信读书相关的各项功能
 
@@ -73,7 +74,7 @@
 - [chenghongyao/obsidian-booknote-plugin](https://github.com/chenghongyao/obsidian-booknote-plugin) ：书籍管理、PDF 标注
 - [edonyzpc/personal-assistant](https://github.com/edonyzpc/personal-assistant) ：自动管理 Obsidian
 - [guopenghui/obsidian-language-learner](https://github.com/guopenghui/obsidian-language-learner) ：辅助英语学习
-- [JuckZ/obsidian-manager](https://github.com/JuckZ/obsidian-manager) ：琐碎问题工具包，如日程提醒
+- [JuckZ/awesome-brain-manager](https://github.com/JuckZ/awesome-brain-manager)：旨在解决大多数人在 Obsidian 中遇到的所有琐碎问题
 - [LincZero/obsidian-chat-view-qq at v0.4.0](https://github.com/LincZero/obsidian-chat-view-qq/tree/v0.4.0) ：QQ 聊天视图
 - [ivaneye/obsidian-files-cooker](https://github.com/ivaneye/obsidian-files-cooker) ：文件批量操作
 - [moelody/link-info-server](https://github.com/moelody/link-info-server) ：打开反向代理服务器获取文件信息
@@ -87,6 +88,7 @@
 ### 已停止维护
 
 - [1657744680/obsidian-yaml-database:](https://github.com/1657744680/obsidian-yaml-database) ：像 Notion Database 一样的 YAML Database
+- [JuckZ/obsidian-manager](https://github.com/JuckZ/obsidian-manager) ：琐碎问题工具包，如日程提醒等，已经迁移至 Awesome Brain Manager
 
 ## 原生中文主题，欢迎支持
 
