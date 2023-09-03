@@ -6,10 +6,15 @@
 
 - 🀄本项目将持续收录 Github 上的 [Obsidian](https://obsidian.md/) 优秀中文插件、主题和相关资源；一些自带汉化路径的插件也会在此展示，方便中文用户更新与维护。
 
-## 官方中文社区
+## 官方中文社区与资源
 
 - [Obsidian 中文论坛](https://forum-zh.obsidian.md/)
 - [Discord 官方中文频道](https://discord.com/channels/686053708261228577/735629542906920993)
+- [Obsidian 官方中文文档](https://publish.obsidian.md/help-zh/%E7%94%B1%E6%AD%A4%E5%BC%80%E5%A7%8B) ：相对英文文档稍有延迟
+
+### 更多中文资源
+
+- [Pkmer 知识管理共建项目](https://github.com/PKM-er/Pkmer-Docs) ：一个开源项目，旨在总结和归纳知识管理相关知识和用法技巧
 
 ## 原生中文插件，欢迎支持
 
@@ -72,6 +77,7 @@
 ### 杂项
 
 - [Acylation/obsidian-chem](https://github.com/Acylation/obsidian-chem) ：将字符串渲染为化学结构式等化学相关体验提升
+- [chenfeicqq/obsidian-attachment-manager](https://github.com/chenfeicqq/obsidian-attachment-manager) ：附件管理器
 - [chenghongyao/obsidian-booknote-plugin](https://github.com/chenghongyao/obsidian-booknote-plugin) ：书籍管理、PDF 标注
 - [edonyzpc/personal-assistant](https://github.com/edonyzpc/personal-assistant) ：自动管理 Obsidian
 - [guopenghui/obsidian-language-learner](https://github.com/guopenghui/obsidian-language-learner) ：辅助英语学习
@@ -89,7 +95,7 @@
 ### 已停止维护
 
 - [1657744680/obsidian-yaml-database:](https://github.com/1657744680/obsidian-yaml-database) ：像 Notion Database 一样的 YAML Database
-- [JuckZ/obsidian-manager](https://github.com/JuckZ/obsidian-manager) ：琐碎问题工具包，如日程提醒等，已经迁移至 Awesome Brain Manager
+- [JuckZ/obsidian-manager](https://github.com/JuckZ/obsidian-manager) ：琐碎问题工具包，已迁移至 Awesome Brain Manager
 
 ## 原生中文主题，欢迎支持
 
@@ -97,12 +103,6 @@
 - [ennyxguo/Obsidian-Obsidianite](https://github.com/bennyxguo/Obsidian-Obsidianite)
 - [subframe7536/obsidian-theme-maple](https://github.com/subframe7536/obsidian-theme-maple)
 - [whyt-byte/Blue-Topaz_Obsidian-css](https://github.com/whyt-byte/Blue-Topaz_Obsidian-css)
-
-## 更多中文资源
-
-- [Obsidian 官方中文文档](https://publish.obsidian.md/help-zh/%E7%94%B1%E6%AD%A4%E5%BC%80%E5%A7%8B) ：相对英文文档稍有延迟
-- [Pkmer知识管理共建项目](https://github.com/PKM-er/Pkmer-Docs) ：一个开源项目，旨在总结和归纳知识管理相关知识和用法技巧
-- [juestchaos/Obsidian-Plug-and-Play](https://github.com/juestchaos/Obsidian-Plug-and-Play)：一个即插即用的资源库
 
 ## 自带汉化路径
 
