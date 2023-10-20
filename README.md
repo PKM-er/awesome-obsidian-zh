@@ -85,6 +85,7 @@
 - [LincZero/obsidian-chat-view-qq at v0.4.0](https://github.com/LincZero/obsidian-chat-view-qq/tree/v0.4.0) ：QQ 聊天视图
 - [ivaneye/obsidian-files-cooker](https://github.com/ivaneye/obsidian-files-cooker) ：文件批量操作
 - [moelody/link-info-server](https://github.com/moelody/link-info-server) ：打开反向代理服务器获取文件信息
+- [qing3962/password-protection](https://github.com/qing3962/password-protection) ：为笔记设置密码
 - [Rainbell129/Obsidian-Homepage](https://github.com/Rainbell129/Obsidian-Homepage) ：主页功能
 - [valentine195/obsidian-leaflet-plugin](https://github.com/valentine195/obsidian-leaflet-plugin) ：可交互地图
 - [vrtmrz/obsidian-livesync](https://github.com/vrtmrz/obsidian-livesync)：自搭建在线同步
