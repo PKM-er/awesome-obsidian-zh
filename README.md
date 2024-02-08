@@ -84,6 +84,8 @@
 - [JuckZ/awesome-brain-manager](https://github.com/JuckZ/awesome-brain-manager)：旨在解决大多数人在 Obsidian 中遇到的所有琐碎问题
 - [LincZero/obsidian-chat-view-qq at v0.4.0](https://github.com/LincZero/obsidian-chat-view-qq/tree/v0.4.0) ：QQ 聊天视图
 - [ivaneye/obsidian-files-cooker](https://github.com/ivaneye/obsidian-files-cooker) ：文件批量操作
+- [WHG555/lunar-calendar](https://github.com/WHG555/lunar-calendar) ：一个支持农历的日历插件
+- [MarkMindCkm/obsidian-markmind](https://github.com/MarkMindCkm/obsidian-markmind) ：一个思维导图和 PDF 文件标注工具
 - [moelody/link-info-server](https://github.com/moelody/link-info-server) ：打开反向代理服务器获取文件信息
 - [qing3962/password-protection](https://github.com/qing3962/password-protection) ：为笔记设置密码
 - [Rainbell129/Obsidian-Homepage](https://github.com/Rainbell129/Obsidian-Homepage) ：主页功能
@@ -91,7 +93,7 @@
 - [vrtmrz/obsidian-livesync](https://github.com/vrtmrz/obsidian-livesync)：自搭建在线同步
 - [wenlzhang/obsidian-task-marker](https://github.com/wenlzhang/obsidian-task-marker) ：利用快捷键和右键菜单栏改变任务的状态
 - [zjhcn/obsidian-code-preview](https://github.com/zjhcn/obsidian-code-preview) ：通过文件路径实现代码块渲染
-- [MarkMindCkm/obsidian-markmind](https://github.com/MarkMindCkm/obsidian-markmind) ：一个思维导图和 PDF 文件标注工具
+- [zwpaper/obsidian-progressbar](https://github.com/zwpaper/obsidian-progressbar) ：使用代码块生成各种进度条
 
 ### 已停止维护
 
@@ -116,16 +118,17 @@
 
 ### 欢迎更新与维护
 
-- [Admonition](https://github.com/valentine195/obsidian-admonition) ：[`obsidian-admonition/src/lang/locale/zh-cn. ts`]( https://github.com/valentine195/obsidian-admonition/blob/master/src/lang/locale/zh-cn.ts )
-- [Commander](https://github.com/phibr0/obsidian-commander) ：[`obsidian-commander/locale/zh-cn.json`](https://github.com/phibr0/obsidian-commander/blob/main/locale/zh-cn.json)
-- [DB Folder](https://github.com/RafaelGB/obsidian-db-folder) ：[`obsidian-db-folder/src/lang/locale/zh-cn.ts`](https://github.com/RafaelGB/obsidian-db-folder/blob/master/src/lang/locale/zh-cn.ts)
-- [Dictionary](https://github.com/phibr0/obsidian-dictionary) ： [`obsidian-dictionary/src/l10n/locale/zh-cn.ts`](https://github.com/phibr0/obsidian-dictionary/blob/master/src/l10n/locale/zh-cn.ts)
-- [Excalidraw](https://github.com/zsviczian/obsidian-excalidraw-plugin) ： [`obsidian-excalidraw-plugin/src/lang/locale/zh-cn.ts`](https://github.com/zsviczian/obsidian-excalidraw-plugin/blob/master/src/lang/locale/zh-cn.ts)
-- [Github Publisher](https://github.com/ObsidianPublisher/obsidian-github-publisher) ：[`obsidian-github-publisher/plugin/i18n/locales/zh-cn.ts`](https://github.com/ObsidianPublisher/obsidian-github-publisher/blob/master/plugin/i18n/locales/zh-cn.ts)
-- [Kanban](https://github.com/mgmeyers/obsidian-kanban) ：[`obsidian-kanban/src/lang/locale/zh-cn.ts`](https://github.com/mgmeyers/obsidian-kanban/blob/main/src/lang/locale/zh-cn.ts)
-- [Obsidian Memos](https://github.com/Quorafind/Obsidian-Memos) ：[`Obsidian-Memos/src/translations/locale/zh-cn. ts`]( https://github.com/Quorafind/Obsidian-Memos/blob/main/src/translations/locale/zh-cn.ts )
-- [RSSReader](https://github.com/joethei/obsidian-rss) ：[`obsidian-rss/src/l10n/locales/zh.ts`](https://github.com/joethei/obsidian-rss/blob/master/src/l10n/locales/zh.ts)
-- [Spaced Repetition](https://github.com/st3v3nmw/obsidian-spaced-repetition) ：[`obsidian-spaced-repetition/src/lang/locale/zh-cn.ts`](https://github.com/st3v3nmw/obsidian-spaced-repetition/blob/master/src/lang/locale/zh-cn.ts)
+| 插件 | 汉化路径 |
+| ---- | ---- |
+| [Admonition](https://github.com/valentine195/obsidian-admonition) | [`obsidian-admonition/src/lang/locale/zh-cn. Ts`]( https://github.com/valentine195/obsidian-admonition/blob/master/src/lang/locale/zh-cn.ts ) |
+| [Commander](https://github.com/phibr0/obsidian-commander) | [`obsidian-commander/locale/zh-cn.json`](https://github.com/phibr0/obsidian-commander/blob/main/locale/zh-cn.json) |
+| [DB Folder](https://github.com/RafaelGB/obsidian-db-folder) | [`obsidian-db-folder/src/lang/locale/zh-cn.ts`](https://github.com/RafaelGB/obsidian-db-folder/blob/master/src/lang/locale/zh-cn.ts) |
+| [Dictionary](https://github.com/phibr0/obsidian-dictionary) | [`obsidian-dictionary/src/l10n/locale/zh-cn.ts`](https://github.com/phibr0/obsidian-dictionary/blob/master/src/l10n/locale/zh-cn.ts) |
+| [Excalidraw](https://github.com/zsviczian/obsidian-excalidraw-plugin) | [`obsidian-excalidraw-plugin/src/lang/locale/zh-cn.ts`](https://github.com/zsviczian/obsidian-excalidraw-plugin/blob/master/src/lang/locale/zh-cn.ts) |
+| [Kanban](https://github.com/mgmeyers/obsidian-kanban) | [`obsidian-kanban/src/lang/locale/zh-cn.ts`](https://github.com/mgmeyers/obsidian-kanban/blob/main/src/lang/locale/zh-cn.ts) |
+| [Obsidian Memos](https://github.com/Quorafind/Obsidian-Memos) | [`Obsidian-Memos/src/translations/locale/zh-cn. Ts`]( https://github.com/Quorafind/Obsidian-Memos/blob/main/src/translations/locale/zh-cn.ts ) |
+| [RSSReader](https://github.com/joethei/obsidian-rss) | [`obsidian-rss/src/l10n/locales/zh.ts`](https://github.com/joethei/obsidian-rss/blob/master/src/l10n/locales/zh.ts) |
+| [Spaced Repetition](https://github.com/st3v3nmw/obsidian-spaced-repetition) | [`obsidian-spaced-repetition/src/lang/locale/zh-cn.ts`](https://github.com/st3v3nmw/obsidian-spaced-repetition/blob/master/src/lang/locale/zh-cn.ts) |
 
 ### 汉化文件常见路径
 
