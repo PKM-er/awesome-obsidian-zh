@@ -15,6 +15,7 @@
 ### 更多中文资源
 
 - [Pkmer 知识管理共建项目](https://github.com/PKM-er/Pkmer-Docs) ：一个开源项目，旨在总结和归纳知识管理相关知识和用法技巧
+- [PKMer](https://pkmer.cn/) ：致力于打造东半球强大的知识管理社区
 
 ## 原生中文插件，欢迎支持
 
@@ -22,6 +23,8 @@
 
 ### 中文相关
 
+- [0011000000110010/obsidian-i18n](https://github.com/0011000000110010/obsidian-i18n/) ：对 Obsidian 插件进行翻译
+- [0918nobita/obsidian-zhongwen-block](https://github.com/0918nobita/obsidian-zhongwen-block) ：中文学习
 - [aidenlx/cm-chs-patch](https://github.com/aidenlx/cm-chs-patch)：双击可选中中文词
 - [lazyloong/obsidian-fuzzy-chinese](https://github.com/lazyloong/obsidian-fuzzy-chinese) ：提供中文拼音搜索的功能
 - [Natumsol/obsidian-pangu](https://github.com/Natumsol/obsidian-pangu) ：为中英文之间加入“盘古之白”
@@ -88,10 +91,12 @@
 - [MarkMindCkm/obsidian-markmind](https://github.com/MarkMindCkm/obsidian-markmind) ：一个思维导图和 PDF 文件标注工具
 - [moelody/link-info-server](https://github.com/moelody/link-info-server) ：打开反向代理服务器获取文件信息
 - [qing3962/password-protection](https://github.com/qing3962/password-protection) ：为笔记设置密码
+- [Quorafind/Obsidian-Thino](https://github.com/Quorafind/Obsidian-Thino) ：每日回顾，帮助捕捉、保存信息
 - [Rainbell129/Obsidian-Homepage](https://github.com/Rainbell129/Obsidian-Homepage) ：主页功能
 - [valentine195/obsidian-leaflet-plugin](https://github.com/valentine195/obsidian-leaflet-plugin) ：可交互地图
 - [vrtmrz/obsidian-livesync](https://github.com/vrtmrz/obsidian-livesync)：自搭建在线同步
 - [wenlzhang/obsidian-task-marker](https://github.com/wenlzhang/obsidian-task-marker) ：利用快捷键和右键菜单栏改变任务的状态
+- [wnhllh/obsidian-callout-editor](https://github.com/wnhllh/obsidian-callout-editor) ：瀑布流布局
 - [zjhcn/obsidian-code-preview](https://github.com/zjhcn/obsidian-code-preview) ：通过文件路径实现代码块渲染
 - [zwpaper/obsidian-progressbar](https://github.com/zwpaper/obsidian-progressbar) ：使用代码块生成各种进度条
 
