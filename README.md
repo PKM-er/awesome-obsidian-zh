@@ -63,6 +63,21 @@
 - [sissilab/obsidian-image-toolkit](https://github.com/sissilab/obsidian-image-toolkit) ：点击查看图片
 - [yaleiyale/obsidian-emo-uploader](https://github.com/yaleiyale/obsidian-emo-uploader) ：图床聚合 & GitHub 上传器
 
+### 日程计划相关
+
+- [a-nano-dust/dust-obsidian-calendar](https://github.com/a-nano-dust/dust-obsidian-calendar) ：更符合中国习惯的日历
+- [Quorafind/Obsidian-Thino](https://github.com/Quorafind/Obsidian-Thino) ：每日回顾，帮助捕捉、保存信息
+- [wenlzhang/obsidian-task-marker](https://github.com/wenlzhang/obsidian-task-marker) ：利用快捷键和右键菜单栏改变任务的状态
+- [WHG555/lunar-calendar](https://github.com/WHG555/lunar-calendar) ：支持农历的日历
+- [zwpaper/obsidian-progressbar](https://github.com/zwpaper/obsidian-progressbar) ：使用代码块生成各种进度条
+
+### 书影音相关
+
+- [Wanxp/obsidian-douban](https://github.com/Wanxp/obsidian-douban) ：导入豆瓣数据
+	- 进阶使用详见👉 [PKMer文档](https://pkmer.cn/Pkmer-Docs/10-obsidian/obsidian%E7%A4%BE%E5%8C%BA%E6%8F%92%E4%BB%B6/obsidian-douban-plugin/)
+- [chenghongyao/obsidian-booknote-plugin](https://github.com/chenghongyao/obsidian-booknote-plugin) ：书籍管理、PDF 标注
+- [zhaohongxuan/obsidian-weread-plugin](https://github.com/zhaohongxuan/obsidian-weread-plugin) ：与微信读书相关的各项功能
+
 ### Obsidian × 其他应用
 
 - [EasyChris/obsidian-to-notion](https://github.com/EasyChris/obsidian-to-notion) ：分享至 Notion
@@ -72,33 +87,25 @@
 - [mokeyish/obsidian-enhancing-export](https://github.com/mokeyish/obsidian-enhancing-export) ：pandoc 增强导出
 - [romantic-black/obsidain-vika-sync](https://github.com/romantic-black/obsidain-vika-sync) ：Vika 同步
 - [tansongchen/obsidian-note-synchronizer](https://github.com/tansongchen/obsidian-note-synchronizer) ：Anki 同步
-- [Wanxp/obsidian-douban](https://github.com/Wanxp/obsidian-douban) ：导入豆瓣数据
-	- 进阶使用详见👉 [PKMer文档](https://pkmer.cn/Pkmer-Docs/10-obsidian/obsidian%E7%A4%BE%E5%8C%BA%E6%8F%92%E4%BB%B6/obsidian-douban-plugin/)
 - [YHaoNan/obsidian-metaweblog](https://github.com/YHaoNan/obsidian-metaweblog) ：Metaweblog API 整合
-- [zhaohongxuan/obsidian-weread-plugin](https://github.com/zhaohongxuan/obsidian-weread-plugin) ：与微信读书相关的各项功能
 
 ### 杂项
 
 - [Acylation/obsidian-chem](https://github.com/Acylation/obsidian-chem) ：将字符串渲染为化学结构式等化学相关体验提升
 - [chenfeicqq/obsidian-attachment-manager](https://github.com/chenfeicqq/obsidian-attachment-manager) ：附件管理器
-- [chenghongyao/obsidian-booknote-plugin](https://github.com/chenghongyao/obsidian-booknote-plugin) ：书籍管理、PDF 标注
 - [edonyzpc/personal-assistant](https://github.com/edonyzpc/personal-assistant) ：自动管理 Obsidian
 - [guopenghui/obsidian-language-learner](https://github.com/guopenghui/obsidian-language-learner) ：辅助英语学习
 - [JuckZ/awesome-brain-manager](https://github.com/JuckZ/awesome-brain-manager)：旨在解决大多数人在 Obsidian 中遇到的所有琐碎问题
 - [LincZero/obsidian-chat-view-qq at v0.4.0](https://github.com/LincZero/obsidian-chat-view-qq/tree/v0.4.0) ：QQ 聊天视图
 - [ivaneye/obsidian-files-cooker](https://github.com/ivaneye/obsidian-files-cooker) ：文件批量操作
-- [WHG555/lunar-calendar](https://github.com/WHG555/lunar-calendar) ：一个支持农历的日历插件
 - [MarkMindCkm/obsidian-markmind](https://github.com/MarkMindCkm/obsidian-markmind) ：一个思维导图和 PDF 文件标注工具
 - [moelody/link-info-server](https://github.com/moelody/link-info-server) ：打开反向代理服务器获取文件信息
 - [qing3962/password-protection](https://github.com/qing3962/password-protection) ：为笔记设置密码
-- [Quorafind/Obsidian-Thino](https://github.com/Quorafind/Obsidian-Thino) ：每日回顾，帮助捕捉、保存信息
 - [Rainbell129/Obsidian-Homepage](https://github.com/Rainbell129/Obsidian-Homepage) ：主页功能
 - [valentine195/obsidian-leaflet-plugin](https://github.com/valentine195/obsidian-leaflet-plugin) ：可交互地图
 - [vrtmrz/obsidian-livesync](https://github.com/vrtmrz/obsidian-livesync)：自搭建在线同步
-- [wenlzhang/obsidian-task-marker](https://github.com/wenlzhang/obsidian-task-marker) ：利用快捷键和右键菜单栏改变任务的状态
 - [wnhllh/obsidian-callout-editor](https://github.com/wnhllh/obsidian-callout-editor) ：瀑布流布局
 - [zjhcn/obsidian-code-preview](https://github.com/zjhcn/obsidian-code-preview) ：通过文件路径实现代码块渲染
-- [zwpaper/obsidian-progressbar](https://github.com/zwpaper/obsidian-progressbar) ：使用代码块生成各种进度条
 
 ### 已停止维护
 
