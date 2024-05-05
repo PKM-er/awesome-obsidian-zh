@@ -116,6 +116,7 @@
 
 - [Akifyss/obsidian-border](https://github.com/Akifyss/obsidian-border)
 - [ennyxguo/Obsidian-Obsidianite](https://github.com/bennyxguo/Obsidian-Obsidianite)
+- [loveminimal/obsidian-theme-virgo](https://github.com/loveminimal/obsidian-theme-virgo)
 - [subframe7536/obsidian-theme-maple](https://github.com/subframe7536/obsidian-theme-maple)
 - [whyt-byte/Blue-Topaz_Obsidian-css](https://github.com/whyt-byte/Blue-Topaz_Obsidian-css)
 
