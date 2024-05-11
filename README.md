@@ -59,6 +59,7 @@
 ### 图片相关
 
 - [martinniee/Obsidian-fast-image-cleaner](https://github.com/martinniee/Obsidian-fast-image-cleaner/blob/master/ZH.md) ：快速删除文档中的图片附件文件以及引用链接
+- [RavenHogWarts/obsidian-custom-icons]( https://github.com/RavenHogWarts/obsidian-custom-icons ：为文档和文件夹设置可自定义的图标
 - [renmu123/obsidian-image-auto-upload-plugin](https://github.com/renmu123/obsidian-image-auto-upload-plugin) ：支持 PicGo 上传图片到图床
 - [sissilab/obsidian-image-toolkit](https://github.com/sissilab/obsidian-image-toolkit) ：点击查看图片
 - [yaleiyale/obsidian-emo-uploader](https://github.com/yaleiyale/obsidian-emo-uploader) ：图床聚合 & GitHub 上传器
