@@ -1,3 +1,4 @@
+
 # Awesome-Obsidian-zh
 
 ![](https://img.shields.io/badge/language-Chinese-white.svg)
@@ -16,6 +17,7 @@
 
 - [Pkmer 知识管理共建项目](https://github.com/PKM-er/Pkmer-Docs) ：一个开源项目，旨在总结和归纳知识管理相关知识和用法技巧
 - [PKMer](https://pkmer.cn/) ：致力于打造东半球强大的知识管理社区
+- [LifeOS](https://github.com/quanru/obsidian-example-lifeos) ：基于 Obsidian 打造的人生管理系统
 
 ## 原生中文插件，欢迎支持
 
@@ -116,6 +118,7 @@
 ## 原生中文主题，欢迎支持
 
 - [Akifyss/obsidian-border](https://github.com/Akifyss/obsidian-border)
+- [carols12352/Oreo-theme](https://github.com/carols12352/Oreo-theme)
 - [ennyxguo/Obsidian-Obsidianite](https://github.com/bennyxguo/Obsidian-Obsidianite)
 - [loveminimal/obsidian-theme-virgo](https://github.com/loveminimal/obsidian-theme-virgo)
 - [subframe7536/obsidian-theme-maple](https://github.com/subframe7536/obsidian-theme-maple)
