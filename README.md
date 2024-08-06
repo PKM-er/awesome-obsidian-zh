@@ -69,6 +69,7 @@
 ### 日程计划相关
 
 - [a-nano-dust/dust-obsidian-calendar](https://github.com/a-nano-dust/dust-obsidian-calendar) ：更符合中国习惯的日历
+- [DevilRoshan/obsidian-lunar-calendar](https://github.com/DevilRoshan/obsidian-lunar-calendar)：更符合中国习惯的日历
 - [Quorafind/Obsidian-Thino](https://github.com/Quorafind/Obsidian-Thino) ：每日回顾，帮助捕捉、保存信息
 - [wenlzhang/obsidian-task-marker](https://github.com/wenlzhang/obsidian-task-marker) ：利用快捷键和右键菜单栏改变任务的状态
 - [WHG555/lunar-calendar](https://github.com/WHG555/lunar-calendar) ：支持农历的日历
