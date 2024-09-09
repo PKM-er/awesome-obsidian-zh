@@ -84,6 +84,7 @@
 
 ### Obsidian × 其他应用
 
+- [ai-chen2050/obsidian-wechat-public-platform](https://github.com/ai-chen2050/obsidian-wechat-public-platform)：微信公众平台插件
 - [EasyChris/obsidian-to-notion](https://github.com/EasyChris/obsidian-to-notion) ：分享至 Notion
 - [eightHundreds/obsidian-dida-sync](https://github.com/eightHundreds/obsidian-dida-sync) ：滴答清单同步
 - [ittuann/obsidian-gpt-liteinquirer-plugin](https://github.com/ittuann/obsidian-gpt-liteinquirer-plugin) ：ChatGPT 助手
@@ -91,6 +92,7 @@
 - [mokeyish/obsidian-enhancing-export](https://github.com/mokeyish/obsidian-enhancing-export) ：pandoc 增强导出
 - [romantic-black/obsidain-vika-sync](https://github.com/romantic-black/obsidain-vika-sync) ：Vika 同步
 - [tansongchen/obsidian-note-synchronizer](https://github.com/tansongchen/obsidian-note-synchronizer) ：Anki 同步
+- [xiaotianhu/obsidian-messager](https://github.com/xiaotianhu/obsidian-messager) ：使用 微信/HTTP Api/Email 来给 Obsidian 发送消息
 - [YHaoNan/obsidian-metaweblog](https://github.com/YHaoNan/obsidian-metaweblog) ：Metaweblog API 整合
 
 ### 杂项
