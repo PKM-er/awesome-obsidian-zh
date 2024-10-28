@@ -11,7 +11,7 @@
 
 - [Obsidian 中文论坛](https://forum-zh.obsidian.md/)
 - [Discord 官方中文频道](https://discord.com/channels/686053708261228577/735629542906920993)
-- [Obsidian 官方中文文档](https://publish.obsidian.md/help-zh/%E7%94%B1%E6%AD%A4%E5%BC%80%E5%A7%8B) ：相对英文文档稍有延迟
+- [Obsidian 官方中文文档](https://publish.obsidian.md/help-zh/%E7%94%B1%E6%AD%A4%E5%BC%80%E5%A7%8B)：相对英文文档稍有延迟
 
 ### 更多中文资源
 
@@ -35,15 +35,13 @@
 ### 编辑增强
 
 - [cumany/obsidian-editing-toolbar](https://github.com/cumany/obsidian-editing-toolbar)：加入类似 Word 的可视化编辑工具栏
-	- 进阶使用详见👉 [PKMer文档](https://pkmer.cn/Pkmer-Docs/10-obsidian/obsidian%E7%A4%BE%E5%8C%BA%E6%8F%92%E4%BB%B6/editing-toolbar/)
 - [obsidian-canzi/Enhanced-editing](https://github.com/obsidian-canzi/Enhanced-editing) ：多项编辑优化
 - [Yaozhuwa/easy-typing-obsidian](https://github.com/Yaozhuwa/easy-typing-obsidian) ：多项编辑优化，如重复输入全角标点自动转半角
-	- 进阶使用详见👉 [PKMer文档](https://pkmer.cn/Pkmer-Docs/10-obsidian/obsidian%E7%A4%BE%E5%8C%BA%E6%8F%92%E4%BB%B6/easy-typing-obsidian/)
 
 ### 表格相关
 
 - [ganesshkumar/obsidian-table-editor](https://github.com/ganesshkumar/obsidian-table-editor) ：表格编辑
-- [LincZero/obsidian-any-block](https://github.com/LincZero/obsidian-any-block) ：块转化、列表转表格
+- [LincZero/obsidian-any-block](https://github.com/LincZero/obsidian-any-block) ：灵活地创建“块”、列表转表格等
 - [Stardusten/ob-table-enhancer](https://github.com/Stardusten/ob-table-enhancer) ：多项表格优化，如选中单元格编辑
 
 ### 大纲相关
@@ -78,13 +76,13 @@
 ### 书影音相关
 
 - [Wanxp/obsidian-douban](https://github.com/Wanxp/obsidian-douban) ：导入豆瓣数据
-	- 进阶使用详见👉 [PKMer文档](https://pkmer.cn/Pkmer-Docs/10-obsidian/obsidian%E7%A4%BE%E5%8C%BA%E6%8F%92%E4%BB%B6/obsidian-douban-plugin/)
 - [chenghongyao/obsidian-booknote-plugin](https://github.com/chenghongyao/obsidian-booknote-plugin) ：书籍管理、PDF 标注
 - [zhaohongxuan/obsidian-weread-plugin](https://github.com/zhaohongxuan/obsidian-weread-plugin) ：与微信读书相关的各项功能
 
 ### Obsidian × 其他应用
 
 - [ai-chen2050/obsidian-wechat-public-platform](https://github.com/ai-chen2050/obsidian-wechat-public-platform)：微信公众平台插件
+- [DepartingAgain/obsidian-newledge](https://github.com/DepartingAgain/obsidian-newledge) ：新枝数据同步
 - [EasyChris/obsidian-to-notion](https://github.com/EasyChris/obsidian-to-notion) ：分享至 Notion
 - [eightHundreds/obsidian-dida-sync](https://github.com/eightHundreds/obsidian-dida-sync) ：滴答清单同步
 - [ittuann/obsidian-gpt-liteinquirer-plugin](https://github.com/ittuann/obsidian-gpt-liteinquirer-plugin) ：ChatGPT 助手
