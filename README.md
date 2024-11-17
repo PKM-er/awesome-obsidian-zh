@@ -73,6 +73,11 @@
 - [WHG555/lunar-calendar](https://github.com/WHG555/lunar-calendar) ：支持农历的日历
 - [zwpaper/obsidian-progressbar](https://github.com/zwpaper/obsidian-progressbar) ：使用代码块生成各种进度条
 
+## AI 增强相关
+
+- [ittuann/obsidian-gpt-liteinquirer-plugin](https://github.com/ittuann/obsidian-gpt-liteinquirer-plugin) ：ChatGPT 助手
+- [TarsLab/obsidian-tars](https://github.com/TarsLab/obsidian-tars) ：基于标签建议进行文本生成
+
 ### 书影音相关
 
 - [Wanxp/obsidian-douban](https://github.com/Wanxp/obsidian-douban) ：导入豆瓣数据
@@ -85,7 +90,6 @@
 - [DepartingAgain/obsidian-newledge](https://github.com/DepartingAgain/obsidian-newledge) ：新枝数据同步
 - [EasyChris/obsidian-to-notion](https://github.com/EasyChris/obsidian-to-notion) ：分享至 Notion
 - [eightHundreds/obsidian-dida-sync](https://github.com/eightHundreds/obsidian-dida-sync) ：滴答清单同步
-- [ittuann/obsidian-gpt-liteinquirer-plugin](https://github.com/ittuann/obsidian-gpt-liteinquirer-plugin) ：ChatGPT 助手
 - [makediff/obsidian-wucai](https://github.com/makediff/obsidian-wucai) ：五彩插件
 - [mokeyish/obsidian-enhancing-export](https://github.com/mokeyish/obsidian-enhancing-export) ：pandoc 增强导出
 - [romantic-black/obsidain-vika-sync](https://github.com/romantic-black/obsidain-vika-sync) ：Vika 同步
