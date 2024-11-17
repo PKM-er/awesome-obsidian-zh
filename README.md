@@ -73,7 +73,7 @@
 - [WHG555/lunar-calendar](https://github.com/WHG555/lunar-calendar) ：支持农历的日历
 - [zwpaper/obsidian-progressbar](https://github.com/zwpaper/obsidian-progressbar) ：使用代码块生成各种进度条
 
-## AI 增强相关
+### AI 增强相关
 
 - [ittuann/obsidian-gpt-liteinquirer-plugin](https://github.com/ittuann/obsidian-gpt-liteinquirer-plugin) ：ChatGPT 助手
 - [TarsLab/obsidian-tars](https://github.com/TarsLab/obsidian-tars) ：基于标签建议进行文本生成
