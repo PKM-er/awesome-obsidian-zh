@@ -23,9 +23,13 @@
 
 %% 包含自带中文文档的插件 %%
 
-### 中文相关
+### 插件相关
 
 - [0011000000110010/obsidian-i18n](https://github.com/0011000000110010/obsidian-i18n/) ：对 Obsidian 插件进行翻译
+- [0011000000110010/obsidian-manager](https://github.com/0011000000110010/obsidian-manager)：更好的插件管理器
+
+### 中文相关
+
 - [0918nobita/obsidian-zhongwen-block](https://github.com/0918nobita/obsidian-zhongwen-block) ：中文学习
 - [aidenlx/cm-chs-patch](https://github.com/aidenlx/cm-chs-patch)：双击可选中中文词
 - [lazyloong/obsidian-fuzzy-chinese](https://github.com/lazyloong/obsidian-fuzzy-chinese) ：提供中文拼音搜索的功能
