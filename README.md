@@ -28,10 +28,11 @@
 - [0011000000110010/obsidian-i18n](https://github.com/0011000000110010/obsidian-i18n/) ：对 Obsidian 插件进行翻译
 - [0011000000110010/obsidian-manager](https://github.com/0011000000110010/obsidian-manager)：更好的插件管理器
 
-### 中文相关
+### 中文及其他语言相关
 
 - [0918nobita/obsidian-zhongwen-block](https://github.com/0918nobita/obsidian-zhongwen-block) ：中文学习
 - [aidenlx/cm-chs-patch](https://github.com/aidenlx/cm-chs-patch)：双击可选中中文词
+- [guopenghui/obsidian-language-learner](https://github.com/guopenghui/obsidian-language-learner) ：辅助英语学习
 - [lazyloong/obsidian-fuzzy-chinese](https://github.com/lazyloong/obsidian-fuzzy-chinese) ：提供中文拼音搜索的功能
 - [Natumsol/obsidian-pangu](https://github.com/Natumsol/obsidian-pangu) ：为中英文之间加入“盘古之白”
 - [renmu123/obsidian-auto-pair-chinese-symbol](https://github.com/renmu123/obsidian-auto-pair-chinese-symbol) ：中文符号自动补齐
@@ -106,7 +107,6 @@
 - [Acylation/obsidian-chem](https://github.com/Acylation/obsidian-chem) ：将字符串渲染为化学结构式等化学相关体验提升
 - [chenfeicqq/obsidian-attachment-manager](https://github.com/chenfeicqq/obsidian-attachment-manager) ：附件管理器
 - [edonyzpc/personal-assistant](https://github.com/edonyzpc/personal-assistant) ：自动管理 Obsidian
-- [guopenghui/obsidian-language-learner](https://github.com/guopenghui/obsidian-language-learner) ：辅助英语学习
 - [JuckZ/awesome-brain-manager](https://github.com/JuckZ/awesome-brain-manager)：旨在解决大多数人在 Obsidian 中遇到的所有琐碎问题
 - [LincZero/obsidian-chat-view-qq at v0.4.0](https://github.com/LincZero/obsidian-chat-view-qq/tree/v0.4.0) ：QQ 聊天视图
 - [ivaneye/obsidian-files-cooker](https://github.com/ivaneye/obsidian-files-cooker) ：文件批量操作
@@ -129,6 +129,7 @@
 - [Akifyss/obsidian-border](https://github.com/Akifyss/obsidian-border)
 - [carols12352/Oreo-theme](https://github.com/carols12352/Oreo-theme)
 - [ennyxguo/Obsidian-Obsidianite](https://github.com/bennyxguo/Obsidian-Obsidianite)
+- [laughmaker/Zen](https://github.com/laughmaker/Zen)
 - [loveminimal/obsidian-theme-virgo](https://github.com/loveminimal/obsidian-theme-virgo)
 - [subframe7536/obsidian-theme-maple](https://github.com/subframe7536/obsidian-theme-maple)
 - [whyt-byte/Blue-Topaz_Obsidian-css](https://github.com/whyt-byte/Blue-Topaz_Obsidian-css)
