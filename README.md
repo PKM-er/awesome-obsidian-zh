@@ -56,6 +56,7 @@
 
 ### 链接相关
 
+- [busyoGG/OneStepWikiLink](https://github.com/busyoGG/OneStepWikiLink) ：一步插入当前界面匹配到的所有外链（维基链接）
 - [chenghongyao/obsidian-linkcard-plugin](https://github.com/chenghongyao/obsidian-linkcard-plugin) ：将链接转换为小卡片
 - [PKM-er/Obsidian-Surfing](https://github.com/PKM-er/Obsidian-Surfing)：将 Obsidian 变成网页浏览器
 - [val3344/obsidian-update-relative-links](https://github.com/val3344/obsidian-update-relative-links) : 自动更新相对路径
@@ -73,6 +74,7 @@
 
 - [a-nano-dust/dust-obsidian-calendar](https://github.com/a-nano-dust/dust-obsidian-calendar) ：更符合中国习惯的日历
 - [DevilRoshan/obsidian-lunar-calendar](https://github.com/DevilRoshan/obsidian-lunar-calendar)：更符合中国习惯的日历
+- [Quorafind/Obsidian-Task-Genius](https://github.com/Quorafind/Obsidian-Task-Genius) ：综合任务管理
 - [Quorafind/Obsidian-Thino](https://github.com/Quorafind/Obsidian-Thino) ：每日回顾，帮助捕捉、保存信息
 - [wenlzhang/obsidian-task-marker](https://github.com/wenlzhang/obsidian-task-marker) ：利用快捷键和右键菜单栏改变任务的状态
 - [WHG555/lunar-calendar](https://github.com/WHG555/lunar-calendar) ：支持农历的日历
@@ -105,6 +107,7 @@
 ### 杂项
 
 - [Acylation/obsidian-chem](https://github.com/Acylation/obsidian-chem) ：将字符串渲染为化学结构式等化学相关体验提升
+- [busyoGG/SmoothCursor](https://github.com/busyoGG/SmoothCursor) ：光标美化
 - [chenfeicqq/obsidian-attachment-manager](https://github.com/chenfeicqq/obsidian-attachment-manager) ：附件管理器
 - [edonyzpc/personal-assistant](https://github.com/edonyzpc/personal-assistant) ：自动管理 Obsidian
 - [JuckZ/awesome-brain-manager](https://github.com/JuckZ/awesome-brain-manager)：旨在解决大多数人在 Obsidian 中遇到的所有琐碎问题
