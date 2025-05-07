@@ -109,6 +109,7 @@
 - [Acylation/obsidian-chem](https://github.com/Acylation/obsidian-chem) ：将字符串渲染为化学结构式等化学相关体验提升
 - [busyoGG/SmoothCursor](https://github.com/busyoGG/SmoothCursor) ：光标美化
 - [chenfeicqq/obsidian-attachment-manager](https://github.com/chenfeicqq/obsidian-attachment-manager) ：附件管理器
+- [chrisgurney/obsidian-note-toolbar](https://github.com/chrisgurney/obsidian-note-toolbar/) ：工具栏插件
 - [edonyzpc/personal-assistant](https://github.com/edonyzpc/personal-assistant) ：自动管理 Obsidian
 - [JuckZ/awesome-brain-manager](https://github.com/JuckZ/awesome-brain-manager)：旨在解决大多数人在 Obsidian 中遇到的所有琐碎问题
 - [LincZero/obsidian-chat-view-qq at v0.4.0](https://github.com/LincZero/obsidian-chat-view-qq/tree/v0.4.0) ：QQ 聊天视图
