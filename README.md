@@ -34,17 +34,17 @@
 
 ### 编辑与格式化
 
-| 插件                                                                                        | 作者               | 核心功能                              |
-| ----------------------------------------------------------------------------------------- | ---------------- | --------------------------------- |
-| [cm-chs-patch](https://github.com/aidenlx/cm-chs-patch)                                   | `aidenlx`        | 优化中文分词，使得双击可以精确选中中文词语。            |
-| [Easy Typing](https://github.com/Yaozhuwa/easy-typing-obsidian)                           | `Yaozhuwa`       | 增强中文输入体验，如智能标点转换、格式清理等。           |
-| [Editing Toolbar](https://github.com/cumany/obsidian-editing-toolbar)                     | `cumany`         | 添加一个类似 Word 的浮动编辑工具栏，提供可视化操作。     |
-| [Enhanced-editing](https://github.com/obsidian-canzi/Enhanced-editing)                    | `obsidian-canzi` | 提供多项编辑优化功能，提升编辑效率。                |
-| [Fuzzy Chinese Pinyin](https://github.com/lazyloong/obsidian-fuzzy-chinese)               | `lazyloong`      | 提供中文拼音模糊搜索功能，支持拼音、首字母搜索。          |
-| [Pangu](https://github.com/Natumsol/obsidian-pangu)                                       | `Natumsol`       | 自动在中英文、数字和符号之间添加空格，优化排版。          |
-| [Table Editor](https://github.com/ganesshkumar/obsidian-table-editor)                     | `ganesshkumar`   | 提供一个简单的界面来创建和编辑 Markdown 表格。      |
-| [ob-table-enhancer](https://github.com/Stardusten/ob-table-enhancer)                      | `Stardusten`     | 增强表格功能，如选中单元格编辑、对齐等。              |
-| [MarkMind](https://github.com/MarkMindCkm/obsidian-markmind)                              | `MarkMindCkm`    | 在 Obsidian 中创建和编辑思维导图，并支持 PDF 标注。 |
+| 插件                                                                          | 作者               | 核心功能                              |
+| --------------------------------------------------------------------------- | ---------------- | --------------------------------- |
+| [cm-chs-patch](https://github.com/aidenlx/cm-chs-patch)                     | `aidenlx`        | 优化中文分词，使得双击可以精确选中中文词语。            |
+| [Easy Typing](https://github.com/Yaozhuwa/easy-typing-obsidian)             | `Yaozhuwa`       | 增强中文输入体验，如智能标点转换、格式清理等。           |
+| [Editing Toolbar](https://github.com/cumany/obsidian-editing-toolbar)       | `cumany`         | 添加一个类似 Word 的浮动编辑工具栏，提供可视化操作。     |
+| [Enhanced-editing](https://github.com/obsidian-canzi/Enhanced-editing)      | `obsidian-canzi` | 提供多项编辑优化功能，提升编辑效率。                |
+| [Fuzzy Chinese Pinyin](https://github.com/lazyloong/obsidian-fuzzy-chinese) | `lazyloong`      | 提供中文拼音模糊搜索功能，支持拼音、首字母搜索。          |
+| [Pangu](https://github.com/Natumsol/obsidian-pangu)                         | `Natumsol`       | 自动在中英文、数字和符号之间添加空格，优化排版。          |
+| [Table Editor](https://github.com/ganesshkumar/obsidian-table-editor)       | `ganesshkumar`   | 提供一个简单的界面来创建和编辑 Markdown 表格。      |
+| [ob-table-enhancer](https://github.com/Stardusten/ob-table-enhancer)        | `Stardusten`     | 增强表格功能，如选中单元格编辑、对齐等。              |
+| [MarkMind](https://github.com/MarkMindCkm/obsidian-markmind)                | `MarkMindCkm`    | 在 Obsidian 中创建和编辑思维导图，并支持 PDF 标注。 |
 
 ### 链接与知识管理
 
@@ -64,7 +64,6 @@
 | ------------------------------------------------------------------------ | ------------- | ------------------------- |
 | [Dust Calendar](https://github.com/a-nano-dust/dust-obsidian-calendar)   | `a-nano-dust` | 更符合中国用户习惯的日历视图。           |
 | [Lunar Calendar](https://github.com/DevilRoshan/obsidian-lunar-calendar) | `DevilRoshan` | 一个支持显示农历和节气的日历插件。         |
-| [Lunar Calendar (WHG555)](https://github.com/WHG555/lunar-calendar)      | `WHG555`      | 另一款支持农历的日历插件。             |
 | [Task Genius](https://github.com/Quorafind/Obsidian-Task-Genius)         | `Quorafind`   | 提供全面的任务管理功能。              |
 | [Thino (Formerly Memos)](https://github.com/Quorafind/Obsidian-Thino)    | `Quorafind`   | 强大的日记与信息捕捉工具，支持回顾和碎片化记录。  |
 | [Task Marker](https://github.com/wenlzhang/obsidian-task-marker)         | `wenlzhang`   | 通过快捷键或右键菜单快速切换任务状态。       |
