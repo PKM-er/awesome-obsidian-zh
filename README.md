@@ -23,7 +23,6 @@
 
 | 插件                                                                     | 作者              | 核心功能                           |
 | ---------------------------------------------------------------------- | --------------- | ------------------------------ |
-| [Callout Editor](https://github.com/wnhllh/obsidian-callout-editor)    | `wnhllh`        | 提供瀑布流布局来编辑和查看 Callout 方块。      |
 | [Custom Icons](https://github.com/RavenHogWarts/obsidian-custom-icons) | `RavenHogWarts` | 为笔记文件和文件夹设置自定义图标。              |
 | [Floating TOC](https://github.com/cumany/obsidian-floating-toc-plugin) | `cumany`        | 在笔记侧边生成一个浮动的目录大纲。              |
 | [Homepage](https://github.com/Rainbell129/Obsidian-Homepage)           | `Rainbell129`   | 为你的知识库设置一个自定义的起始主页。            |
