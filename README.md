@@ -25,7 +25,6 @@
 | ---------------------------------------------------------------------- | --------------- | ------------------------------ |
 | [Custom Icons](https://github.com/RavenHogWarts/obsidian-custom-icons) | `RavenHogWarts` | 为笔记文件和文件夹设置自定义图标。              |
 | [Floating TOC](https://github.com/cumany/obsidian-floating-toc-plugin) | `cumany`        | 在笔记侧边生成一个浮动的目录大纲。              |
-| [Homepage](https://github.com/Rainbell129/Obsidian-Homepage)           | `Rainbell129`   | 为你的知识库设置一个自定义的起始主页。            |
 | [Note Toolbar](https://github.com/chrisgurney/obsidian-note-toolbar)   | `chrisgurney`   | 在笔记顶部添加可自定义的命令工具栏。             |
 | [Obsidian-Surfing](https://github.com/PKM-er/Obsidian-Surfing)         | `PKM-er`        | 在 Obsidian 内置一个网页浏览器，实现边冲浪边记录。 |
 | [Quiet Outline](https://github.com/guopenghui/obsidian-quiet-outline)  | `guopenghui`    | 提供一个功能更强大、更美观的大纲视图。            |
