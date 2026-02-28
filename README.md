@@ -37,7 +37,6 @@
 | [Easy Typing](https://github.com/Yaozhuwa/easy-typing-obsidian)             | `Yaozhuwa`       | 增强中文输入体验，如智能标点转换、格式清理等。           |
 | [Editing Toolbar](https://github.com/cumany/obsidian-editing-toolbar)       | `cumany`         | 添加一个类似 Word 的浮动编辑工具栏，提供可视化操作。     |
 | [Fuzzy Chinese Pinyin](https://github.com/lazyloong/obsidian-fuzzy-chinese) | `lazyloong`      | 提供中文拼音模糊搜索功能，支持拼音、首字母搜索。          |
-| [Pangu](https://github.com/Natumsol/obsidian-pangu)                         | `Natumsol`       | 自动在中英文、数字和符号之间添加空格，优化排版。          |
 | [Table Editor](https://github.com/ganesshkumar/obsidian-table-editor)       | `ganesshkumar`   | 提供一个简单的界面来创建和编辑 Markdown 表格。      |
 | [ob-table-enhancer](https://github.com/Stardusten/ob-table-enhancer)        | `Stardusten`     | 增强表格功能，如选中单元格编辑、对齐等。              |
 | [MarkMind](https://github.com/MarkMindCkm/obsidian-markmind)                | `MarkMindCkm`    | 在 Obsidian 中创建和编辑思维导图，并支持 PDF 标注。 |
