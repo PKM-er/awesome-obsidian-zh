@@ -5,7 +5,7 @@
 
 ## 简介
 
-- 🀄本项目旨在持续汇集 Github 上的 [Obsidian](https://obsidian.md/) **原生中文插件**和**自带中文翻译**的流行插件，为中文用户提供一个发现、安装和参与贡献的中心。
+- 🀄本项目旨在持续汇集 Github 上的 [Obsidian](https://obsidian.md/) **原生中文插件**和**自带中文翻译**的活跃插件，为中文用户提供一个发现、安装和参与贡献的中心。
 
 ## 官方中文社区与资源
 
@@ -37,7 +37,6 @@
 | [Easy Typing](https://github.com/Yaozhuwa/easy-typing-obsidian)             | `Yaozhuwa`       | 增强中文输入体验，如智能标点转换、格式清理等。           |
 | [Editing Toolbar](https://github.com/cumany/obsidian-editing-toolbar)       | `cumany`         | 添加一个类似 Word 的浮动编辑工具栏，提供可视化操作。     |
 | [Fuzzy Chinese Pinyin](https://github.com/lazyloong/obsidian-fuzzy-chinese) | `lazyloong`      | 提供中文拼音模糊搜索功能，支持拼音、首字母搜索。          |
-| [ob-table-enhancer](https://github.com/Stardusten/ob-table-enhancer)        | `Stardusten`     | 增强表格功能，如选中单元格编辑、对齐等。              |
 | [MarkMind](https://github.com/MarkMindCkm/obsidian-markmind)                | `MarkMindCkm`    | 在 Obsidian 中创建和编辑思维导图，并支持 PDF 标注。 |
 
 ### 链接与知识管理
