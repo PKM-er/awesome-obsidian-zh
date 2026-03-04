@@ -44,7 +44,6 @@
 | 插件                                                                                              | 作者             | 核心功能                     |
 | ----------------------------------------------------------------------------------------------- | -------------- | ------------------------ |
 | [OneStepWikiLink](https://github.com/busyoGG/OneStepWikiLink)                                   | `busyoGG`      | 一键插入当前笔记中所有匹配到的维基链接。     |
-| [Linkcard Plugin](https://github.com/chenghongyao/obsidian-linkcard-plugin)                     | `chenghongyao` | 将网页链接美化为带有标题和简介的小卡片。     |
 | [Update Relative Links](https://github.com/val3344/obsidian-update-relative-links)              | `val3344`      | 当文件移动时，自动更新指向该文件的相对路径链接。 |
 | [External Links in Document](https://github.com/giselle197/obsidian-external-links-in-document) | `giselle197`   | 将笔记中的所有外部链接集中显示在侧边栏。     |
 | [Any Block](https://github.com/LincZero/obsidian-any-block)                                     | `LincZero`     | 灵活创建内容块，支持列表转表格、引用转换等。   |
