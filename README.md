@@ -47,7 +47,6 @@
 | [Update Relative Links](https://github.com/val3344/obsidian-update-relative-links)              | `val3344`      | 当文件移动时，自动更新指向该文件的相对路径链接。 |
 | [Any Block](https://github.com/LincZero/obsidian-any-block)                                     | `LincZero`     | 灵活创建内容块，支持列表转表格、引用转换等。   |
 | [Awesome Brain Manager](https://github.com/JuckZ/awesome-brain-manager)                         | `JuckZ`        | 集成多种实用功能，解决日常使用中的琐碎问题。   |
-| [Link Info Server](https://github.com/moelody/link-info-server)                                 | `moelody`      | 通过本地代理服务获取链接文件的元信息。      |
 
 ### 任务与日程管理
 
