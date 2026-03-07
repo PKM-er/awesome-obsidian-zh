@@ -76,6 +76,7 @@
 | ------------------------------------------------------------------------------- | --------- | ------------------------------ |
 | [GPT-LiteInquirer](https://github.com/ittuann/obsidian-gpt-liteinquirer-plugin) | `ittuann` | 在 Obsidian 中集成轻量级的 ChatGPT 助手。 |
 | [Tars](https://github.com/TarsLab/obsidian-tars)                                | `TarsLab` | 基于笔记标签和上下文，提供智能文本生成建议。         |
+| [EVC Team Relay MCP](https://github.com/entire-vc/evc-team-relay-mcp)                    | `entire-vc` | 通过 MCP 协议让 AI 编程工具直接读写 Obsidian 笔记库。 |
 
 ### 数据同步与集成
 
