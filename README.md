@@ -52,7 +52,6 @@
 
 | 插件                                                                       | 作者            | 核心功能                      |
 | ------------------------------------------------------------------------ | ------------- | ------------------------- |
-| [Dust Calendar](https://github.com/a-nano-dust/dust-obsidian-calendar)   | `a-nano-dust` | 更符合中国用户习惯的日历视图。           |
 | [Lunar Calendar](https://github.com/DevilRoshan/obsidian-lunar-calendar) | `DevilRoshan` | 一个支持显示农历和节气的日历插件。         |
 | [Task Genius](https://github.com/Quorafind/Obsidian-Task-Genius)         | `Quorafind`   | 提供全面的任务管理功能。              |
 | [Thino (Formerly Memos)](https://github.com/Quorafind/Obsidian-Thino)    | `Quorafind`   | 强大的日记与信息捕捉工具，支持回顾和碎片化记录。  |
