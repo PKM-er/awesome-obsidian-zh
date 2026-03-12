@@ -38,6 +38,7 @@
 | [Editing Toolbar](https://github.com/cumany/obsidian-editing-toolbar)       | `cumany`         | 添加一个类似 Word 的浮动编辑工具栏，提供可视化操作。     |
 | [Fuzzy Chinese Pinyin](https://github.com/lazyloong/obsidian-fuzzy-chinese) | `lazyloong`      | 提供中文拼音模糊搜索功能，支持拼音、首字母搜索。          |
 | [MarkMind](https://github.com/MarkMindCkm/obsidian-markmind)                | `MarkMindCkm`    | 在 Obsidian 中创建和编辑思维导图，并支持 PDF 标注。 |
+| [Mind Elixir Mindmap](https://github.com/SSShooter/obsidian-mindmap)        | `SSShooter`    | 为 Obsidian 提供 Markdown 转思维导图 + 内嵌思维导图功能。 |
 
 ### 链接与知识管理
 
