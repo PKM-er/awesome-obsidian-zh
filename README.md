@@ -92,7 +92,6 @@
 | [Enhancing Export](https://github.com/mokeyish/obsidian-enhancing-export)                | `mokeyish`         | 通过 Pandoc 增强导出功能，支持多种格式如 Docx, LaTeX。   |
 | [Vika Sync](https://github.com/romantic-black/obsidain-vika-sync)                        | `romantic-black`   | 与维格表（Vika）进行数据同步。                       |
 | [Messager](https://github.com/xiaotianhu/obsidian-messager)                              | `xiaotianhu`       | 通过微信、HTTP API 或 Email 向 Obsidian 发送消息。  |
-| [Metaweblog](https://github.com/YHaoNan/obsidian-metaweblog)                             | `YHaoNan`          | 通过 Metaweblog API 将笔记发布到博客平台。           |
 | [Newledge](https://github.com/DepartingAgain/obsidian-newledge)                          | `DepartingAgain`   | 与“新枝”知识管理应用进行数据同步。                      |
 | [LiveSync](https://github.com/vrtmrz/obsidian-livesync)                                  | `vrtmrz`           | 利用自托管的 CouchDB 或类似服务实现多设备实时同步。          |
 
