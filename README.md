@@ -115,7 +115,6 @@
 | [Files Cooker](https://github.com/ivaneye/obsidian-files-cooker)              | `ivaneye`          | 对库内文件进行批量操作和处理。               |
 | [Text Finder](https://github.com/nyable/obsidian-text-finder)                 | `nyable`           | 在编辑模式下提供一个类似 VSCode 的查找/替换窗口。 |
 | [Password Protection](https://github.com/qing3962/password-protection)        | `qing3962`         | 为指定的笔记或文件夹设置访问密码。             |
-| [Code Preview](https://github.com/zjhcn/obsidian-code-preview)                | `zjhcn`            | 在笔记中通过文件路径直接渲染和预览代码文件的内容。     |
 | [Obsidian Theme Designer](https://github.com/XiangyuSu611/obsidian-theme-designer) | `XiangyuSu611` | 一个 Claude Code 技能，通过浏览器可视化预览帮你设计 Obsidian 自定义主题。支持风格方向选择、配色方案对比、字体展示、双模式预览和自动字体安装，不需要 CSS 知识。 |
 
 ## 精选中文主题
