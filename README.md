@@ -68,7 +68,6 @@
 | [Image Toolkit](https://github.com/sissilab/obsidian-image-toolkit)                | `sissilab`   | 提供点击查看大图、旋转、缩放等图片浏览功能。      |
 | [Fast Image Cleaner](https://github.com/martinniee/Obsidian-fast-image-cleaner)    | `martinniee` | 快速清理笔记中不再使用的图片附件及其链接。       |
 | [Copy Image and Text](https://github.com/msgk239/obsidian-copy-image-text)         | `msgk239`    | 复制笔记内容时，能将文本和图片一并复制到剪贴板。    |
-| [Attachment Manager](https://github.com/chenfeicqq/obsidian-attachment-manager)    | `chenfeicqq` | 更好地管理笔记附件，如按规则重命名和移动。       |
 
 ### AI 辅助
 
