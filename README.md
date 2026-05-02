@@ -92,6 +92,7 @@
 | [Messager](https://github.com/xiaotianhu/obsidian-messager)                              | `xiaotianhu`       | 通过微信、HTTP API 或 Email 向 Obsidian 发送消息。  |
 | [Newledge](https://github.com/DepartingAgain/obsidian-newledge)                          | `DepartingAgain`   | 与“新枝”知识管理应用进行数据同步。                      |
 | [LiveSync](https://github.com/vrtmrz/obsidian-livesync)                                  | `vrtmrz`           | 利用自托管的 CouchDB 或类似服务实现多设备实时同步。          |
+| [Nutstore Sync](https://github.com/nutstore/obsidian-nutstore-sync)                      | `nutstore`         | 通过 WebDAV 协议与坚果云进行双向同步，支持增量同步和智能冲突解决。 |
 
 ### 专业领域
 
