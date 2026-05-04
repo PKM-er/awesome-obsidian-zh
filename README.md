@@ -5,7 +5,7 @@
 
 ## 简介
 
-- 🀄本项目旨在持续汇集 Github 上的 [Obsidian](https://obsidian.md/) **原生中文插件**和**自带中文翻译**的活跃插件，为中文用户提供一个发现、安装和参与贡献的中心。
+- 🀄本项目旨在持续汇集 Github 上的 [Obsidian](https://obsidian.md/) **原生中文插件**和**自带中文翻译**的活跃插件，为中文用户提供一个发现、安装和参与[...]
 
 ## 官方中文社区与资源
 
@@ -82,17 +82,17 @@
 | 插件                                                                                       | 作者                 | 核心功能                                    |
 | ---------------------------------------------------------------------------------------- | ------------------ | --------------------------------------- |
 | [Wechat Public Platform](https://github.com/ai-chen2050/obsidian-wechat-public-platform) | `ai-chen2050`      | 将笔记内容排版并同步到微信公众号平台。                     |
-| [Zhihu on Obsidian](https://github.com/dongguaguaguagua/zhihu_obsidian)                  | `dongguaguaguagua` | 允许你在 Obsidian 内将 markdown 内容直接发布到知乎（中文问答平台） |
+| [Zhihu on Obsidian](https://github.com/dongguaguaguagua/zhihu_obsidian)                  | `dongguaguaguagua` | 允许你在 Obsidian 内将 markdown 内容直接发布到知乎（中文问答平台）。 |
 | [Obsidian to Notion](https://github.com/EasyChris/obsidian-to-notion)                    | `EasyChris`        | 将选中的笔记内容一键分享到 Notion。                   |
 | [WeRead Plugin](https://github.com/zhaohongxuan/obsidian-weread-plugin)                  | `zhaohongxuan`     | 同步微信读书的书籍、标注和想法。                        |
-| [Wucai](https://github.com/makediff/obsidian-wucai)                                      | `makediff`         | 同步“五彩”高亮标注服务中的内容。                       |
+| [Wucai](https://github.com/makediff/obsidian-wucai)                                      | `makediff`         | 同步"五彩"高亮标注服务中的内容。                       |
 | [Douban](https://github.com/Wanxp/obsidian-douban)                                       | `Wanxp`            | 从豆瓣导入你的书影音数据。                           |
 | [Note Synchronizer](https://github.com/tansongchen/obsidian-note-synchronizer)           | `tansongchen`      | 与 Anki 进行卡片同步，方便进行间隔重复学习。               |
 | [Enhancing Export](https://github.com/mokeyish/obsidian-enhancing-export)                | `mokeyish`         | 通过 Pandoc 增强导出功能，支持多种格式如 Docx, LaTeX。   |
 | [Messager](https://github.com/xiaotianhu/obsidian-messager)                              | `xiaotianhu`       | 通过微信、HTTP API 或 Email 向 Obsidian 发送消息。  |
-| [Newledge](https://github.com/DepartingAgain/obsidian-newledge)                          | `DepartingAgain`   | 与“新枝”知识管理应用进行数据同步。                      |
+| [Newledge](https://github.com/DepartingAgain/obsidian-newledge)                          | `DepartingAgain`   | 与"新枝"知识管理应用进行数据同步。                      |
 | [LiveSync](https://github.com/vrtmrz/obsidian-livesync)                                  | `vrtmrz`           | 利用自托管的 CouchDB 或类似服务实现多设备实时同步。          |
-| [Nutstore Sync](https://github.com/nutstore/obsidian-nutstore-sync)                      | `nutstore`         | 通过 WebDAV 协议与坚果云进行双向同步，支持增量同步和智能冲突解决。 |
+| [Nutstore Sync](https://github.com/nutstore/obsidian-nutstore-sync)                      | `nutstore`         | 通过 WebDAV 协议与坚果云进行双向同步，支���增量同步和智能冲突解决。 |
 
 ### 专业领域
 
@@ -100,7 +100,6 @@
 | --------------------------------------------------------------------------- | -------------- | ------------------------- |
 | [Language Learner](https://github.com/guopenghui/obsidian-language-learner) | `guopenghui`   | 为语言学习者设计，提供查词、生词本等功能。     |
 | [Zhongwen Block](https://github.com/0918nobita/obsidian-zhongwen-block)     | `0918nobita`   | 为中文学习者提供专门的练习和展示块。        |
-| [BookNote Plugin](https://github.com/chenghongyao/obsidian-booknote-plugin) | `chenghongyao` | 管理书籍信息，支持从 PDF 中提取标注和笔记。  |
 | [Chem](https://github.com/Acylation/obsidian-chem)                          | `Acylation`    | 将化学式字符串渲染为二维结构式，提升化学笔记体验。 |
 | [Leaflet Plugin](https://github.com/valentine195/obsidian-leaflet-plugin)   | `valentine195` | 在笔记中嵌入可交互的地理地图。           |
 
@@ -115,7 +114,7 @@
 | [Files Cooker](https://github.com/ivaneye/obsidian-files-cooker)              | `ivaneye`          | 对库内文件进行批量操作和处理。               |
 | [Text Finder](https://github.com/nyable/obsidian-text-finder)                 | `nyable`           | 在编辑模式下提供一个类似 VSCode 的查找/替换窗口。 |
 | [Password Protection](https://github.com/qing3962/password-protection)        | `qing3962`         | 为指定的笔记或文件夹设置访问密码。             |
-| [Obsidian Theme Designer](https://github.com/XiangyuSu611/obsidian-theme-designer) | `XiangyuSu611` | 一个 Claude Code 技能，通过浏览器可视化预览帮你设计 Obsidian 自定义主题。支持风格方向选择、配色方案对比、字体展示、双模式预览和自动字体安装，不需要 CSS 知识。 |
+| [Obsidian Theme Designer](https://github.com/XiangyuSu611/obsidian-theme-designer) | `XiangyuSu611` | 一个 Claude Code 技能，通过浏览器可视化预览帮你设计 Obsidian 自定义主题。 |
 
 ## 精选中文主题
 
@@ -161,7 +160,7 @@
 
 我们欢迎所有用户参与共建，让这个列表变得更好！
 
-如果你发现或开发了优秀的中文插件/主题，或希望对现有条目进行补充修改，请通过 **[提交一个 Issue](https://github.com/PKM-er/awesome-obsidian-zh/issues)** 或 **[发起 Pull Request](https://github.com/PKM-er/awesome-obsidian-zh/pulls)** 的方式告知我们。
+如果你发现或开发了优秀的中文插件/主题，或希望对现有条目进行补充修改，请通过 **[提交一个 Issue](https://github.com/PKM-er/awesome-obsidian-zh/issues)** 或提交 Pull Request。
 
 **提交标准:**
 
