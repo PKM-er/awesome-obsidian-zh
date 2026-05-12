@@ -83,7 +83,6 @@
 | ---------------------------------------------------------------------------------------- | ------------------ | --------------------------------------- |
 | [Wechat Public Platform](https://github.com/ai-chen2050/obsidian-wechat-public-platform) | `ai-chen2050`      | 将笔记内容排版并同步到微信公众号平台。                     |
 | [Zhihu on Obsidian](https://github.com/dongguaguaguagua/zhihu_obsidian)                  | `dongguaguaguagua` | 允许你在 Obsidian 内将 markdown 内容直接发布到知乎（中文问答平台）。 |
-| [Obsidian to Notion](https://github.com/EasyChris/obsidian-to-notion)                    | `EasyChris`        | 将选中的笔记内容一键分享到 Notion。                   |
 | [WeRead Plugin](https://github.com/zhaohongxuan/obsidian-weread-plugin)                  | `zhaohongxuan`     | 同步微信读书的书籍、标注和想法。                        |
 | [Wucai](https://github.com/makediff/obsidian-wucai)                                      | `makediff`         | 同步"五彩"高亮标注服务中的内容。                       |
 | [Douban](https://github.com/Wanxp/obsidian-douban)                                       | `Wanxp`            | 从豆瓣导入你的书影音数据。                           |
@@ -122,7 +121,6 @@
 |---|---|
 |[Border](https://github.com/Akifyss/obsidian-border)|`Akifyss`|
 |[Oreo](https://github.com/carols12352/Oreo-theme)|`carols12352`|
-|[Obsidianite](https://github.com/bennyxguo/Obsidian-Obsidianite)|`bennyxguo`|
 |[Zen](https://github.com/laughmaker/Zen)|`laughmaker`|
 |[Virgo](https://github.com/loveminimal/obsidian-theme-virgo)|`loveminimal`|
 |[Maple](https://github.com/subframe7536/obsidian-theme-maple)|`subframe7536`|
@@ -149,7 +147,6 @@
 |[Admonition](https://github.com/valentine195/obsidian-admonition)|`src/lang/locale/zh-cn.ts`|
 |[Commander](https://github.com/phibr0/obsidian-commander)|`locale/zh-cn.json`|
 |[DB Folder](https://github.com/RafaelGB/obsidian-db-folder)|`src/lang/locale/zh-cn.ts`|
-|[Dictionary](https://github.com/phibr0/obsidian-dictionary)|`src/l10n/locale/zh-cn.ts`|
 |[Excalidraw](https://github.com/zsviczian/obsidian-excalidraw-plugin)|`src/lang/locale/zh-cn.ts`|
 |[Kanban](https://github.com/mgmeyers/obsidian-kanban)|`src/lang/locale/zh-cn.ts`|
 |[Obsidian Memos (Thino)](https://github.com/Quorafind/Obsidian-Memos)|`src/translations/locale/zh-cn.ts`|
