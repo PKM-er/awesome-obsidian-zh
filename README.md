@@ -48,6 +48,7 @@
 | [Update Relative Links](https://github.com/val3344/obsidian-update-relative-links)              | `val3344`      | 当文件移动时，自动更新指向该文件的相对路径链接。 |
 | [Any Block](https://github.com/LincZero/obsidian-any-block)                                     | `LincZero`     | 灵活创建内容块，支持列表转表格、引用转换等。   |
 | [Awesome Brain Manager](https://github.com/JuckZ/awesome-brain-manager)                         | `JuckZ`        | 集成多种实用功能，解决日常使用中的琐碎问题。   |
+| [Vault Curate](https://github.com/notoriouslab/vault-curate)                                    | `notoriouslab` | 本地中文语义搜索与 AI 整理插件，三路融合检索（BM25 + 语义 + 模糊），WebGPU 加速，AI 整理默认关闭。 |
 
 ### 任务与日程管理
 
