@@ -87,7 +87,6 @@
 | [WeRead Plugin](https://github.com/zhaohongxuan/obsidian-weread-plugin)                  | `zhaohongxuan`     | 同步微信读书的书籍、标注和想法。                        |
 | [Wucai](https://github.com/makediff/obsidian-wucai)                                      | `makediff`         | 同步"五彩"高亮标注服务中的内容。                       |
 | [Douban](https://github.com/Wanxp/obsidian-douban)                                       | `Wanxp`            | 从豆瓣导入你的书影音数据。                           |
-| [Note Synchronizer](https://github.com/tansongchen/obsidian-note-synchronizer)           | `tansongchen`      | 与 Anki 进行卡片同步，方便进行间隔重复学习。               |
 | [Enhancing Export](https://github.com/mokeyish/obsidian-enhancing-export)                | `mokeyish`         | 通过 Pandoc 增强导出功能，支持多种格式如 Docx, LaTeX。   |
 | [Messager](https://github.com/xiaotianhu/obsidian-messager)                              | `xiaotianhu`       | 通过微信、HTTP API 或 Email 向 Obsidian 发送消息。  |
 | [Newledge](https://github.com/DepartingAgain/obsidian-newledge)                          | `DepartingAgain`   | 与"新枝"知识管理应用进行数据同步。                      |
