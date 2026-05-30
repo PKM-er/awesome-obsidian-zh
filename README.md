@@ -67,7 +67,6 @@
 | [Image Auto Upload](https://github.com/renmu123/obsidian-image-auto-upload-plugin) | `renmu123`   | 粘贴图片时自动通过 PicGo 等工具上传到指定图床。 |
 | [Emo Uploader](https://github.com/yaleiyale/obsidian-emo-uploader)                 | `yaleiyale`  | 聚合多种图床，支持 GitHub、腾讯云 COS 等。 |
 | [Image Toolkit](https://github.com/sissilab/obsidian-image-toolkit)                | `sissilab`   | 提供点击查看大图、旋转、缩放等图片浏览功能。      |
-| [Fast Image Cleaner](https://github.com/martinniee/Obsidian-fast-image-cleaner)    | `martinniee` | 快速清理笔记中不再使用的图片附件及其链接。       |
 | [Copy Image and Text](https://github.com/msgk239/obsidian-copy-image-text)         | `msgk239`    | 复制笔记内容时，能将文本和图片一并复制到剪贴板。    |
 
 ### AI 辅助
