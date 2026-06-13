@@ -28,7 +28,7 @@ jobs:
       - name: Scan new plugins
         id: scan
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
         run: python .github/scripts/check_plugins.py
 
       - name: Create PR for candidates
