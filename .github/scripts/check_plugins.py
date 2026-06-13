@@ -211,6 +211,8 @@ def do_apply():
     date = os.popen("date +%Y%m%d").read().strip() or os.popen("powershell Get-Date -Format yyyyMMdd").read().strip()
     branch = f"auto/new-plugins-{date}"
     subprocess.run(["git", "checkout", "-b", branch], check=True)
+    subprocess.run(["git", "config", "user.email", "github-actions[bot]@users.noreply.github.com"], check=True)
+    subprocess.run(["git", "config", "user.name", "github-actions[bot]"], check=True)
     subprocess.run(["git", "add", readme_path, CACHE_FILE], check=True)
     r = subprocess.run(["git", "diff", "--cached", "--quiet"])
     if r.returncode == 0:
