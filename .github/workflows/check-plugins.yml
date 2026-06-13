@@ -10,7 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      issues: write
       pull-requests: write
 
     steps:
@@ -24,22 +23,22 @@ jobs:
       - name: Install dependencies
         run: pip install requests
 
-      - name: Scan for new Chinese plugins
+      - name: Init cache if empty
+        run: |
+          if [ "$(cat .github/scripts/checked_plugins.json)" = "[]" ]; then
+            curl -s https://raw.githubusercontent.com/obsidianmd/obsidian-releases/master/community-plugins.json \
+              | python3 -c "import json,sys; ids=[p['id'] for p in json.load(sys.stdin)]; json.dump(ids, open('.github/scripts/checked_plugins.json','w'))"
+          fi
+
+      - name: Scan new plugins
         id: scan
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python .github/scripts/check_plugins.py
 
-      - name: Create PR for high-confidence plugins
+      - name: Create PR for candidates
         if: steps.scan.outputs.high_count != '0'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ADD_ROWS: ${{ steps.scan.outputs.add_rows }}
         run: python .github/scripts/check_plugins.py --apply
-
-      - name: Create issue for review candidates
-        if: steps.scan.outputs.medium_count != '0'
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          MEDIUM: ${{ steps.scan.outputs.medium_candidates }}
-        run: python .github/scripts/check_plugins.py --issue
