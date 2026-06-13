@@ -174,7 +174,7 @@ def run_scan():
             })
 
     candidates.sort(key=lambda x: -x["score"])
-    high = [c for c in candidates if c["score"] >= 70]
+    high = [c for c in candidates if c["score"] >= 50]
 
     # Update cache
     all_ids = checked | new_plugin_ids
