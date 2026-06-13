@@ -219,7 +219,7 @@ def do_apply():
         print("No changes to commit")
         return
     subprocess.run(["git", "commit", "-m", "Auto-add new Chinese-relevant plugins [skip ci]"], check=True)
-    subprocess.run(["git", "push", "origin", branch], check=True)
+    subprocess.run(["git", "push", "--force", "origin", branch], check=True)
     subprocess.run(["gh", "pr", "create",
                     "--title", f"Add new Chinese-relevant plugins ({date})",
                     "--body", body,
