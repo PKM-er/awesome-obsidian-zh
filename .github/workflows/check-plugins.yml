@@ -34,6 +34,6 @@ jobs:
       - name: Create PR for candidates
         if: steps.scan.outputs.high_count != '0'
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_PAT }}
           ADD_ROWS: ${{ steps.scan.outputs.add_rows }}
         run: python .github/scripts/check_plugins.py --apply
