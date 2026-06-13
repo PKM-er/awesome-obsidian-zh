@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import json, os, re, requests, base64, sys
+import json, os, re, requests, base64, sys, subprocess
 
 COMMUNITY_URL = "https://raw.githubusercontent.com/obsidianmd/obsidian-releases/master/community-plugins.json"
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", "")
@@ -74,42 +74,14 @@ def has_cn(s):
     return bool(re.search(r"[\u4e00-\u9fff]", s))
 
 
-TABLE_ROW = '| [{name}](https://github.com/{repo}) | `{author}` | {desc} |'
-
-
-def categorize(desc):
-    desc_lower = desc.lower()
-    if any(kw in desc_lower for kw in ("sync", "同步", "publish", "发布", "export", "导出", "backup", "备份")):
-        return "数据同步与集成"
-    if any(kw in desc_lower for kw in ("image", "图片", "upload", "上传", "media", "多媒体")):
-        return "多媒体与附件"
-    if any(kw in desc_lower for kw in ("task", "任务", "calendar", "日历", "progress", "进度", "schedule")):
-        return "任务与日程管理"
-    if any(kw in desc_lower for kw in ("edit", "编辑", "format", "格式化", "typing", "输入", "拼音", "mindmap", "思维导图")):
-        return "编辑与格式化"
-    if any(kw in desc_lower for kw in ("ai", "chatgpt", "gpt", "llm", "agent")):
-        return "AI 辅助"
-    if any(kw in desc_lower for kw in ("link", "链接", "graph", "图谱", "backlink")):
-        return "链接与知识管理"
-    if any(kw in desc_lower for kw in ("theme", "主题", "view", "视图", "outline", "目录", "icon")):
-        return "界面与视图增强"
-    return "其他工具"
-
-
-def main():
-    output = os.environ.get("GITHUB_OUTPUT", "")
-
-    print("Fetching community plugins...", file=sys.stderr)
+def run_scan():
     all_plugins = requests.get(COMMUNITY_URL).json()
-
-    print("Fetching current README...", file=sys.stderr)
     r = gh_get(f"https://api.github.com/repos/{REPO_NAME}/contents/README.md")
     if not r:
         print("ERROR: cannot read README", file=sys.stderr)
         sys.exit(1)
     readme_text = base64.b64decode(r["content"]).decode("utf-8")
     existing = parse_current_plugins(readme_text)
-
     candidates = []
     pre_filtered = 0
 
@@ -119,48 +91,38 @@ def main():
             continue
         if repo.lower() in existing:
             continue
-
         name = p.get("name", "")
         author = p.get("author", "")
         desc = p.get("description", "")
-
         if not (has_cn(name) or has_cn(author) or has_cn(desc)):
             continue
-
         pre_filtered += 1
         score = 0
         signals = []
-
         if has_locale_file(repo):
             score += 50
             signals.append("locale")
-
         if has_cn(author):
             score += 15
             signals.append("author_cn")
-
         topics, repo_desc = repo_info(repo)
         ch_topics = {"chinese", "zh", "zh-cn", "chinese-translation", "obsidian-zh"}
         if any(t.lower() in ch_topics for t in topics):
             score += 20
             signals.append("topic")
-
         if repo_desc and has_cn(repo_desc) and len(re.findall(r"[\u4e00-\u9fff]", repo_desc)) > 5:
             score += 10
             signals.append("desc_cn")
-
         loc = author_location(author)
         cn_kw = ["china", "chinese", "taiwan", "hong kong", "beijing", "shanghai",
-                 "shenzhen", "guangzhou", "chengdu", "nanjing", "wuhan", "shenyang",
+                 "shenzhen", "guangzhou", "chengdu", "nanjing", "wuhan",
                  "\u4e2d\u56fd", "\u53f0\u6e7e", "\u9999\u6e2f"]
         if any(kw in loc.lower() for kw in cn_kw):
             score += 15
             signals.append("location")
-
         if has_cn(name):
             score += 5
             signals.append("name_cn")
-
         if score >= 50:
             candidates.append({
                 "name": name, "repo": repo, "author": author,
@@ -171,53 +133,102 @@ def main():
     high = [c for c in candidates if c["score"] >= 70]
     medium = [c for c in candidates if 50 <= c["score"] < 70]
 
-    # summary
-    print(f"Total plugins: {len(all_plugins)}", file=sys.stderr)
-    print(f"Pre-filtered (CN text): {pre_filtered}", file=sys.stderr)
-    print(f"High-confidence: {len(high)}", file=sys.stderr)
-    for c in high:
-        print(f"  [{c['score']}] {c['name']} ({c['repo']}) — {', '.join(c['signals'])}", file=sys.stderr)
-    print(f"Review candidates: {len(medium)}", file=sys.stderr)
-
+    output = os.environ.get("GITHUB_OUTPUT", "")
     if not output:
-        # Not in Actions, print to stdout for inspection
         print(json.dumps({"high": high, "medium": medium}, ensure_ascii=False, indent=2))
         return
 
-    # Generate markdown table rows for high-confidence plugins
     rows = []
     for c in high:
-        section = categorize(c["desc"])
-        row = TABLE_ROW.format(name=c["name"], repo=c["repo"], author=c["author"], desc=c["desc"])
-        rows.append({"section": section, "row": row, "name": c["name"], "repo": c["repo"]})
+        row = f'| [{c["name"]}](https://github.com/{c["repo"]}) | `{c["author"]}` | {c["desc"]} |'
+        rows.append({"section": "其他工具", "row": row, "name": c["name"], "repo": c["repo"], "author": c["author"], "desc": c["desc"]})
 
-    # Write GITHUB_OUTPUT
     with open(output, "a", encoding="utf-8") as f:
-        payload = json.dumps(rows, ensure_ascii=False)
-        f.write(f"add_rows={payload}\n")
+        f.write(f"add_rows={json.dumps(rows, ensure_ascii=False)}\n")
         f.write(f"high_count={len(high)}\n")
         f.write(f"medium_count={len(medium)}\n")
-        medium_payload = json.dumps(medium, ensure_ascii=False)
-        f.write(f"medium_candidates={medium_payload}\n")
+        f.write(f"medium_candidates={json.dumps(medium, ensure_ascii=False)}\n")
 
-    # Write step summary
     summary = os.environ.get("GITHUB_STEP_SUMMARY", "")
     if summary:
         with open(summary, "w", encoding="utf-8") as f:
             f.write("## Chinese Plugin Scan Results\n\n")
-            f.write(f"- Total plugins checked: {len(all_plugins)}\n")
+            f.write(f"- Total plugins: {len(all_plugins)}\n")
             f.write(f"- Pre-filter candidates: {pre_filtered}\n")
-            f.write(f"- High-confidence (score ≥70): {len(high)}\n")
-            f.write(f"- Needs review (score 50-69): {len(medium)}\n\n")
+            f.write(f"- High-confidence (>=70): {len(high)}\n")
+            f.write(f"- Needs review (50-69): {len(medium)}\n\n")
             if high:
                 f.write("### High-Confidence\n\n")
                 for c in high:
-                    f.write(f"- [{c['name']}](https://github.com/{c['repo']}) by `{c['author']}` — {c['desc']}\n")
+                    f.write(f"- [{c['name']}](https://github.com/{c['repo']}) — {c['desc']}\n")
             if medium:
                 f.write("\n### Needs Review\n\n")
                 for c in medium:
-                    f.write(f"- [{c['name']}](https://github.com/{c['repo']}) by `{c['author']}` — {c['desc']}\n")
+                    f.write(f"- [{c['name']}](https://github.com/{c['repo']}) — {c['desc']}\n")
+
+
+def do_apply():
+    rows = json.loads(os.environ["ADD_ROWS"])
+    readme_path = "README.md"
+    with open(readme_path, "r", encoding="utf-8") as f:
+        text = f.read()
+    anchor = "## 精选中文主题"
+    insert_pos = text.rfind("| [Password Protection](https://github.com/qing3962/password-protection)")
+    if insert_pos == -1:
+        insert_pos = text.rfind("|", 0, text.find(anchor))
+    eol = text.find("\n", insert_pos)
+    line_end = text.find("\n", eol + 1) if text[eol + 1:eol + 2] != "\n" else eol
+    rows_sorted = sorted(rows, key=lambda r: r["author"].lower())
+    new_rows = ""
+    for r in rows_sorted:
+        new_rows += f'| [{r["name"]}](https://github.com/{r["repo"]}) | `{r["author"]}` | {r["desc"]} |\n'
+    text = text[:line_end + 1] + new_rows + text[line_end + 1:]
+    with open(readme_path, "w", encoding="utf-8") as f:
+        f.write(text)
+    # Build PR body
+    body = "## New Chinese-Relevant Plugins Detected\n\n"
+    body += "The following plugins match the native-Chinese or Chinese-translation criteria:\n\n"
+    body += "| Plugin | Author | Description |\n"
+    body += "| --- | --- | --- |\n"
+    for r in rows_sorted:
+        body += f'| [{r["name"]}](https://github.com/{r["repo"]}) | `{r["author"]}` | {r["desc"]} |\n'
+    body += "\n\n_This PR was automatically generated by the weekly plugin scan._"
+    date = re.sub(r"[^0-9]", "", os.popen("date +%Y%m%d").read()).strip() or os.popen("powershell Get-Date -Format yyyyMMdd").read().strip()
+    branch = f"auto/new-plugins-{date}"
+    subprocess.run(["git", "checkout", "-b", branch], check=True)
+    subprocess.run(["git", "add", readme_path], check=True)
+    r = subprocess.run(["git", "diff", "--cached", "--quiet"])
+    if r.returncode == 0:
+        print("No changes to commit")
+        return
+    subprocess.run(["git", "commit", "-m", "Auto-add new Chinese-relevant plugins [skip ci]"], check=True)
+    subprocess.run(["git", "push", "origin", branch], check=True)
+    subprocess.run(["gh", "pr", "create",
+                    "--title", f"Add new Chinese-relevant plugins ({date})",
+                    "--body", body,
+                    "--head", branch], check=True)
+
+
+def do_issue():
+    items = json.loads(os.environ["MEDIUM"])
+    body = "## Plugins Requiring Manual Review\n\n"
+    body += "These plugins may match the native-Chinese criteria but need human review:\n\n"
+    body += "| Plugin | Author | Description | Score |\n"
+    body += "| --- | --- | --- | --- |\n"
+    for c in sorted(items, key=lambda x: -x["score"]):
+        body += f'| [{c["name"]}](https://github.com/{c["repo"]}) | `{c["author"]}` | {c["desc"]} | {c["score"]} |\n'
+    body += "\n\n_This issue was automatically generated by the weekly plugin scan._"
+    date = re.sub(r"[^0-9]", "", os.popen("date +%Y%m%d").read()).strip() or os.popen("powershell Get-Date -Format yyyyMMdd").read().strip()
+    subprocess.run(["gh", "issue", "create",
+                    "--title", f"Review: new Chinese plugin candidates ({date})",
+                    "--body", body,
+                    "--label", "review"], check=True)
 
 
 if __name__ == "__main__":
-    main()
+    if "--apply" in sys.argv:
+        do_apply()
+    elif "--issue" in sys.argv:
+        do_issue()
+    else:
+        run_scan()
