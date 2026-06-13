@@ -97,13 +97,20 @@ def run_scan():
     readme_text = base64.b64decode(r["content"]).decode("utf-8")
     existing = parse_current_plugins(readme_text)
     checked = load_checked()
+    all_ids = {p["id"] for p in all_plugins}
 
-    new_plugin_ids = {p["id"] for p in all_plugins} - checked
-    if not new_plugin_ids:
-        print(f"No new plugins since last check ({len(checked)} known)", file=sys.stderr)
-        return
+    is_first_run = len(checked) == 0
+    if is_first_run:
+        new_plugin_ids = all_ids
+    else:
+        new_plugin_ids = all_ids - checked
+        if not new_plugin_ids:
+            print(f"No new plugins since last check ({len(checked)} known)", file=sys.stderr)
+            return
 
     new_plugins = [p for p in all_plugins if p["id"] in new_plugin_ids]
+
+    print(f"Known: {len(checked)}, new: {len(new_plugins)}" + (" (full scan on first run)" if is_first_run else ""), file=sys.stderr)
     candidates = []
     scanned = 0
 
