@@ -23,6 +23,7 @@
 | 插件                                                                     | 作者              | 核心功能                           |
 | ---------------------------------------------------------------------- | --------------- | ------------------------------ |
 | [Floating TOC](https://github.com/cumany/obsidian-floating-toc-plugin) | `cumany`        | 在笔记侧边生成一个浮动的目录大纲。              |
+| [Grid Explorer](https://github.com/Devon22/obsidian-gridexplorer)      | `Devon22`       | 以网格视图浏览笔记文件。                     |
 | [Note Toolbar](https://github.com/chrisgurney/obsidian-note-toolbar)   | `chrisgurney`   | 在笔记顶部添加可自定义的命令工具栏。             |
 | [Quiet Outline](https://github.com/guopenghui/obsidian-quiet-outline)  | `guopenghui`    | 提供一个功能更强大、更美观的大纲视图。            |
 | [SmoothCursor](https://github.com/busyoGG/SmoothCursor)                | `busyoGG`       | 美化光标，使其移动和键入时如丝般顺滑。            |
