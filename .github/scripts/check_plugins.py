@@ -103,6 +103,36 @@ def save_checked(ids):
         json.dump(sorted(ids), f)
 
 
+def write_no_candidates_output():
+    output = os.environ.get("GITHUB_OUTPUT", "")
+    if not output:
+        print(json.dumps({"high": []}, ensure_ascii=False, indent=2))
+        return
+    with open(output, "a", encoding="utf-8") as f:
+        f.write("add_rows=[]\n")
+        f.write("high_count=0\n")
+
+
+def env_enabled(name):
+    return os.environ.get(name, "").strip().lower() in {"1", "true", "yes", "on"}
+
+
+def auto_merge_pr(pr_url, head_sha, date):
+    merge_cmd = [
+        "gh", "pr", "merge", pr_url,
+        "--squash",
+        "--delete-branch",
+        "--match-head-commit", head_sha,
+        "--subject", f"Auto-add new Chinese-relevant plugins ({date})",
+        "--body", "Automatically merged by the weekly plugin scan.",
+    ]
+    result = subprocess.run(merge_cmd)
+    if result.returncode == 0:
+        return
+    print("Immediate PR merge failed; trying GitHub auto-merge.", file=sys.stderr)
+    subprocess.run(merge_cmd + ["--auto"], check=True)
+
+
 def run_scan():
     all_plugins = requests.get(COMMUNITY_URL).json()
     r = gh_get(f"https://api.github.com/repos/{REPO_NAME}/contents/README.md")
@@ -121,6 +151,7 @@ def run_scan():
         new_plugin_ids = all_ids - checked
         if not new_plugin_ids:
             print(f"No new plugins since last check ({len(checked)} known)", file=sys.stderr)
+            write_no_candidates_output()
             return
 
     new_plugins = [p for p in all_plugins if p["id"] in new_plugin_ids]
@@ -234,11 +265,17 @@ def do_apply():
         print("No changes to commit")
         return
     subprocess.run(["git", "commit", "-m", "Auto-add new Chinese-relevant plugins [skip ci]"], check=True)
+    head_sha = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
     subprocess.run(["git", "push", "--force", "origin", branch], check=True)
-    subprocess.run(["gh", "pr", "create",
-                    "--title", f"Add new Chinese-relevant plugins ({date})",
-                    "--body", body,
-                    "--head", branch], check=True)
+    pr = subprocess.run(["gh", "pr", "create",
+                         "--title", f"Add new Chinese-relevant plugins ({date})",
+                         "--body", body,
+                         "--head", branch],
+                        check=True, text=True, stdout=subprocess.PIPE)
+    pr_url = pr.stdout.strip().splitlines()[-1]
+    print(f"Created PR: {pr_url}")
+    if env_enabled("AUTO_MERGE"):
+        auto_merge_pr(pr_url, head_sha, date)
 
 
 if __name__ == "__main__":

@@ -31,9 +31,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
         run: python .github/scripts/check_plugins.py
 
-      - name: Create PR for candidates
+      - name: Create PR and auto-merge candidates
         if: steps.scan.outputs.high_count != '0'
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }}
           ADD_ROWS: ${{ steps.scan.outputs.add_rows }}
+          AUTO_MERGE: "true"
         run: python .github/scripts/check_plugins.py --apply
