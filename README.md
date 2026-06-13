@@ -100,7 +100,6 @@
 | [Text Finder](https://github.com/nyable/obsidian-text-finder)                 | `nyable`           | 在编辑模式下提供一个类似 VSCode 的查找/替换窗口。 |
 | [Password Protection](https://github.com/qing3962/password-protection)        | `qing3962`         | 为指定的笔记或文件夹设置访问密码。             |
 | [Leaflet Plugin](https://github.com/valentine195/obsidian-leaflet-plugin)     | `valentine195`     | 在笔记中嵌入可交互的地理地图。               |
-| [MindCanvas](https://github.com/gengyabc/naotu) | `Geng` | This plugin has not been manually reviewed by Obsidian staff. A mindmap that is really a map. 真正的思维投影。 |
 
 ## 精选中文主题
 
