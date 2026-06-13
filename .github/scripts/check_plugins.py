@@ -31,22 +31,37 @@ def gh_get(url):
 
 
 def has_locale_file(repo):
-    for path in LOCALE_PATHS:
-        r = gh_get(f"https://api.github.com/repos/{repo}/contents/{path}")
-        if r and "content" in r:
-            return True
     root = gh_get(f"https://api.github.com/repos/{repo}/contents/")
-    if root and isinstance(root, list):
-        for item in root:
-            if item["type"] == "dir" and item["name"] in ("lang", "locale", "i18n", "l10n", "translations"):
-                try:
-                    sub = requests.get(item["url"], headers=API_HEADERS).json()
-                    if isinstance(sub, list):
-                        for f in sub:
-                            if re.search(r"^zh[\-]?(cn|tw|hant|hans)?\.", f["name"].lower()):
-                                return True
-                except:
-                    pass
+    if not root or not isinstance(root, list):
+        return False
+    dirs = {item["name"] for item in root if item["type"] == "dir"}
+    candidates_dirs = {"lang", "locale", "i18n", "l10n", "translations", "src"}
+    to_check = candidates_dirs & dirs
+    for d in sorted(to_check):
+        try:
+            sub = requests.get(
+                f"https://api.github.com/repos/{repo}/contents/{d}",
+                headers=API_HEADERS,
+            ).json()
+            if not isinstance(sub, list):
+                continue
+            names = [item["name"].lower() for item in sub]
+            if d == "src":
+                subdirs = {item["name"] for item in sub if item["type"] == "dir"}
+                for sd in subdirs & {"lang", "locale", "i18n", "l10n", "translations"}:
+                    try:
+                        sub2 = requests.get(
+                            f"https://api.github.com/repos/{repo}/contents/src/{sd}",
+                            headers=API_HEADERS,
+                        ).json()
+                        if isinstance(sub2, list):
+                            names.extend(item["name"].lower() for item in sub2)
+                    except:
+                        pass
+            if any(re.search(r"^zh[\-]?(cn|tw|hant|hans)?\.", n) for n in names):
+                return True
+        except:
+            pass
     return False
 
 
