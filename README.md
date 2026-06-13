@@ -87,24 +87,19 @@
 | [Messager](https://github.com/xiaotianhu/obsidian-messager)                              | `xiaotianhu`       | 通过微信、HTTP API 或 Email 向 Obsidian 发送消息。  |
 | [WeRead Plugin](https://github.com/zhaohongxuan/obsidian-weread-plugin)                  | `zhaohongxuan`     | 同步微信读书的书籍、标注和想法。                        |
 
-### 专业领域
-
-| 插件                                                                          | 作者             | 核心功能                      |
-| --------------------------------------------------------------------------- | -------------- | ------------------------- |
-| [Zhongwen Block](https://github.com/0918nobita/obsidian-zhongwen-block)     | `0918nobita`   | 为中文学习者提供专门的练习和展示块。        |
-| [Chem](https://github.com/Acylation/obsidian-chem)                          | `Acylation`    | 将化学式字符串渲染为二维结构式，提升化学笔记体验。 |
-| [Leaflet Plugin](https://github.com/valentine195/obsidian-leaflet-plugin)   | `valentine195` | 在笔记中嵌入可交互的地理地图。           |
-
 ### 其他工具
 
 | 插件                                                                            | 作者                 | 核心功能                          |
 | ----------------------------------------------------------------------------- | ------------------ | ----------------------------- |
 | [obsidian-i18n](https://github.com/0011000000110010/obsidian-i18n)            | `0011000000110010` | 一个帮助用户翻译其他插件界面的工具。            |
 | [obsidian-manager](https://github.com/0011000000110010/obsidian-manager)      | `0011000000110010` | 一个更好的插件管理器。                   |
+| [Zhongwen Block](https://github.com/0918nobita/obsidian-zhongwen-block)       | `0918nobita`       | 为中文学习者提供专门的练习和展示块。           |
+| [Chem](https://github.com/Acylation/obsidian-chem)                            | `Acylation`        | 将化学式字符串渲染为二维结构式，提升化学笔记体验。   |
 | [Personal Assistant](https://github.com/edonyzpc/personal-assistant)          | `edonyzpc`         | 自动化管理你的库，如定期创建笔记、整理文件等。       |
 | [Files Cooker](https://github.com/ivaneye/obsidian-files-cooker)              | `ivaneye`          | 对库内文件进行批量操作和处理。               |
 | [Text Finder](https://github.com/nyable/obsidian-text-finder)                 | `nyable`           | 在编辑模式下提供一个类似 VSCode 的查找/替换窗口。 |
 | [Password Protection](https://github.com/qing3962/password-protection)        | `qing3962`         | 为指定的笔记或文件夹设置访问密码。             |
+| [Leaflet Plugin](https://github.com/valentine195/obsidian-leaflet-plugin)     | `valentine195`     | 在笔记中嵌入可交互的地理地图。               |
 
 ## 精选中文主题
 
