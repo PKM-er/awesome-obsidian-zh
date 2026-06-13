@@ -1,0 +1,41 @@
+name: Check New Chinese Plugins
+
+on:
+  schedule:
+    - cron: "0 0 * * 1"
+  workflow_dispatch:
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Scan new plugins
+        id: scan
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+        run: python .github/scripts/check_plugins.py
+
+      - name: Create PR and auto-merge updates
+        if: steps.scan.outputs.update_needed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+          ADD_ROWS: ${{ steps.scan.outputs.add_rows }}
+          REMOVE_ROWS: ${{ steps.scan.outputs.remove_rows }}
+          AUTO_MERGE: "true"
+        run: python .github/scripts/check_plugins.py --apply
