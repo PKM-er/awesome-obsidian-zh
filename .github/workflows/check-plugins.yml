@@ -35,7 +35,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ADD_ROWS: ${{ steps.scan.outputs.add_rows }}
-        run: python .github/scripts/check_plugins.py --apply --pr
+        run: python .github/scripts/check_plugins.py --apply
 
       - name: Create issue for review candidates
         if: steps.scan.outputs.medium_count != '0'
