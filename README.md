@@ -22,31 +22,31 @@
 
 | 插件                                                                     | 作者              | 核心功能                           |
 | ---------------------------------------------------------------------- | --------------- | ------------------------------ |
+| [SmoothCursor](https://github.com/busyoGG/SmoothCursor)                | `busyoGG`       | 美化光标，使其移动和键入时如丝般顺滑。            |
+| [Note Toolbar](https://github.com/chrisgurney/obsidian-note-toolbar)   | `chrisgurney`   | 在笔记顶部添加可自定义的命令工具栏。             |
 | [Floating TOC](https://github.com/cumany/obsidian-floating-toc-plugin) | `cumany`        | 在笔记侧边生成一个浮动的目录大纲。              |
 | [Grid Explorer](https://github.com/Devon22/obsidian-gridexplorer)      | `Devon22`       | 以网格视图浏览笔记文件。                     |
-| [Note Toolbar](https://github.com/chrisgurney/obsidian-note-toolbar)   | `chrisgurney`   | 在笔记顶部添加可自定义的命令工具栏。             |
 | [Quiet Outline](https://github.com/guopenghui/obsidian-quiet-outline)  | `guopenghui`    | 提供一个功能更强大、更美观的大纲视图。            |
-| [SmoothCursor](https://github.com/busyoGG/SmoothCursor)                | `busyoGG`       | 美化光标，使其移动和键入时如丝般顺滑。            |
 
 ### 编辑与格式化
 
 | 插件                                                                          | 作者               | 核心功能                              |
 | --------------------------------------------------------------------------- | ---------------- | --------------------------------- |
 | [cm-chs-patch](https://github.com/aidenlx/cm-chs-patch)                     | `aidenlx`        | 优化中文分词，使得双击可以精确选中中文词语。            |
-| [Easy Typing](https://github.com/Yaozhuwa/easy-typing-obsidian)             | `Yaozhuwa`       | 增强中文输入体验，如智能标点转换、格式清理等。           |
 | [Editing Toolbar](https://github.com/cumany/obsidian-editing-toolbar)       | `cumany`         | 添加一个类似 Word 的浮动编辑工具栏，提供可视化操作。     |
 | [Fuzzy Chinese Pinyin](https://github.com/lazyloong/obsidian-fuzzy-chinese) | `lazyloong`      | 提供中文拼音模糊搜索功能，支持拼音、首字母搜索。          |
 | [MarkMind](https://github.com/MarkMindCkm/obsidian-markmind)                | `MarkMindCkm`    | 在 Obsidian 中创建和编辑思维导图，并支持 PDF 标注。 |
 | [Mind Elixir Mindmap](https://github.com/SSShooter/obsidian-mindmap)        | `SSShooter`    | 为 Obsidian 提供 Markdown 转思维导图 + 内嵌思维导图功能。 |
+| [Easy Typing](https://github.com/Yaozhuwa/easy-typing-obsidian)             | `Yaozhuwa`       | 增强中文输入体验，如智能标点转换、格式清理等。           |
 
 ### 链接与知识管理
 
 | 插件                                                                                              | 作者             | 核心功能                     |
 | ----------------------------------------------------------------------------------------------- | -------------- | ------------------------ |
-| [Update Relative Links](https://github.com/val3344/obsidian-update-relative-links)              | `val3344`      | 当文件移动时，自动更新指向该文件的相对路径链接。 |
-| [Any Block](https://github.com/LincZero/obsidian-any-block)                                     | `LincZero`     | 灵活创建内容块，支持列表转表格、引用转换等。   |
 | [Awesome Brain Manager](https://github.com/JuckZ/awesome-brain-manager)                         | `JuckZ`        | 集成多种实用功能，解决日常使用中的琐碎问题。   |
+| [Any Block](https://github.com/LincZero/obsidian-any-block)                                     | `LincZero`     | 灵活创建内容块，支持列表转表格、引用转换等。   |
 | [Vault Curate](https://github.com/notoriouslab/vault-curate)                                    | `notoriouslab` | 本地中文语义搜索与 AI 整理插件，三路融合检索（BM25 + 语义 + 模糊），WebGPU 加速，AI 整理默认关闭。 |
+| [Update Relative Links](https://github.com/val3344/obsidian-update-relative-links)              | `val3344`      | 当文件移动时，自动更新指向该文件的相对路径链接。 |
 
 ### 任务与日程管理
 
@@ -61,17 +61,17 @@
 
 | 插件                                                                                 | 作者           | 核心功能                        |
 | ---------------------------------------------------------------------------------- | ------------ | --------------------------- |
-| [Emo Uploader](https://github.com/yaleiyale/obsidian-emo-uploader)                 | `yaleiyale`  | 聚合多种图床，支持 GitHub、腾讯云 COS 等。 |
-| [Image Toolkit](https://github.com/sissilab/obsidian-image-toolkit)                | `sissilab`   | 提供点击查看大图、旋转、缩放等图片浏览功能。      |
 | [Copy Image and Text](https://github.com/msgk239/obsidian-copy-image-text)         | `msgk239`    | 复制笔记内容时，能将文本和图片一并复制到剪贴板。    |
+| [Image Toolkit](https://github.com/sissilab/obsidian-image-toolkit)                | `sissilab`   | 提供点击查看大图、旋转、缩放等图片浏览功能。      |
+| [Emo Uploader](https://github.com/yaleiyale/obsidian-emo-uploader)                 | `yaleiyale`  | 聚合多种图床，支持 GitHub、腾讯云 COS 等。 |
 
 ### AI 辅助
 
 | 插件                                                                              | 作者        | 核心功能                           |
 | ------------------------------------------------------------------------------- | --------- | ------------------------------ |
-| [Tars](https://github.com/TarsLab/obsidian-tars)                                | `TarsLab` | 基于笔记标签和上下文，提供智能文本生成建议。         |
-| [YOLO](https://github.com/Lapis0x0/obsidian-yolo)                               | `Lapis0x0` | 面向 Obsidian 的 AI Agent 助手，支持对话、写作、RAG、MCP、Skills 与工具调用。 |
 | [EVC Team Relay MCP](https://github.com/entire-vc/evc-team-relay-mcp)                    | `entire-vc` | 通过 MCP 协议让 AI 编程工具直接读写 Obsidian 笔记库。 |
+| [YOLO](https://github.com/Lapis0x0/obsidian-yolo)                               | `Lapis0x0` | 面向 Obsidian 的 AI Agent 助手，支持对话、写作、RAG、MCP、Skills 与工具调用。 |
+| [Tars](https://github.com/TarsLab/obsidian-tars)                                | `TarsLab` | 基于笔记标签和上下文，提供智能文本生成建议。         |
 
 ### 数据同步与集成
 
@@ -79,13 +79,13 @@
 | ---------------------------------------------------------------------------------------- | ------------------ | --------------------------------------- |
 | [Wechat Public Platform](https://github.com/ai-chen2050/obsidian-wechat-public-platform) | `ai-chen2050`      | 将笔记内容排版并同步到微信公众号平台。                     |
 | [Zhihu on Obsidian](https://github.com/dongguaguaguagua/zhihu_obsidian)                  | `dongguaguaguagua` | 允许你在 Obsidian 内将 markdown 内容直接发布到知乎（中文问答平台）。 |
-| [WeRead Plugin](https://github.com/zhaohongxuan/obsidian-weread-plugin)                  | `zhaohongxuan`     | 同步微信读书的书籍、标注和想法。                        |
 | [Wucai](https://github.com/makediff/obsidian-wucai)                                      | `makediff`         | 同步"五彩"高亮标注服务中的内容。                       |
-| [Douban](https://github.com/Wanxp/obsidian-douban)                                       | `Wanxp`            | 从豆瓣导入你的书影音数据。                           |
 | [Enhancing Export](https://github.com/mokeyish/obsidian-enhancing-export)                | `mokeyish`         | 通过 Pandoc 增强导出功能，支持多种格式如 Docx, LaTeX。   |
-| [Messager](https://github.com/xiaotianhu/obsidian-messager)                              | `xiaotianhu`       | 通过微信、HTTP API 或 Email 向 Obsidian 发送消息。  |
-| [LiveSync](https://github.com/vrtmrz/obsidian-livesync)                                  | `vrtmrz`           | 利用自托管的 CouchDB 或类似服务实现多设备实时同步。          |
 | [Nutstore Sync](https://github.com/nutstore/obsidian-nutstore-sync)                      | `nutstore`         | 通过 WebDAV 协议与坚果云进行双向同步，支持增量同步和智能冲突解决。 |
+| [LiveSync](https://github.com/vrtmrz/obsidian-livesync)                                  | `vrtmrz`           | 利用自托管的 CouchDB 或类似服务实现多设备实时同步。          |
+| [Douban](https://github.com/Wanxp/obsidian-douban)                                       | `Wanxp`            | 从豆瓣导入你的书影音数据。                           |
+| [Messager](https://github.com/xiaotianhu/obsidian-messager)                              | `xiaotianhu`       | 通过微信、HTTP API 或 Email 向 Obsidian 发送消息。  |
+| [WeRead Plugin](https://github.com/zhaohongxuan/obsidian-weread-plugin)                  | `zhaohongxuan`     | 同步微信读书的书籍、标注和想法。                        |
 
 ### 专业领域
 
