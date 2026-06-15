@@ -61,7 +61,6 @@
 
 | 插件                                                                                 | 作者           | 核心功能                        |
 | ---------------------------------------------------------------------------------- | ------------ | --------------------------- |
-| [Copy Image and Text](https://github.com/msgk239/obsidian-copy-image-text)         | `msgk239`    | 复制笔记内容时，能将文本和图片一并复制到剪贴板。    |
 | [Image Toolkit](https://github.com/sissilab/obsidian-image-toolkit)                | `sissilab`   | 提供点击查看大图、旋转、缩放等图片浏览功能。      |
 | [Emo Uploader](https://github.com/yaleiyale/obsidian-emo-uploader)                 | `yaleiyale`  | 聚合多种图床，支持 GitHub、腾讯云 COS 等。 |
 
