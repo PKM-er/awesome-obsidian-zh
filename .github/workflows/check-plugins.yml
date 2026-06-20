@@ -29,6 +29,8 @@ jobs:
         id: scan
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+          HTTP_TIMEOUT: 30
+          STALE_HTTP_TIMEOUT: 10
         run: python .github/scripts/check_plugins.py
 
       - name: Create PR and auto-merge updates
