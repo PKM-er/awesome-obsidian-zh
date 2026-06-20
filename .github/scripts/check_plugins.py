@@ -44,6 +44,8 @@ def create_retry_session(retries=3, backoff_factor=0.3, timeout=None):
     session = requests.Session()
     retry_strategy = Retry(
         total=retries,
+        connect=retries,
+        read=retries,
         backoff_factor=backoff_factor,
         status_forcelist=[429, 500, 502, 503, 504],
         allowed_methods=["HEAD", "GET", "OPTIONS"]
@@ -71,7 +73,6 @@ def gh_get(url):
 
 
 def has_locale_file(repo):
-    session = create_retry_session(timeout=HTTP_TIMEOUT)
     try:
         root = gh_get(f"https://api.github.com/repos/{repo}/contents/")
         if not root or not isinstance(root, list):
@@ -81,11 +82,7 @@ def has_locale_file(repo):
         to_check = candidates_dirs & dirs
         for d in sorted(to_check):
             try:
-                sub = session.get(
-                    f"https://api.github.com/repos/{repo}/contents/{d}",
-                    headers=API_HEADERS,
-                    timeout=HTTP_TIMEOUT,
-                ).json()
+                sub = gh_get(f"https://api.github.com/repos/{repo}/contents/{d}")
                 if not isinstance(sub, list):
                     continue
                 names = [item["name"].lower() for item in sub]
@@ -93,18 +90,14 @@ def has_locale_file(repo):
                     subdirs = {item["name"] for item in sub if item["type"] == "dir"}
                     for sd in subdirs & {"lang", "locale", "i18n", "l10n", "translations"}:
                         try:
-                            sub2 = session.get(
-                                f"https://api.github.com/repos/{repo}/contents/src/{sd}",
-                                headers=API_HEADERS,
-                                timeout=HTTP_TIMEOUT,
-                            ).json()
+                            sub2 = gh_get(f"https://api.github.com/repos/{repo}/contents/src/{sd}")
                             if isinstance(sub2, list):
                                 names.extend(item["name"].lower() for item in sub2)
-                        except requests.exceptions.RequestException:
+                        except Exception:
                             pass
                 if any(re.search(r"^zh[\-]?(cn|tw|hant|hans)?\.", n) for n in names):
                     return True
-            except requests.exceptions.RequestException as e:
+            except Exception as e:
                 print(f"WARN: Failed to check {d} in {repo}: {e}", file=sys.stderr)
                 continue
         return False
