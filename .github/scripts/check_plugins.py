@@ -18,7 +18,7 @@ HTTP_TIMEOUT = int(os.environ.get("HTTP_TIMEOUT", "30"))
 STALE_HTTP_TIMEOUT = int(os.environ.get("STALE_HTTP_TIMEOUT", "10"))
 STALE_CHECK_WORKERS = int(os.environ.get("STALE_CHECK_WORKERS", "12"))
 PLUGIN_ROW_RE = re.compile(
-    r"^\| \[([^\]]+)\]\(https://github\\.com/([^/|)]+/[^)|\s]+)\)\s*\|\s*`?([^`|]+)`?\s*\|",
+    r"^\| \[([^\]]+)\]\(https://github\.com/([^/|)]+/[^)|\s]+)\)\s*\|\s*`?([^`|]+)`?\s*\|",
     re.M,
 )
 
@@ -106,9 +106,9 @@ def has_locale_file(repo):
         return False
 
 
-# 新增：检测仓库是否包含中文文档（README 或 docs/*.md 等）
+# 修改：仅检查 README.md 以减少 API 请求
 def has_chinese_docs(repo):
-    """检查仓库是否存在包含中文字符的文档（优先检查 README.md，其次 docs/ 下的 .md 文件，再检查根目录带 zh/中文关键词的文件）。"""
+    """仅检查 README.md 是否包含中文字符（减少 API 调用）。"""
     try:
         r = gh_get(f"https://api.github.com/repos/{repo}/contents/README.md")
         if r and isinstance(r, dict) and r.get("content"):
@@ -120,42 +120,6 @@ def has_chinese_docs(repo):
                 pass
     except Exception:
         pass
-
-    # 检查 docs/ 目录下的 Markdown 文件内容
-    try:
-        docs = gh_get(f"https://api.github.com/repos/{repo}/contents/docs")
-        if isinstance(docs, list):
-            for item in docs:
-                if item.get("type") == "file" and item.get("name", "").lower().endswith(".md"):
-                    try:
-                        f = gh_get(f"https://api.github.com/repos/{repo}/contents/docs/{item['name']}")
-                        if f and isinstance(f, dict) and f.get("content"):
-                            text = base64.b64decode(f["content"]).decode("utf-8", errors="ignore")
-                            if has_cn(text):
-                                return True
-                    except Exception:
-                        continue
-    except Exception:
-        pass
-
-    # 检查根目录中文档名或包含 zh 的文件名（如 zh.md、README-zh.md）
-    try:
-        root = gh_get(f"https://api.github.com/repos/{repo}/contents")
-        if isinstance(root, list):
-            for item in root:
-                name = item.get("name", "").lower()
-                if item.get("type") == "file" and ("zh" in name or "中文" in name):
-                    try:
-                        f = gh_get(f"https://api.github.com/repos/{repo}/contents/{item['name']}")
-                        if f and isinstance(f, dict) and f.get("content"):
-                            text = base64.b64decode(f["content"]).decode("utf-8", errors="ignore")
-                            if has_cn(text):
-                                return True
-                    except Exception:
-                        continue
-    except Exception:
-        pass
-
     return False
 
 
@@ -512,7 +476,7 @@ def run_scan():
         if has_cn(name):
             score += 5
             signals.append("name_cn")
-        # 新增：仓库中含中文文档加分
+        # 新增：仓库中含中文文档加分（现在仅检查 README.md）
         try:
             if has_chinese_docs(repo):
                 score += 20
