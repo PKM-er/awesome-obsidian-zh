@@ -2,6 +2,8 @@
 import json, os, re, requests, base64, sys, subprocess
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timedelta, timezone
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 
 COMMUNITY_URL = "https://raw.githubusercontent.com/obsidianmd/obsidian-releases/master/community-plugins.json"
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", "")
@@ -12,8 +14,8 @@ PLUGIN_SECTION_START = "## 原生中文插件"
 PLUGIN_SECTION_END = "## 精选中文主题"
 OTHER_TOOLS_SECTION = "### 其他工具"
 STALE_DAYS = int(os.environ.get("STALE_DAYS", "365"))
-HTTP_TIMEOUT = int(os.environ.get("HTTP_TIMEOUT", "15"))
-STALE_HTTP_TIMEOUT = int(os.environ.get("STALE_HTTP_TIMEOUT", "5"))
+HTTP_TIMEOUT = int(os.environ.get("HTTP_TIMEOUT", "30"))
+STALE_HTTP_TIMEOUT = int(os.environ.get("STALE_HTTP_TIMEOUT", "10"))
 STALE_CHECK_WORKERS = int(os.environ.get("STALE_CHECK_WORKERS", "12"))
 PLUGIN_ROW_RE = re.compile(
     r"^\| \[([^\]]+)\]\(https://github\.com/([^/|)]+/[^)|\s]+)\)\s*\|\s*`?([^`|]+)`?\s*\|",
@@ -35,49 +37,80 @@ LOCALE_PATHS = [
 ]
 
 
+def create_retry_session(retries=3, backoff_factor=0.3, timeout=None):
+    """创建带有重试机制的 requests 会话"""
+    if timeout is None:
+        timeout = HTTP_TIMEOUT
+    session = requests.Session()
+    retry_strategy = Retry(
+        total=retries,
+        backoff_factor=backoff_factor,
+        status_forcelist=[429, 500, 502, 503, 504],
+        allowed_methods=["HEAD", "GET", "OPTIONS"]
+    )
+    adapter = HTTPAdapter(max_retries=retry_strategy)
+    session.mount("http://", adapter)
+    session.mount("https://", adapter)
+    return session
+
+
 def gh_get(url):
-    r = requests.get(url, headers=API_HEADERS, timeout=HTTP_TIMEOUT)
-    if r.status_code == 404:
+    session = create_retry_session(timeout=HTTP_TIMEOUT)
+    try:
+        r = session.get(url, headers=API_HEADERS, timeout=HTTP_TIMEOUT)
+        if r.status_code == 404:
+            return None
+        r.raise_for_status()
+        return r.json()
+    except requests.exceptions.Timeout:
+        print(f"WARN: Request timeout for {url}, returning None", file=sys.stderr)
         return None
-    r.raise_for_status()
-    return r.json()
+    except requests.exceptions.RequestException as e:
+        print(f"WARN: Request failed for {url}: {e}", file=sys.stderr)
+        return None
 
 
 def has_locale_file(repo):
-    root = gh_get(f"https://api.github.com/repos/{repo}/contents/")
-    if not root or not isinstance(root, list):
-        return False
-    dirs = {item["name"] for item in root if item["type"] == "dir"}
-    candidates_dirs = {"lang", "locale", "i18n", "l10n", "translations", "src"}
-    to_check = candidates_dirs & dirs
-    for d in sorted(to_check):
-        try:
-            sub = requests.get(
-                f"https://api.github.com/repos/{repo}/contents/{d}",
-                headers=API_HEADERS,
-                timeout=HTTP_TIMEOUT,
-            ).json()
-            if not isinstance(sub, list):
+    session = create_retry_session(timeout=HTTP_TIMEOUT)
+    try:
+        root = gh_get(f"https://api.github.com/repos/{repo}/contents/")
+        if not root or not isinstance(root, list):
+            return False
+        dirs = {item["name"] for item in root if item["type"] == "dir"}
+        candidates_dirs = {"lang", "locale", "i18n", "l10n", "translations", "src"}
+        to_check = candidates_dirs & dirs
+        for d in sorted(to_check):
+            try:
+                sub = session.get(
+                    f"https://api.github.com/repos/{repo}/contents/{d}",
+                    headers=API_HEADERS,
+                    timeout=HTTP_TIMEOUT,
+                ).json()
+                if not isinstance(sub, list):
+                    continue
+                names = [item["name"].lower() for item in sub]
+                if d == "src":
+                    subdirs = {item["name"] for item in sub if item["type"] == "dir"}
+                    for sd in subdirs & {"lang", "locale", "i18n", "l10n", "translations"}:
+                        try:
+                            sub2 = session.get(
+                                f"https://api.github.com/repos/{repo}/contents/src/{sd}",
+                                headers=API_HEADERS,
+                                timeout=HTTP_TIMEOUT,
+                            ).json()
+                            if isinstance(sub2, list):
+                                names.extend(item["name"].lower() for item in sub2)
+                        except requests.exceptions.RequestException:
+                            pass
+                if any(re.search(r"^zh[\-]?(cn|tw|hant|hans)?\.", n) for n in names):
+                    return True
+            except requests.exceptions.RequestException as e:
+                print(f"WARN: Failed to check {d} in {repo}: {e}", file=sys.stderr)
                 continue
-            names = [item["name"].lower() for item in sub]
-            if d == "src":
-                subdirs = {item["name"] for item in sub if item["type"] == "dir"}
-                for sd in subdirs & {"lang", "locale", "i18n", "l10n", "translations"}:
-                    try:
-                        sub2 = requests.get(
-                            f"https://api.github.com/repos/{repo}/contents/src/{sd}",
-                            headers=API_HEADERS,
-                            timeout=HTTP_TIMEOUT,
-                        ).json()
-                        if isinstance(sub2, list):
-                            names.extend(item["name"].lower() for item in sub2)
-                    except:
-                        pass
-            if any(re.search(r"^zh[\-]?(cn|tw|hant|hans)?\.", n) for n in names):
-                return True
-        except:
-            pass
-    return False
+        return False
+    except Exception as e:
+        print(f"WARN: has_locale_file failed for {repo}: {e}", file=sys.stderr)
+        return False
 
 
 def repo_info(repo):
@@ -209,8 +242,9 @@ def parse_plugin_rows(readme_text):
 
 
 def stale_plugin_row(row, cutoff):
+    session = create_retry_session(retries=2, timeout=STALE_HTTP_TIMEOUT)
     try:
-        r = requests.get(
+        r = session.get(
             f"https://api.github.com/repos/{row['repo']}",
             headers=API_HEADERS,
             timeout=STALE_HTTP_TIMEOUT,
@@ -220,6 +254,9 @@ def stale_plugin_row(row, cutoff):
         else:
             r.raise_for_status()
             data = r.json()
+    except requests.exceptions.Timeout:
+        print(f"WARN: timeout reading repo metadata for {row['repo']}", file=sys.stderr)
+        return None
     except requests.RequestException as exc:
         print(f"WARN: cannot read repo metadata for {row['repo']}: {exc}", file=sys.stderr)
         return None
@@ -361,7 +398,13 @@ def auto_merge_pr(pr_url, head_sha, subject):
 
 
 def run_scan():
-    all_plugins = requests.get(COMMUNITY_URL, timeout=HTTP_TIMEOUT).json()
+    session = create_retry_session(timeout=HTTP_TIMEOUT)
+    try:
+        all_plugins = session.get(COMMUNITY_URL, timeout=HTTP_TIMEOUT).json()
+    except requests.exceptions.RequestException as e:
+        print(f"ERROR: cannot fetch community plugins list: {e}", file=sys.stderr)
+        sys.exit(1)
+    
     readme_text = read_current_readme()
     if not readme_text:
         print("ERROR: cannot read README", file=sys.stderr)
