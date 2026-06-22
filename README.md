@@ -98,8 +98,9 @@
 | [MindCanvas](https://github.com/gengyabc/naotu) | `Geng` | This plugin has not been manually reviewed by Obsidian staff. A mindmap that is really a map. 真正的思维投影。 |
 | [Files Cooker](https://github.com/ivaneye/obsidian-files-cooker)              | `ivaneye`          | 对库内文件进行批量操作和处理。               |
 | [Text Finder](https://github.com/nyable/obsidian-text-finder)                 | `nyable`           | 在编辑模式下提供一个类似 VSCode 的查找/替换窗口。 |
-| [Password Protection](https://github.com/qing3962/password-protection)        | `qing3962`         | 为指定的笔记或文件夹设置访问密码。             |
-| [Leaflet Plugin](https://github.com/valentine195/obsidian-leaflet-plugin)     | `valentine195`     | 在笔记中嵌入可交互的地理地图。               |
+|| [Password Protection](https://github.com/qing3962/password-protection)        | `qing3962`         | 为指定的笔记或文件夹设置访问密码。             |
+|| [Leaflet Plugin](https://github.com/valentine195/obsidian-leaflet-plugin)     | `valentine195`     | 在笔记中嵌入可交互的地理地图。               |
+|| [obsidian-xiangqi](https://github.com/west-shell/obsidian-xiangqi)            | `west-shell`       | 中国象棋变体树，用于在 Obsidian 中可视化棋局分支。  |
 
 ## 精选中文主题
 
