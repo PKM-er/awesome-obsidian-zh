@@ -95,9 +95,9 @@
 | [Zhongwen Block](https://github.com/0918nobita/obsidian-zhongwen-block)       | `0918nobita`       | 为中文学习者提供专门的练习和展示块。           |
 | [Chem](https://github.com/Acylation/obsidian-chem)                            | `Acylation`        | 将化学式字符串渲染为二维结构式，提升化学笔记体验。   |
 | [Personal Assistant](https://github.com/edonyzpc/personal-assistant)          | `edonyzpc`         | 自动化管理你的库，如定期创建笔记、整理文件等。       |
-| [MindCanvas](https://github.com/gengyabc/naotu) | `Geng` | This plugin has not been manually reviewed by Obsidian staff. A mindmap that is really a map. 真正的思维投影。 |
-| [Files Cooker](https://github.com/ivaneye/obsidian-files-cooker)              | `ivaneye`          | 对库内文件进行批量操作和处理。               |
-| [Text Finder](https://github.com/nyable/obsidian-text-finder)                 | `nyable`           | 在编辑模式下提供一个类似 VSCode 的查找/替换窗口。 |
+|| [MindCanvas](https://github.com/gengyabc/naotu) | `Geng` | This plugin has not been manually reviewed by Obsidian staff. A mindmap that is really a map. 真正的思维投影。 |
+|| [Files Cooker](https://github.com/ivaneye/obsidian-files-cooker)              | `ivaneye`          | 对库内文件进行批量操作和处理。               |
+|| [Text Finder](https://github.com/nyable/obsidian-text-finder)                 | `nyable`           | 在编辑模式下提供一个类似 VSCode 的查找/替换窗口。 |
 || [Password Protection](https://github.com/qing3962/password-protection)        | `qing3962`         | 为指定的笔记或文件夹设置访问密码。             |
 || [Leaflet Plugin](https://github.com/valentine195/obsidian-leaflet-plugin)     | `valentine195`     | 在笔记中嵌入可交互的地理地图。               |
 || [obsidian-xiangqi](https://github.com/west-shell/obsidian-xiangqi)            | `west-shell`       | 中国象棋变体树，用于在 Obsidian 中可视化棋局分支。  |
