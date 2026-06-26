@@ -80,6 +80,7 @@
 | [Zhihu on Obsidian](https://github.com/dongguaguaguagua/zhihu_obsidian)                  | `dongguaguaguagua` | 允许你在 Obsidian 内将 markdown 内容直接发布到知乎（中文问答平台）。 |
 | [Wucai](https://github.com/makediff/obsidian-wucai)                                      | `makediff`         | 同步"五彩"高亮标注服务中的内容。                       |
 | [Enhancing Export](https://github.com/mokeyish/obsidian-enhancing-export)                | `mokeyish`         | 通过 Pandoc 增强导出功能，支持多种格式如 Docx, LaTeX。   |
+| [Notes to HTML Pages](https://github.com/afanos/notes-to-html-pages)                     | `afanos`           | 将 Markdown 长笔记导出为清晰可读、带目录和批注的 HTML 阅读页，并支持在 Obsidian 内直接阅读。 |
 | [Nutstore Sync](https://github.com/nutstore/obsidian-nutstore-sync)                      | `nutstore`         | 通过 WebDAV 协议与坚果云进行双向同步，支持增量同步和智能冲突解决。 |
 | [LiveSync](https://github.com/vrtmrz/obsidian-livesync)                                  | `vrtmrz`           | 利用自托管的 CouchDB 或类似服务实现多设备实时同步。          |
 | [Douban](https://github.com/Wanxp/obsidian-douban)                                       | `Wanxp`            | 从豆瓣导入你的书影音数据。                           |
