@@ -71,6 +71,7 @@
 | [EVC Team Relay MCP](https://github.com/entire-vc/evc-team-relay-mcp)                    | `entire-vc` | 通过 MCP 协议让 AI 编程工具直接读写 Obsidian 笔记库。 |
 | [YOLO](https://github.com/Lapis0x0/obsidian-yolo)                               | `Lapis0x0` | 面向 Obsidian 的 AI Agent 助手，支持对话、写作、RAG、MCP、Skills 与工具调用。 |
 | [Tars](https://github.com/TarsLab/obsidian-tars)                                | `TarsLab` | 基于笔记标签和上下文，提供智能文本生成建议。         |
+| [AI 聊天助手](https://github.com/xiaonanhai9855/obsidian-AI-Chat-Assistant)       | `xiaonanhai9855` | 在 Obsidian 内提供 AI 对话面板，内置 RAG 引擎，支持 @ 提及笔记/文件夹/标签/知识库语义搜索。 |
 
 ### 数据同步与集成
 
