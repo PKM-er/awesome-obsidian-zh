@@ -99,6 +99,7 @@
 | [Personal Assistant](https://github.com/edonyzpc/personal-assistant)          | `edonyzpc`         | 自动化管理你的库，如定期创建笔记、整理文件等。       |
 | [MindCanvas](https://github.com/gengyabc/naotu)                               | `Geng`             | A mindmap that is really a map. 真正的思维投影。 |
 | [Hans Kanban](https://github.com/hansai-art/obsidian-hans-kanban) | `Hans Lin 林思翰` | Kanban and masonry card views for Bases: whole-card coloring by property, on-card status switching, adjustable column widths, swimlanes, and a minimal mode. UI in English and Traditional Chinese. - This plugin has not been manually reviewed by Obsidian staff. |
+| [Hans TW TTS](https://github.com/hansai-art/obsidian-tw-tts) | `Hans Lin 林思翰` | 用系統內建繁中語音朗讀筆記,逐句反白跟讀,介面全繁體中文。Read notes aloud with a built-in Traditional Chinese system voice and sentence-by-sentence highlight follow. - This plugin has not been manually reviewed by Obsidian staff. |
 | [Files Cooker](https://github.com/ivaneye/obsidian-files-cooker)              | `ivaneye`          | 对库内文件进行批量操作和处理。               |
 | [Text Finder](https://github.com/nyable/obsidian-text-finder)                 | `nyable`           | 在编辑模式下提供一个类似 VSCode 的查找/替换窗口。 |
 | [Password Protection](https://github.com/qing3962/password-protection)        | `qing3962`         | 为指定的笔记或文件夹设置访问密码。             |
