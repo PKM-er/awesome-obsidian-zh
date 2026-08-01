@@ -1,0 +1,398 @@
+#!/usr/bin/env python3
+import base64
+import json
+import os
+import tempfile
+import unittest
+import unittest.mock
+from datetime import datetime, timedelta, timezone
+
+import check_plugins as cp
+
+SAMPLE_README = """# Header
+
+## 原生中文插件
+
+### 界面与视图增强
+
+| 插件 | 作者 | 核心功能 |
+| --- | --- | --- |
+| [Quiet Outline](https://github.com/guopenghui/obsidian-quiet-outline) | `guopenghui` | 大纲视图 |
+| [Floating TOC](https://github.com/cumany/obsidian-floating-toc-plugin) | `cumany` | 浮动目录 |
+
+### 其他工具
+
+| 插件 | 作者 | 核心功能 |
+| --- | --- | --- |
+| [Text Finder](https://github.com/nyable/obsidian-text-finder) | `nyable` | 查找/替换 |
+
+## 精选中文主题
+
+|主题|作者|
+|---|---|
+|[Border](https://github.com/Akifyss/obsidian-border)|`Akifyss`|
+"""
+
+
+class TestParsing(unittest.TestCase):
+    def test_plugin_section_bounds(self):
+        start, end = cp.plugin_section_bounds(SAMPLE_README)
+        self.assertIsNotNone(start)
+        self.assertIsNotNone(end)
+        self.assertLess(start, end)
+
+    def test_plugin_section_bounds_missing(self):
+        self.assertEqual(cp.plugin_section_bounds("# only header"), (None, None))
+
+    def test_markdown_cells(self):
+        self.assertEqual(cp.markdown_cells("| a | b |"), ["a", "b"])
+        self.assertEqual(cp.markdown_cells("not a table"), [])
+        self.assertEqual(cp.markdown_cells("| a |"), ["a"])
+
+    def test_is_table_separator(self):
+        self.assertTrue(cp.is_table_separator("| --- | --- | --- |"))
+        self.assertTrue(cp.is_table_separator("| :--- | ---: |"))
+        self.assertFalse(cp.is_table_separator("| a | b |"))
+        self.assertFalse(cp.is_table_separator(""))
+
+    def test_parse_plugin_rows(self):
+        rows = cp.parse_plugin_rows(SAMPLE_README)
+        self.assertEqual(len(rows), 3)
+        self.assertEqual(rows[0]["section"], "界面与视图增强")
+        self.assertEqual(rows[0]["repo"], "guopenghui/obsidian-quiet-outline")
+        self.assertEqual(rows[2]["section"], "其他工具")
+
+    def test_parse_current_plugins(self):
+        existing = cp.parse_current_plugins(SAMPLE_README)
+        self.assertIn("guopenghui/obsidian-quiet-outline", existing)
+        self.assertIn("akifyss/obsidian-border", existing)
+        self.assertEqual(len(existing), 4)
+
+    def test_sort_plugin_tables_by_author(self):
+        sorted_text = cp.sort_plugin_tables_by_author(SAMPLE_README)
+        section = sorted_text[cp.plugin_section_bounds(sorted_text)[0]:cp.plugin_section_bounds(sorted_text)[1]]
+        lines = [l for l in section.splitlines() if l.startswith("| [")]
+        self.assertIn("cumany", lines[0])
+        self.assertIn("guopenghui", lines[1])
+        self.assertEqual(len(lines), 3)
+        original_rows = sorted(
+            l.strip() for l in SAMPLE_README.splitlines()
+            if l.startswith("| [") and "obsidian-" in l
+        )
+        sorted_rows = sorted(l.strip() for l in lines if "obsidian-" in l)
+        self.assertEqual(sorted_rows, original_rows)
+
+
+class TestRowEditing(unittest.TestCase):
+    def test_remove_plugin_rows(self):
+        stale = [{"repo": "cumany/obsidian-floating-toc-plugin"}]
+        text = cp.remove_plugin_rows(SAMPLE_README, stale)
+        self.assertNotIn("obsidian-floating-toc-plugin", text)
+        self.assertIn("obsidian-quiet-outline", text)
+
+    def test_remove_plugin_rows_empty(self):
+        self.assertEqual(cp.remove_plugin_rows(SAMPLE_README, []), SAMPLE_README)
+
+    def test_append_rows_to_other_tools(self):
+        rows = [{"name": "New Plugin", "repo": "newuser/new-plugin", "author": "newuser", "desc": "描述"}]
+        text = cp.append_rows_to_other_tools(SAMPLE_README, rows)
+        other = text[text.find("### 其他工具"):text.find("## 精选中文主题")]
+        self.assertIn("newuser/new-plugin", other)
+        self.assertIn("New Plugin", other)
+        self.assertEqual(text.count("newuser/new-plugin"), 1)
+
+    def test_append_rows_dedupes_existing(self):
+        rows = [{"name": "Text Finder", "repo": "nyable/obsidian-text-finder", "author": "nyable", "desc": "x"}]
+        text = cp.append_rows_to_other_tools(SAMPLE_README, rows)
+        self.assertEqual(text.count("nyable/obsidian-text-finder"), 1)
+
+    def test_append_sanitizes_pipes_in_desc(self):
+        rows = [{"name": "P", "repo": "a/b", "author": "a", "desc": "x | y"}]
+        text = cp.append_rows_to_other_tools(SAMPLE_README, rows)
+        self.assertIn("x \\| y", text)
+
+
+class TestScoring(unittest.TestCase):
+    def test_signal_weights(self):
+        cn, q = cp.compute_scores({"locale", "docs_cn", "topic", "author_cn", "name_cn"})
+        self.assertEqual(cn, 30 + 15 + 15 + 10 + 5)
+
+    def test_quality_star_scale(self):
+        cn, q = cp.compute_scores({"locale"}, stars=1_000_000)
+        self.assertEqual(q, 40)
+        cn, q = cp.compute_scores({"locale"}, stars=100)
+        self.assertEqual(q, 26)
+        cn, q = cp.compute_scores({"locale"}, stars=1)
+        self.assertEqual(q, 0)
+
+    def test_quality_downloads_and_recency(self):
+        _, q = cp.compute_scores({"locale"}, downloads=5000, release_age_days=30)
+        self.assertEqual(q, 25)
+        _, q = cp.compute_scores({"locale"}, downloads=500, release_age_days=30)
+        self.assertEqual(q, 18)
+        _, q = cp.compute_scores({"locale"}, downloads=0, release_age_days=300)
+        self.assertEqual(q, 0)
+
+    def test_classify_rejects_weak_cn(self):
+        self.assertIsNone(cp.classify_tier(cn=30, q=80, first_run=False))
+        self.assertIsNone(cp.classify_tier(cn=34, q=0, first_run=False))
+
+    def test_classify_auto(self):
+        self.assertEqual(cp.classify_tier(cn=65, q=51, first_run=False), "auto")
+
+    def test_classify_review_on_low_quality(self):
+        self.assertEqual(cp.classify_tier(cn=65, q=0, first_run=False), "review")
+
+    def test_classify_first_run_never_auto(self):
+        self.assertEqual(cp.classify_tier(cn=95, q=70, first_run=True), "review")
+
+    def test_collect_signals(self):
+        plugin = {"name": "中文插件", "author": "张伟", "description": "描述"}
+        meta = {"topics": ["obsidian", "chinese"], "description": "一个很长的中文描述文字"}
+        signals = cp.collect_signals(plugin, meta, "Shanghai, China", True, True)
+        self.assertEqual(signals, {"locale", "topic", "docs_cn", "desc_cn", "author_cn", "location", "name_cn"})
+
+
+class TestStale(unittest.TestCase):
+    def setUp(self):
+        self.cutoff = datetime(2026, 1, 1, tzinfo=timezone.utc)
+        fresh = "2026-06-01T00:00:00Z"
+        old = "2024-06-01T00:00:00Z"
+        self.fresh_meta = {"pushed_at": fresh}
+        self.old_meta = {"pushed_at": old}
+
+    def test_fresh_push_not_stale(self):
+        self.assertIsNone(cp.decide_stale(self.fresh_meta, None, self.cutoff))
+
+    def test_old_push_no_release_is_stale(self):
+        self.assertIsNotNone(cp.decide_stale(self.old_meta, None, self.cutoff))
+
+    def test_old_push_fresh_release_not_stale(self):
+        self.assertIsNone(cp.decide_stale(self.old_meta, "2026-03-01T00:00:00Z", self.cutoff))
+
+    def test_old_push_old_release_is_stale(self):
+        decision = cp.decide_stale(self.old_meta, "2023-01-01T00:00:00Z", self.cutoff)
+        self.assertIsNotNone(decision)
+        self.assertEqual(decision["last_update"], "2023-01-01T00:00:00Z")
+
+    def test_stale_fallback_to_pushed_at(self):
+        decision = cp.decide_stale(self.old_meta, None, self.cutoff)
+        self.assertEqual(decision["last_update"], "2024-06-01T00:00:00Z")
+
+
+class TestCacheAndDeny(unittest.TestCase):
+    def test_cache_roundtrip(self):
+        with tempfile.TemporaryDirectory() as d:
+            path = os.path.join(d, "cache.json")
+            original = cp.CACHE_FILE
+            cp.CACHE_FILE = path
+            try:
+                self.assertEqual(cp.load_checked(), set())
+                cp.save_checked({"a/b", "c/d"})
+                self.assertEqual(cp.load_checked(), {"a/b", "c/d"})
+            finally:
+                cp.CACHE_FILE = original
+
+    def test_denylist_load(self):
+        with tempfile.NamedTemporaryFile("w", delete=False, suffix=".json") as f:
+            json.dump(["A/B", 123], f)
+            path = f.name
+        try:
+            original = cp.DENY_FILE
+            cp.DENY_FILE = path
+            try:
+                self.assertEqual(cp.load_denylist(), {"a/b"})
+            finally:
+                cp.DENY_FILE = original
+        finally:
+            os.unlink(path)
+
+
+class TestOutputs(unittest.TestCase):
+    def test_write_scan_output(self):
+        with tempfile.TemporaryDirectory() as d:
+            path = os.path.join(d, "out.txt")
+            old = os.environ.get("GITHUB_OUTPUT")
+            os.environ["GITHUB_OUTPUT"] = path
+            try:
+                cp.write_scan_output([{"repo": "a/b"}], [], True, False, True)
+                with open(path, encoding="utf-8") as f:
+                    content = f.read()
+                self.assertIn("content_changed=true", content)
+                self.assertIn("cache_changed=true", content)
+                self.assertIn("first_run=false", content)
+                self.assertIn("has_review=true", content)
+                self.assertIn("auto_merge_ready=false", content)
+            finally:
+                if old:
+                    os.environ["GITHUB_OUTPUT"] = old
+                else:
+                    os.environ.pop("GITHUB_OUTPUT", None)
+
+
+class TestTitlesAndBody(unittest.TestCase):
+    def test_update_title(self):
+        self.assertEqual(cp.update_title(1, 0, "20260801"), "Add Chinese-relevant plugins (20260801)")
+        self.assertEqual(cp.update_title(0, 1, "20260801"), "Remove stale plugins (20260801)")
+        self.assertEqual(cp.update_title(1, 1, "20260801"), "Update Chinese-relevant plugins (20260801)")
+
+    def test_build_pr_body_tiers(self):
+        rows = [
+            {"name": "A", "repo": "a/a", "author": "a", "desc": "d", "tier": "auto", "score": 120},
+            {"name": "B", "repo": "b/b", "author": "b", "desc": "d", "tier": "review", "score": 60},
+        ]
+        body = cp.build_pr_body(rows, [])
+        self.assertIn("Auto-merge candidates", body)
+        self.assertIn("Review candidates", body)
+        self.assertIn("auto-merge was skipped", body)
+
+    def test_build_pr_body_stale(self):
+        stale = [{"name": "X", "section": "其他工具", "author": "x", "last_update": "2024-01-01", "full_name": "x/x", "html_url": "https://github.com/x/x"}]
+        body = cp.build_pr_body([], stale)
+        self.assertIn("Plugins removed", body)
+        self.assertIn("x/x", body)
+
+
+class TestTimeHelpers(unittest.TestCase):
+    def test_parse_github_time(self):
+        t = cp.parse_github_time("2026-06-01T00:00:00Z")
+        self.assertIsNotNone(t)
+        self.assertEqual(t.tzinfo, timezone.utc)
+        self.assertIsNone(cp.parse_github_time(""))
+
+
+def fake_gh_get(url):
+    """Canned GitHub API responses for the end-to-end scan test."""
+    if url.startswith("https://api.github.com/repos/good/plugin/contents/"):
+        if url.endswith("/contents/") or url.endswith("/contents"):
+            return [{"name": "lang", "type": "dir"}, {"name": "README.md", "type": "file"}]
+        if url.endswith("/lang"):
+            return [{"name": "zh.json", "type": "file"}]
+    if url == "https://api.github.com/repos/good/plugin/contents/README.md":
+        return {"content": base64.b64encode("很棒的中文文档".encode()).decode()}
+    if url == "https://api.github.com/repos/good/plugin":
+        return {"topics": ["obsidian"], "description": "中文插件说明文字", "stargazers_count": 500, "pushed_at": "2026-07-01T00:00:00Z", "full_name": "good/plugin", "html_url": "https://github.com/good/plugin"}
+    if url == "https://api.github.com/users/good":
+        return {"location": "Shanghai, China"}
+    if url == "https://api.github.com/repos/good/plugin/releases?per_page=5":
+        return [{"published_at": "2026-06-01T00:00:00Z", "assets": [{"download_count": 2000}]}]
+    if url == "https://api.github.com/repos/weak/plugin":
+        return {"topics": [], "description": "random plugin", "stargazers_count": 2, "pushed_at": "2026-07-01T00:00:00Z", "full_name": "weak/plugin", "html_url": "https://github.com/weak/plugin"}
+    if url == "https://api.github.com/repos/weak/plugin/contents/":
+        return [{"name": "README.md", "type": "file"}]
+    if url == "https://api.github.com/repos/weak/plugin/contents/README.md":
+        return {"content": base64.b64encode("hello".encode()).decode()}
+    if url == "https://api.github.com/users/weak":
+        return {"location": ""}
+    return None
+
+
+class FakeSession:
+    def __init__(self, plugins):
+        self.plugins = plugins
+
+    def get(self, url, timeout=None):
+        return FakeResponse(self.plugins)
+
+
+class FakeResponse:
+    def __init__(self, plugins):
+        self.plugins = plugins
+
+    def json(self):
+        return self.plugins
+
+
+class TestEndToEnd(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.workdir = self.tmp.name
+        self._orig = {}
+        for name in ("CACHE_FILE", "README_PATH", "PR_BODY_FILE", "DENY_FILE"):
+            self._orig[name] = getattr(cp, name)
+        cp.CACHE_FILE = os.path.join(self.workdir, "cache.json")
+        cp.README_PATH = os.path.join(self.workdir, "README.md")
+        cp.PR_BODY_FILE = os.path.join(self.workdir, "pr-body.md")
+        cp.DENY_FILE = os.path.join(self.workdir, "deny.json")
+        with open(cp.DENY_FILE, "w", encoding="utf-8") as f:
+            json.dump(["rejected/repo"], f)
+        with open(cp.README_PATH, "w", encoding="utf-8") as f:
+            f.write(SAMPLE_README)
+        self.old_env = os.environ.get("GITHUB_OUTPUT")
+        os.environ.pop("GITHUB_OUTPUT", None)
+
+    def tearDown(self):
+        for name, value in self._orig.items():
+            setattr(cp, name, value)
+        self.tmp.cleanup()
+        if self.old_env:
+            os.environ["GITHUB_OUTPUT"] = self.old_env
+        else:
+            os.environ.pop("GITHUB_OUTPUT", None)
+
+    def test_scan_first_run_classifies_and_caches(self):
+        plugins = [
+            {"id": "good-plugin", "name": "好插件", "repo": "good/plugin", "author": "good", "description": "中文描述"},
+            {"id": "weak-plugin", "name": "weak", "repo": "weak/plugin", "author": "weak", "description": "not chinese"},
+            {"id": "rejected", "name": "被拒", "repo": "rejected/repo", "author": "r", "description": "中文"},
+            {"id": "existing", "name": "已有", "repo": "guopenghui/obsidian-quiet-outline", "author": "g", "description": "中文"},
+        ]
+        with unittest.mock.patch.object(cp, "gh_get", side_effect=fake_gh_get), \
+             unittest.mock.patch.object(cp, "create_retry_session", return_value=FakeSession(plugins)):
+            cp.run_scan(skip_stale=True)
+
+        with open(cp.CACHE_FILE, encoding="utf-8") as f:
+            cached = set(json.load(f))
+        self.assertIn("good-plugin", cached)
+        self.assertIn("weak-plugin", cached)
+        self.assertIn("rejected", cached)
+        self.assertIn("existing", cached)
+
+        # first run: good/plugin is review-tier (never auto on first run)
+        self.assertTrue(cp.load_checked())
+        self.assertEqual(cp.load_denylist(), {"rejected/repo"})
+
+    def test_scan_second_run_proposes_auto_tier(self):
+        plugins = [
+            {"id": "good-plugin", "name": "好插件", "repo": "good/plugin", "author": "good", "description": "中文描述"},
+            {"id": "old-plugin", "name": "老插件", "repo": "old/plugin", "author": "old", "description": "中文描述"},
+        ]
+        cp.save_checked({"old-plugin"})
+        import io
+        from contextlib import redirect_stdout
+        out = io.StringIO()
+        with unittest.mock.patch.object(cp, "gh_get", side_effect=fake_gh_get), \
+             unittest.mock.patch.object(cp, "create_retry_session", return_value=FakeSession(plugins)), \
+             redirect_stdout(out):
+            cp.run_scan(skip_stale=True)
+        data = json.loads(out.getvalue())
+        self.assertFalse(data["first_run"])
+        self.assertEqual(len(data["add"]), 1)
+        self.assertEqual(data["add"][0]["repo"], "good/plugin")
+        self.assertEqual(data["add"][0]["tier"], "auto")
+        self.assertTrue(data["auto_merge_ready"])
+
+    def test_apply_readme_full_cycle(self):
+        os.environ["ADD_ROWS"] = json.dumps([{
+            "name": "好插件", "repo": "good/plugin", "author": "good",
+            "desc": "中文描述", "tier": "auto", "score": 130,
+        }])
+        os.environ["REMOVE_ROWS"] = json.dumps([{
+            "name": "Text Finder", "repo": "nyable/obsidian-text-finder",
+            "full_name": "nyable/obsidian-text-finder", "author": "nyable",
+            "section": "其他工具", "last_update": "2024-01-01",
+            "html_url": "https://github.com/nyable/obsidian-text-finder",
+        }])
+        cp.do_apply_readme()
+        with open(cp.README_PATH, encoding="utf-8") as f:
+            text = f.read()
+        self.assertNotIn("nyable/obsidian-text-finder", text)
+        self.assertIn("good/plugin", text)
+        with open(cp.PR_BODY_FILE, encoding="utf-8") as f:
+            body = f.read()
+        self.assertIn("Auto-merge candidates", body)
+        self.assertIn("Plugins removed", body)
+
+
+if __name__ == "__main__":
+    unittest.main()

@@ -4,12 +4,23 @@ on:
   schedule:
     - cron: "0 0 * * 1"
   workflow_dispatch:
+    inputs:
+      auto_merge:
+        description: Auto-merge the PR when all entries are high confidence
+        type: choice
+        options: ["true", "false"]
+        default: "true"
+
+concurrency:
+  group: plugin-scan
+  cancel-in-progress: true
 
 jobs:
   scan:
     runs-on: ubuntu-latest
     env:
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+      AUTO_MERGE: ${{ inputs.auto_merge || 'true' }}
     permissions:
       contents: write
       pull-requests: write
@@ -33,11 +44,43 @@ jobs:
           STALE_HTTP_TIMEOUT: 10
         run: python .github/scripts/check_plugins.py
 
-      - name: Create PR and auto-merge updates
-        if: steps.scan.outputs.update_needed == 'true'
+      - name: Commit cache-only update
+        # Cache changes without README changes are committed straight to the
+        # default branch so future runs stay incremental and create no PR noise.
+        if: steps.scan.outputs.cache_changed == 'true' && steps.scan.outputs.content_changed == 'false'
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+          git add .github/scripts/checked_plugins.json
+          git commit -m "chore: update checked plugin cache [skip ci]"
+          git push origin HEAD:${GITHUB_REF_NAME}
+
+      - name: Apply changes to README
+        id: apply
+        if: steps.scan.outputs.content_changed == 'true'
+        env:
           ADD_ROWS: ${{ steps.scan.outputs.add_rows }}
           REMOVE_ROWS: ${{ steps.scan.outputs.remove_rows }}
-          AUTO_MERGE: "true"
-        run: python .github/scripts/check_plugins.py --apply
+        run: python .github/scripts/check_plugins.py --apply-readme
+
+      - name: Create pull request
+        id: pr
+        if: steps.scan.outputs.content_changed == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GH_PAT }}
+          branch: auto/plugin-scan-${{ github.run_number }}
+          commit-message: ${{ steps.apply.outputs.pr_title }}
+          title: ${{ steps.apply.outputs.pr_title }}
+          body-path: .github/pr-body.md
+          delete-branch: true
+
+      - name: Auto-merge PR
+        if: steps.pr.outputs.pull-request-number != '' && steps.scan.outputs.auto_merge_ready == 'true' && env.AUTO_MERGE == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          gh pr merge "${{ steps.pr.outputs.pull-request-number }}" --squash --delete-branch

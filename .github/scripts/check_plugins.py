@@ -1,56 +1,97 @@
 #!/usr/bin/env python3
-import json, os, re, requests, base64, sys, subprocess
+"""Scan the official Obsidian plugin list for Chinese-relevant plugins.
+
+Modes:
+  (default)       fetch official list + cache diff, score candidates, detect
+                  stale rows, write GitHub Actions outputs
+  --apply-readme  edit README.md only from ADD_ROWS/REMOVE_ROWS env vars,
+                  write .github/pr-body.md and the PR title (no git, no network)
+  --skip-stale    skip stale checks (dry runs / rate-limit constrained runs)
+
+Improvements over the previous version:
+  * quality scoring (stars, release downloads, release recency) in addition
+    to text signals, split into "auto" (high confidence) and "review" tiers
+  * stale detection uses the latest release date, falling back to pushed_at,
+    instead of pushed_at alone
+  * cache-only runs no longer create PRs (workflow commits the cache directly)
+  * a denylist (denylist.json) prevents re-adding rejected plugins
+  * no subprocess git/gh calls; PR creation is delegated to the workflow
+  * cache pruned of plugin ids removed from the official list
+"""
+import base64
+import json
+import math
+import os
+import re
+import sys
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timedelta, timezone
+
+import requests
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
 COMMUNITY_URL = "https://raw.githubusercontent.com/obsidianmd/obsidian-releases/master/community-plugins.json"
-GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", "")
-API_HEADERS = {"Authorization": f"Bearer {GITHUB_TOKEN}"} if GITHUB_TOKEN else {}
-REPO_NAME = os.environ.get("GITHUB_REPOSITORY", "PKM-er/awesome-obsidian-zh")
 CACHE_FILE = ".github/scripts/checked_plugins.json"
+DENY_FILE = ".github/scripts/denylist.json"
+PR_BODY_FILE = ".github/pr-body.md"
+README_PATH = "README.md"
+
 PLUGIN_SECTION_START = "## 原生中文插件"
 PLUGIN_SECTION_END = "## 精选中文主题"
 OTHER_TOOLS_SECTION = "### 其他工具"
+
 STALE_DAYS = int(os.environ.get("STALE_DAYS", "365"))
 HTTP_TIMEOUT = int(os.environ.get("HTTP_TIMEOUT", "30"))
 STALE_HTTP_TIMEOUT = int(os.environ.get("STALE_HTTP_TIMEOUT", "10"))
 STALE_CHECK_WORKERS = int(os.environ.get("STALE_CHECK_WORKERS", "12"))
+MIN_CN_SCORE = int(os.environ.get("MIN_CN_SCORE", "35"))
+AUTO_TOTAL_SCORE = int(os.environ.get("AUTO_TOTAL_SCORE", "100"))
+MIN_QUALITY_SCORE = int(os.environ.get("MIN_QUALITY_SCORE", "20"))
+
+GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", "")
+API_HEADERS = {"Authorization": f"Bearer {GITHUB_TOKEN}"} if GITHUB_TOKEN else {}
+
+LOCALE_NAME_RE = re.compile(r"^zh[\-]?(cn|tw|hant|hans|hk)?\.")
 PLUGIN_ROW_RE = re.compile(
     r"^\| \[([^\]]+)\]\(https://github\.com/([^/|)]+/[^)|\s]+)\)\s*\|\s*`?([^`|]+)`?\s*\|",
     re.M,
 )
-
-LOCALE_PATHS = [
-    "lang/zh.json", "lang/zh-cn.json", "lang/zh-CN.json",
-    "locale/zh.json", "locale/zh-cn.json", "locale/zh-CN.json",
-    "i18n/zh.json", "i18n/zh-cn.json", "i18n/zh-CN.json",
-    "l10n/zh.json", "l10n/zh-cn.json", "l10n/zh-CN.json",
-    "src/lang/zh.json", "src/lang/zh-cn.json",
-    "src/locale/zh.json", "src/locale/zh-cn.json",
-    "src/i18n/zh.json", "src/i18n/zh-cn.json",
-    "src/l10n/zh.json", "src/l10n/zh-cn.json",
-    "translations/zh.json", "translations/zh-cn.json",
-    "src/lang/locale/zh-cn.ts", "src/translations/locale/zh-cn.ts",
-    "src/lang/zh-cn.ts", "src/locale/zh-cn.ts", "src/i18n/zh-cn.ts",
+CN_CITIES = [
+    "china", "chinese", "taiwan", "hong kong", "beijing", "shanghai",
+    "shenzhen", "guangzhou", "chengdu", "nanjing", "wuhan",
+    "中国", "台湾", "香港",
 ]
+CH_TOPICS = {"chinese", "zh", "zh-cn", "chinese-translation", "obsidian-zh"}
 
+CN_SIGNAL_WEIGHTS = {
+    "locale": 30,
+    "topic": 15,
+    "docs_cn": 15,
+    "desc_cn": 10,
+    "author_cn": 10,
+    "location": 10,
+    "name_cn": 5,
+}
+
+
+# --------------------------------------------------------------------------
+# HTTP helpers
+# --------------------------------------------------------------------------
 
 def create_retry_session(retries=3, backoff_factor=0.3, timeout=None):
-    """创建带有重试机制的 requests 会话"""
     if timeout is None:
         timeout = HTTP_TIMEOUT
     session = requests.Session()
-    retry_strategy = Retry(
+    strategy = Retry(
         total=retries,
         connect=retries,
         read=retries,
         backoff_factor=backoff_factor,
         status_forcelist=[429, 500, 502, 503, 504],
-        allowed_methods=["HEAD", "GET", "OPTIONS"]
+        allowed_methods=["HEAD", "GET", "OPTIONS"],
     )
-    adapter = HTTPAdapter(max_retries=retry_strategy)
+    adapter = HTTPAdapter(max_retries=strategy)
     session.mount("http://", adapter)
     session.mount("https://", adapter)
     return session
@@ -64,85 +105,14 @@ def gh_get(url):
             return None
         r.raise_for_status()
         return r.json()
-    except requests.exceptions.Timeout:
-        print(f"WARN: Request timeout for {url}, returning None", file=sys.stderr)
-        return None
     except requests.exceptions.RequestException as e:
-        print(f"WARN: Request failed for {url}: {e}", file=sys.stderr)
+        print(f"WARN: request failed for {url}: {e}", file=sys.stderr)
         return None
 
 
-def has_locale_file(repo):
-    try:
-        root = gh_get(f"https://api.github.com/repos/{repo}/contents/")
-        if not root or not isinstance(root, list):
-            return False
-        dirs = {item["name"] for item in root if item["type"] == "dir"}
-        candidates_dirs = {"lang", "locale", "i18n", "l10n", "translations", "src"}
-        to_check = candidates_dirs & dirs
-        for d in sorted(to_check):
-            try:
-                sub = gh_get(f"https://api.github.com/repos/{repo}/contents/{d}")
-                if not isinstance(sub, list):
-                    continue
-                names = [item["name"].lower() for item in sub]
-                if d == "src":
-                    subdirs = {item["name"] for item in sub if item["type"] == "dir"}
-                    for sd in subdirs & {"lang", "locale", "i18n", "l10n", "translations"}:
-                        try:
-                            sub2 = gh_get(f"https://api.github.com/repos/{repo}/contents/src/{sd}")
-                            if isinstance(sub2, list):
-                                names.extend(item["name"].lower() for item in sub2)
-                        except Exception:
-                            pass
-                if any(re.search(r"^zh[\-]?(cn|tw|hant|hans)?\.", n) for n in names):
-                    return True
-            except Exception as e:
-                print(f"WARN: Failed to check {d} in {repo}: {e}", file=sys.stderr)
-                continue
-        return False
-    except Exception as e:
-        print(f"WARN: has_locale_file failed for {repo}: {e}", file=sys.stderr)
-        return False
-
-
-# 修改：仅检查 README.md 以减少 API 请求
-def has_chinese_docs(repo):
-    """仅检查 README.md 是否包含中文字符（减少 API 调用）。"""
-    try:
-        r = gh_get(f"https://api.github.com/repos/{repo}/contents/README.md")
-        if r and isinstance(r, dict) and r.get("content"):
-            try:
-                text = base64.b64decode(r["content"]).decode("utf-8", errors="ignore")
-                if has_cn(text):
-                    return True
-            except Exception:
-                pass
-    except Exception:
-        pass
-    return False
-
-
-def repo_info(repo):
-    data = gh_get(f"https://api.github.com/repos/{repo}")
-    if not data:
-        return [], ""
-    return data.get("topics", []), data.get("description", "") or ""
-
-
-def author_location(author):
-    data = gh_get(f"https://api.github.com/users/{author}")
-    if not data:
-        return ""
-    return data.get("location", "") or ""
-
-
-def parse_current_plugins(readme_text):
-    existing = set()
-    for m in re.finditer(r"\]\(https://github\.com/([^/]+/[^/)\s]+)\)", readme_text):
-        existing.add(m.group(1).rstrip("/").lower())
-    return existing
-
+# --------------------------------------------------------------------------
+# Small helpers
+# --------------------------------------------------------------------------
 
 def has_cn(s):
     return bool(re.search(r"[\u4e00-\u9fff]", s))
@@ -154,10 +124,20 @@ def parse_github_time(value):
     return datetime.fromisoformat(value.replace("Z", "+00:00"))
 
 
+def utcnow():
+    return datetime.now(timezone.utc)
+
+
+# --------------------------------------------------------------------------
+# README parsing and editing (pure functions, no network)
+# --------------------------------------------------------------------------
+
 def plugin_section_bounds(text):
     start = text.find(PLUGIN_SECTION_START)
+    if start == -1:
+        return None, None
     end = text.find(PLUGIN_SECTION_END, start)
-    if start == -1 or end == -1:
+    if end == -1:
         return None, None
     return start, end
 
@@ -174,6 +154,37 @@ def is_table_separator(line):
     if not cells:
         return False
     return all(re.fullmatch(r":?-{3,}:?", cell.replace(" ", "")) for cell in cells)
+
+
+def parse_plugin_rows(readme_text):
+    start, end = plugin_section_bounds(readme_text)
+    if start is None:
+        return []
+    section = readme_text[start:end]
+    rows = []
+    current_section = ""
+    for line in section.splitlines():
+        if line.startswith("### "):
+            current_section = line[4:].strip()
+            continue
+        m = PLUGIN_ROW_RE.match(line)
+        if not m:
+            continue
+        rows.append({
+            "section": current_section,
+            "name": m.group(1).strip(),
+            "repo": m.group(2).rstrip("/"),
+            "author": m.group(3).strip(),
+            "line": line,
+        })
+    return rows
+
+
+def parse_current_plugins(readme_text):
+    existing = set()
+    for m in re.finditer(r"\]\(https://github\.com/([^/]+/[^/)\s]+)\)", readme_text):
+        existing.add(m.group(1).rstrip("/").lower())
+    return existing
 
 
 def table_author_sort_key(row):
@@ -227,83 +238,6 @@ def sort_plugin_tables_by_author(text):
     return before + "".join(sorted_lines) + after
 
 
-def parse_plugin_rows(readme_text):
-    start, end = plugin_section_bounds(readme_text)
-    if start is None:
-        return []
-    section = readme_text[start:end]
-    rows = []
-    current_section = ""
-    for line in section.splitlines():
-        if line.startswith("### "):
-            current_section = line[4:].strip()
-            continue
-        m = PLUGIN_ROW_RE.match(line)
-        if not m:
-            continue
-        rows.append({
-            "section": current_section,
-            "name": m.group(1).strip(),
-            "repo": m.group(2).rstrip("/"),
-            "author": m.group(3).strip(),
-            "line": line,
-        })
-    return rows
-
-
-def stale_plugin_row(row, cutoff):
-    session = create_retry_session(retries=2, timeout=STALE_HTTP_TIMEOUT)
-    try:
-        r = session.get(
-            f"https://api.github.com/repos/{row['repo']}",
-            headers=API_HEADERS,
-            timeout=STALE_HTTP_TIMEOUT,
-        )
-        if r.status_code == 404:
-            data = None
-        else:
-            r.raise_for_status()
-            data = r.json()
-    except requests.exceptions.Timeout:
-        print(f"WARN: timeout reading repo metadata for {row['repo']}", file=sys.stderr)
-        return None
-    except requests.RequestException as exc:
-        print(f"WARN: cannot read repo metadata for {row['repo']}: {exc}", file=sys.stderr)
-        return None
-    if not data:
-        print(f"WARN: cannot read repo metadata for {row['repo']}", file=sys.stderr)
-        return None
-    pushed_at = data.get("pushed_at")
-    pushed_time = parse_github_time(pushed_at)
-    if not pushed_time or pushed_time >= cutoff:
-        return None
-    return {
-        "name": row["name"],
-        "repo": row["repo"],
-        "full_name": data.get("full_name", row["repo"]),
-        "author": row["author"],
-        "section": row["section"],
-        "pushed_at": pushed_at,
-        "html_url": data.get("html_url", f"https://github.com/{row['repo']}"),
-    }
-
-
-def find_stale_plugins(readme_text):
-    cutoff = datetime.now(timezone.utc) - timedelta(days=STALE_DAYS)
-    rows = parse_plugin_rows(readme_text)
-    if not rows:
-        return []
-    stale = []
-    workers = max(1, min(STALE_CHECK_WORKERS, len(rows)))
-    with ThreadPoolExecutor(max_workers=workers) as executor:
-        futures = [executor.submit(stale_plugin_row, row, cutoff) for row in rows]
-        for future in as_completed(futures):
-            stale_row = future.result()
-            if stale_row:
-                stale.append(stale_row)
-    return sorted(stale, key=lambda r: (r["section"].casefold(), r["author"].casefold(), r["name"].casefold()))
-
-
 def remove_plugin_rows(text, stale_rows):
     repos = {row["repo"].lower() for row in stale_rows}
     if not repos:
@@ -320,6 +254,7 @@ def remove_plugin_rows(text, stale_rows):
 
 
 def append_rows_to_other_tools(text, rows):
+    rows = [r for r in rows if r.get("repo")]
     if not rows:
         return text
 
@@ -334,255 +269,433 @@ def append_rows_to_other_tools(text, rows):
     next_section = text.find("\n### ", section_start + len(OTHER_TOOLS_SECTION), plugin_end)
     section_end = next_section if next_section != -1 else plugin_end
     block = text[section_start:section_end]
-    matches = list(re.finditer(r"^\| \[.*\n?", block, re.M))
-    if not matches:
-        return text
 
-    insert_pos = section_start + matches[-1].end()
+    existing = parse_current_plugins(text)
     new_rows = ""
     for r in sorted(rows, key=lambda row: row["author"].casefold()):
-        new_rows += f'| [{r["name"]}](https://github.com/{r["repo"]}) | `{r["author"]}` | {r["desc"]} |\n'
-    return text[:insert_pos] + new_rows + text[insert_pos:]
+        if r["repo"].lower() in existing:
+            continue
+        desc = r.get("desc", "").replace("|", "\\|")
+        new_rows += f'| [{r["name"]}](https://github.com/{r["repo"]}) | `{r["author"]}` | {desc} |\n'
+    if not new_rows:
+        return text
 
+    matches = list(re.finditer(r"^\| \[.*\n?", block, re.M))
+    if matches:
+        insert_pos = section_start + matches[-1].end()
+        return text[:insert_pos] + new_rows + text[insert_pos:]
+
+    # Empty table: insert directly after the table separator line.
+    lines = block.splitlines(keepends=True)
+    for i, line in enumerate(lines):
+        if is_table_separator(line):
+            insert_pos = section_start + sum(len(l) for l in lines[: i + 1])
+            return text[:insert_pos] + new_rows + text[insert_pos:]
+    return text
+
+
+# --------------------------------------------------------------------------
+# GitHub repo metadata (network)
+# --------------------------------------------------------------------------
+
+def has_locale_file(repo):
+    """Check common locale dirs for a zh* file; 1-3 API calls."""
+    root = gh_get(f"https://api.github.com/repos/{repo}/contents/")
+    if not isinstance(root, list):
+        return False
+    dirs = {item["name"] for item in root if item["type"] == "dir"}
+    candidates = {"lang", "locale", "i18n", "l10n", "translations", "src"} & dirs
+    for d in sorted(candidates):
+        sub = gh_get(f"https://api.github.com/repos/{repo}/contents/{d}")
+        if not isinstance(sub, list):
+            continue
+        names = [item["name"].lower() for item in sub]
+        if d == "src":
+            for sd in {i["name"] for i in sub if i["type"] == "dir"} & {"lang", "locale", "i18n", "l10n", "translations"}:
+                sub2 = gh_get(f"https://api.github.com/repos/{repo}/contents/src/{sd}")
+                if isinstance(sub2, list):
+                    names.extend(item["name"].lower() for item in sub2)
+        if any(LOCALE_NAME_RE.match(n) for n in names):
+            return True
+    return False
+
+
+def has_chinese_docs(repo):
+    r = gh_get(f"https://api.github.com/repos/{repo}/contents/README.md")
+    if isinstance(r, dict) and r.get("content"):
+        text = base64.b64decode(r["content"]).decode("utf-8", errors="ignore")
+        return has_cn(text)
+    return False
+
+
+def repo_meta(repo):
+    data = gh_get(f"https://api.github.com/repos/{repo}")
+    if not data:
+        return {}
+    return {
+        "topics": data.get("topics", []),
+        "description": data.get("description", "") or "",
+        "stars": data.get("stargazers_count", 0) or 0,
+        "pushed_at": data.get("pushed_at", ""),
+        "full_name": data.get("full_name", repo),
+        "html_url": data.get("html_url", f"https://github.com/{repo}"),
+    }
+
+
+def author_location(author):
+    data = gh_get(f"https://api.github.com/users/{author}")
+    if not data:
+        return ""
+    return data.get("location", "") or ""
+
+
+def repo_releases(repo):
+    """Return (latest release published_at, total downloads)."""
+    data = gh_get(f"https://api.github.com/repos/{repo}/releases?per_page=5")
+    if not isinstance(data, list):
+        return None, 0
+    downloads = sum(a.get("download_count", 0) for r in data for a in r.get("assets", []))
+    published = data[0].get("published_at") if data else None
+    return published, downloads
+
+
+# --------------------------------------------------------------------------
+# Scoring
+# --------------------------------------------------------------------------
+
+def compute_scores(signals, stars=0, downloads=0, release_age_days=None):
+    """Return (cn_score, quality_score). cn_score = text signals, quality
+    = stars/downloads/recency. High cn_score means clearly Chinese-related;
+    high quality score means a real audience."""
+    cn = sum(CN_SIGNAL_WEIGHTS.get(s, 0) for s in signals)
+    q = 0
+    if stars:
+        q += min(40, int(math.log2(max(1, stars)) * 4))
+    if downloads >= 1000:
+        q += 15
+    elif downloads >= 200:
+        q += 8
+    if release_age_days is not None and release_age_days <= 180:
+        q += 10
+    return cn, q
+
+
+def classify_tier(cn, q, first_run):
+    """None = reject, 'auto' = high confidence, 'review' = needs a human."""
+    if cn < MIN_CN_SCORE:
+        return None
+    if not first_run and (cn + q) >= AUTO_TOTAL_SCORE and q >= MIN_QUALITY_SCORE:
+        return "auto"
+    return "review"
+
+
+def collect_signals(plugin, meta, author_loc, has_locale, has_docs):
+    """All Chinese-relevance text signals for a plugin, as a set."""
+    name, author, desc = plugin.get("name", ""), plugin.get("author", ""), plugin.get("description", "")
+    signals = set()
+    if has_locale:
+        signals.add("locale")
+    if has_cn(author):
+        signals.add("author_cn")
+    if any(t.lower() in CH_TOPICS for t in meta.get("topics", [])):
+        signals.add("topic")
+    if has_cn(meta.get("description", "")) and len(re.findall(r"[\u4e00-\u9fff]", meta.get("description", ""))) > 5:
+        signals.add("desc_cn")
+    if any(kw in author_loc.lower() for kw in CN_CITIES):
+        signals.add("location")
+    if has_cn(name):
+        signals.add("name_cn")
+    if has_docs:
+        signals.add("docs_cn")
+    return signals
+
+
+# --------------------------------------------------------------------------
+# Stale detection
+# --------------------------------------------------------------------------
+
+def decide_stale(repo_data, latest_release_published, cutoff):
+    """Return stale record dict or None. A plugin is stale only if both its
+    pushed_at and its latest release predate the cutoff (release activity
+    rescues repos whose default branch just happens to be quiet)."""
+    pushed = parse_github_time(repo_data.get("pushed_at"))
+    if pushed and pushed >= cutoff:
+        return None
+    released = parse_github_time(latest_release_published)
+    if released and released >= cutoff:
+        return None
+    return {
+        "last_update": latest_release_published or repo_data.get("pushed_at") or "unknown",
+        "stale": True,
+    }
+
+
+def stale_plugin_row(row, cutoff):
+    meta = repo_meta(row["repo"])
+    if not meta:
+        print(f"WARN: cannot read repo metadata for {row['repo']}", file=sys.stderr)
+        return None
+    decision = decide_stale(meta, None, cutoff)
+    if decision is None:
+        return None
+    released, _ = repo_releases(row["repo"])
+    decision = decide_stale(meta, released, cutoff)
+    if decision is None:
+        return None
+    return {
+        "name": row["name"],
+        "repo": row["repo"],
+        "full_name": meta["full_name"],
+        "author": row["author"],
+        "section": row["section"],
+        "last_update": decision["last_update"],
+        "html_url": meta["html_url"],
+    }
+
+
+def find_stale_plugins(readme_text):
+    cutoff = utcnow() - timedelta(days=STALE_DAYS)
+    rows = parse_plugin_rows(readme_text)
+    if not rows:
+        return []
+    stale = []
+    workers = max(1, min(STALE_CHECK_WORKERS, len(rows)))
+    with ThreadPoolExecutor(max_workers=workers) as executor:
+        futures = [executor.submit(stale_plugin_row, row, cutoff) for row in rows]
+        for future in as_completed(futures):
+            try:
+                stale_row = future.result()
+            except Exception as e:
+                print(f"WARN: stale check failed: {e}", file=sys.stderr)
+                continue
+            if stale_row:
+                stale.append(stale_row)
+    return sorted(stale, key=lambda r: (r["section"].casefold(), r["author"].casefold(), r["name"].casefold()))
+
+
+# --------------------------------------------------------------------------
+# Cache and denylist
+# --------------------------------------------------------------------------
 
 def load_checked():
     try:
         with open(CACHE_FILE, encoding="utf-8") as f:
             return set(json.load(f))
-    except:
+    except (OSError, ValueError):
         return set()
 
 
 def save_checked(ids):
+    os.makedirs(os.path.dirname(CACHE_FILE), exist_ok=True)
     with open(CACHE_FILE, "w", encoding="utf-8") as f:
-        json.dump(sorted(ids), f)
+        json.dump(sorted(ids), f, ensure_ascii=False)
 
 
-def write_scan_output(add_rows, remove_rows, cache_changed):
-    output = os.environ.get("GITHUB_OUTPUT", "")
-    update_needed = bool(add_rows or remove_rows or cache_changed)
-    if not output:
-        print(json.dumps({
-            "add": add_rows,
-            "remove": remove_rows,
-            "cache_changed": cache_changed,
-        }, ensure_ascii=False, indent=2))
+def load_denylist():
+    try:
+        with open(DENY_FILE, encoding="utf-8") as f:
+            return {r.strip().lower() for r in json.load(f) if isinstance(r, str)}
+    except (OSError, ValueError):
+        return set()
+
+
+# --------------------------------------------------------------------------
+# Outputs
+# --------------------------------------------------------------------------
+
+def write_scan_output(add_rows, remove_rows, cache_changed, first_run, has_review):
+    content_changed = bool(add_rows or remove_rows)
+    auto_merge_ready = content_changed and not first_run and not has_review
+    if os.environ.get("GITHUB_OUTPUT"):
+        with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as f:
+            f.write(f"add_rows={json.dumps(add_rows, ensure_ascii=False)}\n")
+            f.write(f"remove_rows={json.dumps(remove_rows, ensure_ascii=False)}\n")
+            f.write(f"content_changed={str(content_changed).lower()}\n")
+            f.write(f"cache_changed={str(cache_changed).lower()}\n")
+            f.write(f"first_run={str(first_run).lower()}\n")
+            f.write(f"has_review={str(has_review).lower()}\n")
+            f.write(f"auto_merge_ready={str(auto_merge_ready).lower()}\n")
         return
-    with open(output, "a", encoding="utf-8") as f:
-        f.write(f"add_rows={json.dumps(add_rows, ensure_ascii=False)}\n")
-        f.write(f"remove_rows={json.dumps(remove_rows, ensure_ascii=False)}\n")
-        f.write(f"high_count={len(add_rows)}\n")
-        f.write(f"stale_count={len(remove_rows)}\n")
-        f.write(f"cache_changed={str(cache_changed).lower()}\n")
-        f.write(f"update_needed={str(update_needed).lower()}\n")
+    print(json.dumps({
+        "add": add_rows,
+        "remove": remove_rows,
+        "cache_changed": cache_changed,
+        "first_run": first_run,
+        "has_review": has_review,
+        "auto_merge_ready": auto_merge_ready,
+    }, ensure_ascii=False, indent=2))
 
 
-def read_current_readme():
-    if os.path.exists("README.md"):
-        with open("README.md", encoding="utf-8") as f:
-            return f.read()
-    r = gh_get(f"https://api.github.com/repos/{REPO_NAME}/contents/README.md")
-    if not r:
-        return ""
-    return base64.b64decode(r["content"]).decode("utf-8")
+# --------------------------------------------------------------------------
+# Scan flow
+# --------------------------------------------------------------------------
 
-
-def env_enabled(name):
-    return os.environ.get(name, "").strip().lower() in {"1", "true", "yes", "on"}
-
-
-def auto_merge_pr(pr_url, head_sha, subject):
-    merge_cmd = [
-        "gh", "pr", "merge", pr_url,
-        "--squash",
-        "--delete-branch",
-        "--match-head-commit", head_sha,
-        "--subject", subject,
-        "--body", "Automatically merged by the weekly plugin scan.",
-    ]
-    result = subprocess.run(merge_cmd)
-    if result.returncode == 0:
-        return
-    print("Immediate PR merge failed; trying GitHub auto-merge.", file=sys.stderr)
-    subprocess.run(merge_cmd + ["--auto"], check=True)
-
-
-def run_scan():
+def run_scan(skip_stale=False):
     session = create_retry_session(timeout=HTTP_TIMEOUT)
     try:
         all_plugins = session.get(COMMUNITY_URL, timeout=HTTP_TIMEOUT).json()
     except requests.exceptions.RequestException as e:
         print(f"ERROR: cannot fetch community plugins list: {e}", file=sys.stderr)
         sys.exit(1)
-    
-    readme_text = read_current_readme()
-    if not readme_text:
-        print("ERROR: cannot read README", file=sys.stderr)
+    if not isinstance(all_plugins, list):
+        print("ERROR: unexpected community plugins payload", file=sys.stderr)
         sys.exit(1)
+
+    with open(README_PATH, encoding="utf-8") as f:
+        readme_text = f.read()
     existing = parse_current_plugins(readme_text)
+    denied = load_denylist()
+
     checked = load_checked()
     all_ids = {p["id"] for p in all_plugins}
-    new_plugin_ids = set()
+    checked &= all_ids  # prune ids removed from the official list
+    first_run = len(checked) == 0
+    new_ids = all_ids - checked if not first_run else all_ids
 
-    is_first_run = len(checked) == 0
-    if is_first_run:
-        new_plugin_ids = all_ids
-    else:
-        new_plugin_ids = all_ids - checked
+    new_plugins = [p for p in all_plugins if p["id"] in new_ids]
+    print(f"known={len(checked)} new={len(new_plugins)}" + (" (full scan on first run)" if first_run else ""), file=sys.stderr)
 
-    new_plugins = [p for p in all_plugins if p["id"] in new_plugin_ids]
-    if not new_plugins:
-        print(f"No new plugins since last check ({len(checked)} known)", file=sys.stderr)
-
-    print(f"Known: {len(checked)}, new: {len(new_plugins)}" + (" (full scan on first run)" if is_first_run else ""), file=sys.stderr)
     candidates = []
     scanned = 0
-
     for p in new_plugins:
         repo = p.get("repo", "")
-        if not repo or "/" not in repo:
+        if not repo or "/" not in repo or repo.lower() in existing or repo.lower() in denied:
             continue
-        if repo.lower() in existing:
-            continue
-        name = p.get("name", "")
-        author = p.get("author", "")
-        desc = p.get("description", "")
+        name, author, desc = p.get("name", ""), p.get("author", ""), p.get("description", "")
         if not (has_cn(name) or has_cn(author) or has_cn(desc)):
             continue
         scanned += 1
-        score = 0
-        signals = []
-        if has_locale_file(repo):
-            score += 50
-            signals.append("locale")
-        if has_cn(author):
-            score += 15
-            signals.append("author_cn")
-        topics, repo_desc = repo_info(repo)
-        ch_topics = {"chinese", "zh", "zh-cn", "chinese-translation", "obsidian-zh"}
-        if any(t.lower() in ch_topics for t in topics):
-            score += 20
-            signals.append("topic")
-        if repo_desc and has_cn(repo_desc) and len(re.findall(r"[\u4e00-\u9fff]", repo_desc)) > 5:
-            score += 10
-            signals.append("desc_cn")
-        loc = author_location(author)
-        cn_kw = ["china", "chinese", "taiwan", "hong kong", "beijing", "shanghai",
-                 "shenzhen", "guangzhou", "chengdu", "nanjing", "wuhan",
-                 "\u4e2d\u56fd", "\u53f0\u6e7e", "\u9999\u6e2f"]
-        if any(kw in loc.lower() for kw in cn_kw):
-            score += 15
-            signals.append("location")
-        if has_cn(name):
-            score += 5
-            signals.append("name_cn")
-        # 新增：仓库中含中文文档加分（现在仅检查 README.md）
-        try:
-            if has_chinese_docs(repo):
-                score += 20
-                signals.append("docs_cn")
-        except Exception:
-            pass
-        if score >= 50:
-            candidates.append({
-                "name": name, "repo": repo, "author": author,
-                "desc": desc, "score": score, "signals": signals,
-            })
+        meta = repo_meta(repo)
+        if not meta:
+            continue
+        signals = collect_signals(
+            p, meta,
+            author_location(author),
+            has_locale_file(repo),
+            has_chinese_docs(repo),
+        )
+        cn, q = compute_scores(signals, meta["stars"], 0, None)
+        if cn < MIN_CN_SCORE:
+            continue
+        published, downloads = repo_releases(repo)
+        release_age = None
+        if published:
+            released = parse_github_time(published)
+            if released:
+                release_age = (utcnow() - released).days
+        cn, q = compute_scores(signals, meta["stars"], downloads, release_age)
+        tier = classify_tier(cn, q, first_run)
+        if not tier:
+            continue
+        candidates.append({
+            "name": name, "repo": repo, "author": author, "desc": desc,
+            "cn": cn, "q": q, "tier": tier, "signals": sorted(signals),
+        })
 
-    candidates.sort(key=lambda x: -x["score"])
-    high = [c for c in candidates if c["score"] >= 50]
-    stale = find_stale_plugins(readme_text)
+    candidates.sort(key=lambda c: (-c["cn"] - c["q"], c["repo"].casefold()))
+    add_rows = [{
+        "name": c["name"], "repo": c["repo"], "author": c["author"],
+        "desc": c["desc"], "tier": c["tier"], "score": c["cn"] + c["q"],
+    } for c in candidates]
+    has_review = any(c["tier"] == "review" for c in candidates)
 
-    # Update cache
-    all_ids = checked | new_plugin_ids
-    cache_changed = all_ids != checked
+    stale = find_stale_plugins(readme_text) if not skip_stale else []
+    stale_rows = [{
+        "name": s["name"], "repo": s["repo"], "full_name": s["full_name"],
+        "author": s["author"], "section": s["section"],
+        "last_update": s["last_update"], "html_url": s["html_url"],
+    } for s in stale]
+
+    cache_changed = bool(new_ids)
     if cache_changed:
         save_checked(all_ids)
 
     print(
-        f"Known plugins: {len(all_ids)}, new since last check: {len(new_plugins)}, "
-        f"scanned: {scanned}, candidates: {len(high)}, stale: {len(stale)}",
+        f"known={len(all_ids)} scanned={scanned} auto={sum(1 for c in candidates if c['tier'] == 'auto')} "
+        f"review={sum(1 for c in candidates if c['tier'] == 'review')} stale={len(stale)}",
         file=sys.stderr,
     )
+    write_scan_output(add_rows, stale_rows, cache_changed, first_run, has_review)
 
-    rows = []
-    for c in high:
-        rows.append({
-            "name": c["name"], "repo": c["repo"], "author": c["author"], "desc": c["desc"],
-        })
 
-    write_scan_output(rows, stale, cache_changed)
-
+# --------------------------------------------------------------------------
+# Apply flow
+# --------------------------------------------------------------------------
 
 def update_title(add_count, remove_count, date):
     if add_count and remove_count:
         return f"Update Chinese-relevant plugins ({date})"
     if add_count:
-        return f"Add new Chinese-relevant plugins ({date})"
-    if remove_count:
-        return f"Remove stale Chinese-relevant plugins ({date})"
-    return f"Update checked plugin cache ({date})"
+        return f"Add Chinese-relevant plugins ({date})"
+    return f"Remove stale plugins ({date})"
 
 
-def do_apply():
-    rows = json.loads(os.environ["ADD_ROWS"])
+def build_pr_body(rows, stale_rows):
+    title_rows = [r for r in rows if r["tier"] == "auto"]
+    review_rows = [r for r in rows if r["tier"] == "review"]
+    parts = []
+    if title_rows:
+        parts.append("### Auto-merge candidates (high confidence)\n")
+        parts.append("| Plugin | Author | Description | Score |\n| --- | --- | --- | --- |\n")
+        for r in sorted(title_rows, key=lambda r: r["author"].casefold()):
+            desc = r["desc"].replace("|", "\\|")
+            parts.append(f'| [{r["name"]}](https://github.com/{r["repo"]}) | `{r["author"]}` | {desc} | {r["score"]} |\n')
+        parts.append("\n")
+    if review_rows:
+        parts.append("### Review candidates (medium confidence)\n")
+        parts.append("These match the Chinese-relevance criteria but lack strong quality signals; please verify before merging.\n\n")
+        parts.append("| Plugin | Author | Description | Score |\n| --- | --- | --- | --- |\n")
+        for r in sorted(review_rows, key=lambda r: r["author"].casefold()):
+            desc = r["desc"].replace("|", "\\|")
+            parts.append(f'| [{r["name"]}](https://github.com/{r["repo"]}) | `{r["author"]}` | {desc} | {r["score"]} |\n')
+        parts.append("\n")
+    if stale_rows:
+        parts.append(f"### Plugins removed after {STALE_DAYS} days without repository or release activity\n\n")
+        parts.append("| Plugin | Section | Last activity | Repository |\n| --- | --- | --- | --- |\n")
+        for r in sorted(stale_rows, key=lambda r: (r["section"].casefold(), r["author"].casefold(), r["name"].casefold())):
+            parts.append(f'| {r["name"]} | {r["section"]} | {r["last_update"]} | [{r["full_name"]}]({r["html_url"]}) |\n')
+        parts.append("\n")
+    if review_rows:
+        parts.append("_This PR has review-tier entries, so auto-merge was skipped._\n")
+    parts.append("\n_This PR was generated by the weekly plugin scan._")
+    return "".join(parts)
+
+
+def emit_output(name, value):
+    if os.environ.get("GITHUB_OUTPUT"):
+        with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as f:
+            f.write(f"{name}={value}\n")
+    else:
+        print(f"{name}={value}")
+
+
+def do_apply_readme():
+    rows = json.loads(os.environ.get("ADD_ROWS", "[]"))
     stale_rows = json.loads(os.environ.get("REMOVE_ROWS", "[]"))
-    readme_path = "README.md"
-    with open(readme_path, "r", encoding="utf-8") as f:
+    with open(README_PATH, encoding="utf-8") as f:
         text = f.read()
-    rows_sorted = sorted(rows, key=lambda r: r["author"].casefold())
-    stale_rows_sorted = sorted(stale_rows, key=lambda r: (r["section"].casefold(), r["author"].casefold(), r["name"].casefold()))
-    text = remove_plugin_rows(text, stale_rows_sorted)
-    text = append_rows_to_other_tools(text, rows_sorted)
+
+    text = remove_plugin_rows(text, stale_rows)
+    text = append_rows_to_other_tools(text, rows)
     text = sort_plugin_tables_by_author(text)
-    with open(readme_path, "w", encoding="utf-8") as f:
+    with open(README_PATH, "w", encoding="utf-8") as f:
         f.write(text)
-    date = os.popen("date +%Y%m%d").read().strip() or os.popen("powershell Get-Date -Format yyyyMMdd").read().strip()
-    title = update_title(len(rows_sorted), len(stale_rows_sorted), date)
-    body = f"## {title}\n\n"
-    if rows_sorted:
-        body += "### New Chinese-Relevant Plugins Detected\n\n"
-        body += "The following plugins match the native-Chinese or Chinese-translation criteria:\n\n"
-        body += "| Plugin | Author | Description |\n"
-        body += "| --- | --- | --- |\n"
-        for r in rows_sorted:
-            body += f'| [{r["name"]}](https://github.com/{r["repo"]}) | `{r["author"]}` | {r["desc"]} |\n'
-        body += "\n"
-    if stale_rows_sorted:
-        body += f"### Plugins Removed After {STALE_DAYS} Days Without Repository Updates\n\n"
-        body += "| Plugin | Section | Last pushed | Repository |\n"
-        body += "| --- | --- | --- | --- |\n"
-        for r in stale_rows_sorted:
-            body += f'| {r["name"]} | {r["section"]} | {r["pushed_at"]} | [{r["full_name"]}]({r["html_url"]}) |\n'
-        body += "\n"
-    if not rows_sorted and not stale_rows_sorted:
-        body += "No README rows changed; this updates the checked plugin cache so future runs only scan newer plugin IDs.\n\n"
-    body += "\n\n_This PR was automatically generated by the weekly plugin scan._"
-    branch = f"auto/new-plugins-{date}"
-    subprocess.run(["git", "checkout", "-b", branch], check=True)
-    subprocess.run(["git", "config", "user.email", "github-actions[bot]@users.noreply.github.com"], check=True)
-    subprocess.run(["git", "config", "user.name", "github-actions[bot]"], check=True)
-    subprocess.run(["git", "add", readme_path, CACHE_FILE], check=True)
-    r = subprocess.run(["git", "diff", "--cached", "--quiet"])
-    if r.returncode == 0:
-        print("No changes to commit")
-        return
-    subprocess.run(["git", "commit", "-m", f"{title} [skip ci]"], check=True)
-    head_sha = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
-    subprocess.run(["git", "push", "--force", "origin", branch], check=True)
-    pr = subprocess.run(["gh", "pr", "create",
-                         "--title", title,
-                         "--body", body,
-                         "--head", branch],
-                        check=True, text=True, stdout=subprocess.PIPE)
-    pr_url = pr.stdout.strip().splitlines()[-1]
-    print(f"Created PR: {pr_url}")
-    if env_enabled("AUTO_MERGE"):
-        auto_merge_pr(pr_url, head_sha, title)
+
+    title = update_title(len(rows), len(stale_rows), utcnow().strftime("%Y%m%d"))
+    body = build_pr_body(rows, stale_rows)
+    os.makedirs(os.path.dirname(PR_BODY_FILE), exist_ok=True)
+    with open(PR_BODY_FILE, "w", encoding="utf-8") as f:
+        f.write(body)
+    emit_output("pr_title", title)
+
+
+def main():
+    args = sys.argv[1:]
+    if "--apply-readme" in args:
+        do_apply_readme()
+    else:
+        run_scan(skip_stale="--skip-stale" in args)
 
 
 if __name__ == "__main__":
-    if "--apply" in sys.argv:
-        do_apply()
-    else:
-        run_scan()
+    main()
