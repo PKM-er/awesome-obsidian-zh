@@ -96,6 +96,7 @@
 | [obsidian-manager](https://github.com/0011000000110010/obsidian-manager)      | `0011000000110010` | 一个更好的插件管理器。                   |
 | [Zhongwen Block](https://github.com/0918nobita/obsidian-zhongwen-block)       | `0918nobita`       | 为中文学习者提供专门的练习和展示块。           |
 | [Chem](https://github.com/Acylation/obsidian-chem)                            | `Acylation`        | 将化学式字符串渲染为二维结构式，提升化学笔记体验。   |
+| [AI Linzi](https://github.com/alinawang321/ai-linzi-obsidian) | `Alina霖子` | 把 AI霖子接入 Obsidian 数字大脑，支持侧边栏对话、Vault 搜索、内容创作、文章配图、公众号排版与发布. - This plugin has not been manually reviewed by Obsidian staff. |
 | [Personal Assistant](https://github.com/edonyzpc/personal-assistant)          | `edonyzpc`         | 自动化管理你的库，如定期创建笔记、整理文件等。       |
 | [MindCanvas](https://github.com/gengyabc/naotu)                               | `Geng`             | A mindmap that is really a map. 真正的思维投影。 |
 | [Hans Kanban](https://github.com/hansai-art/obsidian-hans-kanban) | `Hans Lin 林思翰` | Kanban and masonry card views for Bases: whole-card coloring by property, on-card status switching, adjustable column widths, swimlanes, and a minimal mode. UI in English and Traditional Chinese. - This plugin has not been manually reviewed by Obsidian staff. |
@@ -105,6 +106,9 @@
 | [Password Protection](https://github.com/qing3962/password-protection)        | `qing3962`         | 为指定的笔记或文件夹设置访问密码。             |
 | [SmartTask](https://github.com/fat-pumpkin/SmarTask) | `SmartTask Team` | 高性能、易操作的智能任务管理插件。支持多视图、快速创建、智能查询。 - This plugin has not been manually reviewed by Obsidian staff. |
 | [obsidian-xiangqi](https://github.com/west-shell/obsidian-xiangqi)            | `west-shell`       | 中国象棋变体树，用于在 Obsidian 中可视化棋局分支。  |
+| [Close and Switch to Recent Tab](https://github.com/github-xzhi/obsidian-close-and-switch-to-recent-tab) | `xzhi` | Auto-switch to the most recently used tab when closing the current one.关闭当前标签页后，自动切换到最近所在的标签页 - This plugin has not been manually reviewed by Obsidian staff. |
+| [Remember Settings Window](https://github.com/github-xzhi/obsidian-remember-settings-window) | `xzhi` | Remember and restore the size and position of the settings popout window. 记住并恢复【在独立窗口中打开设置】窗口的尺寸和位置。 - This plugin has not been manually reviewed by Obsidian staff. |
+| [AindentPaper](https://github.com/louvlwu/obsidian-aindentpaper) | `少言` | 针对文本段落首行缩进的插件，支持启用段落首行缩进（含 <br> 自动拆分）和段落拆分器（独立开关），并提供纸质纹理背景效果。 - This plugin has not been manually reviewed by Obsidian staff. |
 
 ## 精选中文主题
 
