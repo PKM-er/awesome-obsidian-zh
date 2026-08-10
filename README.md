@@ -110,6 +110,8 @@
 | [Close and Switch to Recent Tab](https://github.com/github-xzhi/obsidian-close-and-switch-to-recent-tab) | `xzhi` | Auto-switch to the most recently used tab when closing the current one.关闭当前标签页后，自动切换到最近所在的标签页 - This plugin has not been manually reviewed by Obsidian staff. |
 | [Remember Settings Window](https://github.com/github-xzhi/obsidian-remember-settings-window) | `xzhi` | Remember and restore the size and position of the settings popout window. 记住并恢复【在独立窗口中打开设置】窗口的尺寸和位置。 - This plugin has not been manually reviewed by Obsidian staff. |
 | [AindentPaper](https://github.com/louvlwu/obsidian-aindentpaper) | `少言` | 针对文本段落首行缩进的插件，支持启用段落首行缩进（含 <br> 自动拆分）和段落拆分器（独立开关），并提供纸质纹理背景效果。 - This plugin has not been manually reviewed by Obsidian staff. |
+| [Playdown](https://github.com/z-mackintosh/playdown) | `张潘` | Playlist-based note navigation for Obsidian. Create playlists, navigate sequentially, and manage your reading flow. - This plugin has not been manually reviewed by Obsidian staff. |
+| [Chinese Market](https://github.com/miaoziguan/obsidian-chinese-plugin-market) | `羽鳞君` | 面向中文用户的 Obsidian 社区插件搜索工具：输入关键词即可检索并展示翻译后的插件卡片，支持 AI 语义 / 名称 / 作者搜索。 - This plugin has not been manually reviewed by Obsidian staff. |
 
 ## 精选中文主题
 
