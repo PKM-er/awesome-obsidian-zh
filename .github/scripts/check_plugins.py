@@ -31,6 +31,11 @@ import requests
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
+try:
+    import zhconv
+except ImportError:
+    zhconv = None
+
 COMMUNITY_URL = "https://raw.githubusercontent.com/obsidianmd/obsidian-releases/master/community-plugins.json"
 CACHE_FILE = ".github/scripts/checked_plugins.json"
 DENY_FILE = ".github/scripts/denylist.json"
@@ -116,6 +121,51 @@ def gh_get(url):
 
 def has_cn(s):
     return bool(re.search(r"[\u4e00-\u9fff]", s))
+
+
+REVIEWED_TAIL_RE = re.compile(
+    r"\s*[-–—]\s*this plugin has not been manually reviewed by obsidian staff\.?",
+    re.IGNORECASE,
+)
+
+
+def extract_chinese_summary(readme_text, max_len=60):
+    """First Chinese sentence in a repo README, trimmed for use as a
+    fallback description. Returns '' when there is none."""
+    if not readme_text:
+        return ""
+    for line in readme_text.splitlines():
+        line = line.strip()
+        if not line or line.startswith(("#", "|", "!", "[", "```", ">", "-", "*")):
+            continue
+        if not has_cn(line):
+            continue
+        line = re.sub(r"\[([^\]]*)\]\([^)]*\)", r"\1", line)
+        line = re.sub(r"[`*_#>]", "", line)
+        line = re.sub(r"\s+", " ", line).strip()
+        if len(re.findall(r"[\u4e00-\u9fff]", line)) >= 5:
+            if len(line) > max_len:
+                line = line[:max_len].rstrip("，。；：,.;: ") + "…"
+            return line
+    return ""
+
+
+def clean_desc(desc, readme_text=None, max_len=60):
+    """Normalize an official-list description for the README: strip the
+    Obsidian review boilerplate, convert Traditional to Simplified Chinese,
+    and fall back to a Chinese line from the repo README when the result
+    contains no Chinese at all."""
+    if not desc:
+        return desc
+    text = REVIEWED_TAIL_RE.sub("", desc).strip()
+    if zhconv is not None:
+        text = zhconv.convert(text, "zh-cn")
+    text = text.strip()
+    if not has_cn(text):
+        summary = extract_chinese_summary(readme_text, max_len=max_len)
+        if summary:
+            return summary
+    return text
 
 
 def parse_github_time(value):
@@ -275,7 +325,7 @@ def append_rows_to_other_tools(text, rows):
     for r in sorted(rows, key=lambda row: row["author"].casefold()):
         if r["repo"].lower() in existing:
             continue
-        desc = r.get("desc", "").replace("|", "\\|")
+        desc = clean_desc(r.get("desc", "")).replace("|", "\\|")
         new_rows += f'| [{r["name"]}](https://github.com/{r["repo"]}) | `{r["author"]}` | {desc} |\n'
     if not new_rows:
         return text
@@ -320,12 +370,20 @@ def has_locale_file(repo):
     return False
 
 
-def has_chinese_docs(repo):
+def fetch_readme_text(repo):
+    """Decoded README.md text for a repo, or None (no README / error)."""
     r = gh_get(f"https://api.github.com/repos/{repo}/contents/README.md")
     if isinstance(r, dict) and r.get("content"):
-        text = base64.b64decode(r["content"]).decode("utf-8", errors="ignore")
-        return has_cn(text)
-    return False
+        try:
+            return base64.b64decode(r["content"]).decode("utf-8", errors="ignore")
+        except Exception:
+            return None
+    return None
+
+
+def has_chinese_docs(repo):
+    text = fetch_readme_text(repo)
+    return bool(text and has_cn(text))
 
 
 def repo_meta(repo):
@@ -568,11 +626,12 @@ def run_scan(skip_stale=False):
         meta = repo_meta(repo)
         if not meta:
             continue
+        readme_text = fetch_readme_text(repo)
         signals = collect_signals(
             p, meta,
             author_location(author),
             has_locale_file(repo),
-            has_chinese_docs(repo),
+            bool(readme_text and has_cn(readme_text)),
         )
         cn, q = compute_scores(signals, meta["stars"], 0, None)
         if cn < MIN_CN_SCORE:
@@ -588,7 +647,8 @@ def run_scan(skip_stale=False):
         if not tier:
             continue
         candidates.append({
-            "name": name, "repo": repo, "author": author, "desc": desc,
+            "name": name, "repo": repo, "author": author,
+            "desc": clean_desc(desc, readme_text),
             "cn": cn, "q": q, "tier": tier, "signals": sorted(signals),
         })
 

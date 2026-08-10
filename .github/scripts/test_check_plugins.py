@@ -112,6 +112,58 @@ class TestRowEditing(unittest.TestCase):
         self.assertIn("x \\| y", text)
 
 
+class TestDescCleaning(unittest.TestCase):
+    def test_strips_reviewed_boilerplate(self):
+        d = "中文描述。 - This plugin has not been manually reviewed by Obsidian staff."
+        self.assertEqual(cp.clean_desc(d), "中文描述。")
+
+    def test_strips_boilerplate_variants(self):
+        for tail in (
+            " - This plugin has not been manually reviewed by Obsidian staff",
+            "— This plugin has not been manually reviewed by Obsidian staff.",
+            " – this plugin has not been manually reviewed by obsidian staff.",
+        ):
+            self.assertEqual(cp.clean_desc("描述" + tail), "描述")
+
+    def test_traditional_to_simplified(self):
+        d = "用系統內建繁中語音朗讀筆記,逐句反白跟讀,介面全繁體中文。"
+        self.assertEqual(
+            cp.clean_desc(d),
+            "用系统内建繁中语音朗读笔记,逐句反白跟读,界面全繁体中文。",
+        )
+
+    def test_english_desc_falls_back_to_readme_chinese(self):
+        readme = "# Hans Kanban\n\nA kanban plugin for Obsidian Bases.\n\n看板与瀑布流卡片视图插件，支持整卡按属性着色与泳道。\n"
+        out = cp.clean_desc("Kanban and masonry card views for Bases.", readme)
+        self.assertIn("看板", out)
+        self.assertNotIn("kanban", out.lower())
+
+    def test_english_desc_kept_when_no_chinese_readme(self):
+        d = "Playlist-based note navigation for Obsidian."
+        out = cp.clean_desc(d, "# Playdown\n\nCreate playlists.")
+        self.assertEqual(out, d)
+
+    def test_clean_is_idempotent(self):
+        d = "用系統內建繁中語音朗讀筆記,逐句反白跟讀,介面全繁體中文。 - This plugin has not been manually reviewed by Obsidian staff."
+        once = cp.clean_desc(d)
+        self.assertEqual(cp.clean_desc(once), once)
+
+    def test_empty_desc_passthrough(self):
+        self.assertEqual(cp.clean_desc(""), "")
+
+    def test_summary_truncates_long_lines(self):
+        readme = "# X\n\n" + "这是一个非常长的中文描述句子" * 10 + "\n"
+        out = cp.clean_desc("Some English text", readme, max_len=30)
+        self.assertLessEqual(len(out), 31)
+
+    def test_append_cleans_desc_idempotently(self):
+        rows = [{"name": "P", "repo": "a/b", "author": "a",
+                 "desc": "描述 - This plugin has not been manually reviewed by Obsidian staff."}]
+        text = cp.append_rows_to_other_tools(SAMPLE_README, rows)
+        self.assertIn("描述", text)
+        self.assertNotIn("manually reviewed", text)
+
+
 class TestScoring(unittest.TestCase):
     def test_signal_weights(self):
         cn, q = cp.compute_scores({"locale", "docs_cn", "topic", "author_cn", "name_cn"})
