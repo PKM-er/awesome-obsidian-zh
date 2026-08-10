@@ -2,7 +2,7 @@ name: Check New Chinese Plugins
 
 on:
   schedule:
-    - cron: "17 0 * * *"
+    - cron: "17 0 */2 * *"
   workflow_dispatch:
 
 concurrency:
