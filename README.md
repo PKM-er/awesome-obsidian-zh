@@ -111,6 +111,7 @@
 | [Remember Settings Window](https://github.com/github-xzhi/obsidian-remember-settings-window) | `xzhi` | 记住并恢复【在独立窗口中打开设置】窗口的尺寸和位置。 |
 | [AindentPaper](https://github.com/louvlwu/obsidian-aindentpaper) | `少言` | 针对文本段落首行缩进的插件，支持启用段落首行缩进（含 <br> 自动拆分）和段落拆分器（独立开关），并提供纸质纹理背景效果。 |
 | [Playdown](https://github.com/z-mackintosh/playdown) | `张潘` | 基于播放列表的笔记导航插件：创建播放列表、按顺序浏览笔记、管理阅读流程。 |
+| [Agent Review](https://github.com/jiaoxiu20040903-crypto/Agent_Review) | `皎琇` | 批注数据独立保存在 Vault 的 .agent-review/ 中，不会向 Markdown 正文写入额外标记。人类用… |
 | [Chinese Market](https://github.com/miaoziguan/obsidian-chinese-plugin-market) | `羽鳞君` | 面向中文用户的 Obsidian 社区插件搜索工具：输入关键词即可检索并展示翻译后的插件卡片，支持 AI 语义 / 名称 / 作者搜索。 |
 
 ## 精选中文主题
