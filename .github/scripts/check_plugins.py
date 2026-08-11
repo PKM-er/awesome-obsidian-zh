@@ -627,9 +627,12 @@ def run_scan(skip_stale=False):
         if not meta:
             continue
         readme_text = fetch_readme_text(repo)
+        # location signal must query the owner login, not the display name:
+        # Chinese display names 404 on /users/ and silently kill the signal
+        owner_id = meta["full_name"].split("/")[0]
         signals = collect_signals(
             p, meta,
-            author_location(author),
+            author_location(owner_id),
             has_locale_file(repo),
             bool(readme_text and has_cn(readme_text)),
         )
@@ -646,8 +649,12 @@ def run_scan(skip_stale=False):
         tier = classify_tier(cn, q, first_run)
         if not tier:
             continue
+        # Author column must be the repo owner's GitHub ID (canonical case),
+        # never the display name from the official list (often a Chinese
+        # name/team name). The display name still feeds scoring signals.
+        author_id = meta["full_name"].split("/")[0]
         candidates.append({
-            "name": name, "repo": repo, "author": author,
+            "name": name, "repo": repo, "author": author_id,
             "desc": clean_desc(desc, readme_text),
             "cn": cn, "q": q, "tier": tier, "signals": sorted(signals),
         })
