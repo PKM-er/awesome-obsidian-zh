@@ -148,7 +148,6 @@
 |[DB Folder](https://github.com/RafaelGB/obsidian-db-folder)|`src/lang/locale/zh-cn.ts`|
 |[Excalidraw](https://github.com/zsviczian/obsidian-excalidraw-plugin)|`src/lang/locale/zh-cn.ts`|
 |[Kanban](https://github.com/mgmeyers/obsidian-kanban)|`src/lang/locale/zh-cn.ts`|
-|[Obsidian Memos (Thino)](https://github.com/Quorafind/Obsidian-Memos)|`src/translations/locale/zh-cn.ts`|
 |[RSS Reader](https://github.com/joethei/obsidian-rss)|`src/l10n/locales/zh.ts`|
 |[Spaced Repetition](https://github.com/st3v3nmw/obsidian-spaced-repetition)|`src/lang/locale/zh-cn.ts`|
 
