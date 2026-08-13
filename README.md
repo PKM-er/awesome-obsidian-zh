@@ -98,6 +98,7 @@
 | [Zhongwen Block](https://github.com/0918nobita/obsidian-zhongwen-block)       | `0918nobita`       | 为中文学习者提供专门的练习和展示块。           |
 | [Chem](https://github.com/Acylation/obsidian-chem)                            | `Acylation`        | 将化学式字符串渲染为二维结构式，提升化学笔记体验。   |
 | [AI Linzi](https://github.com/alinawang321/ai-linzi-obsidian) | `AlinaWang321` | 把 AI霖子接入 Obsidian 数字大脑，支持侧边栏对话、Vault 搜索、内容创作、文章配图、公众号排版与发布。 |
+| [Easy Bookkeeping](https://github.com/beimohai/Easy-Bookkeeping-Obsidian) | `beimohai` | 分类: 未分类 |
 | [Personal Assistant](https://github.com/edonyzpc/personal-assistant)          | `edonyzpc`         | 自动化管理你的库，如定期创建笔记、整理文件等。       |
 | [SmartTask](https://github.com/fat-pumpkin/SmarTask) | `fat-pumpkin` | 高性能、易操作的智能任务管理插件。支持多视图、快速创建、智能查询。 |
 | [MindCanvas](https://github.com/gengyabc/naotu)                               | `gengyabc`         | 真正的思维地图，不只是示意图。 |
@@ -107,8 +108,10 @@
 | [Hans TW TTS](https://github.com/hansai-art/obsidian-tw-tts) | `hansai-art` | 用系统内置繁中语音朗读笔记，逐句反白跟读，界面全为繁体中文。 |
 | [Files Cooker](https://github.com/ivaneye/obsidian-files-cooker)              | `ivaneye`          | 对库内文件进行批量操作和处理。               |
 | [Agent Review](https://github.com/jiaoxiu20040903-crypto/Agent_Review) | `jiaoxiu20040903-crypto` | 批注数据独立保存在 Vault 的 .agent-review/ 中，不会向 Markdown 正文写入额外标记。人类用… |
+| [Calendar Panel](https://github.com/lizijing98/calendar-panel) | `lizijing98` | 日记与周记的日历面板插件 / Calendar panel view for daily and weekly note. |
 | [AindentPaper](https://github.com/louvlwu/obsidian-aindentpaper) | `louvlwu` | 针对文本段落首行缩进的插件，支持启用段落首行缩进（含 <br> 自动拆分）和段落拆分器（独立开关），并提供纸质纹理背景效果。 |
 | [Chinese Market](https://github.com/miaoziguan/obsidian-chinese-plugin-market) | `miaoziguan` | 面向中文用户的 Obsidian 社区插件搜索工具：输入关键词即可检索并展示翻译后的插件卡片，支持 AI 语义 / 名称 / 作者搜索。 |
+| [Bi Ji Tong Bu](https://github.com/notesynchelper/obsidian-notehelper-v2) | `notesynchelper` | Bi Ji Tong Bu (笔记同步助手) syncs content you collect through the… |
 | [Text Finder](https://github.com/nyable/obsidian-text-finder)                 | `nyable`           | 在编辑模式下提供一个类似 VSCode 的查找/替换窗口。 |
 | [Password Protection](https://github.com/qing3962/password-protection)        | `qing3962`         | 为指定的笔记或文件夹设置访问密码。             |
 | [obsidian-xiangqi](https://github.com/west-shell/obsidian-xiangqi)            | `west-shell`       | 中国象棋变体树，用于在 Obsidian 中可视化棋局分支。  |
