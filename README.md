@@ -168,7 +168,7 @@
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=PKM-er/awesome-obsidian-zh&type=Date)](https://star-history.com/#PKM-er/awesome-obsidian-zh&Date)
+[![Star History Chart](https://star-history.dera.page/svg?repos=PKM-er/awesome-obsidian-zh&type=Date)](https://star-history.dera.page/#PKM-er/awesome-obsidian-zh&Date)
 
 [^1]: i18n 意为 internationalization，国际化，i 和 n 之间有 18 个字母。
 [^2]: l10n 意为 localization，本地化，l 和 n 之间有 10 个字母。
