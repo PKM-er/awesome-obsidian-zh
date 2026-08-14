@@ -4,6 +4,8 @@
 
 ## 简介
 
+- [Persona](https://github.com/jayamitkatariya/personacli) - Local-first personal workspace: notes, tasks and AI chat. Plain markdown files, no accounts, no cloud. MIT.
+
 - 🀄本项目旨在持续汇集 GitHub 上的 [Obsidian](https://obsidian.md/) **原生中文插件**和**自带中文翻译**的活跃插件，为中文用户提供一个发现、安装和参与贡献的中文资源索引。
 
 ## 官方中文社区与资源
