@@ -73,6 +73,7 @@
 | [Tars](https://github.com/TarsLab/obsidian-tars)                                | `TarsLab` | 基于笔记标签和上下文，提供智能文本生成建议。         |
 | [AI 聊天助手](https://github.com/xiaonanhai9855/obsidian-AI-Chat-Assistant)       | `xiaonanhai9855` | 在 Obsidian 内提供 AI 对话面板，内置 RAG 引擎，支持 @ 提及笔记/文件夹/标签/知识库语义搜索。 |
 | [claudian](https://github.com/YishenTu/claudian) | `YishenTu` | 将 Claude Code/Codex 嵌入 Obsidian，作为 AI 协作者提供代码与写作辅助。 |
+| [Harness Like](https://github.com/frank6com/obsidian-harness-like) | `frank6com` | DeepSeek Harness 理念的桌面端实现：内置 Cordis 插件体系与 AI agent，可带审批读写笔记，并支持在对话内创建 Cordis 插件。 |
 
 ### 数据同步与集成
 
