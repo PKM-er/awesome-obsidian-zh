@@ -70,11 +70,11 @@
 | ------------------------------------------------------------------------------- | --------- | ------------------------------ |
 | [EVC Team Relay MCP](https://github.com/entire-vc/evc-team-relay-mcp)                    | `entire-vc` | 通过 MCP 协议让 AI 编程工具直接读写 Obsidian 笔记库。 |
 | [Harness Like](https://github.com/frank6com/obsidian-harness-like) | `frank6com` | DeepSeek Harness 理念的桌面端实现：内置 Cordis 插件体系与 AI agent，可带审批读写笔记，并支持在对话内创建 Cordis 插件。 |
+| [Harness Like](https://github.com/frank6com/obsidian-harness-like) | `frank6com` | DeepSeek Harness 理念的桌面端实现：内置 Cordis 插件体系与 AI agent，可带审批读写笔记，并支持在对话内创建 Cordis 插件。 |
 | [YOLO](https://github.com/Lapis0x0/obsidian-yolo)                               | `Lapis0x0` | 面向 Obsidian 的 AI Agent 助手，支持对话、写作、RAG、MCP、Skills 与工具调用。 |
 | [Tars](https://github.com/TarsLab/obsidian-tars)                                | `TarsLab` | 基于笔记标签和上下文，提供智能文本生成建议。         |
 | [AI 聊天助手](https://github.com/xiaonanhai9855/obsidian-AI-Chat-Assistant)       | `xiaonanhai9855` | 在 Obsidian 内提供 AI 对话面板，内置 RAG 引擎，支持 @ 提及笔记/文件夹/标签/知识库语义搜索。 |
 | [claudian](https://github.com/YishenTu/claudian) | `YishenTu` | 将 Claude Code/Codex 嵌入 Obsidian，作为 AI 协作者提供代码与写作辅助。 |
-| [Harness Like](https://github.com/frank6com/obsidian-harness-like) | `frank6com` | DeepSeek Harness 理念的桌面端实现：内置 Cordis 插件体系与 AI agent，可带审批读写笔记，并支持在对话内创建 Cordis 插件。 |
 
 ### 数据同步与集成
 
@@ -114,6 +114,8 @@
 | [Dedao KB Sync](https://github.com/leschamy4-del/obsidian-dedao-kb-sync) | `leschamy4-del` | 一个面向得到大脑（原 Get 笔记）会员的 Obsidian 社区插件：把笔记与订阅的抖音博主内容同步到 Obsidia… |
 | [Calendar Panel](https://github.com/lizijing98/calendar-panel) | `lizijing98` | 日记与周记的日历面板插件 / Calendar panel view for daily and weekly note. |
 | [AindentPaper](https://github.com/louvlwu/obsidian-aindentpaper) | `louvlwu` | 针对文本段落首行缩进的插件，支持启用段落首行缩进（含 <br> 自动拆分）和段落拆分器（独立开关），并提供纸质纹理背景效果。 |
+| [LUMI Sync](https://github.com/lufei150426/lumi-sync) | `lufei150426` | LUMI 是跨平台知识资产统一入库工具，将微信、飞书、网页等渠道的文章、聊天、音视频和文本等数字资产，经 AI 整理后自动沉淀到vault仓库。 |
+| [DSH Math Notes Assistant](https://github.com/maple110011/dsh-obsidian-math) | `maple110011` | dsh-obsidian-math install --vault "D:\\Obsidian笔记数据库" |
 | [Chinese Market](https://github.com/miaoziguan/obsidian-chinese-plugin-market) | `miaoziguan` | 面向中文用户的 Obsidian 社区插件搜索工具：输入关键词即可检索并展示翻译后的插件卡片，支持 AI 语义 / 名称 / 作者搜索。 |
 | [Bi Ji Tong Bu](https://github.com/notesynchelper/obsidian-notehelper-v2) | `notesynchelper` | Bi Ji Tong Bu (笔记同步助手) syncs content you collect through the… |
 | [Text Finder](https://github.com/nyable/obsidian-text-finder)                 | `nyable`           | 在编辑模式下提供一个类似 VSCode 的查找/替换窗口。 |
