@@ -118,10 +118,12 @@
 | [DSH Math Notes Assistant](https://github.com/maple110011/dsh-obsidian-math) | `maple110011` | dsh-obsidian-math install --vault "D:\\Obsidian笔记数据库" |
 | [Chinese Market](https://github.com/miaoziguan/obsidian-chinese-plugin-market) | `miaoziguan` | 面向中文用户的 Obsidian 社区插件搜索工具：输入关键词即可检索并展示翻译后的插件卡片，支持 AI 语义 / 名称 / 作者搜索。 |
 | [Bi Ji Tong Bu](https://github.com/notesynchelper/obsidian-notehelper-v2) | `notesynchelper` | Bi Ji Tong Bu (笔记同步助手) syncs content you collect through the… |
+| [China BRAT](https://github.com/notesynchelper/chinabrat) | `notesynchelper` | 粘贴一个插件文件地址即可安装，内置三个示例地址，解决访问Github 慢导致的插件无法安装问题。 |
 | [Text Finder](https://github.com/nyable/obsidian-text-finder)                 | `nyable`           | 在编辑模式下提供一个类似 VSCode 的查找/替换窗口。 |
 | [Password Protection](https://github.com/qing3962/password-protection)        | `qing3962`         | 为指定的笔记或文件夹设置访问密码。             |
 | [Symbol Stripper](https://github.com/tasete/symbol-stripper) | `Tasete` | 选中文本，一键剔除指定字符或正则匹配 / Select text and strip specified characters or regex matches with one click |
 | [obsidian-xiangqi](https://github.com/west-shell/obsidian-xiangqi)            | `west-shell`       | 中国象棋变体树，用于在 Obsidian 中可视化棋局分支。  |
+| [Claudian Scheduler](https://github.com/xikongsaket/claudian-scheduler) | `XIKONGSAKET` | 定时向 Claudian 的指定对话框发送任务：把请求排到 DeepSeek 低谷时段（北京时间 00:30-08:30）自动发出，节省 API 成本。 |
 | [Playdown](https://github.com/z-mackintosh/playdown) | `Z-Mackintosh` | 基于播放列表的笔记导航插件：创建播放列表、按顺序浏览笔记、管理阅读流程。 |
 
 ## 精选中文主题
