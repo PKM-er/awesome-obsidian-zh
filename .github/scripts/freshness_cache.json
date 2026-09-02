@@ -1,0 +1,492 @@
+{
+  "YishenTu/claudian": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-08-30T07:22:20Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:17.646721+00:00"
+  },
+  "frank6com/obsidian-harness-like": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-09-01T12:13:26Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:17.655221+00:00"
+  },
+  "lizijing98/calendar-panel": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-08-26T08:30:48Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:17.689530+00:00"
+  },
+  "yaleiyale/obsidian-emo-uploader": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2024-08-10T05:44:26Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:17.703450+00:00"
+  },
+  "leschamy4-del/obsidian-dedao-kb-sync": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-08-28T06:11:39Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:17.719420+00:00"
+  },
+  "ai-chen2050/obsidian-wechat-public-platform": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-04-28T04:24:48Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:17.735656+00:00"
+  },
+  "Quorafind/Obsidian-Thino": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-08-22T12:04:17Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:17.807535+00:00"
+  },
+  "edonyzpc/personal-assistant": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-08-09T14:14:05Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:17.820297+00:00"
+  },
+  "sissilab/obsidian-image-toolkit": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2024-10-07T05:05:51Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:17.822370+00:00"
+  },
+  "Lapis0x0/obsidian-yolo": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-08-29T11:52:53Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:17.863416+00:00"
+  },
+  "zwpaper/obsidian-progressbar": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2025-10-10T00:39:43Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:17.898138+00:00"
+  },
+  "dongguaguaguagua/zhihu_obsidian": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-05-11T12:41:48Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:17.983410+00:00"
+  },
+  "0918nobita/obsidian-zhongwen-block": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2025-07-07T12:49:07Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:18.234192+00:00"
+  },
+  "miaoziguan/obsidian-chinese-plugin-market": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-08-31T12:24:56Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:18.479364+00:00"
+  },
+  "xiaonanhai9855/obsidian-AI-Chat-Assistant": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-06-30T06:55:37Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:18.511541+00:00"
+  },
+  "makediff/obsidian-wucai": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-04-11T02:42:16Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:18.515861+00:00"
+  },
+  "notesynchelper/chinabrat": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-08-18T06:11:52Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:18.534277+00:00"
+  },
+  "aidenlx/cm-chs-patch": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-05-16T15:48:01Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:18.574500+00:00"
+  },
+  "qing3962/password-protection": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-08-25T04:13:42Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:18.604696+00:00"
+  },
+  "TarsLab/obsidian-tars": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-08-28T02:48:04Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:18.618293+00:00"
+  },
+  "SSShooter/obsidian-mindmap": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-08-11T04:03:55Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:18.624154+00:00"
+  },
+  "cumany/obsidian-editing-toolbar": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-08-13T10:33:44Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:18.765871+00:00"
+  },
+  "1716775457damn/obsidian-ai-vault-assistant": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-09-02T02:48:57Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:18.786756+00:00"
+  },
+  "cumany/obsidian-floating-toc-plugin": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-01-24T06:10:20Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:18.805567+00:00"
+  },
+  "0011000000110010/obsidian-i18n": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-04-20T13:28:27Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:18.827264+00:00"
+  },
+  "busyoGG/SmoothCursor": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-06-13T15:17:46Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:19.027904+00:00"
+  },
+  "MarkMindCkm/obsidian-markmind": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-08-14T09:32:47Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:19.089929+00:00"
+  },
+  "Acylation/obsidian-chem": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2025-08-14T22:04:57Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:19.166739+00:00"
+  },
+  "anightmonarch/obsidian-wechat-workbench": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-08-29T10:34:44Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:19.177854+00:00"
+  },
+  "notoriouslab/vault-curate": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-08-26T10:10:57Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:19.179718+00:00"
+  },
+  "Wanxp/obsidian-douban": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-08-12T09:33:16Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:19.192914+00:00"
+  },
+  "chrisgurney/obsidian-note-toolbar": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-08-28T00:14:12Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:19.197782+00:00"
+  },
+  "Yaozhuwa/easy-typing-obsidian": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-07-12T03:51:31Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:19.212643+00:00"
+  },
+  "github-xzhi/obsidian-close-and-switch-to-recent-tab": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-08-02T11:42:53Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:19.316587+00:00"
+  },
+  "zhaohongxuan/obsidian-weread-plugin": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-07-18T14:03:05Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:19.326935+00:00"
+  },
+  "gengyabc/naotu": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-06-03T06:03:31Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:19.394381+00:00"
+  },
+  "jiaoxiu20040903-crypto/Agent_Review": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-08-11T12:10:40Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:19.396305+00:00"
+  },
+  "maple110011/dsh-obsidian-math": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-08-27T04:38:44Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:19.661821+00:00"
+  },
+  "DevilRoshan/obsidian-lunar-calendar": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2025-12-28T10:41:16Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:19.731626+00:00"
+  },
+  "mokeyish/obsidian-enhancing-export": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-08-22T01:07:14Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:19.737021+00:00"
+  },
+  "xikongsaket/claudian-scheduler": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-08-18T05:00:35Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:19.780348+00:00"
+  },
+  "val3344/obsidian-update-relative-links": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2025-10-18T11:38:57Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:19.790144+00:00"
+  },
+  "Devon22/obsidian-gridexplorer": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-08-12T05:45:46Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:19.833715+00:00"
+  },
+  "vrtmrz/obsidian-livesync": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-09-02T06:43:38Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:19.869626+00:00"
+  },
+  "notesynchelper/obsidian-notehelper-v2": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-08-13T05:10:59Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:19.898552+00:00"
+  },
+  "afanos/notes-to-html-pages": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-06-28T05:32:29Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:19.985147+00:00"
+  },
+  "Quorafind/Obsidian-Task-Genius": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-06-28T08:32:26Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:19.998550+00:00"
+  },
+  "entire-vc/evc-team-relay-mcp": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-02-24T19:32:19Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:20.036722+00:00"
+  },
+  "LincZero/obsidian-any-block": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-08-28T07:13:34Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:20.154278+00:00"
+  },
+  "xiaotianhu/obsidian-messager": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-03-20T03:37:48Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:20.254217+00:00"
+  },
+  "nutstore/obsidian-nutstore-sync": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-08-21T03:20:14Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:20.323518+00:00"
+  },
+  "lufei150426/lumi-sync": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-08-15T15:47:03Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:20.341719+00:00"
+  },
+  "hansai-art/obsidian-hans-kanban": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-08-27T19:50:54Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:20.349313+00:00"
+  },
+  "ivaneye/obsidian-files-cooker": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-04-06T01:23:08Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:20.371959+00:00"
+  },
+  "fat-pumpkin/SmarTask": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-07-15T04:09:34Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:20.401447+00:00"
+  },
+  "louvlwu/obsidian-aindentpaper": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-08-21T12:34:36Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:20.440680+00:00"
+  },
+  "nyable/obsidian-text-finder": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2025-11-20T08:40:40Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:20.505882+00:00"
+  },
+  "lazyloong/obsidian-fuzzy-chinese": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-06-07T05:13:55Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:20.530822+00:00"
+  },
+  "z-mackintosh/playdown": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-08-03T10:18:41Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:20.564862+00:00"
+  },
+  "tasete/symbol-stripper": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-08-14T07:28:51Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:20.578579+00:00"
+  },
+  "west-shell/obsidian-xiangqi": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-09-02T02:22:29Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:20.721892+00:00"
+  },
+  "alinawang321/ai-linzi-obsidian": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-09-02T03:46:20Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:20.858982+00:00"
+  },
+  "hansai-art/obsidian-tw-tts": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-09-01T17:01:03Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:20.883763+00:00"
+  },
+  "beimohai/Easy-Bookkeeping-Obsidian": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-08-30T13:19:03Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:20.891939+00:00"
+  },
+  "github-xzhi/obsidian-remember-settings-window": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-08-01T18:13:08Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:20.935258+00:00"
+  },
+  "JuckZ/awesome-brain-manager": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-02-22T12:33:24Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:20.939862+00:00"
+  },
+  "wintermosquito/the-mind-map": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-08-31T14:29:58Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:21.037273+00:00"
+  },
+  "cimu233/obsidian-mesh-sync": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-08-16T03:02:01Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:21.097478+00:00"
+  },
+  "0flowerocean0/bloomtype-obsidian": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-08-21T02:42:26Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:21.108632+00:00"
+  },
+  "0011000000110010/obsidian-manager": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-07-13T07:51:18Z",
+    "ok": true,
+    "checked_at": "2026-09-02T07:21:21.270164+00:00"
+  }
+}

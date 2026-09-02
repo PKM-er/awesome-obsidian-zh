@@ -1,0 +1,107 @@
+name: Check New Chinese Plugins
+
+on:
+  schedule:
+    - cron: "17 0 */2 * *"
+  workflow_dispatch:
+
+concurrency:
+  group: plugin-scan
+  cancel-in-progress: true
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install requests zhconv
+
+      - name: Scan new plugins
+        id: scan
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+          HTTP_TIMEOUT: 30
+          STALE_HTTP_TIMEOUT: 10
+        run: python .github/scripts/check_plugins.py
+
+      - name: Commit cache-only update
+        # Cache changes without README changes are committed straight to the
+        # default branch so future runs stay incremental and create no PR noise.
+        if: steps.scan.outputs.cache_changed == 'true' && steps.scan.outputs.content_changed == 'false'
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+          git add .github/scripts/checked_plugins.json
+          git commit -m "chore: update checked plugin cache [skip ci]"
+          git push origin HEAD:${GITHUB_REF_NAME}
+
+      - name: Apply changes to README
+        id: apply
+        if: steps.scan.outputs.content_changed == 'true'
+        env:
+          ADD_ROWS: ${{ steps.scan.outputs.add_rows }}
+          REMOVE_ROWS: ${{ steps.scan.outputs.remove_rows }}
+        run: python .github/scripts/check_plugins.py --apply-readme
+
+      - name: Validate README before commit
+        if: steps.scan.outputs.content_changed == 'true'
+        run: python .github/scripts/check_plugins.py --validate
+
+      - name: Commit README changes directly
+        # Single-maintainer repo: scan results (auto- and review-tier alike) are
+        # committed straight to the default branch. No PR is opened, so there is
+        # nothing left for the maintainer to merge or close each week.
+        if: steps.scan.outputs.content_changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+          git add README.md
+          git commit -m "${{ steps.apply.outputs.pr_title }} [skip ci]"
+          git push origin HEAD:${GITHUB_REF_NAME}
+
+      - name: Refresh freshness markers
+        # Mark archived / long-dormant plugins from live repo metadata. Runs
+        # every scheduled scan; results are cached 7 days so it stays well
+        # under the GITHUB_TOKEN rate limit. Idempotent: markers self-correct
+        # when a repo becomes active again, and theme rows are left untouched.
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+          HTTP_TIMEOUT: 30
+        run: python .github/scripts/check_plugins.py --freshness-readme
+
+      - name: Commit README + freshness cache
+        # Capture marker updates (and the rolling freshness cache) in the same
+        # branch. Skips the commit when nothing actually changed, so routine
+        # scans stay quiet.
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+          git add README.md .github/scripts/freshness_cache.json .github/scripts/checked_plugins.json
+          if git diff --cached --quiet; then
+            echo "no freshness/cache changes to commit"
+          else
+            git commit -m "chore: refresh archived/dormant plugin markers [skip ci]"
+            git push origin HEAD:${GITHUB_REF_NAME}
+          fi
