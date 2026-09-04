@@ -292,20 +292,25 @@ def parse_plugin_rows(readme_text):
     section = readme_text[start:end]
     rows = []
     current_section = ""
-    for line in section.splitlines():
-        if line.startswith("### "):
-            current_section = line[4:].strip()
-            continue
-        m = PLUGIN_ROW_RE.match(line)
-        if not m:
-            continue
-        rows.append({
-            "section": current_section,
-            "name": m.group(1).strip(),
-            "repo": m.group(2).rstrip("/"),
-            "author": m.group(3).strip(),
-            "line": line,
-        })
+    for raw in section.splitlines():
+        # A '### ' heading may be glued to the previous line (e.g. a note or a
+        # table row with no trailing newline). Split it out so section tracking
+        # still works; otherwise every row until the next clean heading would be
+        # mis-filed under an empty section and dropped by reorganize_sections.
+        for line in re.split(r"(?=### )", raw):
+            if line.startswith("### "):
+                current_section = line[4:].strip()
+                continue
+            m = PLUGIN_ROW_RE.match(line)
+            if not m:
+                continue
+            rows.append({
+                "section": current_section,
+                "name": m.group(1).strip(),
+                "repo": m.group(2).rstrip("/"),
+                "author": m.group(3).strip(),
+                "line": line,
+            })
     return rows
 
 
@@ -449,23 +454,28 @@ def parse_plugin_rows_full(readme_text):
     section = readme_text[start:end]
     rows = []
     current_section = ""
-    for line in section.splitlines():
-        if line.startswith("### "):
-            current_section = line[4:].strip()
-            continue
-        cells = split_row(line)
-        if not cells or len(cells) < 3:
-            continue
-        m = PLUGIN_ROW_CELL_RE.match(cells[0])
-        if not m:
-            continue
-        rows.append({
-            "section": current_section,
-            "name": m.group(1).strip(),
-            "repo": m.group(2).rstrip("/"),
-            "author": cells[1].strip().strip("`").strip(),
-            "desc": cells[2].strip(),
-        })
+    for raw in section.splitlines():
+        # A '### ' heading may be glued to the previous line (e.g. a note or a
+        # table row with no trailing newline). Split it out so section tracking
+        # still works; otherwise every row until the next clean heading would be
+        # mis-filed under an empty section and dropped by reorganize_sections.
+        for line in re.split(r"(?=### )", raw):
+            if line.startswith("### "):
+                current_section = line[4:].strip()
+                continue
+            cells = split_row(line)
+            if not cells or len(cells) < 3:
+                continue
+            m = PLUGIN_ROW_CELL_RE.match(cells[0])
+            if not m:
+                continue
+            rows.append({
+                "section": current_section,
+                "name": m.group(1).strip(),
+                "repo": m.group(2).rstrip("/"),
+                "author": cells[1].strip().strip("`").strip(),
+                "desc": cells[2].strip(),
+            })
     return rows
 
 
@@ -637,13 +647,19 @@ def reorganize_sections(text):
         return text
     preamble = body[:first]          # "## 原生中文插件" + the %% note
     sections_block = body[first + 1:]
-    headings = [ln[4:].strip() for ln in sections_block.splitlines() if ln.startswith("### ")]
     rows = parse_plugin_rows_full(text)
     for r in rows:
         if r["section"] == "其他工具":
             t = CURATED_SECTION.get(r["name"]) or classify_section(r["name"], r["desc"])
             if t and t != "其他工具":
                 r["section"] = t
+    headings = [ln[4:].strip() for ln in sections_block.splitlines() if ln.startswith("### ")]
+    # A '### ' heading may be glued to the previous line in the source (no
+    # trailing newline); the parser still extracts it as a section. Include any
+    # such section so its rows are re-filed instead of silently dropped.
+    for r in rows:
+        if r["section"] and r["section"] not in headings:
+            headings.append(r["section"])
     grouped = {h: [] for h in headings}
     for r in rows:
         grouped.setdefault(r["section"], []).append(r)
@@ -664,6 +680,12 @@ def reorganize_sections(text):
                 f'| [{r["name"]}](https://github.com/{r["repo"]}) | `{r["author"]}` | {desc} |\n'
             )
         out.append("\n")
+    # Guarantee a newline between the (un-rebuilt) preamble and the first
+    # rebuilt '### ' heading; otherwise a line that ends without one (e.g. a
+    # '%%' note) gets glued to the heading and the parse round-trips it back
+    # into the bad state.
+    if not preamble.endswith("\n"):
+        preamble += "\n"
     return head + preamble + "".join(out) + after
 
 
@@ -708,15 +730,18 @@ def generate_toc(text):
 
 def apply_toc(text):
     toc = generate_toc(text)
-    block = f"<!-- TOC:START -->\n{toc}\n<!-- TOC:END -->\n"
+    block = "<!-- TOC:START -->\n" + toc + "<!-- TOC:END -->"
     if "<!-- TOC:START -->" in text:
         s = text.index("<!-- TOC:START -->")
         e = text.index("<!-- TOC:END -->") + len("<!-- TOC:END -->")
-        return text[:s] + block + text[e:]
+        after = text[e:].lstrip("\n")
+        return text[:s] + block + "\n\n" + after
     idx = text.find("## 简介")
     if idx == -1:
-        return block + text
-    return text[:idx] + block + text[idx:]
+        return block + "\n\n" + text.lstrip("\n")
+    before = text[:idx].rstrip("\n")
+    after = text[idx:].lstrip("\n")
+    return before + "\n\n" + block + "\n\n" + after
 
 
 def validate_readme(text):
