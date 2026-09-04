@@ -54,7 +54,8 @@
 
 ## 原生中文插件，欢迎支持
 
-%% 以下插件大部分由中文开发者创作或深度优化，对中文环境非常友好。 %%### 界面与视图增强
+%% 以下插件大部分由中文开发者创作或深度优化，对中文环境非常友好。 %%
+### 界面与视图增强
 
 | 插件 | 作者 | 核心功能 |
 | --- | --- | --- |
@@ -62,7 +63,8 @@
 | [Note Toolbar](https://github.com/chrisgurney/obsidian-note-toolbar) | `chrisgurney` | 在笔记顶部添加可自定义的命令工具栏。 |
 | [Floating TOC](https://github.com/cumany/obsidian-floating-toc-plugin) | `cumany` | 在笔记侧边生成一个浮动的目录大纲。 |
 | [Grid Explorer](https://github.com/Devon22/obsidian-gridexplorer) | `Devon22` | 以网格视图浏览笔记文件。 |
-| [Quiet Outline](https://github.com/guopenghui/obsidian-quiet-outline) | `guopenghui` | 提供一个功能更强大、更美观的大纲视图。 |### 编辑与格式化
+| [Quiet Outline](https://github.com/guopenghui/obsidian-quiet-outline) | `guopenghui` | 提供一个功能更强大、更美观的大纲视图。 |
+### 编辑与格式化
 
 | 插件 | 作者 | 核心功能 |
 | --- | --- | --- |
