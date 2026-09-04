@@ -11,10 +11,11 @@ Modes:
                   regenerates the table of contents.
   --cleanup-readme  one-off pass over README.md: dedupe, re-file 其他工具
                     entries, scrub broken descriptions, regenerate TOC.
-  --freshness-readme  one-off pass: append [已归档]/[长期未更新] markers to
-                    existing plugin rows from live repo metadata (archived
-                    flag + last push/release older than STALE_DAYS). Cached
-                    for FRESHNESS_CACHE_DAYS; idempotent and self-correcting.
+  --freshness-readme  one-off pass: append [已归档]/[长期未更新] markers and a
+                    '最后更新 YYYY-MM' freshness badge to existing plugin rows
+                    from live repo metadata (archived flag + last push/release
+                    older than STALE_DAYS). Cached for FRESHNESS_CACHE_DAYS;
+                    idempotent and self-correcting.
   --validate      check README.md for duplicate rows and broken/placeholder
                   descriptions; exits non-zero on any issue (CI gate).
   --skip-stale    skip stale checks (dry runs / rate-limit constrained runs)
@@ -541,12 +542,35 @@ def clean_desc_for_readme(desc, readme_text=None, max_len=60, name=None):
 # cleanup / re-file pass. Bracket style matches the existing [描述待补充]
 # placeholder. Archived outranks stale (a repo can be both).
 FRESHNESS_MARKER_RE = re.compile(r"\s*\[(已归档|长期未更新)\]\s*$")
+FRESHNESS_DATE_RE = re.compile(r"\s*·\s*最后更新\s*\d{4}-\d{2}")
 
 
 def strip_freshness_marker(desc):
     if not desc:
         return desc
     return FRESHNESS_MARKER_RE.sub("", desc).strip()
+
+
+def _format_update_ym(last_update):
+    """Render an ISO GitHub timestamp as YYYY-MM for the freshness badge."""
+    if not last_update:
+        return ""
+    try:
+        return parse_github_time(last_update).strftime("%Y-%m")
+    except Exception:
+        return ""
+
+
+def strip_freshness_decorations(desc):
+    """Strip both the archived/stale marker and the last-update badge so a row
+    can be re-decorated from fresh flags. Date is stripped first (it sits behind
+    the marker), then the marker; order-independent so re-running stays
+    idempotent."""
+    if not desc:
+        return desc
+    desc = FRESHNESS_DATE_RE.sub("", desc)
+    desc = FRESHNESS_MARKER_RE.sub("", desc)
+    return desc.strip()
 
 
 def append_freshness_marker(desc, flags):
@@ -560,6 +584,24 @@ def append_freshness_marker(desc, flags):
         return desc + " [已归档]"
     if flags.get("stale"):
         return desc + " [长期未更新]"
+    return desc
+
+
+def decorate_row_freshness(desc, flags):
+    """Decorate a plugin row from fresh flags: an archived/stale marker (when
+    applicable) followed by a '最后更新 YYYY-MM' badge (when repo metadata was
+    fetched successfully). Idempotent and self-correcting."""
+    desc = strip_freshness_decorations(desc)
+    if not desc:
+        return desc
+    if flags.get("archived"):
+        desc += " [已归档]"
+    elif flags.get("stale"):
+        desc += " [长期未更新]"
+    if flags.get("ok") and flags.get("last_update"):
+        ym = _format_update_ym(flags["last_update"])
+        if ym:
+            desc += f" · 最后更新 {ym}"
     return desc
 
 
@@ -992,7 +1034,7 @@ def freshness_readme():
                 repo = m.group(2).rstrip("/")
                 name = m.group(1).strip()
                 author = cells[1].strip()
-                desc = append_freshness_marker(cells[2].strip(), flags_by_repo[repo]).replace("|", "\\|")
+                desc = decorate_row_freshness(cells[2].strip(), flags_by_repo[repo]).replace("|", "\\|")
                 line = f'| [{name}](https://github.com/{repo}) | {author} | {desc} |\n'
         out.append(line)
     with open(README_PATH, "w", encoding="utf-8") as f:
