@@ -88,6 +88,12 @@ jobs:
           HTTP_TIMEOUT: 30
         run: python .github/scripts/check_plugins.py --freshness-readme
 
+      - name: Validate README after freshness refresh
+        # Freshness markers (and the new per-row '最后更新' badge) rewrite the
+        # README; validate the table structure before committing so a bad render
+        # can never be pushed to main.
+        run: python .github/scripts/check_plugins.py --validate
+
       - name: Commit README + freshness cache
         # Capture marker updates (and the rolling freshness cache) in the same
         # branch. Skips the commit when nothing actually changed, so routine
