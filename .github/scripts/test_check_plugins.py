@@ -593,6 +593,32 @@ class TestCleanup(unittest.TestCase):
         self.assertEqual(by_name["China BRAT"], "效率与系统")
         self.assertIn("暂无未分类条目", out)
 
+    def test_glued_heading_rows_keep_section(self):
+        # Regression: a '### ' heading glued to the previous line (no trailing
+        # newline) must still be recognized. Otherwise its rows get an empty
+        # section and reorganize_sections drops/garbles them (see 2026-09-04 fix).
+        text = (
+            "## 原生中文插件\n\n"
+            "%% note %%\n\n"
+            "### 界面与视图增强\n\n"
+            "| 插件 | 作者 | 核心功能 |\n| --- | --- | --- |\n"
+            "| [SmoothCursor](https://github.com/busyoGG/SmoothCursor) | `busyoGG` | 顺滑光标。 |\n"
+            "| [Quiet Outline](https://github.com/guopenghui/obsidian-quiet-outline) | `guopenghui` | 大纲视图。 |### 编辑与格式化\n\n"
+            "| 插件 | 作者 | 核心功能 |\n| --- | --- | --- |\n"
+            "| [cm-chs-patch](https://github.com/aidenlx/cm-chs-patch) | `aidenlx` | 中文分词。 |\n\n"
+            "## 精选中文主题\n\n|主题|作者|\n|---|---|\n"
+        )
+        rows = cp.parse_plugin_rows_full(text)
+        by_name = {r["name"]: r["section"] for r in rows}
+        self.assertEqual(by_name["SmoothCursor"], "界面与视图增强")
+        self.assertEqual(by_name["Quiet Outline"], "界面与视图增强")
+        self.assertEqual(by_name["cm-chs-patch"], "编辑与格式化")
+        # reorganize must not drop or glue these rows
+        out = cp.reorganize_sections(text)
+        self.assertNotIn("|### ", out)
+        self.assertIn("[SmoothCursor]", out)
+        self.assertIn("[cm-chs-patch]", out)
+
     def test_classify_section_new_sections(self):
         # Future scans (no curated override) still route via keywords.
         self.assertEqual(cp.classify_section("Foo TTS", "用系统语音朗读笔记"), "娱乐与多媒体")
