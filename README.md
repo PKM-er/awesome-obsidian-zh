@@ -9,6 +9,8 @@
 - [新手入门](#新手入门)
 - [官方中文社区与资源](#官方中文社区与资源)
 - [原生中文插件，欢迎支持](#原生中文插件欢迎支持)
+  - [界面与视图增强](#界面与视图增强)
+  - [编辑与格式化](#编辑与格式化)
   - [链接与知识管理](#链接与知识管理)
   - [任务与日程管理](#任务与日程管理)
   - [多媒体与附件](#多媒体与附件)
@@ -24,11 +26,7 @@
   - [欢迎参与汉化的热门插件](#欢迎参与汉化的热门插件)
 - [贡献指南](#贡献指南)
 - [Star History](#star-history)
-
 <!-- TOC:END -->
-
-
-
 
 ## 简介
 
@@ -64,6 +62,7 @@
 | [Floating TOC](https://github.com/cumany/obsidian-floating-toc-plugin) | `cumany` | 在笔记侧边生成一个浮动的目录大纲。 |
 | [Grid Explorer](https://github.com/Devon22/obsidian-gridexplorer) | `Devon22` | 以网格视图浏览笔记文件。 |
 | [Quiet Outline](https://github.com/guopenghui/obsidian-quiet-outline) | `guopenghui` | 提供一个功能更强大、更美观的大纲视图。 |
+
 ### 编辑与格式化
 
 | 插件 | 作者 | 核心功能 |
@@ -76,6 +75,7 @@
 | [Mind Elixir Mindmap](https://github.com/SSShooter/obsidian-mindmap) | `SSShooter` | 为 Obsidian 提供 Markdown 转思维导图 + 内嵌思维导图功能。 |
 | [The Mind Map](https://github.com/wintermosquito/the-mind-map) | `WinterMosquito` | 在 Obsidian 中创建和编辑专业思维导图，六种布局、节点搜索、拖拽排序、右键菜单、Obsidian 内部链接（[[笔记名]]、文件拖拽、反向链接）、附件拖入导入（遵循附件存放位置设置）、图片统一尺寸、自动整理、性能模式、JSON/PNG/Markdown 导入导出。基于 simple-mind-map 引擎。 |
 | [Easy Typing](https://github.com/Yaozhuwa/easy-typing-obsidian) | `Yaozhuwa` | 增强中文输入体验，如智能标点转换、格式清理等。 |
+
 ### 链接与知识管理
 
 | 插件 | 作者 | 核心功能 |
