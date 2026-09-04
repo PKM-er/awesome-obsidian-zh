@@ -184,7 +184,12 @@ def gh_get(url):
         r.raise_for_status()
         return r.json()
     except requests.exceptions.RequestException as e:
-        print(f"WARN: request failed for {url}: {e}", file=sys.stderr)
+        # Surface the HTTP status (401 => bad token, 403 => rate limit,
+        # None => network) so a broken GH_PAT shows up in logs instead of a
+        # silent `{}` freshness cache.
+        status = getattr(getattr(e, "response", None), "status_code", None)
+        auth = "GITHUB_TOKEN set" if GITHUB_TOKEN else "GITHUB_TOKEN absent (unauthenticated)"
+        print(f"WARN: request failed for {url}: {e} [HTTP {status}, {auth}]", file=sys.stderr)
         return None
 
 
@@ -966,6 +971,14 @@ def freshness_readme():
             except Exception as e:
                 print(f"WARN: freshness check failed for {repo}: {e}", file=sys.stderr)
                 flags_by_repo[repo] = {"archived": False, "stale": False, "last_update": "", "ok": False}
+    ok_count = sum(1 for f in flags_by_repo.values() if f.get("ok"))
+    if flags_by_repo and ok_count == 0:
+        print(
+            "WARN: freshness check completed with 0 successful GitHub API calls. "
+            "Repo metadata could not be fetched (check the GH_PAT secret and rate limits); "
+            "no markers applied and the freshness cache is left unchanged.",
+            file=sys.stderr,
+        )
     start, end = plugin_section_bounds(text)
     head = text[:start]
     body = text[start:end]
