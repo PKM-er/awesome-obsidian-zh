@@ -650,6 +650,44 @@ class TestFreshness(unittest.TestCase):
         self.assertFalse(cp.is_broken_desc("中文描述 [长期未更新]"))
         self.assertFalse(cp.is_broken_desc(cp.strip_freshness_marker("中文描述 [已归档]")))
 
+    def test_decorate_row_freshness_badge(self):
+        # archived repo: marker then date badge
+        self.assertEqual(
+            cp.decorate_row_freshness(
+                "中文描述",
+                {"archived": True, "stale": False, "ok": True, "last_update": "2023-01-15T00:00:00Z"},
+            ),
+            "中文描述 [已归档] · 最后更新 2023-01",
+        )
+        # active repo: date badge only
+        self.assertEqual(
+            cp.decorate_row_freshness(
+                "中文描述",
+                {"archived": False, "stale": False, "ok": True, "last_update": "2024-06-01T00:00:00Z"},
+            ),
+            "中文描述 · 最后更新 2024-06",
+        )
+        # metadata missing / fetch failed: no badge
+        self.assertEqual(
+            cp.decorate_row_freshness(
+                "中文描述",
+                {"archived": False, "stale": False, "ok": False, "last_update": ""},
+            ),
+            "中文描述",
+        )
+        # idempotent: re-decorating a decorated row must not duplicate the badge
+        decorated = cp.decorate_row_freshness(
+            "中文描述",
+            {"archived": False, "stale": False, "ok": True, "last_update": "2024-06-01T00:00:00Z"},
+        )
+        self.assertEqual(
+            cp.decorate_row_freshness(
+                decorated,
+                {"archived": False, "stale": False, "ok": True, "last_update": "2024-06-01T00:00:00Z"},
+            ),
+            "中文描述 · 最后更新 2024-06",
+        )
+
     def test_get_repo_freshness_archived(self):
         with unittest.mock.patch.object(cp, "repo_meta", return_value={"archived": True, "pushed_at": "2020-01-01T00:00:00Z"}), \
              unittest.mock.patch.object(cp, "repo_releases", return_value=("2020-01-01T00:00:00Z", 0)):
