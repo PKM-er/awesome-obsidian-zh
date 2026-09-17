@@ -140,6 +140,7 @@
 | [Enhancing Export](https://github.com/mokeyish/obsidian-enhancing-export) | `mokeyish` | 通过 Pandoc 增强导出功能，支持多种格式如 Docx, LaTeX。 |
 | [Bi Ji Tong Bu](https://github.com/notesynchelper/obsidian-notehelper-v2) | `notesynchelper` | 同步微信「笔记同步助手」收集的公众号、小红书、得到等内容到 Obsidian |
 | [Nutstore Sync](https://github.com/nutstore/obsidian-nutstore-sync) | `nutstore` | 通过 WebDAV 协议与坚果云进行双向同步，支持增量同步和智能冲突解决。 |
+| [WebClean Clipper](https://github.com/share53880/webclean-clipper) | `share53880` | 专为知识库打造的网页提纯与剪藏神器，自动去除防盗链与广告噪点，高保真生成标准 Markdown 存入 Obsidian |
 | [LiveSync](https://github.com/vrtmrz/obsidian-livesync) | `vrtmrz` | 利用自托管的 CouchDB 或类似服务实现多设备实时同步。 |
 | [Douban](https://github.com/Wanxp/obsidian-douban) | `Wanxp` | 从豆瓣导入你的书影音数据。 |
 | [Messager](https://github.com/xiaotianhu/obsidian-messager) | `xiaotianhu` | 通过微信、HTTP API 或 Email 向 Obsidian 发送消息。 |
