@@ -179,6 +179,7 @@
 | --- | --- | --- |
 | [Hans TW TTS](https://github.com/hansai-art/obsidian-tw-tts) | `hansai-art` | 用系统内置繁中语音朗读笔记，逐句反白跟读，界面全为繁体中文。 |
 | [obsidian-xiangqi](https://github.com/west-shell/obsidian-xiangqi) | `west-shell` | 中国象棋变体树，用于在 Obsidian 中可视化棋局分支。 |
+| [Library](https://github.com/Kigrok/obsidian-library-plugin) | `Kigrok` | 把电影、剧集、书籍、动漫、游戏和音乐整理成封面卡片墙：应用内搜索自动填充元数据，按集和章节记录进度与评分，界面和说明文档均有中文。 |
 
 ### 其他工具
 
