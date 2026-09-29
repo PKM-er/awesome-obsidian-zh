@@ -165,6 +165,7 @@
 | --- | --- | --- |
 | [Chem](https://github.com/Acylation/obsidian-chem) | `Acylation` | 将化学式字符串渲染为二维结构式，提升化学笔记体验。 |
 | [AindentPaper](https://github.com/louvlwu/obsidian-aindentpaper) | `louvlwu` | 针对文本段落首行缩进的插件，支持启用段落首行缩进（含 <br> 自动拆分）和段落拆分器（独立开关），并提供纸质纹理背景效果。 |
+| [LaTeX Autofill](https://github.com/yikhan519/latex-autofill) | `yikhan519` | 在 $…$ 内用中文或英文关键词（积分、矩阵、偏导数 / integral、matrix）补全 LaTeX 模板，Tab 跳转占位符；内置 Σ 公式搜索窗口，完全离线。 |
 
 ### 思维导图与阅读
 
