@@ -145,6 +145,7 @@
 | [Douban](https://github.com/Wanxp/obsidian-douban) | `Wanxp` | 从豆瓣导入你的书影音数据。 |
 | [Messager](https://github.com/xiaotianhu/obsidian-messager) | `xiaotianhu` | 通过微信、HTTP API 或 Email 向 Obsidian 发送消息。 |
 | [WeRead Plugin](https://github.com/zhaohongxuan/obsidian-weread-plugin) | `zhaohongxuan` | 同步微信读书的书籍、标注和想法。 |
+| [墨匠 Feishu Toolkit](https://dsr.ink/) | `dsr.ink` | 把任意网页、飞书文档与知识库导出为 Markdown，图片和附件按正文顺序批量下载到本地，产出的 .md 与图片可直接放进 Obsidian 库；导出过程全部在本地完成，核心功能免费。 |
 
 ### 效率与系统
 
