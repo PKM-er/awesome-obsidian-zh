@@ -1,0 +1,32 @@
+name: Recheck README
+
+on:
+  schedule:
+    # Weekly, Monday 03:23 UTC — read-only drift check on the live README.
+    - cron: "23 3 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  recheck:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Recheck live README
+        # Exits non-zero on validation issues or cleanup drift, so a red run
+        # here means the README needs a human look.
+        run: python .github/scripts/recheck_readme.py

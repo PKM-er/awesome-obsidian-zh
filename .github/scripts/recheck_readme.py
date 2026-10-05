@@ -33,6 +33,7 @@ def fetch_readme():
 def main():
     text = fetch_readme()
     print(f"Fetched live README ({len(text)} chars) from {REPO}@main\n")
+    problems = []
 
     # 1) validate (read-only)
     print("=== validate_readme ===")
@@ -41,6 +42,7 @@ def main():
         for i in issues:
             print(" - " + i)
         print(f"  -> {len(issues)} issue(s) found.")
+        problems.append(f"{len(issues)} validation issue(s)")
     else:
         print(" OK: no duplicate plugin repos, no broken descriptions.")
 
@@ -72,8 +74,17 @@ def main():
         print(f" cleanup would change {len(changed)} line(s). First 40 diff lines:")
         for line in diff[:40]:
             print("   " + line)
+        problems.append(f"cleanup drift: {len(changed)} line(s) would change")
 
     print("\n(recheck is read-only: nothing was modified on the repo or pushed.)")
+
+    # A scheduled run must be able to fail loudly: exit non-zero when the live
+    # README has validation issues or cleanup drift, so the red run on the
+    # Actions tab is the alarm instead of a log nobody reads.
+    if problems:
+        print("recheck FAILED: " + "; ".join(problems))
+        sys.exit(1)
+    print("recheck OK.")
 
 
 if __name__ == "__main__":
