@@ -12,11 +12,13 @@ concurrency:
 jobs:
   scan:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     env:
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+    # Direct pushes to main are the only write this pipeline performs; PR
+    # creation was removed, so the token needs no other scope.
     permissions:
       contents: write
-      pull-requests: write
 
     steps:
       - uses: actions/checkout@v4
@@ -25,9 +27,11 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements.txt
 
       - name: Install dependencies
-        run: pip install requests zhconv
+        run: pip install -r requirements.txt
 
       - name: Scan new plugins
         id: scan
