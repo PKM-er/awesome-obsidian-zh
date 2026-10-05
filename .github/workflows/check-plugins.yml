@@ -17,10 +17,12 @@ jobs:
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     # Direct pushes to main are the only write this pipeline performs; PR
     # creation was removed, so the token needs no other scope. actions:write
-    # lets the trailing prune step retire superseded workflow runs.
+    # lets the trailing prune step retire superseded workflow runs;
+    # issues:write lets the trailing steps file/auto-close failure tickets.
     permissions:
       contents: write
       actions: write
+      issues: write
 
     steps:
       - uses: actions/checkout@v4
@@ -123,6 +125,18 @@ jobs:
             git push origin HEAD:${GITHUB_REF_NAME}
           fi
 
+      - name: Close failure ticket on success
+        # The prune step deletes failed runs at the next successful scan, so a
+        # tracking issue is the only durable record of a failure. Close it here.
+        if: success()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          existing=$(gh issue list --repo "${{ github.repository }}" --state open --search "插件扫描失败 in:title" --json number --jq '.[0].number // empty')
+          if [ -n "$existing" ]; then
+            gh issue close "$existing" --repo "${{ github.repository }}" --comment "最近一轮扫描成功，本工单自动关闭。"
+          fi
+
       - name: Prune old workflow runs
         # Sweeps every completed run except this one, so the Actions page
         # stays at a single entry between scans. Deletion is permanent and
@@ -136,3 +150,21 @@ jobs:
           | while read -r id; do
               gh api -X DELETE "repos/${{ github.repository }}/actions/runs/$id" > /dev/null 2>&1 || true
             done
+
+      - name: Report failure as issue
+        # Placed last and gated on failure(), so any failed step above files a
+        # durable ticket that survives the prune step's run cleanup.
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          existing=$(gh issue list --repo "${{ github.repository }}" --state open --search "插件扫描失败 in:title" --json number --jq '.[0].number // empty')
+          BODY="扫描在 $(date -u '+%Y-%m-%d %H:%M UTC') 失败。
+          运行日志: ${RUN_URL}
+          下一次定时扫描最迟 2 天后触发；成功后本工单自动关闭。"
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --repo "${{ github.repository }}" --body "$BODY"
+          else
+            gh issue create --repo "${{ github.repository }}" --title "🔴 插件扫描失败（自动工单）" --body "$BODY"
+          fi

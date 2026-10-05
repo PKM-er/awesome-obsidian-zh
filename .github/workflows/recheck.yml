@@ -8,6 +8,7 @@ on:
 
 permissions:
   contents: read
+  issues: write
 
 jobs:
   recheck:
@@ -30,3 +31,31 @@ jobs:
         # Exits non-zero on validation issues or cleanup drift, so a red run
         # here means the README needs a human look.
         run: python .github/scripts/recheck_readme.py
+
+      - name: Close failure ticket on success
+        if: success()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          existing=$(gh issue list --repo "${{ github.repository }}" --state open --search "README recheck 失败 in:title" --json number --jq '.[0].number // empty')
+          if [ -n "$existing" ]; then
+            gh issue close "$existing" --repo "${{ github.repository }}" --comment "最近一轮 recheck 通过，本工单自动关闭。"
+          fi
+
+      - name: Report failure as issue
+        # A red recheck run gets swept by the scan workflow's prune within two
+        # days; the issue is the durable alarm.
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          existing=$(gh issue list --repo "${{ github.repository }}" --state open --search "README recheck 失败 in:title" --json number --jq '.[0].number // empty')
+          BODY="README recheck 在 $(date -u '+%Y-%m-%d %H:%M UTC') 发现校验问题或漂移，退出码非零。
+          运行日志（含 diff）: ${RUN_URL}
+          下一次 recheck 下周一；通过后本工单自动关闭。"
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --repo "${{ github.repository }}" --body "$BODY"
+          else
+            gh issue create --repo "${{ github.repository }}" --title "🟠 README recheck 失败（自动工单）" --body "$BODY"
+          fi
