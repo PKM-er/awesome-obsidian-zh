@@ -16,9 +16,11 @@ jobs:
     env:
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     # Direct pushes to main are the only write this pipeline performs; PR
-    # creation was removed, so the token needs no other scope.
+    # creation was removed, so the token needs no other scope. actions:write
+    # lets the trailing prune step retire superseded workflow runs.
     permissions:
       contents: write
+      actions: write
 
     steps:
       - uses: actions/checkout@v4
@@ -120,3 +122,17 @@ jobs:
             git commit -m "chore: refresh archived/dormant plugin markers [skip ci]"
             git push origin HEAD:${GITHUB_REF_NAME}
           fi
+
+      - name: Prune old workflow runs
+        # Sweeps every completed run except this one, so the Actions page
+        # stays at a single entry between scans. Deletion is permanent and
+        # idempotent; the index can lag behind the 204s.
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          KEEP=${{ github.run_id }}
+          gh api "repos/${{ github.repository }}/actions/runs?per_page=100" --paginate \
+            --jq '.workflow_runs[] | select(.id != '"$KEEP"') | select(.status == "completed") | .id' \
+          | while read -r id; do
+              gh api -X DELETE "repos/${{ github.repository }}/actions/runs/$id" > /dev/null 2>&1 || true
+            done
