@@ -2,13 +2,14 @@
 """Scan the official Obsidian plugin list for Chinese-relevant plugins.
 
 Modes:
-  (default)       fetch official list + cache diff, score candidates, detect
-                  stale rows, write GitHub Actions outputs
-  --apply-readme  edit README.md only from ADD_ROWS/REMOVE_ROWS env vars,
+  (default)       fetch official list + cache diff, score candidates, report
+                  dormant rows, write GitHub Actions outputs
+  --apply-readme  edit README.md only from the ADD_ROWS env var,
                   write .github/pr-body.md and the PR title (no git, no network).
                   Also de-duplicates, re-files catch-all entries into their
                   keyword-matched section, scrubs broken descriptions and
-                  regenerates the table of contents.
+                  regenerates the table of contents. Dormant plugins are never
+                  removed here; see --freshness-readme.
   --cleanup-readme  one-off pass over README.md: dedupe, re-file 其他工具
                     entries, scrub broken descriptions, regenerate TOC.
   --freshness-readme  one-off pass: append [已归档]/[长期未更新] markers and a
@@ -18,13 +19,17 @@ Modes:
                     idempotent and self-correcting.
   --validate      check README.md for duplicate rows and broken/placeholder
                   descriptions; exits non-zero on any issue (CI gate).
-  --skip-stale    skip stale checks (dry runs / rate-limit constrained runs)
+  --skip-stale    skip the dormancy report (dry runs / rate-limit constrained
+                  runs). Dormant rows are only reported either way, so this
+                  never affects the README.
 
 Improvements over the previous version:
   * quality scoring (stars, release downloads, release recency) in addition
     to text signals, split into "auto" (high confidence) and "review" tiers
   * stale detection uses the latest release date, falling back to pushed_at,
     instead of pushed_at alone
+  * dormant plugins are marked `[长期未更新]`, never deleted: a year without a
+    commit is weak evidence that a plugin is unwanted
   * cache-only runs no longer create PRs (workflow commits the cache directly)
   * a denylist (denylist.json) prevents re-adding rejected plugins
   * no subprocess git/gh calls; PR creation is delegated to the workflow
@@ -370,21 +375,6 @@ def sort_plugin_tables_by_author(text):
         i += 1
 
     return before + "".join(sorted_lines) + after
-
-
-def remove_plugin_rows(text, stale_rows):
-    repos = {row["repo"].lower() for row in stale_rows}
-    if not repos:
-        return text
-
-    lines = text.splitlines(keepends=True)
-    kept = []
-    for line in lines:
-        m = PLUGIN_ROW_RE.match(line.rstrip("\r\n"))
-        if m and m.group(2).rstrip("/").lower() in repos:
-            continue
-        kept.append(line)
-    return "".join(kept)
 
 
 def append_rows_to_other_tools(text, rows):
@@ -940,15 +930,23 @@ def stale_plugin_row(row, cutoff):
 
 
 def find_stale_plugins(readme_text):
+    """Report dormant rows for visibility only.
+
+    The result is passed through as scan output and printed in the run log; it
+    is never applied to the README. Dormancy is surfaced by the `[长期未更新]`
+    marker that --freshness-readme writes in place, which self-corrects when a
+    dormant repository starts shipping again.
+    """
     cutoff = utcnow() - timedelta(days=STALE_DAYS)
     rows = parse_plugin_rows(readme_text)
     if not rows:
         return []
-    stale = []
     workers = max(1, min(STALE_CHECK_WORKERS, len(rows)))
+    stale = []
     with ThreadPoolExecutor(max_workers=workers) as executor:
-        futures = [executor.submit(stale_plugin_row, row, cutoff) for row in rows]
+        futures = {executor.submit(stale_plugin_row, row, cutoff): row for row in rows}
         for future in as_completed(futures):
+            row = futures[future]
             try:
                 stale_row = future.result()
             except Exception as e:
@@ -956,8 +954,7 @@ def find_stale_plugins(readme_text):
                 continue
             if stale_row:
                 stale.append(stale_row)
-    return sorted(stale, key=lambda r: (r["section"].casefold(), r["author"].casefold(), r["name"].casefold()))
-
+    return stale
 
 def load_freshness_cache():
     try:
@@ -1096,13 +1093,16 @@ def load_denylist():
 # Outputs
 # --------------------------------------------------------------------------
 
-def write_scan_output(add_rows, remove_rows, cache_changed, first_run, has_review):
-    content_changed = bool(add_rows or remove_rows)
+def write_scan_output(add_rows, dormant_rows, cache_changed, first_run, has_review):
+    # Dormant plugins no longer count as a content change: they are marked in
+    # place by --freshness-readme and stay in the README, so there is nothing
+    # for --apply-readme to commit.
+    content_changed = bool(add_rows)
     auto_merge_ready = content_changed and not first_run and not has_review
     if os.environ.get("GITHUB_OUTPUT"):
         with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as f:
             f.write(f"add_rows={json.dumps(add_rows, ensure_ascii=False)}\n")
-            f.write(f"remove_rows={json.dumps(remove_rows, ensure_ascii=False)}\n")
+            f.write(f"stale_rows={json.dumps(dormant_rows, ensure_ascii=False)}\n")
             f.write(f"content_changed={str(content_changed).lower()}\n")
             f.write(f"cache_changed={str(cache_changed).lower()}\n")
             f.write(f"first_run={str(first_run).lower()}\n")
@@ -1111,13 +1111,13 @@ def write_scan_output(add_rows, remove_rows, cache_changed, first_run, has_revie
         return
     print(json.dumps({
         "add": add_rows,
-        "remove": remove_rows,
+        "stale": dormant_rows,
+        "content_changed": content_changed,
         "cache_changed": cache_changed,
         "first_run": first_run,
         "has_review": has_review,
         "auto_merge_ready": auto_merge_ready,
     }, ensure_ascii=False, indent=2))
-
 
 # --------------------------------------------------------------------------
 # Scan flow
@@ -1210,12 +1210,12 @@ def run_scan(skip_stale=False):
     } for c in candidates]
     has_review = any(c["tier"] == "review" for c in candidates)
 
-    stale = find_stale_plugins(readme_text) if not skip_stale else []
-    stale_rows = [{
+    dormant = find_stale_plugins(readme_text) if not skip_stale else []
+    dormant_rows = [{
         "name": s["name"], "repo": s["repo"], "full_name": s["full_name"],
         "author": s["author"], "section": s["section"],
         "last_update": s["last_update"], "html_url": s["html_url"],
-    } for s in stale]
+    } for s in dormant]
 
     cache_changed = bool(new_ids)
     if cache_changed:
@@ -1223,25 +1223,22 @@ def run_scan(skip_stale=False):
 
     print(
         f"known={len(all_ids)} scanned={scanned} auto={sum(1 for c in candidates if c['tier'] == 'auto')} "
-        f"review={sum(1 for c in candidates if c['tier'] == 'review')} stale={len(stale)}",
+        f"review={sum(1 for c in candidates if c['tier'] == 'review')} dormant={len(dormant)} (reported, not removed)",
         file=sys.stderr,
     )
-    write_scan_output(add_rows, stale_rows, cache_changed, first_run, has_review)
+    write_scan_output(add_rows, dormant_rows, cache_changed, first_run, has_review)
 
 
 # --------------------------------------------------------------------------
 # Apply flow
 # --------------------------------------------------------------------------
 
-def update_title(add_count, remove_count, date):
-    if add_count and remove_count:
-        return f"Update Chinese-relevant plugins ({date})"
+def update_title(add_count, date):
     if add_count:
         return f"Add Chinese-relevant plugins ({date})"
-    return f"Remove stale plugins ({date})"
+    return f"No new Chinese-relevant plugins ({date})"
 
-
-def build_pr_body(rows, stale_rows):
+def build_pr_body(rows):
     title_rows = [r for r in rows if r["tier"] == "auto"]
     review_rows = [r for r in rows if r["tier"] == "review"]
     parts = []
@@ -1250,27 +1247,20 @@ def build_pr_body(rows, stale_rows):
         parts.append("| Plugin | Author | Description | Score |\n| --- | --- | --- | --- |\n")
         for r in sorted(title_rows, key=lambda r: r["author"].casefold()):
             desc = r["desc"].replace("|", "\\|")
-            parts.append(f'| [{r["name"]}](https://github.com/{r["repo"]}) | `{r["author"]}` | {desc} | {r["score"]} |\n')
-        parts.append("\n")
+        parts.append(f'| [{r["name"]}](https://github.com/{r["repo"]}) | `{r["author"]}` | {desc} | {r["score"]} |\n')
+        parts.append("\\n")
     if review_rows:
         parts.append("### Review candidates (medium confidence)\n")
-        parts.append("These match the Chinese-relevance criteria but lack strong quality signals; please verify before merging.\n\n")
+        parts.append("These match the Chinese-relevance criteria but lack strong quality signals; please verify before merging.\\n\\n")
         parts.append("| Plugin | Author | Description | Score |\n| --- | --- | --- | --- |\n")
         for r in sorted(review_rows, key=lambda r: r["author"].casefold()):
             desc = r["desc"].replace("|", "\\|")
-            parts.append(f'| [{r["name"]}](https://github.com/{r["repo"]}) | `{r["author"]}` | {desc} | {r["score"]} |\n')
-        parts.append("\n")
-    if stale_rows:
-        parts.append(f"### Plugins removed after {STALE_DAYS} days without repository or release activity\n\n")
-        parts.append("| Plugin | Section | Last activity | Repository |\n| --- | --- | --- | --- |\n")
-        for r in sorted(stale_rows, key=lambda r: (r["section"].casefold(), r["author"].casefold(), r["name"].casefold())):
-            parts.append(f'| {r["name"]} | {r["section"]} | {r["last_update"]} | [{r["full_name"]}]({r["html_url"]}) |\n')
-        parts.append("\n")
+        parts.append(f'| [{r["name"]}](https://github.com/{r["repo"]}) | `{r["author"]}` | {desc} | {r["score"]} |\n')
+        parts.append("\\n")
     if review_rows:
         parts.append("_This PR has review-tier entries, so auto-merge was skipped._\n")
-    parts.append("\n_This PR was generated by the weekly plugin scan._")
+    parts.append("\\n_This PR was generated by the weekly plugin scan._")
     return "".join(parts)
-
 
 def emit_output(name, value):
     if os.environ.get("GITHUB_OUTPUT"):
@@ -1281,12 +1271,15 @@ def emit_output(name, value):
 
 
 def do_apply_readme():
+    # Dormant plugins are marked `[长期未更新]` in place by --freshness-readme;
+    # they are never deleted here. A year without a commit is weak evidence that
+    # a plugin is unwanted -- plenty of finished utilities stop shipping while
+    # remaining the best tool for their job. REMOVE_ROWS is deliberately ignored
+    # so a stale emit from an older scan cannot delete anything either.
     rows = json.loads(os.environ.get("ADD_ROWS", "[]"))
-    stale_rows = json.loads(os.environ.get("REMOVE_ROWS", "[]"))
     with open(README_PATH, encoding="utf-8") as f:
         text = f.read()
 
-    text = remove_plugin_rows(text, stale_rows)
     text = append_rows_to_other_tools(text, rows)
     text = dedupe_plugin_rows(text)
     text = reorganize_sections(text)
@@ -1296,13 +1289,12 @@ def do_apply_readme():
     with open(README_PATH, "w", encoding="utf-8") as f:
         f.write(text)
 
-    title = update_title(len(rows), len(stale_rows), utcnow().strftime("%Y%m%d"))
-    body = build_pr_body(rows, stale_rows)
+    title = update_title(len(rows), utcnow().strftime("%Y%m%d"))
+    body = build_pr_body(rows)
     os.makedirs(os.path.dirname(PR_BODY_FILE), exist_ok=True)
     with open(PR_BODY_FILE, "w", encoding="utf-8") as f:
         f.write(body)
     emit_output("pr_title", title)
-
 
 def main():
     args = sys.argv[1:]

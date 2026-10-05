@@ -53,10 +53,11 @@ jobs:
 
       - name: Apply changes to README
         id: apply
+        # Only new rows now. Dormant plugins are marked in place by the
+        # freshness step below and are never removed from the README.
         if: steps.scan.outputs.content_changed == 'true'
         env:
           ADD_ROWS: ${{ steps.scan.outputs.add_rows }}
-          REMOVE_ROWS: ${{ steps.scan.outputs.remove_rows }}
         run: python .github/scripts/check_plugins.py --apply-readme
 
       - name: Validate README before commit

@@ -84,15 +84,14 @@ class TestParsing(unittest.TestCase):
 
 
 class TestRowEditing(unittest.TestCase):
-    def test_remove_plugin_rows(self):
-        stale = [{"repo": "cumany/obsidian-floating-toc-plugin"}]
-        text = cp.remove_plugin_rows(SAMPLE_README, stale)
-        self.assertNotIn("obsidian-floating-toc-plugin", text)
-        self.assertIn("obsidian-quiet-outline", text)
-
-    def test_remove_plugin_rows_empty(self):
-        self.assertEqual(cp.remove_plugin_rows(SAMPLE_README, []), SAMPLE_README)
-
+    def test_dormant_rows_are_never_deleted(self):
+        # Dormancy is reported and marked in place, never removed: a year
+        # without a commit is weak evidence that a plugin is unwanted, so no
+        # code path may drop a row from the README on that basis.
+        self.assertFalse(hasattr(cp, "remove_plugin_rows"),
+                         "remove_plugin_rows is gone: dormancy must not delete rows")
+        with open(cp.__file__, encoding="utf-8") as fh:
+            self.assertNotIn("remove_plugin_rows", fh.read())
     def test_append_rows_to_other_tools(self):
         rows = [{"name": "New Plugin", "repo": "newuser/new-plugin", "author": "newuser", "desc": "描述"}]
         text = cp.append_rows_to_other_tools(SAMPLE_README, rows)
@@ -284,27 +283,24 @@ class TestOutputs(unittest.TestCase):
 
 class TestTitlesAndBody(unittest.TestCase):
     def test_update_title(self):
-        self.assertEqual(cp.update_title(1, 0, "20260801"), "Add Chinese-relevant plugins (20260801)")
-        self.assertEqual(cp.update_title(0, 1, "20260801"), "Remove stale plugins (20260801)")
-        self.assertEqual(cp.update_title(1, 1, "20260801"), "Update Chinese-relevant plugins (20260801)")
-
+        self.assertEqual(cp.update_title(1, "20260801"),
+                         "Add Chinese-relevant plugins (20260801)")
+        self.assertEqual(cp.update_title(0, "20260801"),
+                         "No new Chinese-relevant plugins (20260801)")
     def test_build_pr_body_tiers(self):
         rows = [
             {"name": "A", "repo": "a/a", "author": "a", "desc": "d", "tier": "auto", "score": 120},
             {"name": "B", "repo": "b/b", "author": "b", "desc": "d", "tier": "review", "score": 60},
         ]
-        body = cp.build_pr_body(rows, [])
+        body = cp.build_pr_body(rows)
         self.assertIn("Auto-merge candidates", body)
         self.assertIn("Review candidates", body)
         self.assertIn("auto-merge was skipped", body)
 
-    def test_build_pr_body_stale(self):
-        stale = [{"name": "X", "section": "其他工具", "author": "x", "last_update": "2024-01-01", "full_name": "x/x", "html_url": "https://github.com/x/x"}]
-        body = cp.build_pr_body([], stale)
-        self.assertIn("Plugins removed", body)
-        self.assertIn("x/x", body)
-
-
+    def test_build_pr_body_never_claims_removals(self):
+        body = cp.build_pr_body([])
+        self.assertNotIn("Plugins removed", body)
+        self.assertNotIn("removed", body.lower())
 class TestTimeHelpers(unittest.TestCase):
     def test_parse_github_time(self):
         t = cp.parse_github_time("2026-06-01T00:00:00Z")
@@ -438,14 +434,14 @@ class TestEndToEnd(unittest.TestCase):
         cp.do_apply_readme()
         with open(cp.README_PATH, encoding="utf-8") as f:
             text = f.read()
-        self.assertNotIn("nyable/obsidian-text-finder", text)
+        # The new plugin is added; the dormant one stays exactly where it was.
         self.assertIn("good/plugin", text)
+        self.assertIn("nyable/obsidian-text-finder", text,
+                      "REMOVE_ROWS must not delete a row")
         with open(cp.PR_BODY_FILE, encoding="utf-8") as f:
             body = f.read()
         self.assertIn("Auto-merge candidates", body)
-        self.assertIn("Plugins removed", body)
-
-
+        self.assertNotIn("Plugins removed", body)
 class TestCleanup(unittest.TestCase):
     SAMPLE2 = """# H
 
@@ -796,3 +792,55 @@ class TestFreshness(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestDormancyIsMarkOnly(unittest.TestCase):
+    """Dormant rows stay in the README; the marker is what surfaces them."""
+
+    def test_apply_ignores_remove_rows_env(self):
+        tmp = tempfile.TemporaryDirectory()
+        orig = cp.README_PATH
+        cp.README_PATH = os.path.join(tmp.name, "README.md")
+        try:
+            with open(cp.README_PATH, "w", encoding="utf-8") as f:
+                f.write(SAMPLE_README)
+            os.environ["ADD_ROWS"] = "[]"
+            os.environ["REMOVE_ROWS"] = json.dumps([{
+                "name": "Text Finder", "repo": "nyable/obsidian-text-finder",
+                "full_name": "nyable/obsidian-text-finder", "author": "nyable",
+                "section": "其他工具", "last_update": "2024-01-01",
+                "html_url": "https://github.com/nyable/obsidian-text-finder",
+            }])
+            cp.do_apply_readme()
+            with open(cp.README_PATH, encoding="utf-8") as f:
+                text = f.read()
+            self.assertIn("nyable/obsidian-text-finder", text)
+        finally:
+            cp.README_PATH = orig
+            os.environ.pop("REMOVE_ROWS", None)
+            tmp.cleanup()
+
+    def test_dormant_row_keeps_its_marker(self):
+        marked = "中文描述 [长期未更新]"
+        out = cp.decorate_row_freshness(
+            marked,
+            {"ok": True, "archived": False, "stale": True,
+             "last_update": "2024-01-01T00:00:00Z"},
+        )
+        self.assertIn("长期未更新", out)
+
+    def test_dormancy_alone_does_not_trigger_content_change(self):
+        import io
+        from contextlib import redirect_stdout
+        buf = io.StringIO()
+        old_out = os.environ.pop("GITHUB_OUTPUT", None)
+        try:
+            with redirect_stdout(buf):
+                cp.write_scan_output([], [{"repo": "a/b"}], False, False, False)
+        finally:
+            if old_out:
+                os.environ["GITHUB_OUTPUT"] = old_out
+        data = json.loads(buf.getvalue())
+        self.assertFalse(data["content_changed"])
+        self.assertEqual(len(data["stale"]), 1)
+
