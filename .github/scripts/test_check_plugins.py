@@ -385,7 +385,8 @@ class TestEndToEnd(unittest.TestCase):
             {"id": "rejected", "name": "被拒", "repo": "rejected/repo", "author": "r", "description": "中文"},
             {"id": "existing", "name": "已有", "repo": "guopenghui/obsidian-quiet-outline", "author": "g", "description": "中文"},
         ]
-        with unittest.mock.patch.object(cp, "gh_get", side_effect=fake_gh_get), \
+        with unittest.mock.patch.object(cp, "verify_api_auth"), \
+             unittest.mock.patch.object(cp, "gh_get", side_effect=fake_gh_get), \
              unittest.mock.patch.object(cp, "create_retry_session", return_value=FakeSession(plugins)):
             cp.run_scan(skip_stale=True)
 
@@ -409,7 +410,8 @@ class TestEndToEnd(unittest.TestCase):
         import io
         from contextlib import redirect_stdout
         out = io.StringIO()
-        with unittest.mock.patch.object(cp, "gh_get", side_effect=fake_gh_get), \
+        with unittest.mock.patch.object(cp, "verify_api_auth"), \
+             unittest.mock.patch.object(cp, "gh_get", side_effect=fake_gh_get), \
              unittest.mock.patch.object(cp, "create_retry_session", return_value=FakeSession(plugins)), \
              redirect_stdout(out):
             cp.run_scan(skip_stale=True)
@@ -749,7 +751,8 @@ class TestFreshness(unittest.TestCase):
             "a/arch": {"archived": True, "stale": True, "ok": True},
             "b/live": {"archived": False, "stale": False, "ok": True},
         }
-        with unittest.mock.patch.object(
+        with unittest.mock.patch.object(cp, "verify_api_auth"), \
+             unittest.mock.patch.object(
             cp, "get_repo_freshness",
             side_effect=lambda repo, cutoff=None: flags.get(repo, {"archived": False, "stale": False, "ok": True}),
         ):
@@ -788,6 +791,112 @@ class TestFreshness(unittest.TestCase):
         for r in repos:
             self.assertIn(r, cache)
             self.assertTrue(cache[r]["ok"])
+
+class TestAuthPreflight(unittest.TestCase):
+    """A rejected token must abort the run, not degrade it to a no-op."""
+
+    def _resp(self, status, payload=None):
+        r = unittest.mock.Mock()
+        r.status_code = status
+        r.json.return_value = payload if payload is not None else {}
+        r.raise_for_status = unittest.mock.Mock()
+        return r
+
+    def _session(self, resp):
+        s = unittest.mock.Mock()
+        s.get.return_value = resp
+        return s
+
+    def test_missing_token_exits(self):
+        with unittest.mock.patch.object(cp, "GITHUB_TOKEN", ""),              unittest.mock.patch.object(cp, "API_HEADERS", {}),              self.assertRaises(SystemExit) as cm:
+            cp.verify_api_auth("scan")
+        self.assertEqual(cm.exception.code, 1)
+
+    def test_rejected_token_401_exits(self):
+        with unittest.mock.patch.object(cp, "GITHUB_TOKEN", "ghp_dead"),              unittest.mock.patch.object(cp, "API_HEADERS", {"Authorization": "Bearer ghp_dead"}),              unittest.mock.patch.object(cp, "create_retry_session",
+                                        return_value=self._session(self._resp(401))),              self.assertRaises(SystemExit) as cm:
+            cp.verify_api_auth("scan")
+        self.assertEqual(cm.exception.code, 1)
+
+    def test_rate_limited_403_exits(self):
+        with unittest.mock.patch.object(cp, "GITHUB_TOKEN", "ghp_ok"),              unittest.mock.patch.object(cp, "API_HEADERS", {}),              unittest.mock.patch.object(cp, "create_retry_session",
+                                        return_value=self._session(self._resp(403))),              self.assertRaises(SystemExit) as cm:
+            cp.verify_api_auth()
+        self.assertEqual(cm.exception.code, 1)
+
+    def test_valid_token_passes(self):
+        payload = {"resources": {"core": {"remaining": 4999}}}
+        with unittest.mock.patch.object(cp, "GITHUB_TOKEN", "ghp_ok"),              unittest.mock.patch.object(cp, "API_HEADERS", {}),              unittest.mock.patch.object(cp, "create_retry_session",
+                                        return_value=self._session(self._resp(200, payload))):
+            cp.verify_api_auth("scan")  # must not raise
+
+    def test_network_failure_exits(self):
+        import requests
+        session = unittest.mock.Mock()
+        session.get.side_effect = requests.exceptions.ConnectionError("boom")
+        with unittest.mock.patch.object(cp, "GITHUB_TOKEN", "ghp_ok"),              unittest.mock.patch.object(cp, "API_HEADERS", {}),              unittest.mock.patch.object(cp, "create_retry_session", return_value=session),              self.assertRaises(SystemExit) as cm:
+            cp.verify_api_auth()
+        self.assertEqual(cm.exception.code, 1)
+
+
+class TestFreshnessNeverErasesOnFailure(unittest.TestCase):
+    def test_unavailable_metadata_leaves_row_untouched(self):
+        marked = "中文描述 · 最后更新 2026-06"
+        self.assertEqual(
+            cp.decorate_row_freshness(marked, {"ok": False, "archived": False, "stale": False}),
+            marked,
+        )
+
+    def test_available_metadata_still_replaces_badge(self):
+        out = cp.decorate_row_freshness(
+            "中文描述 · 最后更新 2026-06",
+            {"ok": True, "archived": False, "stale": False, "last_update": "2026-09-01T00:00:00Z"},
+        )
+        self.assertIn("最后更新 2026-09", out)
+        self.assertNotIn("2026-06", out)
+
+    def test_zero_success_freshness_run_exits(self):
+        tmp = tempfile.TemporaryDirectory()
+        self._orig = cp.README_PATH
+        cp.README_PATH = os.path.join(tmp.name, "README.md")
+        try:
+            with open(cp.README_PATH, "w", encoding="utf-8") as f:
+                f.write(SAMPLE_README)
+            dead = {"ok": False, "archived": False, "stale": False, "last_update": ""}
+            with unittest.mock.patch.object(cp, "verify_api_auth"),                  unittest.mock.patch.object(cp, "get_repo_freshness", return_value=dead),                  self.assertRaises(SystemExit) as cm:
+                cp.freshness_readme()
+            self.assertEqual(cm.exception.code, 1)
+            # README must be left exactly as it was.
+            with open(cp.README_PATH, encoding="utf-8") as f:
+                self.assertEqual(f.read(), SAMPLE_README)
+        finally:
+            cp.README_PATH = self._orig
+            tmp.cleanup()
+
+
+class TestValidateRejectsUnmanagedRows(unittest.TestCase):
+    def test_foreign_domain_row_is_flagged(self):
+        text = SAMPLE_README.replace(
+            "| [Text Finder](https://github.com/nyable/obsidian-text-finder) | `nyable` | 查找/替换 |",
+            "| [Text Finder](https://github.com/nyable/obsidian-text-finder) | `nyable` | 查找/替换 |\n"
+                        "| [墨匠](https://dsr.ink/) | `dsr.ink` | 导出 Markdown |",
+        )
+        issues = cp.validate_readme(text)
+        self.assertTrue(any("墨匠" in i for i in issues), issues)
+
+    def test_clean_readme_has_no_unmanaged_rows(self):
+        self.assertEqual(cp.validate_readme(SAMPLE_README), [])
+
+    def test_theme_rows_outside_plugin_section_are_ignored(self):
+        # The theme table is below PLUGIN_SECTION_END; a non-github row there
+        # is not a plugin row and must not fail validation.
+        text = SAMPLE_README + (
+                    "\n|主题|作者|\n|---|---|\n|[某主题](https://example.com/t)|`x`|\n"
+                )
+        self.assertEqual(cp.validate_readme(text), [])
+
+    def test_table_header_and_separator_ignored(self):
+        self.assertEqual(cp.validate_readme(SAMPLE_README), [])
 
 
 if __name__ == "__main__":

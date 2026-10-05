@@ -31,8 +31,12 @@ jobs:
 
       - name: Scan new plugins
         id: scan
+        # Use the workflow's own GITHUB_TOKEN, not the long-lived GH_PAT secret.
+        # GH_PAT expired and every API call 401'd for a month while the run
+        # still reported success; the auto-built token cannot expire. The script
+        # now aborts on a rejected token, so a failure here is loud either way.
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+          GITHUB_TOKEN: ${{ github.token }}
           HTTP_TIMEOUT: 30
           STALE_HTTP_TIMEOUT: 10
         run: python .github/scripts/check_plugins.py
@@ -42,7 +46,7 @@ jobs:
         # default branch so future runs stay incremental and create no PR noise.
         if: steps.scan.outputs.cache_changed == 'true' && steps.scan.outputs.content_changed == 'false'
         env:
-          GH_TOKEN: ${{ secrets.GH_PAT }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -70,7 +74,7 @@ jobs:
         # nothing left for the maintainer to merge or close each week.
         if: steps.scan.outputs.content_changed == 'true'
         env:
-          GH_TOKEN: ${{ secrets.GH_PAT }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -85,7 +89,7 @@ jobs:
         # under the GITHUB_TOKEN rate limit. Idempotent: markers self-correct
         # when a repo becomes active again, and theme rows are left untouched.
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+          GITHUB_TOKEN: ${{ github.token }}
           HTTP_TIMEOUT: 30
         run: python .github/scripts/check_plugins.py --freshness-readme
 
@@ -100,7 +104,7 @@ jobs:
         # branch. Skips the commit when nothing actually changed, so routine
         # scans stay quiet.
         env:
-          GH_TOKEN: ${{ secrets.GH_PAT }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
