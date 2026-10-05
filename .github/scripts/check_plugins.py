@@ -194,6 +194,66 @@ def gh_get(url):
         return None
 
 
+def verify_api_auth(context=""):
+    """Abort the run when the GitHub API token cannot be used.
+
+    An unusable token used to degrade every API call into a silent `None`:
+    the scan reported zero candidates, the freshness pass rewrote the README
+    with no data, and the workflow still finished green for a month. An auth
+    problem is deterministic, not transient, so it must fail the run loudly
+    instead of degrading. Transient per-repo failures still degrade quietly.
+    """
+    where = f" ({context})" if context else ""
+    if not GITHUB_TOKEN:
+        print(
+            f"ERROR: GITHUB_TOKEN is not set{where}. The plugin scan needs an "
+            "authenticated GitHub API token: export GITHUB_TOKEN=$(gh auth token) "
+            "locally, or set the GH_PAT secret for the workflow. Aborting before "
+            "any README change.",
+            file=sys.stderr,
+        )
+        sys.exit(1)
+    session = create_retry_session(retries=0, timeout=min(HTTP_TIMEOUT, 15))
+    try:
+        # /rate_limit is free (does not consume the hourly budget) and returns
+        # 401 for a rejected token, so it is the cheapest auth probe available.
+        r = session.get(
+            "https://api.github.com/rate_limit",
+            headers=API_HEADERS,
+            timeout=min(HTTP_TIMEOUT, 15),
+        )
+        if r.status_code == 401:
+            print(
+                f"ERROR: GitHub rejected GITHUB_TOKEN (HTTP 401){where}. The "
+                "token is expired, revoked or malformed. Regenerate it and "
+                "update the secret that feeds this workflow; until then the scan "
+                "would silently find nothing. Aborting before any README change.",
+                file=sys.stderr,
+            )
+            sys.exit(1)
+        if r.status_code == 403:
+            print(
+                f"ERROR: GitHub refused the API request (HTTP 403){where} — "
+                "rate limit exhausted or the token lacks access. Aborting before "
+                "any README change.",
+                file=sys.stderr,
+            )
+            sys.exit(1)
+        r.raise_for_status()
+        remaining = r.json().get("resources", {}).get("core", {}).get("remaining")
+    except requests.exceptions.RequestException as e:
+        print(
+            f"ERROR: GitHub API unreachable{where}: {e}. Aborting before any "
+            "README change.",
+            file=sys.stderr,
+        )
+        sys.exit(1)
+    print(
+        f"GitHub API auth OK{where}: {remaining} core requests remaining",
+        file=sys.stderr,
+    )
+
+
 # --------------------------------------------------------------------------
 # Small helpers
 # --------------------------------------------------------------------------
@@ -601,6 +661,11 @@ def decorate_row_freshness(desc, flags):
     """Decorate a plugin row from fresh flags: an archived/stale marker (when
     applicable) followed by a '最后更新 YYYY-MM' badge (when repo metadata was
     fetched successfully). Idempotent and self-correcting."""
+    if not flags.get("ok"):
+        # Metadata unavailable (rate limit, network blip). Leave the row exactly
+        # as it is: stripping here used to erase every freshness marker in the
+        # README the first time the API token went bad.
+        return desc
     desc = strip_freshness_decorations(desc)
     if not desc:
         return desc
@@ -744,6 +809,36 @@ def apply_toc(text):
     return before + "\n\n" + block + "\n\n" + after
 
 
+def find_unmanaged_rows(readme_text):
+    """Plugin rows whose first cell is not a github.com plugin link.
+
+    Every pipeline stage (cleanup, sort, freshness, stale removal) keys off
+    PLUGIN_ROW_RE, so such a row is invisible to all of them and is silently
+    deleted by the next cleanup pass. A row can only reach the README through
+    a hand-written PR, so catching it in --validate is the last gate before a
+    merged entry evaporates within 48 hours.
+    """
+    start, end = plugin_section_bounds(readme_text)
+    if start is None:
+        return []
+    section = readme_text[start:end]
+    offenders = []
+    for raw in section.splitlines():
+        for line in re.split(r"(?=### )", raw):
+            cells = split_row(line)
+            if not cells or len(cells) < 3:
+                continue
+            first = cells[0].strip()
+            # Skip the header/separator rows of each table.
+            if not first.startswith("["):
+                continue
+            if PLUGIN_ROW_CELL_RE.match(first):
+                continue
+            name = first.strip("[]").split("](")[0].strip()
+            offenders.append(name or first)
+    return offenders
+
+
 def validate_readme(text):
     issues = []
     rows = parse_plugin_rows_full(text)
@@ -757,6 +852,12 @@ def validate_readme(text):
     for r in rows:
         if is_broken_desc(r["desc"]):
             issues.append(f"broken/placeholder description: {r['name']} ({r['repo']})")
+    unmanaged = find_unmanaged_rows(text)
+    if unmanaged:
+        issues.append(
+            "rows not matching the github.com/user/repo format (the cleanup "
+            "pass would delete these): " + ", ".join(unmanaged)
+        )
     return issues
 
 
@@ -1025,6 +1126,7 @@ def freshness_readme():
     rows = parse_plugin_rows_full(text)
     if not rows:
         return
+    verify_api_auth("freshness")
     cutoff = utcnow() - timedelta(days=STALE_DAYS)
     repos = {r["repo"] for r in rows}
     flags_by_repo = {}
@@ -1041,11 +1143,12 @@ def freshness_readme():
     ok_count = sum(1 for f in flags_by_repo.values() if f.get("ok"))
     if flags_by_repo and ok_count == 0:
         print(
-            "WARN: freshness check completed with 0 successful GitHub API calls. "
-            "Repo metadata could not be fetched (check the GH_PAT secret and rate limits); "
-            "no markers applied and the freshness cache is left unchanged.",
+            f"ERROR: freshness check completed with 0 successful GitHub API "
+            f"calls for {len(flags_by_repo)} repos. Refusing to rewrite the "
+            "README from a total metadata failure — see the auth errors above.",
             file=sys.stderr,
         )
+        sys.exit(1)
     start, end = plugin_section_bounds(text)
     head = text[:start]
     body = text[start:end]
@@ -1124,6 +1227,7 @@ def write_scan_output(add_rows, remove_rows, cache_changed, first_run, has_revie
 # --------------------------------------------------------------------------
 
 def run_scan(skip_stale=False):
+    verify_api_auth("scan")
     session = create_retry_session(timeout=HTTP_TIMEOUT)
     try:
         all_plugins = session.get(COMMUNITY_URL, timeout=HTTP_TIMEOUT).json()
