@@ -332,6 +332,18 @@ def fake_gh_get(url):
         return {"content": base64.b64encode("hello".encode()).decode()}
     if url == "https://api.github.com/users/weak":
         return {"location": ""}
+    if url.startswith("https://api.github.com/repos/broken/plugin/contents/"):
+        if url.endswith("/contents/") or url.endswith("/contents"):
+            return [{"name": "lang", "type": "dir"}, {"name": "README.md", "type": "file"}]
+        if url.endswith("/lang"):
+            return [{"name": "zh.json", "type": "file"}]
+    if url == "https://api.github.com/repos/broken/plugin/contents/README.md":
+        # Chinese, but too short to yield a usable summary line (<5 chars).
+        return {"content": base64.b64encode("你好世界".encode()).decode()}
+    if url == "https://api.github.com/repos/broken/plugin":
+        return {"topics": [], "description": "npm install broken", "stargazers_count": 40, "pushed_at": "2026-07-01T00:00:00Z", "full_name": "broken/plugin", "html_url": "https://github.com/broken/plugin"}
+    if url == "https://api.github.com/users/broken":
+        return {"location": "Beijing, China"}
     return None
 
 
@@ -422,6 +434,30 @@ class TestEndToEnd(unittest.TestCase):
         self.assertEqual(data["add"][0]["tier"], "auto")
         self.assertTrue(data["auto_merge_ready"])
 
+    def test_scan_skips_unshippable_placeholder_candidates(self):
+        # A candidate with no usable description ships as '[描述待补充]',
+        # which validate_readme rejects. It must not set content_changed
+        # (2026-10-07: this combo crashed the scan's commit step); the cache
+        # backfill still records it so the next scan moves on.
+        plugins = [
+            {"id": "known-plugin", "name": "已知", "repo": "known/plugin", "author": "k", "description": "中文描述"},
+            {"id": "broken-desc", "name": "无描述插件", "repo": "broken/plugin", "author": "broken", "description": "npm install broken"},
+        ]
+        cp.save_checked({"known-plugin"})
+        import io
+        from contextlib import redirect_stdout
+        out = io.StringIO()
+        with unittest.mock.patch.object(cp, "verify_api_auth"), \
+             unittest.mock.patch.object(cp, "gh_get", side_effect=fake_gh_get), \
+             unittest.mock.patch.object(cp, "create_retry_session", return_value=FakeSession(plugins)), \
+             redirect_stdout(out):
+            cp.run_scan(skip_stale=True)
+        data = json.loads(out.getvalue())
+        self.assertEqual(data["add"], [])
+        self.assertFalse(data["content_changed"])
+        self.assertTrue(data["cache_changed"])
+        self.assertIn("broken-desc", cp.load_checked())
+
     def test_apply_readme_full_cycle(self):
         os.environ["ADD_ROWS"] = json.dumps([{
             "name": "好插件", "repo": "good/plugin", "author": "good",
@@ -444,6 +480,35 @@ class TestEndToEnd(unittest.TestCase):
             body = f.read()
         self.assertIn("Auto-merge candidates", body)
         self.assertNotIn("Plugins removed", body)
+
+
+class TestAppendRebuildsCatchAllSkeleton(unittest.TestCase):
+    def test_append_rebuilds_skeleton_less_catch_all(self):
+        # reorganize_sections can leave the catch-all as just its heading and
+        # a note; a new row must rebuild the table, not vanish silently
+        # (2026-10-07: this exact state crashed the scan's commit step).
+        readme = (
+            "## 原生中文插件，欢迎支持\n\n"
+            "### 其他工具\n\n"
+            "_（同步类工具等）_\n\n"
+            "## 精选中文主题\n\n"
+            "| 主题 | 推荐者 |\n"
+            "| --- | --- |\n"
+        )
+        rows = [{"name": "Qiaomu UI Learn", "repo": "joeseesun/qiaomu-ui-learn",
+                 "author": "joeseesun", "desc": "qd", "tier": "review", "score": 51}]
+        out = cp.append_rows_to_other_tools(readme, rows)
+        self.assertIn("joeseesun/qiaomu-ui-learn", out)
+        self.assertIn("| 插件 | 作者 | 核心功能 |", out)
+        self.assertIn("| --- | --- | --- |", out)
+        # The rebuilt separator must be a valid anchor for the next append.
+        out2 = cp.append_rows_to_other_tools(out, [
+            {"name": "B", "repo": "b/b", "author": "b", "desc": "d", "tier": "auto", "score": 90}])
+        self.assertIn("github.com/b/b", out2)
+        self.assertLess(out2.index("joeseesun/qiaomu-ui-learn"),
+                        out2.index("github.com/b/b"))
+
+
 class TestCleanup(unittest.TestCase):
     SAMPLE2 = """# H
 

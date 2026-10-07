@@ -475,7 +475,18 @@ def append_rows_to_other_tools(text, rows):
         if is_table_separator(line):
             insert_pos = section_start + sum(len(l) for l in lines[: i + 1])
             return text[:insert_pos] + new_rows + text[insert_pos:]
-    return text
+
+    # No rows and no separator: the emptied catch-all was left as just its
+    # heading and a note (what reorganize_sections leaves behind after the
+    # last row is re-filed). Rebuild the table skeleton instead of silently
+    # dropping the rows -- the scan has already reported content_changed, so
+    # a silent no-op here crashes the workflow's commit step (2026-10-07).
+    skeleton = "| 插件 | 作者 | 核心功能 |\n| --- | --- | --- |\n"
+    header_end = text.find("\n", section_start)
+    if header_end == -1 or header_end + 1 > section_end:
+        return text[:section_end] + "\n" + skeleton + new_rows + text[section_end:]
+    insert_pos = header_end + 1
+    return text[:insert_pos] + "\n" + skeleton + new_rows + text[insert_pos:]
 
 
 # --------------------------------------------------------------------------
@@ -1308,6 +1319,19 @@ def run_scan(skip_stale=False):
         })
 
     candidates.sort(key=lambda c: (-c["cn"] - c["q"], c["repo"].casefold()))
+    # A candidate whose description could not be salvaged ships as
+    # '[描述待补充]', which validate_readme rejects: apply drops the row and
+    # content_changed ends up pointing at a commit with nothing in it, which
+    # crashes the workflow. Skip them here; the cache backfill below still
+    # records their ids so the next scan does not rediscover them.
+    unshippable = [c for c in candidates if "[描述待补充]" in c["desc"]]
+    if unshippable:
+        print(
+            f"skipped {len(unshippable)} candidate(s) with no usable description: "
+            + ", ".join(c["repo"] for c in unshippable),
+            file=sys.stderr,
+        )
+    candidates = [c for c in candidates if "[描述待补充]" not in c["desc"]]
     add_rows = [{
         "name": c["name"], "repo": c["repo"], "author": c["author"],
         "desc": c["desc"], "tier": c["tier"], "score": c["cn"] + c["q"],
