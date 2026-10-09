@@ -516,5 +516,12 @@
     "last_update": "2026-09-17T12:58:05Z",
     "ok": true,
     "checked_at": "2026-10-05T05:10:53.679660+00:00"
+  },
+  "snailhome/obsidian-ijipu": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-10-09T04:39:39Z",
+    "ok": true,
+    "checked_at": "2026-10-09T06:10:16.688009+00:00"
   }
 }
