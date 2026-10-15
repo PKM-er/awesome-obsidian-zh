@@ -148,8 +148,21 @@ CN_CITIES = [
 ]
 CH_TOPICS = {"chinese", "zh", "zh-cn", "chinese-translation", "obsidian-zh"}
 
+# README-based Chinese evidence ("rule F"). Metadata alone is not enough: a
+# plugin can be named, described and authored in English while its README is
+# written entirely in Chinese (issue 36: Class Timetable, Vault Orrery).
+KANA_RE = re.compile(r"[\u3040-\u309f\u30a0-\u30ff]")  # hiragana + katakana
+CN_MARK_RE = re.compile(r"中文|简体|繁體|繁体|汉语|漢語|汉化|漢化")
+CODE_FENCE_RE = re.compile(r"```.*?```", re.S)
+INLINE_CODE_RE = re.compile(r"`[^`\n]*`")
+# A README with this many Han characters is Chinese-authored; below it we
+# require an explicit Chinese marker outside code spans (a language link,
+# '中文' in prose) so a stray CJK filename cannot admit a plugin.
+README_CJK_BODY_MIN = 200
+
 CN_SIGNAL_WEIGHTS = {
     "locale": 30,
+    "readme_zh": 20,
     "topic": 15,
     "docs_cn": 15,
     "desc_cn": 10,
@@ -265,6 +278,26 @@ def verify_api_auth(context=""):
 
 def has_cn(s):
     return bool(re.search(r"[\u4e00-\u9fff]", s))
+
+
+def outside_code(text):
+    """README text with fenced blocks and inline code spans removed, so a
+    Chinese path inside a code sample is not read as documentation language."""
+    if not text:
+        return ""
+    return INLINE_CODE_RE.sub(" ", CODE_FENCE_RE.sub(" ", text))
+
+
+def readme_zh_evidence(text):
+    """True when the README is Chinese-authored. Returns the matching rule
+    name ('cjk-body' / 'zh-word') or None, for use in scan diagnostics."""
+    if not text or KANA_RE.search(text):
+        return None
+    if len(re.findall(r"[\u4e00-\u9fff]", text)) >= README_CJK_BODY_MIN:
+        return "cjk-body"
+    if CN_MARK_RE.search(outside_code(text)):
+        return "zh-word"
+    return None
 
 
 REVIEWED_TAIL_RE = re.compile(
@@ -977,12 +1010,14 @@ def classify_tier(cn, q, first_run):
     return "review"
 
 
-def collect_signals(plugin, meta, author_loc, has_locale, has_docs):
+def collect_signals(plugin, meta, author_loc, has_locale, has_docs, has_readme_zh=False):
     """All Chinese-relevance text signals for a plugin, as a set."""
     name, author, desc = plugin.get("name", ""), plugin.get("author", ""), plugin.get("description", "")
     signals = set()
     if has_locale:
         signals.add("locale")
+    if has_readme_zh:
+        signals.add("readme_zh")
     if has_cn(author):
         signals.add("author_cn")
     if any(t.lower() in CH_TOPICS for t in meta.get("topics", [])):
@@ -1271,21 +1306,30 @@ def run_scan(skip_stale=False):
         if not repo or "/" not in repo or repo.lower() in existing or repo.lower() in denied:
             continue
         name, author, desc = p.get("name", ""), p.get("author", ""), p.get("description", "")
+        readme_text = None
         if not (has_cn(name) or has_cn(author) or has_cn(desc)):
-            continue
+            # Metadata is entirely English, but the README may still be
+            # Chinese-authored (issue 36). Only pay for the README fetch here
+            # when the metadata gate fails; otherwise it is fetched below.
+            readme_text = fetch_readme_text(repo)
+            if not readme_zh_evidence(readme_text):
+                continue
         scanned += 1
         meta = repo_meta(repo)
         if not meta:
             continue
-        readme_text = fetch_readme_text(repo)
+        if readme_text is None:
+            readme_text = fetch_readme_text(repo)
         # location signal must query the owner login, not the display name:
         # Chinese display names 404 on /users/ and silently kill the signal
         owner_id = meta["full_name"].split("/")[0]
+        zh_rule = readme_zh_evidence(readme_text)
         signals = collect_signals(
             p, meta,
             author_location(owner_id),
             has_locale_file(repo),
             bool(readme_text and has_cn(readme_text)),
+            bool(zh_rule),
         )
         cn, q = compute_scores(signals, meta["stars"], 0, None)
         if cn < MIN_CN_SCORE:

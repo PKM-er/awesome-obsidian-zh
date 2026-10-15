@@ -168,6 +168,13 @@ class TestScoring(unittest.TestCase):
         cn, q = cp.compute_scores({"locale", "docs_cn", "topic", "author_cn", "name_cn"})
         self.assertEqual(cn, 30 + 15 + 15 + 10 + 5)
 
+    def test_readme_zh_signal_clears_cn_threshold_with_docs(self):
+        # English metadata + Chinese README is exactly issue 36's shape: the
+        # two README signals alone must clear MIN_CN_SCORE.
+        cn, q = cp.compute_scores({"readme_zh", "docs_cn"})
+        self.assertEqual(cn, 20 + 15)
+        self.assertGreaterEqual(cn, cp.MIN_CN_SCORE)
+
     def test_quality_star_scale(self):
         cn, q = cp.compute_scores({"locale"}, stars=1_000_000)
         self.assertEqual(q, 40)
@@ -200,8 +207,35 @@ class TestScoring(unittest.TestCase):
     def test_collect_signals(self):
         plugin = {"name": "中文插件", "author": "张伟", "description": "描述"}
         meta = {"topics": ["obsidian", "chinese"], "description": "一个很长的中文描述文字"}
-        signals = cp.collect_signals(plugin, meta, "Shanghai, China", True, True)
-        self.assertEqual(signals, {"locale", "topic", "docs_cn", "desc_cn", "author_cn", "location", "name_cn"})
+        signals = cp.collect_signals(plugin, meta, "Shanghai, China", True, True, True)
+        self.assertEqual(signals, {"locale", "readme_zh", "topic", "docs_cn", "desc_cn", "author_cn", "location", "name_cn"})
+
+    def test_collect_signals_omits_readme_zh_by_default(self):
+        signals = cp.collect_signals({}, {"topics": []}, "", False, False)
+        self.assertNotIn("readme_zh", signals)
+
+
+class TestReadmeZhEvidence(unittest.TestCase):
+    def test_cjk_body_rule(self):
+        self.assertEqual(cp.readme_zh_evidence("中" * cp.README_CJK_BODY_MIN), "cjk-body")
+
+    def test_short_cjk_body_is_not_enough(self):
+        self.assertIsNone(cp.readme_zh_evidence("中" * (cp.README_CJK_BODY_MIN - 1)))
+
+    def test_chinese_marker_outside_code(self):
+        self.assertEqual(cp.readme_zh_evidence("[中文](./README_ZH.md)"), "zh-word")
+
+    def test_chinese_marker_inside_code_is_ignored(self):
+        # A Chinese path in a code sample is not documentation language.
+        self.assertIsNone(cp.readme_zh_evidence("```\nNotes/中文笔记.md\n```"))
+        self.assertIsNone(cp.readme_zh_evidence("open `Notes/中文笔记.md` first"))
+
+    def test_kana_excludes_japanese_readme(self):
+        self.assertIsNone(cp.readme_zh_evidence("これは日本語のドキュメントです。中文" * 20))
+
+    def test_empty_readme(self):
+        self.assertIsNone(cp.readme_zh_evidence(""))
+        self.assertIsNone(cp.readme_zh_evidence(None))
 
 
 class TestStale(unittest.TestCase):
@@ -344,6 +378,19 @@ def fake_gh_get(url):
         return {"topics": [], "description": "npm install broken", "stargazers_count": 40, "pushed_at": "2026-07-01T00:00:00Z", "full_name": "broken/plugin", "html_url": "https://github.com/broken/plugin"}
     if url == "https://api.github.com/users/broken":
         return {"location": "Beijing, China"}
+    # English metadata, Chinese README (issue 36's shape). No locale dir, no
+    # Chinese topic, no Chinese description, no Chinese author name.
+    if url.startswith("https://api.github.com/repos/zhreadme/plugin/contents/"):
+        if url.endswith("/contents/") or url.endswith("/contents"):
+            return [{"name": "README.md", "type": "file"}]
+    if url == "https://api.github.com/repos/zhreadme/plugin/contents/README.md":
+        return {"content": base64.b64encode((("这是一个课程表插件。" + "支持周次、单双周和调课。\n") * 30).encode()).decode()}
+    if url == "https://api.github.com/repos/zhreadme/plugin":
+        return {"topics": [], "description": "a class timetable", "stargazers_count": 5000, "pushed_at": "2026-07-01T00:00:00Z", "full_name": "zhreadme/plugin", "html_url": "https://github.com/zhreadme/plugin"}
+    if url == "https://api.github.com/users/zhreadme":
+        return {"location": ""}
+    if url == "https://api.github.com/repos/zhreadme/plugin/releases?per_page=5":
+        return [{"published_at": "2026-06-01T00:00:00Z", "assets": [{"download_count": 2000}]}]
     return None
 
 
@@ -457,6 +504,30 @@ class TestEndToEnd(unittest.TestCase):
         self.assertFalse(data["content_changed"])
         self.assertTrue(data["cache_changed"])
         self.assertIn("broken-desc", cp.load_checked())
+
+    def test_scan_admits_english_metadata_with_chinese_readme(self):
+        # issue 36: Class Timetable / Vault Orrery had English name, author,
+        # description and topics, so gate 1 dropped them before their Chinese
+        # README was ever read. The README must now admit them on its own.
+        plugins = [
+            {"id": "known-plugin", "name": "已知", "repo": "known/plugin", "author": "k", "description": "中文描述"},
+            {"id": "zhreadme-plugin", "name": "Class Timetable", "repo": "zhreadme/plugin",
+             "author": "Elliott Park", "description": "a class timetable"},
+        ]
+        cp.save_checked({"known-plugin"})
+        import io
+        from contextlib import redirect_stdout
+        out = io.StringIO()
+        with unittest.mock.patch.object(cp, "verify_api_auth"), \
+             unittest.mock.patch.object(cp, "gh_get", side_effect=fake_gh_get), \
+             unittest.mock.patch.object(cp, "create_retry_session", return_value=FakeSession(plugins)), \
+             redirect_stdout(out):
+            cp.run_scan(skip_stale=True)
+        data = json.loads(out.getvalue())
+        self.assertEqual([r["repo"] for r in data["add"]], ["zhreadme/plugin"])
+        self.assertEqual(data["add"][0]["tier"], "auto")
+        # The Chinese README must supply the description (metadata is English).
+        self.assertIn("课程表", data["add"][0]["desc"])
 
     def test_apply_readme_full_cycle(self):
         os.environ["ADD_ROWS"] = json.dumps([{
@@ -974,7 +1045,11 @@ class TestDormancyIsMarkOnly(unittest.TestCase):
     def test_apply_ignores_remove_rows_env(self):
         tmp = tempfile.TemporaryDirectory()
         orig = cp.README_PATH
+        orig_body = cp.PR_BODY_FILE
         cp.README_PATH = os.path.join(tmp.name, "README.md")
+        # do_apply_readme also writes PR_BODY_FILE; without this redirect the
+        # test overwrites the repo's tracked .github/pr-body.md.
+        cp.PR_BODY_FILE = os.path.join(tmp.name, "pr-body.md")
         try:
             with open(cp.README_PATH, "w", encoding="utf-8") as f:
                 f.write(SAMPLE_README)
@@ -991,6 +1066,7 @@ class TestDormancyIsMarkOnly(unittest.TestCase):
             self.assertIn("nyable/obsidian-text-finder", text)
         finally:
             cp.README_PATH = orig
+            cp.PR_BODY_FILE = orig_body
             os.environ.pop("REMOVE_ROWS", None)
             tmp.cleanup()
 
