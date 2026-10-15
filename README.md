@@ -81,6 +81,7 @@
 | 插件 | 作者 | 核心功能 |
 | --- | --- | --- |
 | [Zhongwen Block](https://github.com/0918nobita/obsidian-zhongwen-block) | `0918nobita` | 为中文学习者提供专门的练习和展示块。 · 最后更新 2025-07 |
+| [Vault Orrery](https://github.com/elliott-json-park/obsidian-vault-orrery) | `elliott-json-park` | 把库画成星系：文件夹是恒星、笔记是行星，可倒带重放整个库逐年长成的过程；点行星即读笔记，侧栏常驻迷你星图，界面含中文。 · 最后更新 2026-10 |
 | [Close and Switch to Recent Tab](https://github.com/github-xzhi/obsidian-close-and-switch-to-recent-tab) | `GitHub-Xzhi` | 关闭当前标签页后，自动切换到最近使用的标签页。 · 最后更新 2026-08 |
 | [Awesome Brain Manager](https://github.com/JuckZ/awesome-brain-manager) | `JuckZ` | 集成多种实用功能，解决日常使用中的琐碎问题。 · 最后更新 2026-02 |
 | [Any Block](https://github.com/LincZero/obsidian-any-block) | `LincZero` | 灵活创建内容块，支持列表转表格、引用转换等。 · 最后更新 2026-08 |
@@ -94,6 +95,7 @@
 | --- | --- | --- |
 | [Easy Bookkeeping](https://github.com/beimohai/Easy-Bookkeeping-Obsidian) | `beimohai` | 本地优先的极简记账：键盘速录、手机表单、图表看板，数据存为 Markdown · 最后更新 2026-09 |
 | [Lunar Calendar](https://github.com/DevilRoshan/obsidian-lunar-calendar) | `DevilRoshan` | 一个支持显示农历和节气的日历插件。 · 最后更新 2025-12 |
+| [Class Timetable](https://github.com/elliott-json-park/obsidian-class-timetable) | `elliott-json-park` | 侧栏周课表：课程时间取自笔记 frontmatter，点课程展开该课的作业与讲义，可一键建当天笔记，界面支持中文。 · 最后更新 2026-10 |
 | [SmartTask](https://github.com/fat-pumpkin/SmarTask) | `fat-pumpkin` | 高性能、易操作的智能任务管理插件。支持多视图、快速创建、智能查询。 · 最后更新 2026-10 |
 | [Hans Kanban](https://github.com/hansai-art/obsidian-hans-kanban) | `hansai-art` | 为 Bases 提供看板与瀑布流卡片视图：整卡按属性着色、卡片上直接切换状态、可调列宽、泳道与极简模式，界面支持英文与繁体中文。 · 最后更新 2026-08 |
 | [Calendar Panel](https://github.com/lizijing98/calendar-panel) | `lizijing98` | 日记与周记的日历面板插件 / Calendar panel view for daily and weekly note. · 最后更新 2026-08 |
