@@ -184,7 +184,9 @@
 
 ### 其他工具
 
-_（暂无未分类条目）_
+| 插件 | 作者 | 核心功能 |
+| --- | --- | --- |
+| [Whiteboat](https://github.com/circleyan/whiteboat-obsidian-water) | `Circleyan` | Begin on a quiet water surface and turn a thought into a new Canvas. |
 
 ## 精选中文主题
 
