@@ -57,11 +57,13 @@
 
 | 插件 | 作者 | 核心功能 |
 | --- | --- | --- |
+| [Better Search Result Views](https://github.com/1012-web/better-search-result-views) | `1012-web` | Show search results grouped under their headings, in find in note and in the built-in search, and still find words split by line breaks, tags or page markers. |
 | [SmoothCursor](https://github.com/busyoGG/SmoothCursor) | `busyoGG` | 美化光标，使其移动和键入时如丝般顺滑。 · 最后更新 2026-06 |
 | [Note Toolbar](https://github.com/chrisgurney/obsidian-note-toolbar) | `chrisgurney` | 在笔记顶部添加可自定义的命令工具栏。 · 最后更新 2026-10 |
 | [Floating TOC](https://github.com/cumany/obsidian-floating-toc-plugin) | `cumany` | 在笔记侧边生成一个浮动的目录大纲。 · 最后更新 2026-01 |
 | [Grid Explorer](https://github.com/Devon22/obsidian-gridexplorer) | `Devon22` | 以网格视图浏览笔记文件。 · 最后更新 2026-10 |
 | [Quiet Outline](https://github.com/guopenghui/obsidian-quiet-outline) | `guopenghui` | 提供一个功能更强大、更美观的大纲视图。 · 最后更新 2026-10 |
+| [Desktop Stickies](https://github.com/springrain1/obsidian-desktop-sticky-notes) | `springrain1` | Beautiful, always-on-top desktop sticky notes with Live Preview, rich-text toolbar, 7 paper skins, and notes hub for Obsidian. |
 
 ### 编辑与格式化
 
@@ -73,14 +75,17 @@
 | [MarkMind](https://github.com/MarkMindCkm/obsidian-markmind) | `MarkMindCkm` | 在 Obsidian 中创建和编辑思维导图，并支持 PDF 标注。 · 最后更新 2026-10 |
 | [Text Finder](https://github.com/nyable/obsidian-text-finder) | `nyable` | 在编辑模式下提供一个类似 VSCode 的查找/替换窗口。 · 最后更新 2026-10 |
 | [Mind Elixir Mindmap](https://github.com/SSShooter/obsidian-mindmap) | `SSShooter` | 为 Obsidian 提供 Markdown 转思维导图 + 内嵌思维导图功能。 · 最后更新 2026-08 |
+| [HTML Frontmatter](https://github.com/thhapp/obsidian-html-frontmatter) | `THhapp` | Edit HTML metadata with native Properties and include it in the vault property catalog. |
 | [The Mind Map](https://github.com/wintermosquito/the-mind-map) | `WinterMosquito` | 在 Obsidian 中创建和编辑专业思维导图，六种布局、节点搜索、拖拽排序、右键菜单、Obsidian 内部链接（[[笔记名]]、文件拖拽、反向链接）、附件拖入导入（遵循附件存放位置设置）、图片统一尺寸、自动整理、性能模式、JSON/PNG/Markdown 导入导出。基于 simple-mind-map 引擎。 · 最后更新 2026-10 |
 | [Easy Typing](https://github.com/Yaozhuwa/easy-typing-obsidian) | `Yaozhuwa` | 增强中文输入体验，如智能标点转换、格式清理等。 · 最后更新 2026-07 |
+| [Canvas Mind Map](https://github.com/zenolzx/Canvas-Mind-Map) | `Zenolzx` | Create collapsible Canvas mind maps from Markdown with seven layouts. |
 
 ### 链接与知识管理
 
 | 插件 | 作者 | 核心功能 |
 | --- | --- | --- |
 | [Zhongwen Block](https://github.com/0918nobita/obsidian-zhongwen-block) | `0918nobita` | 为中文学习者提供专门的练习和展示块。 · 最后更新 2025-07 |
+| [Hierarchy Navigator](https://github.com/butfool/obsidian-hierarchy-navigator) | `butfool` | <p<strong在每篇笔记顶部渲染“父级 / 兄弟 / 子级”导航块的 Obsidian 插件</strong</p |
 | [Vault Orrery](https://github.com/elliott-json-park/obsidian-vault-orrery) | `elliott-json-park` | 把库画成星系：文件夹是恒星、笔记是行星，可倒带重放整个库逐年长成的过程；点行星即读笔记，侧栏常驻迷你星图，界面含中文。 · 最后更新 2026-10 |
 | [Close and Switch to Recent Tab](https://github.com/github-xzhi/obsidian-close-and-switch-to-recent-tab) | `GitHub-Xzhi` | 关闭当前标签页后，自动切换到最近使用的标签页。 · 最后更新 2026-08 |
 | [Awesome Brain Manager](https://github.com/JuckZ/awesome-brain-manager) | `JuckZ` | 集成多种实用功能，解决日常使用中的琐碎问题。 · 最后更新 2026-02 |
@@ -94,6 +99,8 @@
 | 插件 | 作者 | 核心功能 |
 | --- | --- | --- |
 | [Easy Bookkeeping](https://github.com/beimohai/Easy-Bookkeeping-Obsidian) | `beimohai` | 本地优先的极简记账：键盘速录、手机表单、图表看板，数据存为 Markdown · 最后更新 2026-09 |
+| [XXL-Job Flow Atlas](https://github.com/chenzjm/xxljob-flow-atlas) | `chenzjm` | ├── 任务/ task notes — body has a “ 对应任务流” backlink section |
+| [Office Flow](https://github.com/dan9574/office-flow) | `dan9574` | Inline task buttons, progress cards with one-gesture archiving, and Home and favorite shortcuts for task notes. |
 | [Lunar Calendar](https://github.com/DevilRoshan/obsidian-lunar-calendar) | `DevilRoshan` | 一个支持显示农历和节气的日历插件。 · 最后更新 2025-12 |
 | [Class Timetable](https://github.com/elliott-json-park/obsidian-class-timetable) | `elliott-json-park` | 侧栏周课表：课程时间取自笔记 frontmatter，点课程展开该课的作业与讲义，可一键建当天笔记，界面支持中文。 · 最后更新 2026-10 |
 | [SmartTask](https://github.com/fat-pumpkin/SmarTask) | `fat-pumpkin` | 高性能、易操作的智能任务管理插件。支持多视图、快速创建、智能查询。 · 最后更新 2026-10 |
@@ -101,13 +108,16 @@
 | [Calendar Panel](https://github.com/lizijing98/calendar-panel) | `lizijing98` | 日记与周记的日历面板插件 / Calendar panel view for daily and weekly note. · 最后更新 2026-08 |
 | [Task Genius](https://github.com/Quorafind/Obsidian-Task-Genius) | `Quorafind` | 提供全面的任务管理功能。 · 最后更新 2026-06 |
 | [Thino (Formerly Memos)](https://github.com/Quorafind/Obsidian-Thino) | `Quorafind` | 强大的日记与信息捕捉工具，支持回顾和碎片化记录。 · 最后更新 2026-09 |
+| [NyaHome](https://github.com/st31orange/NyaHome) | `ST31Orange` | NyaHome：Obsidian 统一主页与本地优先的工作台；可选接入在线日历和邮箱 \| NyaHome: a unified Obsidian home with local-first notes, calendars and optional connected services. |
 | [Progressbar](https://github.com/zwpaper/obsidian-progressbar) | `zwpaper` | 使用代码块在笔记中轻松生成和展示各种样式的进度条。 [长期未更新] · 最后更新 2025-10 |
 
 ### 多媒体与附件
 
 | 插件 | 作者 | 核心功能 |
 | --- | --- | --- |
+| [Media Marker](https://github.com/blontern/obsidian-media-marker) | `Blontern` | Click timestamps in transcription documents to seek and play the embedded audio/video, with a fully custom player, sticky media, subtitles, and keyboard shortcuts. |
 | [Image Toolkit](https://github.com/sissilab/obsidian-image-toolkit) | `sissilab` | 提供点击查看大图、旋转、缩放等图片浏览功能。 · 最后更新 2024-10 |
+| [Hymns](https://github.com/viacai/Hymns) | `ViaCai` | 诗歌浏览、搜索、播放与收藏插件：按编号(如 D116)或关键词(空格分隔，如 恩典 耶稣)实时搜索，预览 PDF，播放 MP3，收藏与播放列表。桌面端与移动端通用。 |
 | [Emo Uploader](https://github.com/yaleiyale/obsidian-emo-uploader) | `yaleiyale` | 聚合多种图床，支持 GitHub、腾讯云 COS 等。 · 最后更新 2024-08 |
 
 ### AI 辅助
@@ -117,10 +127,12 @@
 | [AI Vault Assistant](https://github.com/1716775457damn/obsidian-ai-vault-assistant) | `1716775457damn` | 接入 cc-switch 本地代理使用 AI：对话整理 Vault、构建相互关联的笔记、列出插件与命令、内置 Skills、开放 MCP 服务供 Codex 等外部 Agent 接入、推荐并安装社区插件、经确认后修改插件配置。 · 最后更新 2026-09 |
 | [EVC Team Relay MCP](https://github.com/entire-vc/evc-team-relay-mcp) | `entire-vc` | 通过 MCP 协议让 AI 编程工具直接读写 Obsidian 笔记库。 · 最后更新 2026-02 |
 | [Harness Like](https://github.com/frank6com/obsidian-harness-like) | `frank6com` | DeepSeek Harness 理念的桌面端实现：内置 Cordis 插件体系与 AI agent，可带审批读写笔记，并支持在对话内创建 Cordis 插件。 · 最后更新 2026-09 |
+| [Vault Codex](https://github.com/hoholab/vault-codex) | `HoHoLab` | Chat with local Codex, work with notes, and review agent actions in your vault. |
 | [Agent Review](https://github.com/jiaoxiu20040903-crypto/Agent_Review) | `jiaoxiu20040903-crypto` | 结构化阅读批注：高亮、便签、关系线，支持人机协作，纯本地 · 最后更新 2026-08 |
 | [YOLO](https://github.com/Lapis0x0/obsidian-yolo) | `Lapis0x0` | 面向 Obsidian 的 AI Agent 助手，支持对话、写作、RAG、MCP、Skills 与工具调用。 · 最后更新 2026-10 |
 | [DSH Math Notes Assistant](https://github.com/maple110011/dsh-obsidian-math) | `maple110011` | 数学笔记的 AI 长期记忆助手：跨会话收集、打磨并连接证明与灵感，纯本地 · 最后更新 2026-10 |
 | [Chinese Market](https://github.com/miaoziguan/obsidian-chinese-plugin-market) | `miaoziguan` | 面向中文用户的 Obsidian 社区插件搜索工具：输入关键词即可检索并展示翻译后的插件卡片，支持 AI 语义 / 名称 / 作者搜索。 · 最后更新 2026-10 |
+| [HiLighter](https://github.com/pandorareads/HiLighter) | `PandoraReads` | A powerful highlight note manager with multi-color annotations, AI-assisted notes, and smart review |
 | [Tars](https://github.com/TarsLab/obsidian-tars) | `TarsLab` | 基于笔记标签和上下文，提供智能文本生成建议。 · 最后更新 2026-08 |
 | [AI 聊天助手](https://github.com/xiaonanhai9855/obsidian-AI-Chat-Assistant) | `xiaonanhai9855` | 在 Obsidian 内提供 AI 对话面板，内置 RAG 引擎，支持 @ 提及笔记/文件夹/标签/知识库语义搜索。 · 最后更新 2026-06 |
 | [Claudian Scheduler](https://github.com/xikongsaket/claudian-scheduler) | `XIKONGSAKET` | 定时向 Claudian 的指定对话框发送任务：把请求排到 DeepSeek 低谷时段（北京时间 00:30-08:30）自动发出，节省 API 成本。 · 最后更新 2026-08 |
@@ -158,6 +170,7 @@
 | [Personal Assistant](https://github.com/edonyzpc/personal-assistant) | `edonyzpc` | 自动化管理你的库，如定期创建笔记、整理文件等。 · 最后更新 2026-10 |
 | [Remember Settings Window](https://github.com/github-xzhi/obsidian-remember-settings-window) | `GitHub-Xzhi` | 记住并恢复【在独立窗口中打开设置】窗口的尺寸和位置。 · 最后更新 2026-08 |
 | [Files Cooker](https://github.com/ivaneye/obsidian-files-cooker) | `ivaneye` | 对库内文件进行批量操作和处理。 · 最后更新 2026-09 |
+| [Documents Activity Tracker](https://github.com/lmce72/documents-activity-tracker) | `lmce72` | 跟踪每个文档的阅读时长（区分窗口内/脱离窗口），并提供独立的手动计时；侧栏统一查看，数据存于 SQLite。 |
 | [China BRAT](https://github.com/notesynchelper/chinabrat) | `notesynchelper` | 粘贴一个插件文件地址即可安装，内置三个示例地址，解决访问Github 慢导致的插件无法安装问题。 · 最后更新 2026-08 |
 | [Password Protection](https://github.com/qing3962/password-protection) | `qing3962` | 为指定的笔记或文件夹设置访问密码。 · 最后更新 2026-08 |
 | [Symbol Stripper](https://github.com/tasete/symbol-stripper) | `Tasete` | 选中文本，一键剔除指定字符或正则匹配 / Select text and strip specified characters or regex matches with one click · 最后更新 2026-08 |
@@ -189,6 +202,10 @@
 | 插件 | 作者 | 核心功能 |
 | --- | --- | --- |
 | [Whiteboat](https://github.com/circleyan/whiteboat-obsidian-water) | `Circleyan` | Begin on a quiet water surface and turn a thought into a new Canvas. · 最后更新 2026-10 |
+| [Better Quiz Box](https://github.com/junzi-ana/better-quizbox) | `Junzi-ana` | 专为配合 Spaced Repetition 插件的复习流程而设计：记忆卡翻面重渲染时，选项顺序与已作答的内容都会保留。 |
+| [Bring to Front](https://github.com/rockbenben/bring-obsidian-to-front) | `rockbenben` | Automatically brings the window to front when modals or notices appear in the background. |
+| [Tab Settings Enhanced](https://github.com/wonderez/tab-settings-enhanced) | `wonderez` | Enhanced tab management: control where new tabs open, tab navigator with search/history, and parent-relative positioning. |
+| [Cpp-Input-Guard](https://github.com/yaki-blake/Cpp-Input-Guard) | `Yaki-Blake` | 中文版见本文件下半部分（Chinese version below）。 |
 
 ## 精选中文主题
 
