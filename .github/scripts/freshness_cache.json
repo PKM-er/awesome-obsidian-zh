@@ -520,9 +520,9 @@
   "snailhome/obsidian-ijipu": {
     "archived": false,
     "stale": false,
-    "last_update": "2026-10-09T04:39:39Z",
+    "last_update": "2026-10-18T16:53:10Z",
     "ok": true,
-    "checked_at": "2026-10-09T06:10:16.688009+00:00"
+    "checked_at": "2026-10-19T04:44:14.599500+00:00"
   },
   "circleyan/whiteboat-obsidian-water": {
     "archived": false,
@@ -663,5 +663,180 @@
     "last_update": "2026-10-13T02:08:35Z",
     "ok": true,
     "checked_at": "2026-10-17T04:28:31.410621+00:00"
+  },
+  "strangelion/obsidian-formula-library": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-10-16T05:06:45Z",
+    "ok": true,
+    "checked_at": "2026-10-19T04:44:14.566674+00:00"
+  },
+  "laginae/note-reader-cosyvoice": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-10-17T03:24:49Z",
+    "ok": true,
+    "checked_at": "2026-10-19T04:44:14.611677+00:00"
+  },
+  "elliott-json-park/obsidian-download-pulse": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-10-18T05:28:05Z",
+    "ok": true,
+    "checked_at": "2026-10-19T04:44:14.630118+00:00"
+  },
+  "jwczju/markdown-treetable": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-10-19T01:57:55Z",
+    "ok": true,
+    "checked_at": "2026-10-19T04:44:14.635488+00:00"
+  },
+  "joeseesun/qiaomu-audio": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-10-16T01:43:06Z",
+    "ok": true,
+    "checked_at": "2026-10-19T04:44:14.660536+00:00"
+  },
+  "nextcaicai/WeLink": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-10-17T10:00:52Z",
+    "ok": true,
+    "checked_at": "2026-10-19T04:44:14.695165+00:00"
+  },
+  "west-shell/obsidian-chess-tree": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-10-17T15:35:21Z",
+    "ok": true,
+    "checked_at": "2026-10-19T04:44:14.738678+00:00"
+  },
+  "kryon-4y4/mindmap-canvas": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-10-18T21:24:00Z",
+    "ok": true,
+    "checked_at": "2026-10-19T04:44:14.749507+00:00"
+  },
+  "pixelxzen/Zisuzi-Weread-MP": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-10-18T17:29:37Z",
+    "ok": true,
+    "checked_at": "2026-10-19T04:44:14.751179+00:00"
+  },
+  "yunasuka/obsidian-r2-image-uploader": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-10-19T03:18:45Z",
+    "ok": true,
+    "checked_at": "2026-10-19T04:44:14.761297+00:00"
+  },
+  "chmod777h/pdf-sync-scroll": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-10-17T09:59:12Z",
+    "ok": true,
+    "checked_at": "2026-10-19T04:44:14.823175+00:00"
+  },
+  "oranipost/visual-math-editor": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-10-19T04:34:11Z",
+    "ok": true,
+    "checked_at": "2026-10-19T04:44:15.202486+00:00"
+  },
+  "jmedzen/ezindex": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-10-18T09:57:01Z",
+    "ok": true,
+    "checked_at": "2026-10-19T04:44:15.320103+00:00"
+  },
+  "badtobad/obsidian-bucket-sidebar": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-10-18T17:08:12Z",
+    "ok": true,
+    "checked_at": "2026-10-19T04:44:15.363502+00:00"
+  },
+  "iikira/obsidian-nihong-ai-explain": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-10-17T16:17:28Z",
+    "ok": true,
+    "checked_at": "2026-10-19T04:44:15.380424+00:00"
+  },
+  "imsang27/obsidian-tab-groups": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-10-18T10:52:41Z",
+    "ok": true,
+    "checked_at": "2026-10-19T04:44:15.396375+00:00"
+  },
+  "rainajia716/obsidian-canvas-quick-mindmap": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-10-19T03:38:06Z",
+    "ok": true,
+    "checked_at": "2026-10-19T04:44:15.435916+00:00"
+  },
+  "totok22/feishu-docs-publisher": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-10-18T09:53:22Z",
+    "ok": true,
+    "checked_at": "2026-10-19T04:44:15.475376+00:00"
+  },
+  "wangcccccct/penbook": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-10-18T13:19:14Z",
+    "ok": true,
+    "checked_at": "2026-10-19T04:44:15.488748+00:00"
+  },
+  "xiao-hu1987/obsidian-kb-semantic-search": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-10-18T16:31:14Z",
+    "ok": true,
+    "checked_at": "2026-10-19T04:44:15.528273+00:00"
+  },
+  "elliott-json-park/obsidian-vault-pet": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-10-18T05:39:59Z",
+    "ok": true,
+    "checked_at": "2026-10-19T04:44:15.530301+00:00"
+  },
+  "miaoziguan/obsidian-bamboo-immortals": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-10-17T08:30:57Z",
+    "ok": true,
+    "checked_at": "2026-10-19T04:44:15.557710+00:00"
+  },
+  "deku0818/xSync": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-10-18T15:39:18Z",
+    "ok": true,
+    "checked_at": "2026-10-19T04:44:15.581268+00:00"
+  },
+  "jackweigogoga/gogoga-icons": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-10-18T14:18:27Z",
+    "ok": true,
+    "checked_at": "2026-10-19T04:44:15.912271+00:00"
+  },
+  "perezamadorluisenrique-gif/claude-studio": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-10-18T03:19:31Z",
+    "ok": true,
+    "checked_at": "2026-10-19T04:44:16.214049+00:00"
   }
 }
