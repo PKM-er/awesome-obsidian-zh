@@ -838,5 +838,82 @@
     "last_update": "2026-10-18T03:19:31Z",
     "ok": true,
     "checked_at": "2026-10-19T04:44:16.214049+00:00"
+  },
+  "louis-1448-2/obsidian-zh-search": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-10-19T08:08:30Z",
+    "ok": true,
+    "checked_at": "2026-10-21T04:50:38.617313+00:00"
+  },
+  "jiuxianzai/obsidian-octavo-toolbar": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-10-20T14:12:21Z",
+    "ok": true,
+    "checked_at": "2026-10-21T04:50:38.635165+00:00"
+  },
+  "iam1maker/obsidian-link-peek": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-10-16T09:56:35Z",
+    "ok": true,
+    "checked_at": "2026-10-21T04:50:38.676765+00:00"
+  },
+  "chenjieya/leetcode-chinese": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-10-20T06:08:45Z",
+    "ok": true,
+    "checked_at": "2026-10-21T04:50:38.702330+00:00"
+  },
+  "nnq7/obsidian-drawio-preview": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-10-20T14:18:36Z",
+    "ok": true,
+    "checked_at": "2026-10-21T04:50:38.737373+00:00"
+  },
+  "bigmanbaron/qingjian-home": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-10-19T12:48:52Z",
+    "ok": true,
+    "checked_at": "2026-10-21T04:50:38.751402+00:00"
+  },
+  "fengbul/obsidian-mobi": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-10-20T13:37:07Z",
+    "ok": true,
+    "checked_at": "2026-10-21T04:50:38.760871+00:00"
+  },
+  "yanqingwang/opensource-AI-vault-agent": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-10-20T06:28:39Z",
+    "ok": true,
+    "checked_at": "2026-10-21T04:50:38.792343+00:00"
+  },
+  "kingbeyond/obsidian-super-table": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-10-20T14:46:15Z",
+    "ok": true,
+    "checked_at": "2026-10-21T04:50:38.794559+00:00"
+  },
+  "zeng198708/ai-short-drama-assistant": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-10-19T14:30:44Z",
+    "ok": true,
+    "checked_at": "2026-10-21T04:50:38.811468+00:00"
+  },
+  "bcs1037/codian": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-10-21T03:23:18Z",
+    "ok": true,
+    "checked_at": "2026-10-21T04:50:38.818946+00:00"
   }
 }
