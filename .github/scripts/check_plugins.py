@@ -790,6 +790,11 @@ CURATED_DESC = {
     "HandNote": "在笔记页上手写绘图，可转文字与公式，也能批注 PDF 与 Office 文档",
     "Formula Library": "可视化 LaTeX 编辑、公式库检索、模板、Mermaid 与函数绘图",
     "MindMap Studio": "在 Obsidian 里创建和编辑专业思维导图：六种布局、节点搜索、拖拽排序，支持内部链接、附件导入和图片导出",
+    # Shortened so every row stays within DESC_MAX_CHARS.
+    "AI Vault Assistant": "本地 AI 助手：整理库内笔记、构建关联、列出插件与命令，可接 MCP 供外部 Agent 调用",
+    "Config Sync with WebDAV": "只同步 Obsidian 配置目录的 WebDAV 插件，可排除指定插件与文件，同步前先测连通",
+    "LaTeX Autofill": "在 $…$ 里输中文关键词就补出 LaTeX 模板，Tab 跳占位符，内置公式搜索，完全离线",
+    "Hymns": "诗歌浏览、搜索与播放：按编号或关键词实时查找，预览 PDF、播放 MP3，收藏成播放列表",
     "Canvas Mind Map": "从 Markdown 生成可折叠的 Canvas 思维导图，内置七种布局",
     "With Keyline": "选区工具、块手柄、页面提及与文件图标等写作导航增强，配 Keyline 主题",
     "Link Peek": "悬停外链弹出 OpenGraph 预览卡片，支持实时预览、阅读视图与画布",
@@ -1011,6 +1016,29 @@ def strip_freshness_decorations(desc):
     desc = FRESHNESS_DATE_RE.sub("", desc)
     desc = FRESHNESS_MARKER_RE.sub("", desc)
     return desc.strip()
+
+
+DESC_MAX_CHARS = int(os.environ.get("DESC_MAX_CHARS", "80"))
+DESC_REMNANT_RE = re.compile(r"安装\s*[:：]|当前版本|第三方插件|设置\s*→|生成后替换")
+
+
+def description_problem(desc):
+    """None when a description cell may ship, else a short reason tag.
+
+    Descriptions have to read in Chinese and stay short. The scan builds them
+    from upstream metadata that is often English, a version note or an install
+    snippet; both the scan and --validate consult this, so such a cell cannot
+    reach the README."""
+    text = strip_freshness_decorations(desc or "").strip()
+    if not text or text == "[描述待补充]":
+        return "placeholder"
+    if not has_cn(text):
+        return "not-chinese"
+    if len(text) > DESC_MAX_CHARS:
+        return "too-long"
+    if DESC_REMNANT_RE.search(text):
+        return "remnant"
+    return None
 
 
 def append_freshness_marker(desc, flags):
@@ -1260,8 +1288,14 @@ def validate_readme(text):
     if dups:
         issues.append("duplicate plugin repos: " + ", ".join(dups))
     for r in rows:
-        if is_broken_desc(r["desc"]):
+        problem = description_problem(r["desc"])
+        if problem == "placeholder" or is_broken_desc(r["desc"]):
             issues.append(f"broken/placeholder description: {r['name']} ({r['repo']})")
+        elif problem:
+            issues.append(
+                f"description {problem}: {r['name']} ({r['repo']}) "
+                f"({strip_freshness_decorations(r['desc'])[:30]})"
+            )
     unmanaged = find_unmanaged_rows(text)
     if unmanaged:
         issues.append(
@@ -1822,13 +1856,16 @@ def load_denylist():
 # --------------------------------------------------------------------------
 
 def write_scan_output(add_rows, dormant_rows, cache_changed, first_run, has_review,
-                      observe_rows=None, promote_rows=None, drop_repos=None):
+                      observe_rows=None, promote_rows=None, drop_repos=None,
+                      needs_desc=None, near_miss=None):
     # Dormant plugins no longer count as a content change: they are marked in
     # place by --freshness-readme and stay in the README, so there is nothing
     # for --apply-readme to commit.
     observe_rows = observe_rows or []
     promote_rows = promote_rows or []
     drop_repos = drop_repos or []
+    needs_desc = needs_desc or []
+    near_miss = near_miss or []
     # "review needed" now means "rows entered the observation zone". Nothing
     # gates the commit on it any more, but the key is still consumed, so it has
     # to report the zone honestly instead of the old review-tier flag.
@@ -1839,6 +1876,28 @@ def write_scan_output(add_rows, dormant_rows, cache_changed, first_run, has_revi
     # Reported only; nothing gates the commit on it any more (no human review
     # step exists). Kept because consumers may still read the key.
     auto_merge_ready = content_changed and not first_run and not has_review
+    # Candidates the scan refused or nearly missed are reported on the run's
+    # summary page: they need a hand-written Chinese description or a manual
+    # decision, and nothing else surfaces them.
+    summary = os.environ.get("GITHUB_STEP_SUMMARY")
+    if summary and (needs_desc or near_miss):
+        with open(summary, "a", encoding="utf-8") as f:
+            if needs_desc:
+                f.write("### 待人工写简介的候选\n\n")
+                f.write("| 插件 | 仓库 | 问题 | 上游描述 |\n| --- | --- | --- | --- |\n")
+                for r in needs_desc:
+                    f.write(
+                        f"| {r['name']} | {r['repo']} | {r['problem']} | {r.get('raw', '')} |\n"
+                    )
+                f.write("\n")
+            if near_miss:
+                f.write("### 有中文但评分不够的候选\n\n")
+                f.write("| 插件 | 仓库 | cn | q | stars |\n| --- | --- | --- | --- | --- |\n")
+                for r in near_miss:
+                    f.write(
+                        f"| {r['name']} | {r['repo']} | {r['cn']} | {r['q']} | {r['stars']} |\n"
+                    )
+                f.write("\n")
     if os.environ.get("GITHUB_OUTPUT"):
         with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as f:
             f.write(f"add_rows={json.dumps(add_rows, ensure_ascii=False)}\n")
@@ -1846,6 +1905,8 @@ def write_scan_output(add_rows, dormant_rows, cache_changed, first_run, has_revi
             f.write(f"promote_rows={json.dumps(promote_rows, ensure_ascii=False)}\n")
             f.write(f"drop_repos={json.dumps(drop_repos, ensure_ascii=False)}\n")
             f.write(f"stale_rows={json.dumps(dormant_rows, ensure_ascii=False)}\n")
+            f.write(f"needs_desc={json.dumps(needs_desc, ensure_ascii=False)}\n")
+            f.write(f"near_miss={json.dumps(near_miss, ensure_ascii=False)}\n")
             f.write(f"content_changed={str(content_changed).lower()}\n")
             f.write(f"cache_changed={str(cache_changed).lower()}\n")
             f.write(f"first_run={str(first_run).lower()}\n")
@@ -1858,6 +1919,8 @@ def write_scan_output(add_rows, dormant_rows, cache_changed, first_run, has_revi
         "promote": promote_rows,
         "drop": drop_repos,
         "stale": dormant_rows,
+        "needs_desc": needs_desc,
+        "near_miss": near_miss,
         "content_changed": content_changed,
         "cache_changed": cache_changed,
         "first_run": first_run,
@@ -1900,6 +1963,8 @@ def run_scan(skip_stale=False):
     print(f"known={len(checked)} new={len(new_plugins)}" + (" (full scan on first run)" if first_run else ""), file=sys.stderr)
 
     candidates = []
+    needs_desc = []
+    near_miss = []
     scanned = 0
     for p in new_plugins:
         repo = p.get("repo", "")
@@ -1933,6 +1998,13 @@ def run_scan(skip_stale=False):
         )
         cn, q = compute_scores(signals, meta["stars"], 0, None)
         if cn < MIN_CN_SCORE:
+            if zh_rule:
+                # Chinese README, English metadata: the score cannot carry it,
+                # but dropping it silently is what cost us issues 36 and 37.
+                near_miss.append({
+                    "name": name, "repo": repo,
+                    "cn": cn, "q": q, "stars": meta["stars"],
+                })
             continue
         published, downloads = repo_releases(repo)
         release_age = None
@@ -1948,10 +2020,21 @@ def run_scan(skip_stale=False):
         # never the display name from the official list (often a Chinese
         # name/team name). The display name still feeds scoring signals.
         author_id = meta["full_name"].split("/")[0]
+        base_desc = clean_desc_for_readme(desc, readme_text, name=name)
+        problem = description_problem(base_desc)
+        if problem:
+            # An English or truncated cell is what made the list read like a
+            # translation dump; park it and report it for a hand-written
+            # description instead of admitting it.
+            needs_desc.append({
+                "name": name, "repo": repo, "author": author_id,
+                "problem": problem, "raw": (desc or "").strip()[:60],
+            })
+            continue
         candidates.append({
             "name": name, "repo": repo, "author": author_id,
             "desc": append_freshness_marker(
-                clean_desc_for_readme(desc, readme_text, name=name),
+                base_desc,
                 {
                     "archived": bool(meta.get("archived")),
                     "stale": bool(decide_stale(meta, published, cutoff)),
@@ -2009,12 +2092,14 @@ def run_scan(skip_stale=False):
     print(
         f"known={len(all_ids)} scanned={scanned} auto={len(add_rows)} "
         f"observe={len(observe_rows)} promote={len(promote_rows)} "
-        f"drop={len(drop_repos)} dormant={len(dormant)} (reported, not removed)",
+        f"drop={len(drop_repos)} dormant={len(dormant)} (reported, not removed) "
+        f"needs_desc={len(needs_desc)} near_miss={len(near_miss)}",
         file=sys.stderr,
     )
     write_scan_output(
         add_rows, dormant_rows, cache_changed, first_run, has_review,
         observe_rows=observe_rows, promote_rows=promote_rows, drop_repos=drop_repos,
+        needs_desc=needs_desc, near_miss=near_miss,
     )
 
 

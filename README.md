@@ -144,7 +144,7 @@
 | [Chinese Market](https://github.com/miaoziguan/obsidian-chinese-plugin-market) | `miaoziguan` | 面向中文用户的 Obsidian 社区插件搜索工具：输入关键词即可检索并展示翻译后的插件卡片，支持 AI 语义 / 名称 / 作者搜索。 · 最后更新 2026-10 |
 | [HiLighter](https://github.com/pandorareads/HiLighter) | `PandoraReads` | 把高亮变成可管理的笔记卡片：多色标注、AI 分析、思维导图与 FSRS 复习 · 最后更新 2026-10 |
 | [Tars](https://github.com/TarsLab/obsidian-tars) | `TarsLab` | 基于笔记标签和上下文，提供智能文本生成建议。 · 最后更新 2026-08 |
-| [AI Vault Assistant](https://github.com/XinwangTao/obsidian-ai-vault-assistant) | `XinwangTao` | 接入 cc-switch 本地代理使用 AI：对话整理 Vault、构建相互关联的笔记、列出插件与命令、内置 Skills、开放 MCP 服务供 Codex 等外部 Agent 接入、推荐并安装社区插件、经确认后修改插件配置。 · 最后更新 2026-09 |
+| [AI Vault Assistant](https://github.com/XinwangTao/obsidian-ai-vault-assistant) | `XinwangTao` | 本地 AI 助手：整理库内笔记、构建关联、列出插件与命令，可接 MCP 供外部 Agent 调用 · 最后更新 2026-09 |
 | [claudian](https://github.com/YishenTu/claudian) | `YishenTu` | 把 Claude Code／Codex 嵌进 Obsidian，当 AI 协作者做代码与写作辅助 · 最后更新 2026-10 |
 
 ### 数据同步与集成
@@ -193,7 +193,7 @@
 | 插件 | 作者 | 核心功能 |
 | --- | --- | --- |
 | [AindentPaper](https://github.com/louvlwu/obsidian-aindentpaper) | `louvlwu` | 针对文本段落首行缩进的插件，支持启用段落首行缩进（含 <br> 自动拆分）和段落拆分器（独立开关），并提供纸质纹理背景效果。 · 最后更新 2026-10 |
-| [LaTeX Autofill](https://github.com/yikhan519/latex-autofill) | `yikhan519` | 在 $…$ 内用中文或英文关键词（积分、矩阵、偏导数 / integral、matrix）补全 LaTeX 模板，Tab 跳转占位符；内置 Σ 公式搜索窗口，完全离线。 · 最后更新 2026-09 |
+| [LaTeX Autofill](https://github.com/yikhan519/latex-autofill) | `yikhan519` | 在 $…$ 里输中文关键词就补出 LaTeX 模板，Tab 跳占位符，内置公式搜索，完全离线 · 最后更新 2026-09 |
 
 ### 思维导图与阅读
 
@@ -344,7 +344,7 @@
 | [Analog Canvas](https://github.com/toddzzf/obsidian-analog-canvas) | `ToddZZF` | 在 Obsidian 里绘制电路图的插件。电路存成 .icproj 文件，可以在笔记里用嵌入引用： · 最后更新 2026-10 |
 | [Feishu Docs Publisher](https://github.com/totok22/feishu-docs-publisher) | `totok22` | 通过本地 lark-cli 把笔记、文件夹与 PDF 发布到飞书文档并保持同步 · 最后更新 2026-10 |
 | [49 Notion GPT Style](https://github.com/v-49/obsidian-49-notion-gpt) | `v-49` | 统一阅读样式、富文本粘贴、图片对齐、表格列宽与双窗滚动同步 · 最后更新 2026-10 |
-| [Hymns](https://github.com/viacai/Hymns) | `ViaCai` | 诗歌浏览、搜索、播放与收藏插件：按编号(如 D116)或关键词(空格分隔，如 恩典 耶稣)实时搜索，预览 PDF，播放 MP3，收藏与播放列表。桌面端与移动端通用。 · 最后更新 2026-10 |
+| [Hymns](https://github.com/viacai/Hymns) | `ViaCai` | 诗歌浏览、搜索与播放：按编号或关键词实时查找，预览 PDF、播放 MP3，收藏成播放列表 · 最后更新 2026-10 |
 | [Four Layer Todo](https://github.com/vrytfmcat/four-layer-todo) | `vryTfmcat` | 四层任务工作台：白板放当前任务，工作台、任务池与长期对象分层流转，数据存 Markdown · 最后更新 2026-10 |
 | [Trade Journal](https://github.com/wangxiaoqian2042/trade-journal) | `wangxiaoqian2042` | 本地优先的交易日志：CSV 导入、盈亏看板、日历热力图与资金曲线 · 最后更新 2026-10 |
 | [File Master](https://github.com/weichen-ink/file-master) | `weichen-ink` | 自建存储的附件管理：剪贴板自动上传、SHA-256 去重与零断链批量迁移 · 最后更新 2026-10 |
@@ -355,7 +355,7 @@
 | [Claudian Scheduler](https://github.com/xikongsaket/claudian-scheduler) | `XIKONGSAKET` | 定时向 Claudian 的指定对话框发送任务：把请求排到 DeepSeek 低谷时段（北京时间 00:30-08:30）自动发出，节省 API 成本。 · 最后更新 2026-08 |
 | [ChatGPT DIL Local](https://github.com/xueh0635-design/chatgpt-dil-local) | `xueh0635-design` | 离线渲染 ChatGPT 导出的交互图表，把含 DIL 标签的 Markdown 转成可操作的伴生笔记 · 最后更新 2026-10 |
 | [Cpp-Input-Guard](https://github.com/yaki-blake/Cpp-Input-Guard) | `Yaki-Blake` | 写 C/C++ 笔记时，防止尖括号、方括号、星号等被 Markdown 误当语法 · 最后更新 2026-10 |
-| [Config Sync with WebDAV](https://github.com/yanqingwang/personal-config-sync) | `yanqingwang` | 只同步 Obsidian 配置 (.obsidian/) 的 WebDAV 同步插件，独立于笔记内容同步。支持按插件/文件夹/文件/扩展名排除，默认全部配置同步，同步前自动做网络连通性测试。 · 最后更新 2026-10 |
+| [Config Sync with WebDAV](https://github.com/yanqingwang/personal-config-sync) | `yanqingwang` | 只同步 Obsidian 配置目录的 WebDAV 插件，可排除指定插件与文件，同步前先测连通 · 最后更新 2026-10 |
 | [Vault Agent](https://github.com/yanqingwang/opensource-AI-vault-agent) | `yanqingwang` | 国内可直连的 AI 库代理，支持 DeepSeek、GLM、Kimi、Qwen，能自主搜索与编辑笔记 · 最后更新 2026-10 |
 | [Vault Force Sync](https://github.com/yanqingwang/github-vault-force-sync) | `yanqingwang` | 通过系统 git 把整库强制或增量同步到 GitHub 远端，大文件跳过并记日志 · 最后更新 2026-10 |
 | [One Week](https://github.com/yibai435-star/one-week) | `yibai435-star` | 围绕课表安排一周：任务、习惯、月历与艾森豪威尔矩阵 · 最后更新 2026-10 |

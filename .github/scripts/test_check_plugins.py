@@ -1885,6 +1885,110 @@ class TestRecheckLinks(unittest.TestCase):
         self.assertEqual(unknown, 1)
 
 
+class TestDescriptionQuality(unittest.TestCase):
+    """Descriptions ship in Chinese and stay short. The scan builds them from
+    upstream metadata, so this guard is what keeps an English or truncated cell
+    from reaching the README (and --validate is what stops the commit)."""
+
+    def test_a_short_chinese_cell_is_fine(self):
+        self.assertIsNone(cp.description_problem("无服务器局域网同步：自动发现设备、加密传输"))
+
+    def test_an_english_cell_is_refused(self):
+        self.assertEqual(cp.description_problem("Sync your vault over LAN"), "not-chinese")
+
+    def test_a_long_cell_is_refused(self):
+        long = "同" * (cp.DESC_MAX_CHARS + 1)
+        self.assertEqual(cp.description_problem(long), "too-long")
+
+    def test_the_limit_itself_is_allowed(self):
+        self.assertIsNone(cp.description_problem("同" * cp.DESC_MAX_CHARS))
+
+    def test_an_install_snippet_is_refused(self):
+        self.assertEqual(cp.description_problem("安装：设置 → 第三方插件 → 浏览"), "remnant")
+        self.assertEqual(cp.description_problem("当前版本 0.6.3，修复合并"), "remnant")
+
+    def test_the_placeholder_is_refused(self):
+        self.assertEqual(cp.description_problem("[描述待补充]"), "placeholder")
+        self.assertEqual(cp.description_problem(""), "placeholder")
+
+    def test_freshness_decorations_do_not_count(self):
+        row = "本地 AI 助手：整理库内笔记" + " · 最后更新 2026-10"
+        self.assertIsNone(cp.description_problem(row))
+        self.assertIsNone(cp.description_problem("本地 AI 助手 [已归档]"))
+
+    def test_validate_reports_bad_rows_with_a_reason(self):
+        row = (
+            "## 原生中文插件，欢迎支持\n\n### 其他工具\n\n"
+            "| 插件 | 作者 | 核心功能 |\n| --- | --- | --- |\n"
+            "| [Bad](https://github.com/a/b) | `a` | Sync your vault over LAN |\n"
+            "| [Good](https://github.com/c/d) | `c` | 中文简介，简短清楚 |\n\n"
+            "## 精选中文主题\n"
+        )
+        issues = cp.validate_readme(row)
+        self.assertTrue(any("not-chinese" in i and "Bad" in i for i in issues), issues)
+        self.assertFalse(any("Good" in i for i in issues), issues)
+
+    def test_the_real_readme_passes(self):
+        readme = os.path.join(
+            os.path.dirname(os.path.abspath(__file__)), "..", "..", "README.md")
+        with open(readme, encoding="utf-8") as f:
+            text = f.read()
+        problems = [
+            (r["name"], cp.description_problem(r["desc"]))
+            for r in cp.parse_plugin_rows_full(text)
+            if cp.description_problem(r["desc"])
+        ]
+        self.assertEqual(problems, [])
+
+
+class TestNeedsDescReporting(unittest.TestCase):
+    """Candidates the scan refuses, and near misses the score barely drops, are
+    reported on the run summary page; nothing else surfaces them."""
+
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.tmp.cleanup)
+        self.out = os.path.join(self.tmp.name, "github_output")
+        self.summary = os.path.join(self.tmp.name, "summary")
+        self.saved = {k: os.environ.get(k) for k in ("GITHUB_OUTPUT", "GITHUB_STEP_SUMMARY")}
+        os.environ["GITHUB_OUTPUT"] = self.out
+        os.environ["GITHUB_STEP_SUMMARY"] = self.summary
+
+    def tearDown(self):
+        for key, value in self.saved.items():
+            if value is None:
+                os.environ.pop(key, None)
+            else:
+                os.environ[key] = value
+
+    def test_outputs_carry_both_lists(self):
+        cp.write_scan_output([], [], False, False, False,
+                             needs_desc=[{"name": "N", "repo": "a/b", "problem": "not-chinese"}],
+                             near_miss=[{"name": "M", "repo": "c/d", "cn": 30, "q": 40, "stars": 2}])
+        with open(self.out, encoding="utf-8") as f:
+            outputs = dict(ln.split("=", 1) for ln in f.read().splitlines() if "=" in ln)
+        self.assertEqual(json.loads(outputs["needs_desc"])[0]["repo"], "a/b")
+        self.assertEqual(json.loads(outputs["near_miss"])[0]["repo"], "c/d")
+        # Report-only: neither list makes the workflow commit anything.
+        self.assertEqual(outputs["content_changed"], "false")
+
+    def test_the_run_summary_lists_them(self):
+        cp.write_scan_output([], [], False, False, False,
+                             needs_desc=[{"name": "N", "repo": "a/b", "problem": "not-chinese",
+                                          "raw": "Sync your vault"}],
+                             near_miss=[{"name": "M", "repo": "c/d", "cn": 30, "q": 40, "stars": 2}])
+        with open(self.summary, encoding="utf-8") as f:
+            body = f.read()
+        self.assertIn("待人工写简介的候选", body)
+        self.assertIn("a/b", body)
+        self.assertIn("有中文但评分不够的候选", body)
+        self.assertIn("c/d", body)
+
+    def test_an_empty_summary_is_not_written(self):
+        cp.write_scan_output([], [], False, False, False)
+        self.assertFalse(os.path.exists(self.summary))
+
+
 class TestScanToApplyChain(unittest.TestCase):
     """scan -> GITHUB_OUTPUT -> apply -> validate, the seam the workflow walks."""
 
