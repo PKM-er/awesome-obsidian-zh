@@ -1,0 +1,47 @@
+name: Tests
+
+on:
+  pull_request:
+    paths:
+      - ".github/scripts/**"
+      - ".github/workflows/ci.yml"
+      - "ruff.toml"
+      - "requirements.txt"
+      - "README.md"
+  push:
+    branches: [main]
+    paths:
+      - ".github/scripts/**"
+      - ".github/workflows/ci.yml"
+      - "ruff.toml"
+      - "requirements.txt"
+      - "README.md"
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run unit tests
+        run: python -m unittest discover -s .github/scripts -p "test_*.py" -v
+
+      - name: Lint (undefined names, unused imports, duplicate dict keys)
+        run: |
+          pip install "ruff==0.17.3"
+          ruff check --no-cache .github/scripts
+
+      - name: Validate README
+        run: python .github/scripts/check_plugins.py --validate

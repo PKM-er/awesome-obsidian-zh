@@ -1,0 +1,45 @@
+name: 推荐插件或主题
+description: 推荐一个与中文相关的 Obsidian 插件或主题
+title: "[推荐] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢推荐。收录标准见 README 的「贡献指南」。
+        新收录的条目先进入「新插件观察区」，之后由脚本按星标、下载量和更新时间自动升降档，不需要人工逐个确认。
+  - type: input
+    id: repo
+    attributes:
+      label: 仓库地址
+      description: GitHub 上的插件或主题仓库
+      placeholder: https://github.com/owner/repo
+    validations:
+      required: true
+  - type: input
+    id: name
+    attributes:
+      label: 插件或主题名称
+      placeholder: 例如：Download Pulse
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: 为什么值得收录
+      description: 中文界面、中文文档、针对中文环境优化、中文作者主导——满足任意一条即可。
+    validations:
+      required: true
+  - type: input
+    id: zh
+    attributes:
+      label: 中文支持情况
+      placeholder: 例如：界面有简体中文；README 有中文版；支持中文标点与首行缩进
+    validations:
+      required: false
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: 确认
+      options:
+        - label: 我确认该插件或主题在 Obsidian 最新版中可以正常安装和运行
+          required: true

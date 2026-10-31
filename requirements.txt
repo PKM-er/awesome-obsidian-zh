@@ -1,0 +1,6 @@
+# Pinned exactly: the scheduled scan rewrites README.md, so a silently bumped
+# dependency would show up as a mysterious commit. Bump deliberately, then run
+# `python -B -m unittest discover -s .github/scripts -p "test_*.py"` and
+# `python -B .github/scripts/check_plugins.py --validate`.
+requests==2.34.2
+zhconv==1.4.3

@@ -1,0 +1,16 @@
+# Lint gate for the pipeline scripts.
+#
+# Deliberately narrow: F (pyflakes: undefined names, unused imports, f-string
+# mistakes, duplicate dict keys) and E9 (syntax/runtime errors). Style rules
+# (E1/E2/E3/E5/W) are NOT enforced -- check_plugins.py is one long-lived file
+# whose historical formatting is stable, and reflowing it would bury real
+# diffs in noise. A duplicate CURATED_DESC key, by contrast, silently
+# overwrites a description and is exactly what this gate is for.
+target-version = "py312"
+
+[lint]
+select = ["F", "E9"]
+
+[lint.per-file-ignores]
+# Test fixtures deliberately redefine the same names in local scopes.
+"test_check_plugins.py" = ["F811"]
