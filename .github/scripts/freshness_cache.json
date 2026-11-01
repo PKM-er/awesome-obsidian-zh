@@ -2156,5 +2156,77 @@
     "ok": true,
     "full_name": "ryzencool/dinox-sync",
     "checked_at": "2026-11-01T06:08:30.275986+00:00"
+  },
+  "spark-ai-boy/obsidian-social-formatter": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-01T07:07:14Z",
+    "ok": true,
+    "full_name": "spark-ai-boy/obsidian-social-formatter",
+    "checked_at": "2026-11-01T11:28:09.591914+00:00"
+  },
+  "eduaiot/eduaiot-ai-notes": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-01T02:00:39Z",
+    "ok": true,
+    "full_name": "eduaiot/eduaiot-ai-notes",
+    "checked_at": "2026-11-01T11:28:09.656507+00:00"
+  },
+  "floernt/hypomnema": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-10-31T12:48:16Z",
+    "ok": true,
+    "full_name": "Floernt/hypomnema",
+    "checked_at": "2026-11-01T11:28:09.682722+00:00"
+  },
+  "frank998-dpf/plugin-zh-notes": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-01T03:47:35Z",
+    "ok": true,
+    "full_name": "Frank998-dpf/plugin-zh-notes",
+    "checked_at": "2026-11-01T11:28:09.707107+00:00"
+  },
+  "onelasthuman/obsidian-better-canvas": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-10-31T04:37:44Z",
+    "ok": true,
+    "full_name": "OneLastHuman/obsidian-better-canvas",
+    "checked_at": "2026-11-01T11:28:09.743735+00:00"
+  },
+  "junhuihuang/obsidian-advanced-mindmap": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-01T07:53:58Z",
+    "ok": true,
+    "full_name": "junhuihuang/obsidian-advanced-mindmap",
+    "checked_at": "2026-11-01T11:28:09.760018+00:00"
+  },
+  "hotdog-box/obsidian-video-library": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-10-31T06:32:19Z",
+    "ok": true,
+    "full_name": "hotdog-box/obsidian-video-library",
+    "checked_at": "2026-11-01T11:28:09.775235+00:00"
+  },
+  "apri1qing/obsidian-markup-for-agents": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-01T09:51:44Z",
+    "ok": true,
+    "full_name": "Apri1qing/obsidian-markup-for-agents",
+    "checked_at": "2026-11-01T11:28:09.813984+00:00"
+  },
+  "woolaof/obsidian-prg-viewer": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-01T03:54:00Z",
+    "ok": true,
+    "full_name": "woolaof/obsidian-prg-viewer",
+    "checked_at": "2026-11-01T11:28:09.824887+00:00"
   }
 }
