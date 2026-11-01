@@ -940,6 +940,25 @@ CURATED_DESC = {
     "Community Manager CN Legacy": "旧版插件安装中心（停在 0.1.16，后续由 Wujie Hub 维护）：经镜像搜索、安装与升级插件",
     "Wujie Hub": "插件安装中心：经 GitHub 镜像搜索、安装与升级社区插件，并管理无界同步版本与回退",
     "Tag Graph": "Bases 关系图谱：标签、文件夹与属性成为枢纽节点，拖动笔记即可打标签，可合并、重命名或隐藏标签",
+    # The scan parks candidates whose upstream description is English or a
+    # placeholder instead of admitting them; each entry below was written
+    # from the plugin's own README so the parked candidate can be admitted
+    # by a later scan instead of staying outside the list forever.
+    "Better Canvas": "给画布加主题、卡片样式、标注与 AI 提问，边写边把零散想法连成一张图",
+    "Video Library": "把 B 站、YouTube 与本地视频收进带封面的网格，按分类、标签和收藏整理",
+    "Hypomnema": "在段落或某个点上写批注、回复并分类，批注以纯文本存回笔记，可全库搜索",
+    "EduAIoT AI Notes": "基于自己笔记做 AI 问答与语义检索，带每日回顾、周报和笔记整理建议",
+    "PRG Viewer": "只读查看 Project Graph 的 .prg 文件，可缩放平移，也能在笔记里嵌入预览",
+    "Chinese Notes": "给已装插件补充中文别名、用途说明和个人备注，内置 6329 条离线译名",
+    "Advanced Mindmap": "把 Markdown 笔记渲染成可编辑的思维导图，增删改节点直接写回原笔记",
+    "Markup for Agents": "把笔记里选中的段落连同批注一起发给终端里的 Claude Code 或 Codex",
+    # Rows the 2026-11-01 scan admitted with an upstream fragment as their
+    # description (install step, layout debris, release note); replaced with
+    # wording taken from each plugin's own README.
+    "Astra": "把速记、任务、项目看板、日历和写作统计收进一页仪表盘，另带全文搜索与 OneDrive 同步",
+    "Zhaohua Xishi": "从日记里随机回顾或按「往年今日」翻旧文，并把今天的感想追加到当日笔记",
+    "Feishu Wiki Sync Double": "把飞书知识库的多层目录与单篇分享文档拉取到本地，支持多库管理与只读保护",
+    "RelateTime": "用 React 与 D3 把人物设定画成随时间变化的关系图谱，支持 LLM 推断与冲突提示",
 }
 
 # Hand-verified section for the plugins that used to live in the catch-all
@@ -1965,6 +1984,11 @@ def run_scan(skip_stale=False):
     candidates = []
     needs_desc = []
     near_miss = []
+    # Candidates parked for a hand-written description must not be recorded
+    # as known: otherwise the CURATED_DESC entry written afterwards could
+    # never take effect, because the plugin is treated as already scanned
+    # and never looked at again.
+    parked_ids = set()
     scanned = 0
     for p in new_plugins:
         repo = p.get("repo", "")
@@ -2030,6 +2054,7 @@ def run_scan(skip_stale=False):
                 "name": name, "repo": repo, "author": author_id,
                 "problem": problem, "raw": (desc or "").strip()[:60],
             })
+            parked_ids.add(p["id"])
             continue
         candidates.append({
             "name": name, "repo": repo, "author": author_id,
@@ -2085,9 +2110,10 @@ def run_scan(skip_stale=False):
         "last_update": s["last_update"], "html_url": s["html_url"],
     } for s in dormant]
 
-    cache_changed = bool(new_ids)
+    persisted = all_ids - parked_ids
+    cache_changed = persisted != checked
     if cache_changed:
-        save_checked(all_ids)
+        save_checked(persisted)
 
     print(
         f"known={len(all_ids)} scanned={scanned} auto={len(add_rows)} "

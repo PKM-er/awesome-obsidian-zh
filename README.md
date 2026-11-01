@@ -257,7 +257,7 @@
 | [WeChat Reader](https://github.com/cynthia2023xy/obsidian-wechat-reader) | `Cynthia2023XY` | 订阅 RSS、Atom 和微信公众号，阅读、收藏并归档为 Markdown. · 最后更新 2026-10 |
 | [Note to JSON](https://github.com/dabing119/note-to-json) | `dabing119` | 格式化与简化 Markdown 排版，并支持 JSON 格式化与压缩。 · 最后更新 2026-10 |
 | [Office Flow](https://github.com/dan9574/office-flow) | `dan9574` | 任务笔记的工作流：行内任务按钮、进度卡片、首页与收藏快捷入口 · 最后更新 2026-10 |
-| [RelateTime](https://github.com/deepsealight/obsidian-relatetime) | `Deepsealight` | 基于 React 和 D3 的人物关系时间轴与推算图谱. · 最后更新 2026-10 |
+| [RelateTime](https://github.com/deepsealight/obsidian-relatetime) | `Deepsealight` | 用 React 与 D3 把人物设定画成随时间变化的关系图谱，支持 LLM 推断与冲突提示 · 最后更新 2026-10 |
 | [xSync](https://github.com/deku0818/xSync) | `deku0818` | 端到端加密的跨设备同步，可自建服务器并分享给朋友 · 最后更新 2026-10 |
 | [Thinker](https://github.com/depthinker925/Thinker) | `Depthinker925` | Obsidian 起始页插件。单页包含时钟、笔记、计时与日历四个区域。 · 最后更新 2026-10 |
 | [Pictether](https://github.com/dhengsun/obsidian-pictether) | `dhengsun` | 本地优先的外部附件管理，可选 S3 兼容备份与恢复 · 最后更新 2026-10 |
@@ -308,7 +308,7 @@
 | [Meeting Live](https://github.com/n0ctx/obsidian-meeting-live) | `n0ctx` | 在笔记里开会：本地录音、火山引擎实时语音识别、AI 阶段总结与会议笔记 · 最后更新 2026-10 |
 | [Device Tracker](https://github.com/nicholaskj/obsidian-device-tracker) | `nicholaskj` | 在 frontmatter 里记下哪台设备创建、哪台最后编辑了这篇笔记 · 最后更新 2026-10 |
 | [Pin Indicator](https://github.com/nicholaskj/pin-indicator) | `nicholaskj` | 笔记被固定时，在「更多选项」按钮上显示一把锁 · 最后更新 2026-10 |
-| [Astra](https://github.com/nightfall-yl/obsidian-astra) | `nightfall-yl` | 优先级: 重要且紧急 urgent & important / important / urgent / neither · 最后更新 2026-11 |
+| [Astra](https://github.com/nightfall-yl/obsidian-astra) | `nightfall-yl` | 把速记、任务、项目看板、日历和写作统计收进一页仪表盘，另带全文搜索与 OneDrive 同步 · 最后更新 2026-11 |
 | [Drawio Preview](https://github.com/nnq7/obsidian-drawio-preview) | `nnq7` | 在 Obsidian 里直接预览 .drawio 图表，支持缩放、平移与多页 · 最后更新 2026-10 |
 | [Heading Guard](https://github.com/nnq7/obsidian-heading-guard) | `nnq7` | 按自定义规则给标题分级编号，编号变化时同步更新笔记内标题链接 · 最后更新 2026-10 |
 | [Notes Activity Calendar](https://github.com/norman-lawyer/notes-activity-calendar) | `Norman-lawyer` | 侧栏日历：展示笔记的创建与修改，带农历与每日笔记快捷入口 · 最后更新 2026-10 |
@@ -342,7 +342,7 @@
 | [NyaHome](https://github.com/st31orange/NyaHome) | `ST31Orange` | 统一的 Obsidian 主页与本地优先工作台，可选接入在线日历和邮箱 · 最后更新 2026-10 |
 | [GitHub Vault Sync (Desktop)](https://github.com/summervvorm/github-vault-sync-desktop) | `summervvorm` | 把库直接当 Git 工作区与 GitHub 仓库同步：定时提交、拉取、三方合并，冲突时保留副本 · 最后更新 2026-10 |
 | [TLT - Timeline Things](https://github.com/sxinyuhoo/TLT-timeline-things) | `sxinyuhoo` | 以时间线为中心的任务与项目管理：日历、里程碑、人员负荷与消息中心 · 最后更新 2026-10 |
-| [Zhaohua Xishi](https://github.com/tangerine-cat888/zhaohua-xishi) | `Tangerine-Cat888` | 3. Select 随机回顾 (Random review) or 往年今日 (On this day). · 最后更新 2026-10 |
+| [Zhaohua Xishi](https://github.com/tangerine-cat888/zhaohua-xishi) | `Tangerine-Cat888` | 从日记里随机回顾或按「往年今日」翻旧文，并把今天的感想追加到当日笔记 · 最后更新 2026-10 |
 | [Symbol Stripper](https://github.com/tasete/symbol-stripper) | `Tasete` | 选中文本，一键剔除指定字符或正则匹配的内容 · 最后更新 2026-08 |
 | [HTML Frontmatter](https://github.com/thhapp/obsidian-html-frontmatter) | `THhapp` | 用原生属性面板编辑 HTML 元数据，并纳入库的属性目录 · 最后更新 2026-10 |
 | [Animal Island Calendar](https://github.com/tiffanyiong/obsidian-animal-island-calendar) | `tiffanyiong` | 纸感风格的日期时间选择器，给笔记属性选日期 · 最后更新 2026-10 |
@@ -356,7 +356,7 @@
 | [File Master](https://github.com/weichen-ink/file-master) | `weichen-ink` | 自建存储的附件管理：剪贴板自动上传、SHA-256 去重与零断链批量迁移 · 最后更新 2026-10 |
 | [Univer Sheet](https://github.com/weigram/obsidian-univer) | `weigram` | 在 Obsidian 里打开、编辑和新建 Univer 表格与关系型数据库 · 最后更新 2026-10 |
 | [Tab Settings Enhanced](https://github.com/wonderez/tab-settings-enhanced) | `wonderez` | 增强标签管理：控制新标签打开位置、可搜索的标签导航与相对定位 · 最后更新 2026-10 |
-| [Feishu Wiki Sync Double](https://github.com/wsa0227/feishu-sync-double) | `wsa0227` | 将 Obsidian 仓库中的 Markdown 笔记与飞书知识库双向同步。当前维护版 0.2.4；本仓库下载。 · 最后更新 2026-11 |
+| [Feishu Wiki Sync Double](https://github.com/wsa0227/feishu-sync-double) | `wsa0227` | 把飞书知识库的多层目录与单篇分享文档拉取到本地，支持多库管理与只读保护 · 最后更新 2026-11 |
 | [KB Semantic Search](https://github.com/xiao-hu1987/obsidian-kb-semantic-search) | `Xiao-HU1987` | 调用本地混合检索服务（bge-small-zh 向量 + FTS5 全文 + RRF 融合），在 Obsidian 内进行中文语义搜索并跳转笔记. · 最后更新 2026-10 |
 | [AI 聊天助手](https://github.com/xiaonanhai9855/obsidian-AI-Chat-Assistant) | `xiaonanhai9855` | 在 Obsidian 内提供 AI 对话面板，内置 RAG 引擎，支持 @ 提及笔记/文件夹/标签/知识库语义搜索。 · 最后更新 2026-06 |
 | [Claudian Scheduler](https://github.com/xikongsaket/claudian-scheduler) | `XIKONGSAKET` | 定时向 Claudian 的指定对话框发送任务：把请求排到 DeepSeek 低谷时段（北京时间 00:30-08:30）自动发出，节省 API 成本。 · 最后更新 2026-08 |

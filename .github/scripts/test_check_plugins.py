@@ -439,6 +439,17 @@ class TestEndToEnd(unittest.TestCase):
         else:
             os.environ.pop("GITHUB_OUTPUT", None)
 
+    def _scan(self, plugins):
+        import io
+        from contextlib import redirect_stdout
+        out = io.StringIO()
+        with unittest.mock.patch.object(cp, "verify_api_auth"), \
+             unittest.mock.patch.object(cp, "gh_get", side_effect=fake_gh_get), \
+             unittest.mock.patch.object(cp, "create_retry_session", return_value=FakeSession(plugins)), \
+             redirect_stdout(out):
+            cp.run_scan(skip_stale=True)
+        return json.loads(out.getvalue())
+
     def test_scan_first_run_classifies_and_caches(self):
         plugins = [
             {"id": "good-plugin", "name": "好插件", "repo": "good/plugin", "author": "good", "description": "中文描述"},
@@ -483,28 +494,42 @@ class TestEndToEnd(unittest.TestCase):
         self.assertEqual(data["add"][0]["tier"], "auto")
         self.assertTrue(data["auto_merge_ready"])
 
-    def test_scan_skips_unshippable_placeholder_candidates(self):
-        # A candidate with no usable description ships as '[描述待补充]',
-        # which validate_readme rejects. It must not set content_changed
-        # (2026-10-07: this combo crashed the scan's commit step); the cache
-        # backfill still records it so the next scan moves on.
+    def test_scan_parks_placeholder_candidate_without_caching_it(self):
+        # A candidate whose description cannot be salvaged ships as
+        # '[描述待补充]', which validate_readme rejects. It must not set
+        # content_changed (2026-10-07: this combo crashed the scan's commit
+        # step) and it must not be recorded as known either: the 2026-11-01
+        # run cached four such ids, so the CURATED_DESC entries written
+        # afterwards could never be picked up.
         plugins = [
             {"id": "known-plugin", "name": "已知", "repo": "known/plugin", "author": "k", "description": "中文描述"},
             {"id": "broken-desc", "name": "无描述插件", "repo": "broken/plugin", "author": "broken", "description": "npm install broken"},
         ]
         cp.save_checked({"known-plugin"})
-        import io
-        from contextlib import redirect_stdout
-        out = io.StringIO()
-        with unittest.mock.patch.object(cp, "verify_api_auth"), \
-             unittest.mock.patch.object(cp, "gh_get", side_effect=fake_gh_get), \
-             unittest.mock.patch.object(cp, "create_retry_session", return_value=FakeSession(plugins)), \
-             redirect_stdout(out):
-            cp.run_scan(skip_stale=True)
-        data = json.loads(out.getvalue())
+        data = self._scan(plugins)
         self.assertEqual(data["add"], [])
         self.assertFalse(data["content_changed"])
-        self.assertTrue(data["cache_changed"])
+        self.assertFalse(data["cache_changed"])
+        self.assertEqual([d["repo"] for d in data["needs_desc"]], ["broken/plugin"])
+        self.assertNotIn("broken-desc", cp.load_checked())
+
+    def test_scan_admits_parked_candidate_once_desc_is_curated(self):
+        # Parked ids stay new on the next run, so writing the description is
+        # enough to admit the plugin instead of losing it forever.
+        plugins = [
+            {"id": "known-plugin", "name": "已知", "repo": "known/plugin", "author": "k", "description": "中文描述"},
+            {"id": "broken-desc", "name": "无描述插件", "repo": "broken/plugin", "author": "broken", "description": "npm install broken"},
+        ]
+        cp.save_checked({"known-plugin"})
+        with unittest.mock.patch.dict(
+                cp.CURATED_DESC, {"无描述插件": "把笔记按标题拆成课程表，支持周次与调课。"}):
+            data = self._scan(plugins)
+        # 40 stars and a Chinese locale file put it in review tier, i.e. the
+        # observation zone, not the auto-merge list.
+        self.assertEqual(data["add"], [])
+        self.assertEqual([r["repo"] for r in data["observe"]], ["broken/plugin"])
+        self.assertIn("课程表", data["observe"][0]["desc"])
+        self.assertTrue(data["content_changed"])
         self.assertIn("broken-desc", cp.load_checked())
 
     def test_scan_admits_english_metadata_with_chinese_readme(self):
