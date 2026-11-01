@@ -2100,5 +2100,61 @@
     "ok": true,
     "full_name": "PKM-er/obsidian-editing-toolbar",
     "checked_at": "2026-10-31T13:01:47.491289+00:00"
+  },
+  "tangerine-cat888/zhaohua-xishi": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-10-31T13:29:20Z",
+    "ok": true,
+    "full_name": "Tangerine-Cat888/zhaohua-xishi",
+    "checked_at": "2026-11-01T06:08:30.038427+00:00"
+  },
+  "nightfall-yl/obsidian-astra": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-01T02:13:27Z",
+    "ok": true,
+    "full_name": "nightfall-yl/obsidian-astra",
+    "checked_at": "2026-11-01T06:08:30.073310+00:00"
+  },
+  "wsa0227/feishu-sync-double": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-01T04:03:54Z",
+    "ok": true,
+    "full_name": "wsa0227/feishu-sync-double",
+    "checked_at": "2026-11-01T06:08:30.130920+00:00"
+  },
+  "deepsealight/obsidian-relatetime": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-10-31T13:36:17Z",
+    "ok": true,
+    "full_name": "Deepsealight/obsidian-relatetime",
+    "checked_at": "2026-11-01T06:08:30.176473+00:00"
+  },
+  "flmaximwang/ObsidianPlugin-AnnexGallery": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-01T02:10:02Z",
+    "ok": true,
+    "full_name": "flmaximwang/ObsidianPlugin-AnnexGallery",
+    "checked_at": "2026-11-01T06:08:30.179895+00:00"
+  },
+  "shiyi-sun/obsidian-plugins-sun-daoru": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-01T03:38:54Z",
+    "ok": true,
+    "full_name": "shiyi-sun/obsidian-plugins-sun-daoru",
+    "checked_at": "2026-11-01T06:08:30.186514+00:00"
+  },
+  "ryzencool/dinox-sync": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-10-31T16:15:49Z",
+    "ok": true,
+    "full_name": "ryzencool/dinox-sync",
+    "checked_at": "2026-11-01T06:08:30.275986+00:00"
   }
 }
