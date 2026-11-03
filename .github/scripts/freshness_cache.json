@@ -2228,5 +2228,53 @@
     "ok": true,
     "full_name": "woolaof/obsidian-prg-viewer",
     "checked_at": "2026-11-01T11:28:09.824887+00:00"
+  },
+  "milubxaq/obsidian-pangu-cn": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-02T08:14:48Z",
+    "ok": true,
+    "full_name": "milubxaq/obsidian-pangu-cn",
+    "checked_at": "2026-11-03T06:52:22.457230+00:00"
+  },
+  "superbaseballman/clear-unused-attachment-obsidian": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-02T12:50:20Z",
+    "ok": true,
+    "full_name": "superbaseballman/clear-unused-attachment-obsidian",
+    "checked_at": "2026-11-03T06:52:22.504226+00:00"
+  },
+  "aipmwx/obsidian-md-annotator": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-02T10:08:36Z",
+    "ok": true,
+    "full_name": "AIPMwx/obsidian-md-annotator",
+    "checked_at": "2026-11-03T06:52:22.518622+00:00"
+  },
+  "jiangyancoder/MathBox": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-01T13:23:15Z",
+    "ok": true,
+    "full_name": "JiangYanCoder/MathBox",
+    "checked_at": "2026-11-03T06:52:22.574981+00:00"
+  },
+  "sourit2001/content-library": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-02T12:43:31Z",
+    "ok": true,
+    "full_name": "sourit2001/content-library",
+    "checked_at": "2026-11-03T06:52:22.621677+00:00"
+  },
+  "skyue/obsidian-nldates-chinese": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-02T14:30:28Z",
+    "ok": true,
+    "full_name": "skyue/obsidian-nldates-chinese",
+    "checked_at": "2026-11-03T06:52:22.634082+00:00"
   }
 }

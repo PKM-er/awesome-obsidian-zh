@@ -75,7 +75,7 @@
 | 插件 | 作者 | 核心功能 |
 | --- | --- | --- |
 | [cm-chs-patch](https://github.com/aidenlx/cm-chs-patch) | `aidenlx` | 优化中文分词，使得双击可以精确选中中文词语。 · 最后更新 2026-10 |
-| [HomePulse](https://github.com/jukkau/HomePulse) | `jukkau` | 组件化的个人主页仪表盘：网格布局、拖拽编辑与工作流小组件 |
+| [HomePulse](https://github.com/jukkau/HomePulse) | `jukkau` | 组件化的个人主页仪表盘：网格布局、拖拽编辑与工作流小组件 · 最后更新 2026-10 |
 | [Zone Scroll Zoom](https://github.com/kqint/obsidian-zone-scroll-zoom) | `kqint` | 用快捷键缩放界面或字号，缩放位置跟随鼠标 · 最后更新 2026-10 |
 | [Fuzzy Chinese Pinyin](https://github.com/lazyloong/obsidian-fuzzy-chinese) | `lazyloong` | 提供中文拼音模糊搜索功能，支持拼音、首字母搜索。 · 最后更新 2026-10 |
 | [MarkMind](https://github.com/MarkMindCkm/obsidian-markmind) | `MarkMindCkm` | 在 Obsidian 中创建和编辑思维导图，并支持 PDF 标注。 · 最后更新 2026-10 |
@@ -236,7 +236,7 @@
 | [Inline Predict](https://github.com/3265204/obsidian-inline-predict) | `3265204` | 行内 AI 补全：灰字预览、分步接受、本地用量统计，兼容 OpenAI 接口 · 最后更新 2026-10 |
 | [Community Manager CN Legacy](https://github.com/adventurer2008/plugin-manager-cn) | `adventurer2008` | 旧版插件安装中心（停在 0.1.16，后续由 Wujie Hub 维护）：经镜像搜索、安装与升级插件 · 最后更新 2026-10 |
 | [Wujie Hub](https://github.com/adventurer2008/wujie-hub) | `adventurer2008` | 插件安装中心：经 GitHub 镜像搜索、安装与升级社区插件，并管理无界同步版本与回退 · 最后更新 2026-10 |
-| [MD Annotator](https://github.com/aipmwx/obsidian-md-annotator) | `AIPMwx` | 选中文字写修改意见，以 CriticMarkup 格式写入 Markdown，方便交给 AI 按批注修改。 |
+| [MD Annotator](https://github.com/aipmwx/obsidian-md-annotator) | `AIPMwx` | 选中文字写修改意见，以 CriticMarkup 格式写入 Markdown，方便交给 AI 按批注修改。 · 最后更新 2026-11 |
 | [LaC.CostSet](https://github.com/alvinfunborn/lac-costset) | `alvinfunborn` | 用 TOML 管理个人物品清单：价格、日期、标签、回收价值与每日成本趋势 · 最后更新 2026-10 |
 | [WeChat Workbench](https://github.com/anightmonarch/obsidian-wechat-workbench) | `anightmonarch` | 公众号草稿的发布工作台：写作、排版、预览、复制与同步 · 最后更新 2026-08 |
 | [Markup for Agents](https://github.com/apri1qing/obsidian-markup-for-agents) | `Apri1qing` | 把笔记里选中的段落连同批注一起发给终端里的 Claude Code 或 Codex · 最后更新 2026-11 |
@@ -287,7 +287,7 @@
 | [Nihong AI explaination](https://github.com/iikira/obsidian-nihong-ai-explain) | `iikira` | 选中日语词句，生成 AI 讲解笔记、语法拆解、翻译、离线词典与朗读 · 最后更新 2026-10 |
 | [Tuopan](https://github.com/incredible404-rgb/tuopan) | `incredible404-rgb` | 让 Obsidian 常驻系统托盘：开机隐藏启动、关窗不退出、再启动不弹选库窗 · 最后更新 2026-10 |
 | [gogoga icons](https://github.com/jackweigogoga/gogoga-icons) | `JackWeiGogoga` | gogoga 主题的配套插件：把内置 Lucide 图标换成 Phosphor 图标 · 最后更新 2026-10 |
-| [MathBox](https://github.com/jiangyancoder/MathBox) | `JiangYanCoder` | 一个显式的上下分栏公式编辑器：上方实时渲染、下方编辑 LaTeX 源码，中间选项栏控制字号 / 字体 / |
+| [MathBox](https://github.com/jiangyancoder/MathBox) | `JiangYanCoder` | 一个显式的上下分栏公式编辑器：上方实时渲染、下方编辑 LaTeX 源码，中间选项栏控制字号 / 字体 / · 最后更新 2026-11 |
 | [CJK Emphasis Fix](https://github.com/jiayuren1127/cjk-emphasis-fix) | `JiayuREN1127` | 修复实时预览中加粗、斜体紧邻中日韩标点时被显示成星号的问题 · 最后更新 2026-10 |
 | [Octavo Toolbar](https://github.com/jiuxianzai/obsidian-octavo-toolbar) | `jiuxianzai` | 选中文字弹出格式工具栏：加粗、链接、callout、块转换与纯文本复制 · 最后更新 2026-10 |
 | [Quiet Kanban](https://github.com/jjeejj/obsidian-quiet-kanban) | `jjeejj` | 给 Bases 用的紧凑看板视图：彩色卡片与可折叠预览 · 最后更新 2026-10 |
@@ -315,7 +315,7 @@
 | [Thread Studio](https://github.com/matsurimw/thread-studio) | `MatsuriMW` | 从笔记写 X 推文、长帖与文章，带实时预览 · 最后更新 2026-10 |
 | [YPP Book Shelf](https://github.com/mazaoshe/ypp-book-shelf) | `mazaoshe` | 把知识库里的书籍笔记显示成封面书架，并从微信读书 / 豆瓣补全封面与书籍属性。 · 最后更新 2026-10 |
 | [Prism Studio](https://github.com/menoking/Prism-Studio) | `menoking` | 多套配色与玻璃材质、独立界面与笔记字体、章节滚动条、图片堆叠、任务管理与内容工作台。 · 最后更新 2026-10 |
-| [Pangu CN](https://github.com/milubxaq/obsidian-pangu-cn) | `milubxaq` | 自动在中英文、中文与数字之间补空格，整理中文标点；支持粘贴时自动排版与整篇/选区/文件夹批量处理。 |
+| [Pangu CN](https://github.com/milubxaq/obsidian-pangu-cn) | `milubxaq` | 自动在中英文、中文与数字之间补空格，整理中文标点；支持粘贴时自动排版与整篇/选区/文件夹批量处理。 · 最后更新 2026-11 |
 | [Meeting Live](https://github.com/n0ctx/obsidian-meeting-live) | `n0ctx` | 在笔记里开会：本地录音、火山引擎实时语音识别、AI 阶段总结与会议笔记 · 最后更新 2026-10 |
 | [Device Tracker](https://github.com/nicholaskj/obsidian-device-tracker) | `nicholaskj` | 在 frontmatter 里记下哪台设备创建、哪台最后编辑了这篇笔记 · 最后更新 2026-10 |
 | [Pin Indicator](https://github.com/nicholaskj/pin-indicator) | `nicholaskj` | 笔记被固定时，在「更多选项」按钮上显示一把锁 · 最后更新 2026-10 |
@@ -350,12 +350,12 @@
 | [sun-kb-home](https://github.com/shiyi-sun/obsidian-plugins-sun-home) | `shiyi-sun` | 把 Obsidian 首页变成知识库卡片墙，以真实文件夹分组，点击进入知识库的树状目录；支持拖拽排序、置顶与隐藏文件。 · 最后更新 2026-10 |
 | [ConfigSync Hub](https://github.com/silence-lei/configsync-hub) | `silence-lei` | 跨库同步配置：插件、主题、CSS 片段、快捷键与设置一次配置多库生效 · 最后更新 2026-10 |
 | [Banxin Typography](https://github.com/simoneven/obsidian-banxin) | `simoneven` | 像 Word 一样用图形界面排版中文笔记：字号、中英文字体、行距、首行缩进、标题编号，内置国标公文与学术论文模板 · 最后更新 2026-10 |
-| [Natural Language Dates - Chinese](https://github.com/skyue/obsidian-nldates-chinese) | `skyue` | 支持中文自然语言输入日期，如 @今天、@下周三、@3天后 |
-| [Content Library Dashboard](https://github.com/sourit2001/content-library) | `sourit2001` | noise while you read or write. 三套素材包自带循环环境音，适合阅读、写作时当背景白噪音。 |
+| [Natural Language Dates - Chinese](https://github.com/skyue/obsidian-nldates-chinese) | `skyue` | 支持中文自然语言输入日期，如 @今天、@下周三、@3天后 · 最后更新 2026-11 |
+| [Content Library Dashboard](https://github.com/sourit2001/content-library) | `sourit2001` | noise while you read or write. 三套素材包自带循环环境音，适合阅读、写作时当背景白噪音。 · 最后更新 2026-11 |
 | [Social Formatter](https://github.com/spark-ai-boy/obsidian-social-formatter) | `spark-ai-boy` | 把 Obsidian 笔记转换为微信公众号、今日头条的排版样式，支持自定义主题，一键复制富文本并粘贴到平台编辑器。 · 最后更新 2026-11 |
 | [NyaHome](https://github.com/st31orange/NyaHome) | `ST31Orange` | 统一的 Obsidian 主页与本地优先工作台，可选接入在线日历和邮箱 · 最后更新 2026-10 |
 | [GitHub Vault Sync (Desktop)](https://github.com/summervvorm/github-vault-sync-desktop) | `summervvorm` | 把库直接当 Git 工作区与 GitHub 仓库同步：定时提交、拉取、三方合并，冲突时保留副本 · 最后更新 2026-10 |
-| [Clear Unused Attachment](https://github.com/superbaseballman/clear-unused-attachment-obsidian) | `superbaseballman` | 本插件通过删除不再在 Markdown 笔记中引用的图片，帮助您保持 vault 的整洁。 |
+| [Clear Unused Attachment](https://github.com/superbaseballman/clear-unused-attachment-obsidian) | `superbaseballman` | 本插件通过删除不再在 Markdown 笔记中引用的图片，帮助您保持 vault 的整洁。 · 最后更新 2026-11 |
 | [TLT - Timeline Things](https://github.com/sxinyuhoo/TLT-timeline-things) | `sxinyuhoo` | 以时间线为中心的任务与项目管理：日历、里程碑、人员负荷与消息中心 · 最后更新 2026-10 |
 | [Zhaohua Xishi](https://github.com/tangerine-cat888/zhaohua-xishi) | `Tangerine-Cat888` | 从日记里随机回顾或按「往年今日」翻旧文，并把今天的感想追加到当日笔记 · 最后更新 2026-10 |
 | [Symbol Stripper](https://github.com/tasete/symbol-stripper) | `Tasete` | 选中文本，一键剔除指定字符或正则匹配的内容 · 最后更新 2026-08 |
