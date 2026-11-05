@@ -2276,5 +2276,61 @@
     "ok": true,
     "full_name": "skyue/obsidian-nldates-chinese",
     "checked_at": "2026-11-03T06:52:22.634082+00:00"
+  },
+  "anthemzhou/Nebula_Focus": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-04T12:10:13Z",
+    "ok": true,
+    "full_name": "AnthemZhou/Nebula_Focus",
+    "checked_at": "2026-11-05T06:50:30.063549+00:00"
+  },
+  "mrdongshan/obsidian-html-widget": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-04T14:49:39Z",
+    "ok": true,
+    "full_name": "MrDongShan/obsidian-html-widget",
+    "checked_at": "2026-11-05T06:50:30.072462+00:00"
+  },
+  "mffeiron-ai/obsidian-chinese-glossary-hover": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-05T04:34:23Z",
+    "ok": true,
+    "full_name": "mffeiron-ai/obsidian-chinese-glossary-hover",
+    "checked_at": "2026-11-05T06:50:30.134818+00:00"
+  },
+  "dtta520-cpu/bingo-garden": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-05T02:22:10Z",
+    "ok": true,
+    "full_name": "dtta520-cpu/bingo-garden",
+    "checked_at": "2026-11-05T06:50:30.159878+00:00"
+  },
+  "yeshimei/bz-reader": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-04T21:50:40Z",
+    "ok": true,
+    "full_name": "yeshimei/bz-reader",
+    "checked_at": "2026-11-05T06:50:30.163675+00:00"
+  },
+  "haoo-7/obsidian-haoo-cardbox": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-05T01:10:16Z",
+    "ok": true,
+    "full_name": "Haoo-7/obsidian-haoo-cardbox",
+    "checked_at": "2026-11-05T06:50:30.168716+00:00"
+  },
+  "lesk-org/obsidian-bases-calendar": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-04T09:34:32Z",
+    "ok": true,
+    "full_name": "lesk-org/obsidian-bases-calendar",
+    "checked_at": "2026-11-05T06:50:30.188781+00:00"
   }
 }
