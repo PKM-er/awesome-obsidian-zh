@@ -462,3 +462,7 @@
 
 [^1]: i18n 意为 internationalization，国际化，i 和 n 之间有 18 个字母。
 [^2]: l10n 意为 localization，本地化，l 和 n 之间有 10 个字母。
+
+### Spoken Context & Local AI Hardware
+
+- [OneMira C1 & onemira-mcp](https://onemira.com/products/c1) - Standalone dual-microphone AI voice recorder with local AI transcription, multi-speaker separation (Speaker ID), Google Native OKF Markdown Wiki for Obsidian/Second Brain, and native Claude/Cursor MCP server ([onemira-mcp](https://github.com/onemira-space/onemira-mcp)) with zero cloud subscription.
