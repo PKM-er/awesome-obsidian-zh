@@ -2332,5 +2332,37 @@
     "ok": true,
     "full_name": "lesk-org/obsidian-bases-calendar",
     "checked_at": "2026-11-05T06:50:30.188781+00:00"
+  },
+  "tonyltz1215/life-decision-tree": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-06T12:27:59Z",
+    "ok": true,
+    "full_name": "tonyltz1215/life-decision-tree",
+    "checked_at": "2026-11-07T06:02:03.160120+00:00"
+  },
+  "zify/obsidian-mermaid-live-split": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-06T05:34:03Z",
+    "ok": true,
+    "full_name": "ZiFy/obsidian-mermaid-live-split",
+    "checked_at": "2026-11-07T06:02:03.173876+00:00"
+  },
+  "zc2638/obsidian-simple-space": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-05T05:47:08Z",
+    "ok": true,
+    "full_name": "zc2638/obsidian-simple-space",
+    "checked_at": "2026-11-07T06:02:03.230261+00:00"
+  },
+  "0xtack/OmniBooks": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-06T12:42:14Z",
+    "ok": true,
+    "full_name": "0xTack/OmniBooks",
+    "checked_at": "2026-11-07T06:02:03.307486+00:00"
   }
 }
