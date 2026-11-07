@@ -230,10 +230,11 @@
 > 新收录的插件先在此观察；达到活跃标准后自动转入上方的主题表格，长期没有动静的自动移出。
 
 <details>
-<summary>展开查看观察中的插件（167）</summary>
+<summary>展开查看观察中的插件（171）</summary>
 
 | 插件 | 作者 | 核心功能 |
 | --- | --- | --- |
+| [OmniBooks](https://github.com/0xtack/OmniBooks) | `0xTack` | 把书籍笔记变成书架、阅读视图、时间线和阅读统计。微信读书与苹果图书可同时同步，AI 还会给出阅读分析、推荐与反向推荐。 |
 | [Better Search Result Views](https://github.com/1012-web/better-search-result-views) | `1012-web` | 搜索结果按标题分组，文内查找统一在浮窗，跨换行、标签或页码也能搜到 · 最后更新 2026-10 |
 | [Inline Predict](https://github.com/3265204/obsidian-inline-predict) | `3265204` | 行内 AI 补全：灰字预览、分步接受、本地用量统计，兼容 OpenAI 接口 · 最后更新 2026-10 |
 | [Community Manager CN Legacy](https://github.com/adventurer2008/plugin-manager-cn) | `adventurer2008` | 旧版插件安装中心（停在 0.1.16，后续由 Wujie Hub 维护）：经镜像搜索、安装与升级插件 · 最后更新 2026-10 |
@@ -369,6 +370,7 @@
 | [Animal Island Calendar](https://github.com/tiffanyiong/obsidian-animal-island-calendar) | `tiffanyiong` | 纸感风格的日期时间选择器，给笔记属性选日期 · 最后更新 2026-10 |
 | [Easy Text Highlighter](https://github.com/tiffanyiong/easy-text-highlighter) | `tiffanyiong` | 高亮、下划线并归类选中文字，可按颜色或样式筛选后复制或导出 · 最后更新 2026-10 |
 | [Analog Canvas](https://github.com/toddzzf/obsidian-analog-canvas) | `ToddZZF` | 在 Obsidian 里绘制电路图的插件。电路存成 .icproj 文件，可以在笔记里用嵌入引用： · 最后更新 2026-10 |
+| [Life Decision Tree](https://github.com/tonyltz1215/life-decision-tree) | `tonyltz1215` | 把碎片经历榨成四类节点（能力/证据/风险/资源），长出一棵会生长的决策树；本地优先、不提供心理诊断。 |
 | [Feishu Docs Publisher](https://github.com/totok22/feishu-docs-publisher) | `totok22` | 通过本地 lark-cli 把笔记、文件夹与 PDF 发布到飞书文档并保持同步 · 最后更新 2026-10 |
 | [49 Notion GPT Style](https://github.com/v-49/obsidian-49-notion-gpt) | `v-49` | 统一阅读样式、富文本粘贴、图片对齐、表格列宽与双窗滚动同步 · 最后更新 2026-10 |
 | [Hymns](https://github.com/viacai/Hymns) | `ViaCai` | 诗歌浏览、搜索与播放：按编号或关键词实时查找，预览 PDF、播放 MP3，收藏成播放列表 · 最后更新 2026-10 |
@@ -393,11 +395,13 @@
 | [Cloudflare Image Uploader](https://github.com/yunasuka/obsidian-r2-image-uploader) | `yunasuka` | 把网页剪藏的图片存进自己的 Cloudflare R2，避免图床失效 · 最后更新 2026-10 |
 | [Native PDF Theme Bridge](https://github.com/yunmin311/native-pdf-theme-bridge) | `yunmin311` | 导出原生 PDF 时保留当前阅读配色，并可逐页调间距 · 最后更新 2026-10 |
 | [Playdown](https://github.com/z-mackintosh/playdown) | `Z-Mackintosh` | 基于播放列表的笔记导航插件：创建播放列表、按顺序浏览笔记、管理阅读流程。 · 最后更新 2026-08 |
+| [Simple Space](https://github.com/zc2638/obsidian-simple-space) | `zc2638` | 一个清晰、好看、顺手的 Obsidian 工作台。 |
 | [Backleaf](https://github.com/zefei124/backleaf) | `zefei124` | 就 PDF 选区与 AI 讨论，并把结果存成结构化阅读笔记 · 最后更新 2026-10 |
 | [AI Short Drama Assistant](https://github.com/zeng198708/ai-short-drama-assistant) | `zeng198708` | 短剧创作六模块：选题评分、立项检查、单集写作、政策红线快检、46 项质检、去 AI 味改写与投稿格式检查 · 最后更新 2026-10 |
 | [Countdown Day](https://github.com/zenpuro/countdown-day) | `zenpuro` | 倒数日与纪念日管理，支持公历与农历 · 最后更新 2026-10 |
 | [NoteHarbor Sync](https://github.com/zenyyxz/remotely-sync) | `zenyyxz` | 借多种云存储在不同设备间同步笔记 · 最后更新 2026-10 |
 | [Bilingual Reader](https://github.com/zhouweico/obsidian-bilingual-reader) | `zhouweico` | 把当前笔记译成指定语言并另存为新文件——原文一个字都不改。 · 最后更新 2026-10 |
+| [Mermaid Live Split](https://github.com/zify/obsidian-mermaid-live-split) | `ZiFy` | 在 Obsidian 实时预览中，左侧编辑 Mermaid 源码，右侧显示原生实时图表。源码模式和阅读视图保持原有行为。 |
 | [Callout Quick](https://github.com/zych2023/callout-quick) | `zych2023` | 选中文字后按快捷键，弹出选择框，一键把选中内容包成 [!important]、[!note]、[!tip] 等 Callout。类型列表可自定义。 · 最后更新 2026-10 |
 | [Family Tree Canvas](https://github.com/zyk-13/family-tree-canvas) | `zyk-13` | 在画布上手绘家谱：一行一代，不必为每个人建笔记 · 最后更新 2026-10 |
 | [Org Live](https://github.com/zzeitt/obsidian-org-live) | `zzeitt` | 在 Obsidian 里编辑与阅读 Org-mode 文件，带实时预览与阅读视图 · 最后更新 2026-10 |
