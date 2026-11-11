@@ -2163,63 +2163,63 @@
     "last_update": "2026-11-01T07:07:14Z",
     "ok": true,
     "full_name": "spark-ai-boy/obsidian-social-formatter",
-    "checked_at": "2026-11-01T11:28:09.591914+00:00"
+    "checked_at": "2026-11-11T06:26:55.141977+00:00"
   },
   "eduaiot/eduaiot-ai-notes": {
     "archived": false,
     "stale": false,
-    "last_update": "2026-11-01T02:00:39Z",
+    "last_update": "2026-11-04T11:05:21Z",
     "ok": true,
     "full_name": "eduaiot/eduaiot-ai-notes",
-    "checked_at": "2026-11-01T11:28:09.656507+00:00"
+    "checked_at": "2026-11-11T06:26:55.263101+00:00"
   },
   "floernt/hypomnema": {
     "archived": false,
     "stale": false,
-    "last_update": "2026-10-31T12:48:16Z",
+    "last_update": "2026-11-04T11:52:21Z",
     "ok": true,
     "full_name": "Floernt/hypomnema",
-    "checked_at": "2026-11-01T11:28:09.682722+00:00"
+    "checked_at": "2026-11-11T06:26:55.477512+00:00"
   },
   "frank998-dpf/plugin-zh-notes": {
     "archived": false,
     "stale": false,
-    "last_update": "2026-11-01T03:47:35Z",
+    "last_update": "2026-11-10T12:03:36Z",
     "ok": true,
     "full_name": "Frank998-dpf/plugin-zh-notes",
-    "checked_at": "2026-11-01T11:28:09.707107+00:00"
+    "checked_at": "2026-11-11T06:26:55.210655+00:00"
   },
   "onelasthuman/obsidian-better-canvas": {
     "archived": false,
     "stale": false,
-    "last_update": "2026-10-31T04:37:44Z",
+    "last_update": "2026-11-04T04:18:39Z",
     "ok": true,
     "full_name": "OneLastHuman/obsidian-better-canvas",
-    "checked_at": "2026-11-01T11:28:09.743735+00:00"
+    "checked_at": "2026-11-11T06:26:55.137902+00:00"
   },
   "junhuihuang/obsidian-advanced-mindmap": {
     "archived": false,
     "stale": false,
-    "last_update": "2026-11-01T07:53:58Z",
+    "last_update": "2026-11-07T05:39:47Z",
     "ok": true,
     "full_name": "junhuihuang/obsidian-advanced-mindmap",
-    "checked_at": "2026-11-01T11:28:09.760018+00:00"
+    "checked_at": "2026-11-11T06:26:55.173518+00:00"
   },
   "hotdog-box/obsidian-video-library": {
     "archived": false,
     "stale": false,
-    "last_update": "2026-10-31T06:32:19Z",
+    "last_update": "2026-11-03T20:58:29Z",
     "ok": true,
     "full_name": "hotdog-box/obsidian-video-library",
-    "checked_at": "2026-11-01T11:28:09.775235+00:00"
+    "checked_at": "2026-11-11T06:26:55.822567+00:00"
   },
   "apri1qing/obsidian-markup-for-agents": {
     "archived": false,
     "stale": false,
-    "last_update": "2026-11-01T09:51:44Z",
+    "last_update": "2026-11-01T16:50:30Z",
     "ok": true,
     "full_name": "Apri1qing/obsidian-markup-for-agents",
-    "checked_at": "2026-11-01T11:28:09.813984+00:00"
+    "checked_at": "2026-11-11T06:26:55.212547+00:00"
   },
   "woolaof/obsidian-prg-viewer": {
     "archived": false,
@@ -2227,7 +2227,7 @@
     "last_update": "2026-11-01T03:54:00Z",
     "ok": true,
     "full_name": "woolaof/obsidian-prg-viewer",
-    "checked_at": "2026-11-01T11:28:09.824887+00:00"
+    "checked_at": "2026-11-11T06:26:55.807707+00:00"
   },
   "milubxaq/obsidian-pangu-cn": {
     "archived": false,
@@ -2468,5 +2468,45 @@
     "ok": true,
     "full_name": "Tangerine-Cat888/chinese-ui-translator",
     "checked_at": "2026-11-09T06:36:32.325239+00:00"
+  },
+  "zzzdragondyngphx/pageink": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-09T16:34:46Z",
+    "ok": true,
+    "full_name": "ZZZdragondYNGPHX/pageink",
+    "checked_at": "2026-11-11T06:26:55.196768+00:00"
+  },
+  "qihoo360/obsidian-yunpan-sync": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-10T10:53:02Z",
+    "ok": true,
+    "full_name": "Qihoo360/obsidian-yunpan-sync",
+    "checked_at": "2026-11-11T06:26:55.219053+00:00"
+  },
+  "irisable/wp-publisher-for-obsidian": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-11T00:07:49Z",
+    "ok": true,
+    "full_name": "irisable/wp-publisher-for-obsidian",
+    "checked_at": "2026-11-11T06:26:55.343461+00:00"
+  },
+  "acloudofdream/obsidian-dynamic-properties": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-09T10:08:47Z",
+    "ok": true,
+    "full_name": "acloudofdream/obsidian-dynamic-properties",
+    "checked_at": "2026-11-11T06:26:55.344810+00:00"
+  },
+  "hcg1023/obsidian-infographic-plus": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-10T04:26:31Z",
+    "ok": true,
+    "full_name": "hcg1023/obsidian-infographic-plus",
+    "checked_at": "2026-11-11T06:26:55.394688+00:00"
   }
 }
