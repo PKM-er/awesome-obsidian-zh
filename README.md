@@ -67,6 +67,7 @@
 | [Quiet Outline](https://github.com/guopenghui/obsidian-quiet-outline) | `guopenghui` | 提供一个功能更强大、更美观的大纲视图。 · 最后更新 2026-11 |
 | [Nav Dock](https://github.com/ichris007/nav-dock) | `ichris007` | 把导航笔记和速查页放在侧栏图标旁的浮窗里，不占标签页 · 最后更新 2026-10 |
 | [EzIndex](https://github.com/jmedzen/ezindex) | `jmedzen` | 为笔记和文件夹快速生成索引与目录 · 最后更新 2026-10 |
+| [Super Table](https://github.com/kingbeyond/obsidian-super-table) | `kingbeyond` | 在笔记里做类数据库表格：类型化字段、筛选、排序、分组与多视图 |
 | [Floating TOC](https://github.com/PKM-er/obsidian-floating-toc-plugin) | `PKM-er` | 在笔记侧边生成一个浮动的目录大纲。 · 最后更新 2026-01 |
 | [Desktop Stickies](https://github.com/springrain1/obsidian-desktop-sticky-notes) | `springrain1` | 拟物风格的桌面便笺与小组件，实时预览，贴壁纸，与库同步 · 最后更新 2026-10 |
 
@@ -100,6 +101,7 @@
 | [Tag Graph](https://github.com/elliott-json-park/obsidian-tag-graph) | `elliott-json-park` | Bases 关系图谱：标签、文件夹与属性成为枢纽节点，拖动笔记即可打标签，可合并、重命名或隐藏标签 · 最后更新 2026-10 |
 | [Vault Orrery](https://github.com/elliott-json-park/obsidian-vault-orrery) | `elliott-json-park` | 把库画成星系：文件夹是恒星、笔记是行星，可倒带重放整个库逐年长成的过程；点行星即读笔记，侧栏常驻迷你星图，界面含中文。 · 最后更新 2026-10 |
 | [Close and Switch to Recent Tab](https://github.com/github-xzhi/obsidian-close-and-switch-to-recent-tab) | `GitHub-Xzhi` | 关闭当前标签页后，自动切换到最近使用的标签页。 · 最后更新 2026-08 |
+| [AntV Infographic](https://github.com/hcg1023/obsidian-infographic-plus) | `hcg1023` | title 年度营收增长 |
 | [Link Peek](https://github.com/iam1maker/obsidian-link-peek) | `iam1maker` | 悬停外链弹出 OpenGraph 预览卡片，支持实时预览、阅读视图与画布 · 最后更新 2026-10 |
 | [Tab Tray](https://github.com/iceblyte/tab-tray) | `iceblyte` | 给原生标签栏加上浏览器式的固定与分组，并持久保存 · 最后更新 2026-11 |
 | [Tab Groups](https://github.com/imsang27/obsidian-tab-groups) | `imsang27` | 像 Chrome 一样给标签分组并加彩色标签，可折叠、重排、整组拖动 · 最后更新 2026-10 |
@@ -222,6 +224,7 @@
 | [Thinker TomaTodo](https://github.com/depthinker925/Thinker-TomaToDo) | `Depthinker925` | 把 Thinkers 计时会话镜像到番茄ToDo 桌面端，一边开始另一边也开始 · 最后更新 2026-10 |
 | [File Ignore](https://github.com/feng6611/Obsidian-File-Ignore) | `Feng6611` | 用点前缀管理文件索引，真正隐藏或排除文件，体验类似 .gitignore · 最后更新 2026-10 |
 | [Screenshot Selection](https://github.com/hwy1dot0/obsidian-screenshot-selection) | `HWY1dot0` | 把选中的内容截成 PNG 并复制到剪贴板 · 最后更新 2026-10 |
+| [gogoga icons](https://github.com/jackweigogoga/gogoga-icons) | `JackWeiGogoga` | gogoga 主题的配套插件：把内置 Lucide 图标换成 Phosphor 图标 |
 | [Better Quiz Box](https://github.com/junzi-ana/better-quizbox) | `Junzi-ana` | 专为配合 Spaced Repetition 插件的复习流程而设计：记忆卡翻面重渲染时，选项顺序与已作答的内容都会保留。 · 最后更新 2026-10 |
 | [Natural Language Dates - Chinese](https://github.com/skyue/obsidian-nldates-chinese) | `skyue` | 支持中文自然语言输入日期，如 @今天、@下周三、@3天后 · 最后更新 2026-11 |
 
@@ -292,7 +295,6 @@
 | [Hadesr AI](https://github.com/hadesls/Hadesr-obai) | `Hadesls` | 选中文字即可改写，支持行内补全、AI 对话与 16 个写作动作，兼容 OpenAI、Anthropic 与 Google. · 最后更新 2026-10 |
 | [MD Base64](https://github.com/hadesls/MDbase64) | `Hadesls` | 将当前笔记导出为图片内联的单文件 Markdown，支持 Wiki 与标准图片语法，不依赖 Electron，桌面与移动端通用. · 最后更新 2026-10 |
 | [Haoo Cardbox](https://github.com/haoo-7/obsidian-haoo-cardbox) | `Haoo-7` | 把写好的笔记变成一张张卡片，按领域装进文件夹；摊开卡堆挑卡，放上画板亲手摆位、连线、圈画，排成一篇 MOC 的骨架。 · 最后更新 2026-11 |
-| [AntV Infographic](https://github.com/hcg1023/obsidian-infographic-plus) | `hcg1023` | title 年度营收增长 · 最后更新 2026-11 |
 | [OSS Sync and Share](https://github.com/helantianshen/oss-sync) | `helantianshen` | 自建同步与分享：单文件服务端，同步笔记与附件，可协作编辑并发布公开博客 · 最后更新 2026-11 |
 | [Hidontknow Support](https://github.com/hidontknow/obsidian-theme-hidontknow-support) | `hidontknow` | Hidontknow 主题的配套插件：让实时预览与阅读视图对齐 · 最后更新 2026-10 |
 | [Vault Codex](https://github.com/hoholab/vault-codex) | `HoHoLab` | 与本地 Codex 对话、处理笔记，并审阅代理的每一步操作 · 最后更新 2026-10 |
@@ -302,7 +304,6 @@
 | [Nihong AI explaination](https://github.com/iikira/obsidian-nihong-ai-explain) | `iikira` | 选中日语词句，生成 AI 讲解笔记、语法拆解、翻译、离线词典与朗读 · 最后更新 2026-11 |
 | [Tuopan](https://github.com/incredible404-rgb/tuopan) | `incredible404-rgb` | 让 Obsidian 常驻系统托盘：开机隐藏启动、关窗不退出、再启动不弹选库窗 · 最后更新 2026-10 |
 | [WP Publisher](https://github.com/irisable/wp-publisher-for-obsidian) | `irisable` | 将 Obsidian 笔记发布到 WordPress，并通过明确触发的同步流程保持两端一致， · 最后更新 2026-11 |
-| [gogoga icons](https://github.com/jackweigogoga/gogoga-icons) | `JackWeiGogoga` | gogoga 主题的配套插件：把内置 Lucide 图标换成 Phosphor 图标 · 最后更新 2026-10 |
 | [MathBox](https://github.com/jiangyancoder/MathBox) | `JiangYanCoder` | 一个显式的上下分栏公式编辑器：上方实时渲染、下方编辑 LaTeX 源码，中间选项栏控制字号 / 字体 / · 最后更新 2026-11 |
 | [CJK Emphasis Fix](https://github.com/jiayuren1127/cjk-emphasis-fix) | `JiayuREN1127` | 修复实时预览中加粗、斜体紧邻中日韩标点时被显示成星号的问题 · 最后更新 2026-10 |
 | [Octavo Toolbar](https://github.com/jiuxianzai/obsidian-octavo-toolbar) | `jiuxianzai` | 选中文字弹出格式工具栏：加粗、链接、callout、块转换与纯文本复制 · 最后更新 2026-10 |
@@ -313,7 +314,6 @@
 | [Rich Treetable](https://github.com/jwczju/markdown-treetable) | `JWCzju` | 可折叠的 Markdown 表格，支持富文本单元格、分组与嵌套记录 · 最后更新 2026-10 |
 | [Hover Image](https://github.com/keyoneway/hover-image) | `keyoneway` | 给笔记里的文字或链接绑定库内图片，鼠标悬停即可预览，不占正文空间 · 最后更新 2026-11 |
 | [Locally Save](https://github.com/kflho/obsidian-locally-save) | `Kflho` | 把整个仓库（或只把自上次完整副本以来改动的那部分）打成一个 .lsave 文件， · 最后更新 2026-11 |
-| [Super Table](https://github.com/kingbeyond/obsidian-super-table) | `kingbeyond` | 在笔记里做类数据库表格：类型化字段、筛选、排序、分组与多视图 · 最后更新 2026-10 |
 | [Mind Map Canvas](https://github.com/kryon-4y4/mindmap-canvas) | `Kryon-4Y4` | 在 Obsidian 中创建和编辑思维导图。基于 Markdown 嵌套列表存储结构，提供可缩放、可拖拽的无限画布。 · 最后更新 2026-10 |
 | [PaperMark](https://github.com/laginae/papermark) | `laginae` | 把图片合成 PDF、加可搜索的 OCR 文字并编辑书签，默认本地处理 · 最后更新 2026-11 |
 | [Bases Calendar](https://github.com/lesk-org/obsidian-bases-calendar) | `lesk-org` | 为 Obsidian Bases 提供日历与议程视图：把带日期属性的笔记集合显示在月历上，或按日期排成议程列表。 · 最后更新 2026-11 |
@@ -389,6 +389,7 @@
 | [Feishu Docs Publisher](https://github.com/totok22/feishu-docs-publisher) | `totok22` | 通过本地 lark-cli 把笔记、文件夹与 PDF 发布到飞书文档并保持同步 · 最后更新 2026-11 |
 | [49 Notion GPT Style](https://github.com/v-49/obsidian-49-notion-gpt) | `v-49` | 统一阅读样式、富文本粘贴、图片对齐、表格列宽与双窗滚动同步 · 最后更新 2026-10 |
 | [Hymns](https://github.com/viacai/Hymns) | `ViaCai` | 诗歌浏览、搜索与播放：按编号或关键词实时查找，预览 PDF、播放 MP3，收藏成播放列表 · 最后更新 2026-11 |
+| [A-Home](https://github.com/vinvinvin444/A-Home-Releases) | `VinVinVin444` | All-in-one 个人工作台，在一个主页中集中管理看板、计划、任务、笔记、倒数日、进度与生活记录。 |
 | [Four Layer Todo](https://github.com/vrytfmcat/four-layer-todo) | `vryTfmcat` | 四层任务工作台：白板放当前任务，工作台、任务池与长期对象分层流转，数据存 Markdown · 最后更新 2026-10 |
 | [Trade Journal](https://github.com/wangxiaoqian2042/trade-journal) | `wangxiaoqian2042` | 本地优先的交易日志：CSV 导入、盈亏看板、日历热力图与资金曲线 · 最后更新 2026-10 |
 | [File Master](https://github.com/weichen-ink/file-master) | `weichen-ink` | 自建存储的附件管理：剪贴板自动上传、SHA-256 去重与零断链批量迁移 · 最后更新 2026-11 |
@@ -401,9 +402,11 @@
 | [Claudian Scheduler](https://github.com/xikongsaket/claudian-scheduler) | `XIKONGSAKET` | 定时向 Claudian 的指定对话框发送任务：把请求排到 DeepSeek 低谷时段（北京时间 00:30-08:30）自动发出，节省 API 成本。 · 最后更新 2026-08 |
 | [ChatGPT DIL Local](https://github.com/xueh0635-design/chatgpt-dil-local) | `xueh0635-design` | 离线渲染 ChatGPT 导出的交互图表，把含 DIL 标签的 Markdown 转成可操作的伴生笔记 · 最后更新 2026-10 |
 | [Cpp-Input-Guard](https://github.com/yaki-blake/Cpp-Input-Guard) | `Yaki-Blake` | 写 C/C++ 笔记时，防止尖括号、方括号、星号等被 Markdown 误当语法 · 最后更新 2026-10 |
+| [IStart-Note-AI](https://github.com/yan-istart/IStart-Note-AI-Plugin) | `yan-istart` | <strong把 Obsidian 变成你的个人知识系统与写作工作台。</strong |
 | [Config Sync with WebDAV](https://github.com/yanqingwang/personal-config-sync) | `yanqingwang` | 只同步 Obsidian 配置目录的 WebDAV 插件，可排除指定插件与文件，同步前先测连通 · 最后更新 2026-10 |
 | [Vault Force Sync](https://github.com/yanqingwang/github-vault-force-sync) | `yanqingwang` | 通过系统 git 把整库强制或增量同步到 GitHub 远端，大文件跳过并记日志 · 最后更新 2026-10 |
 | [bz Reader](https://github.com/yeshimei/bz-reader) | `yeshimei` | <p<b把 Obsidian 变成一个能读书的地方。</b<br · 最后更新 2026-11 |
+| [Pulsewright](https://github.com/yhjes2019/pulsewright) | `yhjes2019` | 本地知识脉冲：贡献分、年度热力图、知识地层、月相日历、年度画像、知识复盘、笔记地图、笔记洞察、分享卡。全部本地计算，无授权校验. |
 | [One Week](https://github.com/yibai435-star/one-week) | `yibai435-star` | 围绕课表安排一周：任务、习惯、月历与艾森豪威尔矩阵 · 最后更新 2026-11 |
 | [Baizer](https://github.com/yinfi/baizer) | `yinfi` | 与库对话、行内 AI 补全，并把笔记编译成可搜索的知识库 · 最后更新 2026-11 |
 | [Ex Libris Bookplate](https://github.com/yolkbun/obsidian-ex-libris) | `Yolkbun` | 书架不只是文件的容器。它是你与读过的世界之间，一条可以走回去的路。 · 最后更新 2026-11 |
