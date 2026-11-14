@@ -431,15 +431,13 @@
 
 ## 精选中文主题
 
-|主题|作者|
-|---|---|
-|[Border](https://github.com/Akifyss/obsidian-border)|`Akifyss`|
-|[Oreo](https://github.com/carols12352/Oreo-theme)|`carols12352`|
-|[Zen](https://github.com/laughmaker/Zen)|`laughmaker`|
-|[Virgo](https://github.com/loveminimal/obsidian-theme-virgo)|`loveminimal`|
-|[Maple](https://github.com/subframe7536/obsidian-theme-maple)|`subframe7536`|
-|[Blue Topaz](https://github.com/whyt-byte/Blue-Topaz_Obsidian-css)|`whyt-byte`|
-|[Scriptorium](https://github.com/ouatis/obsidian-scriptorium)|`ouatis`|
+|主题|作者|一句话介绍|
+|---|---|---|
+|[Border](https://github.com/Akifyss/obsidian-border)|`Akifyss`|干净且高度自定义——卡片化布局、背景图与主色随心配|
+|[Oreo](https://github.com/carols12352/Oreo-theme)|`carols12352`|奥利奥配色：巧克力黑与奶油白双模式，圆润可爱|
+|[Zen](https://github.com/laughmaker/Zen)|`laughmaker`|为专注写作与舒适阅读而生的现代极简|
+|[Maple](https://github.com/subframe7536/obsidian-theme-maple)|`subframe7536`|现代圆润、动效精致，内嵌自研字体 Maple Mono|
+|[Scriptorium](https://github.com/ouatis/obsidian-scriptorium)|`ouatis`|把笔记变回一页暖纸——学术衬线排版，为长文读写而设|
 
 ## 社区汉化指引
 
