@@ -2336,10 +2336,10 @@
   "tonyltz1215/life-decision-tree": {
     "archived": false,
     "stale": false,
-    "last_update": "2026-11-06T12:27:59Z",
+    "last_update": "2026-11-14T10:29:10Z",
     "ok": true,
     "full_name": "tonyltz1215/life-decision-tree",
-    "checked_at": "2026-11-07T06:02:03.160120+00:00"
+    "checked_at": "2026-11-15T06:41:35.641051+00:00"
   },
   "zify/obsidian-mermaid-live-split": {
     "archived": false,
@@ -2347,7 +2347,7 @@
     "last_update": "2026-11-06T05:34:03Z",
     "ok": true,
     "full_name": "ZiFy/obsidian-mermaid-live-split",
-    "checked_at": "2026-11-07T06:02:03.173876+00:00"
+    "checked_at": "2026-11-15T06:41:35.607488+00:00"
   },
   "zc2638/obsidian-simple-space": {
     "archived": false,
@@ -2355,7 +2355,7 @@
     "last_update": "2026-11-05T05:47:08Z",
     "ok": true,
     "full_name": "zc2638/obsidian-simple-space",
-    "checked_at": "2026-11-07T06:02:03.230261+00:00"
+    "checked_at": "2026-11-15T06:41:36.338215+00:00"
   },
   "0xtack/OmniBooks": {
     "archived": false,
@@ -2363,7 +2363,7 @@
     "last_update": "2026-11-06T12:42:14Z",
     "ok": true,
     "full_name": "0xTack/OmniBooks",
-    "checked_at": "2026-11-07T06:02:03.307486+00:00"
+    "checked_at": "2026-11-15T06:41:36.467613+00:00"
   },
   "yolkbun/obsidian-ex-libris": {
     "archived": false,
@@ -2532,5 +2532,109 @@
     "ok": true,
     "full_name": "yhjes2019/pulsewright",
     "checked_at": "2026-11-13T06:51:17.107424+00:00"
+  },
+  "jackiechan24/xhs_card_studio": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-15T04:45:00Z",
+    "ok": true,
+    "full_name": "Jackiechan24/xhs_card_studio",
+    "checked_at": "2026-11-15T06:41:35.571121+00:00"
+  },
+  "moboku/media-offload": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-14T03:47:47Z",
+    "ok": true,
+    "full_name": "moboku/media-offload",
+    "checked_at": "2026-11-15T06:41:35.619677+00:00"
+  },
+  "arcticat14/obsidian-ai-connected": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-13T12:53:37Z",
+    "ok": true,
+    "full_name": "ArctiCat14/obsidian-ai-connected",
+    "checked_at": "2026-11-15T06:41:35.632987+00:00"
+  },
+  "citrussy/obsidian-cursor-smooth-jump": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-13T11:41:29Z",
+    "ok": true,
+    "full_name": "Citrussy/obsidian-cursor-smooth-jump",
+    "checked_at": "2026-11-15T06:41:35.643685+00:00"
+  },
+  "qyy542/qyy-folder-notes": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-14T16:32:45Z",
+    "ok": true,
+    "full_name": "QYY542/qyy-folder-notes",
+    "checked_at": "2026-11-15T06:41:35.650551+00:00"
+  },
+  "shir0tak1na/EpXsC-Syntax-Highlight": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-14T12:20:57Z",
+    "ok": true,
+    "full_name": "Shir0Tak1na/EpXsC-Syntax-Highlight",
+    "checked_at": "2026-11-15T06:41:35.655430+00:00"
+  },
+  "qqpigeonia0706/note-replay": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-14T14:58:23Z",
+    "ok": true,
+    "full_name": "QQpigeonia0706/note-replay",
+    "checked_at": "2026-11-15T06:41:35.685776+00:00"
+  },
+  "qyy542/qyy-baidu-sync": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-14T10:27:52Z",
+    "ok": true,
+    "full_name": "QYY542/qyy-baidu-sync",
+    "checked_at": "2026-11-15T06:41:35.692955+00:00"
+  },
+  "killpeterandtime/fault-tree-mini-obsidian": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-14T14:51:13Z",
+    "ok": true,
+    "full_name": "KillPeterAndTime/fault-tree-mini-obsidian",
+    "checked_at": "2026-11-15T06:41:35.695251+00:00"
+  },
+  "changxi4848/excalidraw-canvas-optimizer": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-14T09:56:13Z",
+    "ok": true,
+    "full_name": "changxi4848/excalidraw-canvas-optimizer",
+    "checked_at": "2026-11-15T06:41:35.721869+00:00"
+  },
+  "beta-zheng/flow-edit": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-14T14:58:34Z",
+    "ok": true,
+    "full_name": "Beta-Zheng/flow-edit",
+    "checked_at": "2026-11-15T06:41:36.368298+00:00"
+  },
+  "pbl-edu/research-learning-community": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-15T00:45:51Z",
+    "ok": true,
+    "full_name": "PBL-EDU/research-learning-community",
+    "checked_at": "2026-11-15T06:41:36.425331+00:00"
+  },
+  "rowenfan/outline-flow": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-14T05:02:51Z",
+    "ok": true,
+    "full_name": "RowenFan/outline-flow",
+    "checked_at": "2026-11-15T06:41:36.469842+00:00"
   }
 }
