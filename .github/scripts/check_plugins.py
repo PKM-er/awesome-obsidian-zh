@@ -959,6 +959,11 @@ CURATED_DESC = {
     "Zhaohua Xishi": "从日记里随机回顾或按「往年今日」翻旧文，并把今天的感想追加到当日笔记",
     "Feishu Wiki Sync Double": "把飞书知识库的多层目录与单篇分享文档拉取到本地，支持多库管理与只读保护",
     "RelateTime": "用 React 与 D3 把人物设定画成随时间变化的关系图谱，支持 LLM 推断与冲突提示",
+    # Hand-added 2026-11-18 via issue #40: plugin is on the official marketplace
+    # but too new for the automatic promotion window, and its upstream
+    # description is an EN/ZH mashup that the cleaner cannot shorten. Admitted
+    # into the observation zone per README 贡献指南 的人工通道.
+    "AiDiTing": "把音视频与 B 站链接转成带时间戳的笔记，逐句可跳回原音；支持抖音小红书解析",
 }
 
 # Hand-verified section for the plugins that used to live in the catch-all
