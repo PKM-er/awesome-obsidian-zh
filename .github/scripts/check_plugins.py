@@ -963,7 +963,7 @@ CURATED_DESC = {
     # but too new for the automatic promotion window, and its upstream
     # description is an EN/ZH mashup that the cleaner cannot shorten. Admitted
     # into the observation zone per README 贡献指南 的人工通道.
-    "AiDiTing": "把音视频与 B 站链接转成带时间戳的笔记，逐句可跳回原音；支持抖音小红书解析",
+    "AiDiTing": "把 B站视频（多P合集可整季提交）和本地音视频转成带时间戳的笔记，逐句可跳回原音",
 }
 
 # Hand-verified section for the plugins that used to live in the catch-all
