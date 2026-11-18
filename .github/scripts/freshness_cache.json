@@ -2684,5 +2684,29 @@
     "ok": true,
     "full_name": "Monica-kk/workspace-preset-kit",
     "checked_at": "2026-11-17T08:04:57.817041+00:00"
+  },
+  "shovyai/obsidian-mobi": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-10-20T13:37:07Z",
+    "ok": true,
+    "full_name": "shovyai/obsidian-mobi",
+    "checked_at": "2026-11-18T07:28:56.735438+00:00"
+  },
+  "jchunyu/h5-in-article-renderer": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-18T03:29:41Z",
+    "ok": true,
+    "full_name": "JChunyu/h5-in-article-renderer",
+    "checked_at": "2026-11-18T07:28:56.783461+00:00"
+  },
+  "moboku/quick-expense": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-17T08:33:40Z",
+    "ok": true,
+    "full_name": "moboku/quick-expense",
+    "checked_at": "2026-11-18T07:28:56.882728+00:00"
   }
 }

@@ -162,7 +162,7 @@
 | [AI Linzi](https://github.com/alinawang321/ai-linzi-obsidian) | `AlinaWang321` | 把 AI霖子接入 Obsidian 数字大脑，支持侧边栏对话、Vault 搜索、内容创作、文章配图、公众号排版与发布。 · 最后更新 2026-11 |
 | [MeshSync](https://github.com/cimu233/obsidian-mesh-sync) | `cimu233` | 无服务器局域网同步：自动发现设备、加密传输、亚秒级更新 · 最后更新 2026-08 |
 | [Foxycape PDF](https://github.com/foxycape/obsidian-pdf) | `foxycape` | 内嵌 PDF 阅读器，高亮、引文与深链都能回到原文 · 最后更新 2026-11 |
-| [WP Publisher](https://github.com/irisable/wp-publisher-for-obsidian) | `irisable` | 将 Obsidian 笔记发布到 WordPress，并通过明确触发的同步流程保持两端一致， |
+| [WP Publisher](https://github.com/irisable/wp-publisher-for-obsidian) | `irisable` | 将 Obsidian 笔记发布到 WordPress，并通过明确触发的同步流程保持两端一致， · 最后更新 2026-11 |
 | [Cozy Read Aloud](https://github.com/laginae/note-reader-cosyvoice) | `laginae` | 朗读笔记、文本 PDF、本地 HTML 与网页，支持高亮、大纲导航与音频导出 · 最后更新 2026-11 |
 | [Dedao KB Sync](https://github.com/leschamy4-del/obsidian-dedao-kb-sync) | `leschamy4-del` | 同步得到大脑知识库与订阅内容到 Obsidian，按库/博主自动建文件夹并打标签 · 最后更新 2026-09 |
 | [LUMI Sync](https://github.com/lufei150426/lumi-sync) | `lufei150426` | LUMI 是跨平台知识资产统一入库工具，将微信、飞书、网页等渠道的文章、聊天、音视频和文本等数字资产，经 AI 整理后自动沉淀到vault仓库。 · 最后更新 2026-08 |
@@ -208,7 +208,7 @@
 | 插件 | 作者 | 核心功能 |
 | --- | --- | --- |
 | [MindCanvas](https://github.com/gengyabc/naotu) | `gengyabc` | 真正的思维地图，不只是示意图。 · 最后更新 2026-06 |
-| [Canvas Quick Mindmap](https://github.com/rainajia716/obsidian-canvas-quick-mindmap) | `RainaJIA716` | 把 Obsidian 画布当思维导图用：输入时 Enter 新建子节点、Tab 新建同级节点， |
+| [Canvas Quick Mindmap](https://github.com/rainajia716/obsidian-canvas-quick-mindmap) | `RainaJIA716` | 把 Obsidian 画布当思维导图用：输入时 Enter 新建子节点、Tab 新建同级节点， · 最后更新 2026-10 |
 | [Content Library Dashboard](https://github.com/sourit2001/content-library) | `sourit2001` | noise while you read or write. 三套素材包自带循环环境音，适合阅读、写作时当背景白噪音。 · 最后更新 2026-11 |
 
 ### 娱乐与多媒体
@@ -313,7 +313,7 @@
 | [Nihong AI explaination](https://github.com/iikira/obsidian-nihong-ai-explain) | `iikira` | 选中日语词句，生成 AI 讲解笔记、语法拆解、翻译、离线词典与朗读 · 最后更新 2026-11 |
 | [Tuopan](https://github.com/incredible404-rgb/tuopan) | `incredible404-rgb` | 让 Obsidian 常驻系统托盘：开机隐藏启动、关窗不退出、再启动不弹选库窗 · 最后更新 2026-10 |
 | [XHS Cards](https://github.com/jackiechan24/xhs_card_studio) | `Jackiechan24` | 用一篇已有的教程、工作复盘或学习笔记做底稿，在同一个工作台完成封面编辑、正文分页和图片导出。 · 最后更新 2026-11 |
-| [H5 Card Renderer](https://github.com/jchunyu/h5-in-article-renderer) | `JChunyu` | 当你要为 Obsidian 笔记生成一段"可视展示块"时，请遵守以下约定： |
+| [H5 Card Renderer](https://github.com/jchunyu/h5-in-article-renderer) | `JChunyu` | 当你要为 Obsidian 笔记生成一段"可视展示块"时，请遵守以下约定： · 最后更新 2026-11 |
 | [MathBox](https://github.com/jiangyancoder/MathBox) | `JiangYanCoder` | 一个显式的上下分栏公式编辑器：上方实时渲染、下方编辑 LaTeX 源码，中间选项栏控制字号 / 字体 / · 最后更新 2026-11 |
 | [CJK Emphasis Fix](https://github.com/jiayuren1127/cjk-emphasis-fix) | `JiayuREN1127` | 修复实时预览中加粗、斜体紧邻中日韩标点时被显示成星号的问题 · 最后更新 2026-10 |
 | [Octavo Toolbar](https://github.com/jiuxianzai/obsidian-octavo-toolbar) | `jiuxianzai` | 选中文字弹出格式工具栏：加粗、链接、callout、块转换与纯文本复制 · 最后更新 2026-10 |
@@ -347,7 +347,7 @@
 | [Chinese Glossary Hover](https://github.com/mffeiron-ai/obsidian-chinese-glossary-hover) | `mffeiron-ai` | 从 Markdown 词典读取词条，在阅读视图与实时预览中悬浮显示解释。 · 最后更新 2026-11 |
 | [Pangu CN](https://github.com/milubxaq/obsidian-pangu-cn) | `milubxaq` | 自动在中英文、中文与数字之间补空格，整理中文标点；支持粘贴时自动排版与整篇/选区/文件夹批量处理。 · 最后更新 2026-11 |
 | [Media Offload](https://github.com/moboku/media-offload) | `moboku` | 插件用 Node.js 的 fs 读写 vault 外面的文件，这正是它的用途。具体只做这些： · 最后更新 2026-11 |
-| [Quick Expense](https://github.com/moboku/quick-expense) | `moboku` | 1. 点左边栏的钱包图标（或命令“记一笔”）。 |
+| [Quick Expense](https://github.com/moboku/quick-expense) | `moboku` | 1. 点左边栏的钱包图标（或命令“记一笔”）。 · 最后更新 2026-11 |
 | [Qishen Creator Workbench](https://github.com/monica-kk/workspace-preset-kit) | `Monica-kk` | 中文界面名称：自媒体工作台。 · 最后更新 2026-11 |
 | [HTML Widget Embed](https://github.com/mrdongshan/obsidian-html-widget) | `MrDongShan` | 把 vault 里的 .html 文件渲染成笔记里的可交互组件，两种写法都行： · 最后更新 2026-11 |
 | [Meeting Live](https://github.com/n0ctx/obsidian-meeting-live) | `n0ctx` | 在笔记里开会：本地录音、火山引擎实时语音识别、AI 阶段总结与会议笔记 · 最后更新 2026-11 |
