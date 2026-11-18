@@ -2708,5 +2708,13 @@
     "ok": true,
     "full_name": "moboku/quick-expense",
     "checked_at": "2026-11-18T07:28:56.882728+00:00"
+  },
+  "ditingai/obsidian-aiditing": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-18T03:05:04Z",
+    "ok": true,
+    "full_name": "DiTingAI/obsidian-aiditing",
+    "checked_at": "2026-11-18T07:58:34.070906+00:00"
   }
 }

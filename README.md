@@ -285,7 +285,7 @@
 | [RelateTime](https://github.com/deepsealight/obsidian-relatetime) | `Deepsealight` | 用 React 与 D3 把人物设定画成随时间变化的关系图谱，支持 LLM 推断与冲突提示 · 最后更新 2026-11 |
 | [xSync](https://github.com/deku0818/xSync) | `deku0818` | 端到端加密的跨设备同步，可自建服务器并分享给朋友 · 最后更新 2026-10 |
 | [Pictether](https://github.com/dhengsun/obsidian-pictether) | `dhengsun` | 本地优先的外部附件管理，可选 S3 兼容备份与恢复 · 最后更新 2026-10 |
-| [AiDiTing](https://github.com/ditingai/obsidian-aiditing) | `DiTingAI` | 把音视频与 B 站链接转成带时间戳的笔记，逐句可跳回原音；支持抖音小红书解析 |
+| [AiDiTing](https://github.com/ditingai/obsidian-aiditing) | `DiTingAI` | 把音视频与 B 站链接转成带时间戳的笔记，逐句可跳回原音；支持抖音小红书解析 · 最后更新 2026-11 |
 | [Bingo Garden](https://github.com/dtta520-cpu/bingo-garden) | `dtta520-cpu` | 把想做的事情放进一张棋盘：完成一项，点亮一格；横、竖、对角线连成一线，就收获一次 Bingo。 · 最后更新 2026-11 |
 | [Important Days](https://github.com/duany2026/important-days) | `duany2026` | 1. 打开本仓库的 Releases 页面，下载最新版本里的 important-days-<版本号.zip · 最后更新 2026-11 |
 | [Monthly Tasks](https://github.com/duany2026/obsidian-monthly-tasks) | `duany2026` | 一款为 Obsidian 打造的滴答清单风格月视图任务管理插件，支持农历显示、节假日标注和调休信息展示。 · 最后更新 2026-11 |
