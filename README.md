@@ -500,6 +500,8 @@
 
 > 多数条目由脚本从 Obsidian 社区插件市场自动筛选，升降档也由脚本自动完成，没有人工闸门。因门槛被挡但有实际用户或中文适配的插件，欢迎在 Issue 中说明。
 
+被脚本跳过、等待人工补一句中文描述的插件，都记在 [`.github/needs-desc.md`](.github/needs-desc.md) 里；补的话直接在 `.github/scripts/check_plugins.py` 的 `CURATED_DESC` 加一行即可。
+
 ## Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=PKM-er/awesome-obsidian-zh&type=Date)](https://star-history.com/#PKM-er/awesome-obsidian-zh&Date)
