@@ -121,6 +121,24 @@ jobs:
         # can never be pushed to main.
         run: python .github/scripts/check_plugins.py --validate
 
+      - name: Commit needs-desc backlog
+        # Rows parked for a hand-written description never reach the README, and
+        # the run summary page is ephemeral. Keep the list in a tracked file so
+        # the backlog stays visible (and workable) between scans.
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+          git add .github/needs-desc.md
+          if git diff --cached --quiet; then
+            echo "no needs-desc changes to commit"
+          else
+            git commit -m "chore: refresh needs-desc backlog [skip ci]"
+            git push origin HEAD:${GITHUB_REF_NAME}
+          fi
+
       - name: Commit README + freshness cache
         # Capture marker updates (and the rolling freshness cache) in the same
         # branch. Skips the commit when nothing actually changed, so routine

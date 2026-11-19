@@ -64,6 +64,7 @@ COMMUNITY_URL = "https://raw.githubusercontent.com/obsidianmd/obsidian-releases/
 CACHE_FILE = ".github/scripts/checked_plugins.json"
 DENY_FILE = ".github/scripts/denylist.json"
 PR_BODY_FILE = ".github/pr-body.md"
+NEEDS_DESC_FILE = ".github/needs-desc.md"
 README_PATH = "README.md"
 FRESHNESS_CACHE_FILE = ".github/scripts/freshness_cache.json"
 FRESHNESS_CACHE_DAYS = int(os.environ.get("FRESHNESS_CACHE_DAYS", "7"))
@@ -201,7 +202,7 @@ CH_TOPICS = {"chinese", "zh", "zh-cn", "chinese-translation", "obsidian-zh"}
 # README-based Chinese evidence ("rule F"). Metadata alone is not enough: a
 # plugin can be named, described and authored in English while its README is
 # written entirely in Chinese (issue 36: Class Timetable, Vault Orrery).
-KANA_RE = re.compile(r"[\u3040-\u309f\u30a0-\u30ff]")  # hiragana + katakana
+KANA_RE = re.compile(r"[぀-ゟ゠-ヿ]")  # hiragana + katakana
 CN_MARK_RE = re.compile(r"中文|简体|繁體|繁体|汉语|漢語|汉化|漢化")
 CODE_FENCE_RE = re.compile(r"```.*?```", re.S)
 INLINE_CODE_RE = re.compile(r"`[^`\n]*`")
@@ -327,7 +328,7 @@ def verify_api_auth(context=""):
 # --------------------------------------------------------------------------
 
 def has_cn(s):
-    return bool(re.search(r"[\u4e00-\u9fff]", s))
+    return bool(re.search(r"[一-鿿]", s))
 
 
 def outside_code(text):
@@ -343,7 +344,7 @@ def readme_zh_evidence(text):
     name ('cjk-body' / 'zh-word') or None, for use in scan diagnostics."""
     if not text or KANA_RE.search(text):
         return None
-    if len(re.findall(r"[\u4e00-\u9fff]", text)) >= README_CJK_BODY_MIN:
+    if len(re.findall(r"[一-鿿]", text)) >= README_CJK_BODY_MIN:
         return "cjk-body"
     if CN_MARK_RE.search(outside_code(text)):
         return "zh-word"
@@ -370,7 +371,7 @@ def extract_chinese_summary(readme_text, max_len=60):
         line = re.sub(r"\[([^\]]*)\]\([^)]*\)", r"\1", line)
         line = re.sub(r"[`*_#>]", "", line)
         line = re.sub(r"\s+", " ", line).strip()
-        if len(re.findall(r"[\u4e00-\u9fff]", line)) >= 5:
+        if len(re.findall(r"[一-鿿]", line)) >= 5:
             if len(line) > max_len:
                 line = line[:max_len].rstrip("，。；：,.;: ") + "…"
             return line
@@ -1237,7 +1238,7 @@ def clean_all_descriptions(text):
 
 def make_anchor(heading):
     a = heading.strip().lower()
-    a = re.sub(r"[^\w\u4e00-\u9fff\- ]", "", a)
+    a = re.sub(r"[^\w一-鿿\- ]", "", a)
     return a.replace(" ", "-")
 
 
@@ -1479,7 +1480,7 @@ def collect_signals(plugin, meta, author_loc, has_locale, has_docs, has_readme_z
         signals.add("author_cn")
     if any(t.lower() in CH_TOPICS for t in meta.get("topics", [])):
         signals.add("topic")
-    if has_cn(meta.get("description", "")) and len(re.findall(r"[\u4e00-\u9fff]", meta.get("description", ""))) > 5:
+    if has_cn(meta.get("description", "")) and len(re.findall(r"[一-鿿]", meta.get("description", ""))) > 5:
         signals.add("desc_cn")
     if any(kw in author_loc.lower() for kw in CN_CITIES):
         signals.add("location")
@@ -1879,6 +1880,48 @@ def load_denylist():
 # Outputs
 # --------------------------------------------------------------------------
 
+def write_needs_desc_report(needs_desc):
+    # Candidates whose upstream description cannot be rewritten into a
+    # qualifying Chinese one-liner are parked instead of admitted, so they never
+    # reach the README. The run summary page lists them, but that page is
+    # ephemeral; persist the same list in a tracked file so the backlog stays
+    # visible between scans and can be worked through a few rows at a time.
+    lines = [
+        "# 待人工描述的新插件",
+        "",
+        "机器人每两天扫一遍 Obsidian 官方插件市场。中文相关性达标、但上游描述无法自动",
+        "改写为合格中文简介（不超过 80 字、纯中文、不含安装说明等残渣）的插件会停在",
+        "这里：它们不进入 README，直到有人补一句描述。",
+        "",
+        "补法：在 `.github/scripts/check_plugins.py` 的 `CURATED_DESC` 里加一行",
+        '`"<插件名>": "<一句话中文描述>",`，合入后下一轮扫描会自动把它放进',
+        "「新插件观察区」。",
+        "",
+        f"最后更新：{utcnow().strftime('%Y-%m-%d %H:%M UTC')} · 积压 {len(needs_desc)} 条",
+        "",
+    ]
+    if needs_desc:
+        lines += [
+            "| # | 插件 | 仓库 | 作者 | 自动清洗结果 | 上游描述片段 |",
+            "| --- | --- | --- | --- | --- | --- |",
+        ]
+        for i, r in enumerate(needs_desc, 1):
+            # Rows come from the scan, but keep the writer tolerant so partial
+            # dicts (tests, future callers) cannot break the report.
+            repo = r.get("repo") or ""
+            raw_desc = (r.get("raw") or "").replace("|", "\\|").replace("\n", " ")
+            cell = f"[{repo}](https://github.com/{repo})" if repo else ""
+            lines.append(
+                f"| {i} | {r.get('name', '')} | {cell} "
+                f"| {r.get('author', '')} | {r.get('problem', '')} | {raw_desc} |"
+            )
+    else:
+        lines.append("当前没有积压。")
+    lines.append("")
+    with open(NEEDS_DESC_FILE, "w", encoding="utf-8", newline="\n") as f:
+        f.write("\n".join(lines) + "\n")
+
+
 def write_scan_output(add_rows, dormant_rows, cache_changed, first_run, has_review,
                       observe_rows=None, promote_rows=None, drop_repos=None,
                       needs_desc=None, near_miss=None):
@@ -1903,6 +1946,7 @@ def write_scan_output(add_rows, dormant_rows, cache_changed, first_run, has_revi
     # Candidates the scan refused or nearly missed are reported on the run's
     # summary page: they need a hand-written Chinese description or a manual
     # decision, and nothing else surfaces them.
+    write_needs_desc_report(needs_desc)
     summary = os.environ.get("GITHUB_STEP_SUMMARY")
     if summary and (needs_desc or near_miss):
         with open(summary, "a", encoding="utf-8") as f:
