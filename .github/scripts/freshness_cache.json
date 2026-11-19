@@ -2836,5 +2836,101 @@
     "ok": true,
     "full_name": "yuBY-Crow/obsidian-cardbox",
     "checked_at": "2026-11-19T03:46:07.037265+00:00"
+  },
+  "natlee/obsidian-attachmenter": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-03T17:14:45Z",
+    "ok": true,
+    "full_name": "NatLee/obsidian-attachmenter",
+    "checked_at": "2026-11-19T04:03:36.707771+00:00"
+  },
+  "hong-da/Obsidian-multi-backup": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-06T03:12:02Z",
+    "ok": true,
+    "full_name": "Hong-Da/Obsidian-multi-backup",
+    "checked_at": "2026-11-19T04:03:36.734272+00:00"
+  },
+  "xinxinrana/agentNote-Obsidian-": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-18T13:29:11Z",
+    "ok": true,
+    "full_name": "xinxinrana/agentNote-Obsidian-",
+    "checked_at": "2026-11-19T04:03:36.771686+00:00"
+  },
+  "yukisova/obsidian-unidraw": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-01T10:48:26Z",
+    "ok": true,
+    "full_name": "yukisova/obsidian-unidraw",
+    "checked_at": "2026-11-19T04:03:36.790741+00:00"
+  },
+  "violaria/Tabularium-Obsidian": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-12T03:31:50Z",
+    "ok": true,
+    "full_name": "Violaria/Tabularium-Obsidian",
+    "checked_at": "2026-11-19T04:03:36.799104+00:00"
+  },
+  "weizwz/obsidian-vitepress": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-18T07:47:50Z",
+    "ok": true,
+    "full_name": "weizwz/obsidian-vitepress",
+    "checked_at": "2026-11-19T04:03:36.830416+00:00"
+  },
+  "wucy-personal/obsidian-mind-tree": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-19T03:36:08Z",
+    "ok": true,
+    "full_name": "wucy-personal/obsidian-mind-tree",
+    "checked_at": "2026-11-19T04:03:36.842005+00:00"
+  },
+  "auroraechop/MindFlow": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-16T02:58:31Z",
+    "ok": true,
+    "full_name": "AuroraEchop/MindFlow",
+    "checked_at": "2026-11-19T04:03:36.845293+00:00"
+  },
+  "awen-9/obsidian-mindtree": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-02T20:19:35Z",
+    "ok": true,
+    "full_name": "Awen-9/obsidian-mindtree",
+    "checked_at": "2026-11-19T04:03:36.858174+00:00"
+  },
+  "zhyx91/obsidian-docwen-assistant": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-16T05:20:41Z",
+    "ok": true,
+    "full_name": "ZHYX91/obsidian-docwen-assistant",
+    "checked_at": "2026-11-19T04:03:36.908288+00:00"
+  },
+  "wanjin5508/vault-coach": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-03T15:14:30Z",
+    "ok": true,
+    "full_name": "Wanjin5508/vault-coach",
+    "checked_at": "2026-11-19T04:03:36.943993+00:00"
+  },
+  "sakenw/trans-hub-obsidian-localizer": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-11T17:12:02Z",
+    "ok": true,
+    "full_name": "SakenW/trans-hub-obsidian-localizer",
+    "checked_at": "2026-11-19T04:03:36.967465+00:00"
   }
 }
