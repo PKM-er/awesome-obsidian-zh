@@ -993,6 +993,19 @@ CURATED_DESC = {
     "MindTree": "把 Markdown 大纲渲染成 XMind 风格导图，标题与列表即节点，改动写回 Markdown",
     "Mind Tree": "AI 导图与主题笔记深度绑定：层级即思路路径，每个主题对应一篇独立笔记",
     "Tabularium": "与自建 Tabularium 服务器端到端加密同步，路径混淆，口令只存本机",
+    # 2026-11-19: 12 more hand-written descriptions from .github/needs-desc.md
+    "Mapdown": "把 Markdown 笔记当思维导图编辑，图与正文共用同一文件、双向同步，可嵌入笔记",
+    "ICAP Learning Agent": "在笔记段落间做解释、回忆提问与反馈的学习助手，保留内容为纯 Markdown",
+    "Notebook Navigator Folder Tools": "给 Notebook Navigator 列表加子文件夹下钻、目录缩进线与子文件夹分组",
+    "HTML Export Preview": "把带样式的笔记导出为自包含 HTML：可实时预览、调整版式，图片图表一并打包",
+    "PDF Preview Print": "把笔记按 PDF 页面预览后保存或打印，可选纸张、行号与黑白，保留原有空行",
+    "Target Copy": "按目标应用复制笔记：为文档、Notion、Slack 等生成合适格式，本地转换不改原文",
+    "I Have a Rock": "连接 Zotero 与 Obsidian：仅本机读取文献与批注图，不联网上传",
+    "Claude Style Enhance": "Claude Style 主题的配套插件：补齐文件卡片、按钮与列表等需代码实现的细节",
+    "Layer Base": "用 .layer 文件存多维表格与看板：16 种字段、公式、关联与汇总，表格看板双视图",
+    "Vim Editing Extensions": "给内置 Vim 模式补上引号与标签文本对象、三明治式增删替换和寄存器替换",
+    "Ask Your Notes": "把笔记或选中段落带进侧边栏问答，可接 OpenAI 兼容接口，不自动索引整个库",
+    "Attachment Cards": "把 PDF、Word 等文档嵌入压成可点的文件卡片，保留原生语法，点击即打开原文件",
 }
 
 # Hand-verified section for the plugins that used to live in the catch-all
