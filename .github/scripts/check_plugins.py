@@ -245,6 +245,12 @@ def create_retry_session(retries=3, backoff_factor=0.3, timeout=None):
     return session
 
 
+# GitHub API calls that failed for a reason other than a plain 404. A scan
+# that hits these must not persist anything: the id of a plugin it never
+# actually read would be cached as checked, and its backlog row would
+# vanish, which is exactly how the 2026-11-19 rate-limited run wiped the
+# needs-desc list.
+API_FAILURES = []
 def gh_get(url):
     session = create_retry_session(timeout=HTTP_TIMEOUT)
     try:
@@ -261,6 +267,7 @@ def gh_get(url):
         auth = "GITHUB_TOKEN set" if GITHUB_TOKEN else "GITHUB_TOKEN absent (unauthenticated)"
         print(f"WARN: request failed for {url}: {e} [HTTP {status}, {auth}]", file=sys.stderr)
         return None
+        API_FAILURES.append(url)
 
 
 def verify_api_auth(context=""):
@@ -321,6 +328,21 @@ def verify_api_auth(context=""):
         f"GitHub API auth OK{where}: {remaining} core requests remaining",
         file=sys.stderr,
     )
+    if remaining is not None and remaining < 100:
+        print(
+            f"ERROR: only {remaining} GitHub API requests left{where}. A scan of",
+            file=sys.stderr,
+        )
+        print(
+            "the backlog needs several hundred; running now would mark plugins as",
+            file=sys.stderr,
+        )
+        print(
+            "checked without reading them. Wait for the hourly reset. Aborting",
+            file=sys.stderr,
+        )
+        print("before any README change.", file=sys.stderr)
+        sys.exit(1)
 
 
 # --------------------------------------------------------------------------
@@ -2042,6 +2064,7 @@ def write_scan_output(add_rows, dormant_rows, cache_changed, first_run, has_revi
 # --------------------------------------------------------------------------
 
 def run_scan(skip_stale=False):
+    API_FAILURES.clear()
     verify_api_auth("scan")
     session = create_retry_session(timeout=HTTP_TIMEOUT)
     try:
@@ -2199,6 +2222,22 @@ def run_scan(skip_stale=False):
         "author": s["author"], "section": s["section"],
         "last_update": s["last_update"], "html_url": s["html_url"],
     } for s in dormant]
+
+    if API_FAILURES:
+        print(
+            f"ERROR: {len(API_FAILURES)} GitHub API call(s) failed during this scan.",
+            file=sys.stderr,
+        )
+        print(
+            "Persisting it would cache those plugins as checked without having read",
+            file=sys.stderr,
+        )
+        print(
+            "them, and would drop their backlog rows. Aborting before any change; retry",
+            file=sys.stderr,
+        )
+        print("when the API budget has reset.", file=sys.stderr)
+        sys.exit(1)
 
     persisted = all_ids - parked_ids
     cache_changed = persisted != checked
