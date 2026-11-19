@@ -965,6 +965,20 @@ CURATED_DESC = {
     # description is an EN/ZH mashup that the cleaner cannot shorten. Admitted
     # into the observation zone per README 贡献指南 的人工通道.
     "AiDiTing": "把 B站视频（多P合集可整季提交）和本地音视频转成带时间戳的笔记，逐句可跳回原音",
+    # 下面这一批是 needs-desc 积压里「中文但超过 80 字」的条目：上游文案已经说清了
+    # 用途，只是长，按原意压到一行后照 CURATED_DESC 的人工通道收录。
+    "Slipbox": "Writeathon 风格卡片盒：快速捕获、双链子卡、瀑布流与全局搜索",
+    "ArticleWriter": "Obsidian 写书工具：建书建卷建章、多种 AI 协作、实时字数统计",
+    "Dedao Book Sync": "把「得到」电子书的划线与批注按书同步成 Obsidian 里的 Markdown",
+    "WordPress Publisher": "把笔记发布为 WordPress 文章：分类标签、特色图、定时发布、多站点同步",
+    "Smart Chinese Numbering": "中文序号自动续号：公文多级编号、回车续号、Tab 换级、自定义模板",
+    "Note Formatter": "整理笔记：重排标题序号、AI 生成标题、图片归档、补全代码块语言",
+    "Cross Vault Sync": "在多个 vault 之间同步插件：库总览、一键推送、拉取并对比差异",
+    "WebDAVrSync": "轻量双向 WebDAV 同步：回收站只增不删、插件配置与密钥加密备份",
+    "DeepSeek Chat": "自带 API Key 在 Obsidian 里用 DeepSeek 对话，支持联网与深度搜索",
+    "Image Processor": "粘贴或拖入的图片自动重命名、转换与压缩，支持全库批量处理",
+    "xinghe-Workbench": "知识库工作台：搜索、待办、统计、日历、速记收进 14 张卡片视图",
+    "Beautify": "让文件列表像 Notion：目录即页面、拖拽排序、彩色图标、按属性切换视图",
 }
 
 # Hand-verified section for the plugins that used to live in the catch-all
