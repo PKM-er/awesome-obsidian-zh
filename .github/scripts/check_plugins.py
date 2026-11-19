@@ -979,6 +979,20 @@ CURATED_DESC = {
     "Image Processor": "粘贴或拖入的图片自动重命名、转换与压缩，支持全库批量处理",
     "xinghe-Workbench": "知识库工作台：搜索、待办、统计、日历、速记收进 14 张卡片视图",
     "Beautify": "让文件列表像 Notion：目录即页面、拖拽排序、彩色图标、按属性切换视图",
+    # Added by hand 2026-11-19: these were parked in needs-desc only because
+    # their upstream READMEs are English-only. Wording follows each README.
+    "VitePress Theme": "把笔记排成 VitePress 文档风格：标题行高与正文对齐，渲染属性容器与代码组",
+    "Vault Coach": "AI 学习助手：带引用的问答、语义检索、按笔记出练习题、学习地图与掌握度",
+    "Attachmenter": "每篇笔记一个附件夹：粘贴图片归档、远程图片下载到本地、扫描修复旧附件",
+    "Trans-Hub Localizer": "给社区插件界面套本地化翻译：优先自带译文、复用社区译词，不用 AI",
+    "DocWen Assistant": "在 Obsidian 里调本机 DocWen：导出 Word、转换表格、校对只报不改、标题编号",
+    "agentNote": "本地优先：把笔记与文件共享给 AI agent，并私密记录哪些知识被复用",
+    "MindFlow": "把任意笔记原位切成可编辑放射状导图，同一文件不新建，改动直写回 Markdown",
+    "Unidraw": "类 Excalidraw 的字符画工作室：网格、智能连线、文本对象，存成元素文件",
+    "Multi Backup": "一次备份到多处：本地文件夹、Git、WebDAV、S3 兼容存储与网盘，可选主目标",
+    "MindTree": "把 Markdown 大纲渲染成 XMind 风格导图，标题与列表即节点，改动写回 Markdown",
+    "Mind Tree": "AI 导图与主题笔记深度绑定：层级即思路路径，每个主题对应一篇独立笔记",
+    "Tabularium": "与自建 Tabularium 服务器端到端加密同步，路径混淆，口令只存本机",
 }
 
 # Hand-verified section for the plugins that used to live in the catch-all
