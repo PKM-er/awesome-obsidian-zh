@@ -8,7 +8,7 @@
 `"<插件名>": "<一句话中文描述>",`，合入后下一轮扫描会自动把它放进
 「新插件观察区」。
 
-最后更新：2026-11-19 05:02 UTC · 积压 117 条
+最后更新：2026-11-19 07:33 UTC · 积压 120 条
 
 | # | 插件 | 仓库 | 作者 | 自动清洗结果 | 上游描述片段 |
 | --- | --- | --- | --- | --- | --- |
@@ -124,9 +124,12 @@
 | 110 | Native File Drag | [crisxuan/native-file-drag](https://github.com/crisxuan/native-file-drag) | crisxuan | not-chinese | Drag Markdown notes and attachments out of the file explorer |
 | 111 | Guanlan | [wangkefan0309-ui/guanlan](https://github.com/wangkefan0309-ui/guanlan) | wangkefan0309-ui | placeholder | Follow sources, read selected articles and videos, and save  |
 | 112 | Private QR Sync | [xr-7777/private-qr-sync](https://github.com/xr-7777/private-qr-sync) | Xr-7777 | not-chinese | Selectively transfer or sync Obsidian notes across Windows,  |
-| 113 | Day Planner Apple Sync | [yuchenwang-leslie/ObsidianPlannerForApple](https://github.com/yuchenwang-leslie/ObsidianPlannerForApple) | YuchenWang-leslie | placeholder | Preview and selectively sync Day Planner schedules to Apple  |
-| 114 | Murmline | [saltcoffee/murmline](https://github.com/saltcoffee/murmline) | saltcoffee | not-chinese | Capture thoughts of up to 140 characters in a private, date- |
-| 115 | Workspace File Redirect | [lihuu/obsidian-workspace-file-redirect](https://github.com/lihuu/obsidian-workspace-file-redirect) | lihuu | not-chinese | Redirect Obsidian's workspace layout file to a local folder  |
-| 116 | Note Galaxy | [remageht/note-galaxy](https://github.com/remageht/note-galaxy) | remageht | placeholder | A 3D note graph with an animated accretion disk, star-like n |
-| 117 | Better Folder Notes | [menomemo/better-folder-notes](https://github.com/menomemo/better-folder-notes) | menomemo | placeholder | Turn any note into a folder's table of contents: collapsible |
+| 113 | Mubu Mindmap | [xkk1213/mubu-mindmap](https://github.com/xkk1213/mubu-mindmap) | xkk1213 | too-long | 把 Markdown 一键变成幕布式思维导图：标题下划线、列表荧光笔且可单独调每个词，卡片可拖动缩放、层级可调且不改原文 |
+| 114 | Day Planner Apple Sync | [yuchenwang-leslie/ObsidianPlannerForApple](https://github.com/yuchenwang-leslie/ObsidianPlannerForApple) | YuchenWang-leslie | placeholder | Preview and selectively sync Day Planner schedules to Apple  |
+| 115 | Murmline | [saltcoffee/murmline](https://github.com/saltcoffee/murmline) | saltcoffee | not-chinese | Capture thoughts of up to 140 characters in a private, date- |
+| 116 | Workspace File Redirect | [lihuu/obsidian-workspace-file-redirect](https://github.com/lihuu/obsidian-workspace-file-redirect) | lihuu | not-chinese | Redirect Obsidian's workspace layout file to a local folder  |
+| 117 | Note Galaxy | [remageht/note-galaxy](https://github.com/remageht/note-galaxy) | remageht | placeholder | A 3D note graph with an animated accretion disk, star-like n |
+| 118 | Better Folder Notes | [menomemo/better-folder-notes](https://github.com/menomemo/better-folder-notes) | menomemo | placeholder | Turn any note into a folder's table of contents: collapsible |
+| 119 | Hidamari | [yukinoshita52/Hidamari](https://github.com/yukinoshita52/Hidamari) | Yukinoshita52 | placeholder | Create Markdown checkboxes as you type and optionally sync n |
+| 120 | Just Vertical Tabs Resize | [caichen2333/obsidian-just-vertical-tabs-resize](https://github.com/caichen2333/obsidian-just-vertical-tabs-resize) | caichen2333 | not-chinese | Drag the inner edge of Just Vertical Tabs to resize the tab  |
 
