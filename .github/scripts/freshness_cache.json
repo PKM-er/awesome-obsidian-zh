@@ -2716,5 +2716,29 @@
     "ok": true,
     "full_name": "DiTingAI/obsidian-aiditing",
     "checked_at": "2026-11-18T07:58:34.070906+00:00"
+  },
+  "keiyuhin/zotero-obsidian-bridge": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-18T19:26:25Z",
+    "ok": true,
+    "full_name": "KeiYuHin/zotero-obsidian-bridge",
+    "checked_at": "2026-11-19T03:34:28.613139+00:00"
+  },
+  "quinn-7777/margin-cards": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-18T13:07:19Z",
+    "ok": true,
+    "full_name": "QUINN-7777/margin-cards",
+    "checked_at": "2026-11-19T03:34:28.657927+00:00"
+  },
+  "church06/pen-canvas": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-18T14:27:53Z",
+    "ok": true,
+    "full_name": "church06/pen-canvas",
+    "checked_at": "2026-11-19T03:34:28.736165+00:00"
   }
 }
