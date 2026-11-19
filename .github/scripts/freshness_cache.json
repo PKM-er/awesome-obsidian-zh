@@ -2163,15 +2163,15 @@
     "last_update": "2026-11-01T07:07:14Z",
     "ok": true,
     "full_name": "spark-ai-boy/obsidian-social-formatter",
-    "checked_at": "2026-11-11T06:26:55.141977+00:00"
+    "checked_at": "2026-11-19T07:33:28.840609+00:00"
   },
   "eduaiot/eduaiot-ai-notes": {
     "archived": false,
     "stale": false,
-    "last_update": "2026-11-04T11:05:21Z",
+    "last_update": "2026-11-18T09:13:33Z",
     "ok": true,
     "full_name": "eduaiot/eduaiot-ai-notes",
-    "checked_at": "2026-11-11T06:26:55.263101+00:00"
+    "checked_at": "2026-11-19T07:33:28.767654+00:00"
   },
   "floernt/hypomnema": {
     "archived": false,
@@ -2179,15 +2179,15 @@
     "last_update": "2026-11-04T11:52:21Z",
     "ok": true,
     "full_name": "Floernt/hypomnema",
-    "checked_at": "2026-11-11T06:26:55.477512+00:00"
+    "checked_at": "2026-11-19T07:33:28.811402+00:00"
   },
   "frank998-dpf/plugin-zh-notes": {
     "archived": false,
     "stale": false,
-    "last_update": "2026-11-10T12:03:36Z",
+    "last_update": "2026-11-18T07:21:36Z",
     "ok": true,
     "full_name": "Frank998-dpf/plugin-zh-notes",
-    "checked_at": "2026-11-11T06:26:55.210655+00:00"
+    "checked_at": "2026-11-19T07:33:28.882747+00:00"
   },
   "onelasthuman/obsidian-better-canvas": {
     "archived": false,
@@ -2195,15 +2195,15 @@
     "last_update": "2026-11-04T04:18:39Z",
     "ok": true,
     "full_name": "OneLastHuman/obsidian-better-canvas",
-    "checked_at": "2026-11-11T06:26:55.137902+00:00"
+    "checked_at": "2026-11-19T07:33:29.530845+00:00"
   },
   "junhuihuang/obsidian-advanced-mindmap": {
     "archived": false,
     "stale": false,
-    "last_update": "2026-11-07T05:39:47Z",
+    "last_update": "2026-11-15T13:51:53Z",
     "ok": true,
     "full_name": "junhuihuang/obsidian-advanced-mindmap",
-    "checked_at": "2026-11-11T06:26:55.173518+00:00"
+    "checked_at": "2026-11-19T07:33:28.807765+00:00"
   },
   "hotdog-box/obsidian-video-library": {
     "archived": false,
@@ -2211,7 +2211,7 @@
     "last_update": "2026-11-03T20:58:29Z",
     "ok": true,
     "full_name": "hotdog-box/obsidian-video-library",
-    "checked_at": "2026-11-11T06:26:55.822567+00:00"
+    "checked_at": "2026-11-19T07:33:28.853747+00:00"
   },
   "apri1qing/obsidian-markup-for-agents": {
     "archived": false,
@@ -2219,7 +2219,7 @@
     "last_update": "2026-11-01T16:50:30Z",
     "ok": true,
     "full_name": "Apri1qing/obsidian-markup-for-agents",
-    "checked_at": "2026-11-11T06:26:55.212547+00:00"
+    "checked_at": "2026-11-19T07:33:28.933941+00:00"
   },
   "woolaof/obsidian-prg-viewer": {
     "archived": false,
@@ -2227,7 +2227,7 @@
     "last_update": "2026-11-01T03:54:00Z",
     "ok": true,
     "full_name": "woolaof/obsidian-prg-viewer",
-    "checked_at": "2026-11-11T06:26:55.807707+00:00"
+    "checked_at": "2026-11-19T07:33:28.762199+00:00"
   },
   "milubxaq/obsidian-pangu-cn": {
     "archived": false,
@@ -2472,18 +2472,18 @@
   "zzzdragondyngphx/pageink": {
     "archived": false,
     "stale": false,
-    "last_update": "2026-11-09T16:34:46Z",
+    "last_update": "2026-11-17T12:10:41Z",
     "ok": true,
     "full_name": "ZZZdragondYNGPHX/pageink",
-    "checked_at": "2026-11-11T06:26:55.196768+00:00"
+    "checked_at": "2026-11-19T07:33:28.902372+00:00"
   },
   "qihoo360/obsidian-yunpan-sync": {
     "archived": false,
     "stale": false,
-    "last_update": "2026-11-10T10:53:02Z",
+    "last_update": "2026-11-13T10:43:46Z",
     "ok": true,
     "full_name": "Qihoo360/obsidian-yunpan-sync",
-    "checked_at": "2026-11-11T06:26:55.219053+00:00"
+    "checked_at": "2026-11-19T07:33:28.793324+00:00"
   },
   "irisable/wp-publisher-for-obsidian": {
     "archived": false,
@@ -2491,7 +2491,7 @@
     "last_update": "2026-11-11T00:07:49Z",
     "ok": true,
     "full_name": "irisable/wp-publisher-for-obsidian",
-    "checked_at": "2026-11-11T06:26:55.343461+00:00"
+    "checked_at": "2026-11-19T07:33:28.891979+00:00"
   },
   "acloudofdream/obsidian-dynamic-properties": {
     "archived": false,
@@ -2499,7 +2499,7 @@
     "last_update": "2026-11-09T10:08:47Z",
     "ok": true,
     "full_name": "acloudofdream/obsidian-dynamic-properties",
-    "checked_at": "2026-11-11T06:26:55.344810+00:00"
+    "checked_at": "2026-11-19T07:33:29.384984+00:00"
   },
   "hcg1023/obsidian-infographic-plus": {
     "archived": false,
@@ -2507,7 +2507,7 @@
     "last_update": "2026-11-10T04:26:31Z",
     "ok": true,
     "full_name": "hcg1023/obsidian-infographic-plus",
-    "checked_at": "2026-11-11T06:26:55.394688+00:00"
+    "checked_at": "2026-11-19T07:33:29.163688+00:00"
   },
   "yan-istart/IStart-Note-AI-Plugin": {
     "archived": false,
@@ -3028,5 +3028,13 @@
     "ok": true,
     "full_name": "leftlive/mapdown",
     "checked_at": "2026-11-19T05:00:36.770412+00:00"
+  },
+  "chenyemanbu/pdf-mark-link": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-19T05:20:49Z",
+    "ok": true,
+    "full_name": "chenyemanbu/pdf-mark-link",
+    "checked_at": "2026-11-19T07:33:29.397670+00:00"
   }
 }
