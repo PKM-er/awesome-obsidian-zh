@@ -2740,5 +2740,101 @@
     "ok": true,
     "full_name": "church06/pen-canvas",
     "checked_at": "2026-11-19T03:34:28.736165+00:00"
+  },
+  "xinghe-1018/kb-workbench": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-17T12:55:03Z",
+    "ok": true,
+    "full_name": "xinghe-1018/kb-workbench",
+    "checked_at": "2026-11-19T03:46:06.770083+00:00"
+  },
+  "leschamy4-del/obsidian-dedao-book-sync": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-02T08:35:49Z",
+    "ok": true,
+    "full_name": "leschamy4-del/obsidian-dedao-book-sync",
+    "checked_at": "2026-11-19T03:46:06.772683+00:00"
+  },
+  "osymea-cloud/note-formatter-obsidian-plugin": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-02T06:38:44Z",
+    "ok": true,
+    "full_name": "osymea-cloud/note-formatter-obsidian-plugin",
+    "checked_at": "2026-11-19T03:46:06.775361+00:00"
+  },
+  "gengbl/articlewriter-obsidian": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-18T09:04:00Z",
+    "ok": true,
+    "full_name": "gengbl/articlewriter-obsidian",
+    "checked_at": "2026-11-19T03:46:06.793539+00:00"
+  },
+  "weizwz/obsidian-image": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-14T06:54:32Z",
+    "ok": true,
+    "full_name": "weizwz/obsidian-image",
+    "checked_at": "2026-11-19T03:46:06.828534+00:00"
+  },
+  "jiangyugang/obsidian-beautify": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-18T14:59:55Z",
+    "ok": true,
+    "full_name": "jiangyugang/obsidian-beautify",
+    "checked_at": "2026-11-19T03:46:06.831669+00:00"
+  },
+  "spark-ai-boy/obsidian-wordpress-publisher": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-01T09:42:03Z",
+    "ok": true,
+    "full_name": "spark-ai-boy/obsidian-wordpress-publisher",
+    "checked_at": "2026-11-19T03:46:06.834340+00:00"
+  },
+  "xztjhs/WebDAVrSync": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-13T20:44:05Z",
+    "ok": true,
+    "full_name": "xztjhs/WebDAVrSync",
+    "checked_at": "2026-11-19T03:46:06.867416+00:00"
+  },
+  "kivenbig/obsidian-deepseek-chat": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-14T03:39:55Z",
+    "ok": true,
+    "full_name": "KivenBig/obsidian-deepseek-chat",
+    "checked_at": "2026-11-19T03:46:06.894240+00:00"
+  },
+  "jun7799/ob-plugin-sync": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-09T11:29:35Z",
+    "ok": true,
+    "full_name": "jun7799/ob-plugin-sync",
+    "checked_at": "2026-11-19T03:46:06.909676+00:00"
+  },
+  "huistin2021/obsidian-chinese-smart-numbering": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-01T11:54:41Z",
+    "ok": true,
+    "full_name": "HuiStin2021/obsidian-chinese-smart-numbering",
+    "checked_at": "2026-11-19T03:46:06.916785+00:00"
+  },
+  "yuby-crow/obsidian-cardbox": {
+    "archived": false,
+    "stale": false,
+    "last_update": "2026-11-19T01:34:51Z",
+    "ok": true,
+    "full_name": "yuBY-Crow/obsidian-cardbox",
+    "checked_at": "2026-11-19T03:46:07.037265+00:00"
   }
 }
