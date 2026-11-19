@@ -245,7 +245,7 @@
 > 新收录的插件先在此观察；达到活跃标准后自动转入上方的主题表格，长期没有动静的自动移出。
 
 <details>
-<summary>展开查看观察中的插件（237）</summary>
+<summary>展开查看观察中的插件（238）</summary>
 
 | 插件 | 作者 | 核心功能 |
 | --- | --- | --- |
@@ -278,6 +278,7 @@
 | [Excali Canvas Optimizer](https://github.com/changxi4848/excalidraw-canvas-optimizer) | `changxi4848` | Excalidraw 配套优化：导航小地图 + 顺滑缩放拖动，几千笔画也不卡。 · 最后更新 2026-11 |
 | [Today Sidebar](https://github.com/chartreuse310/obsidian-today-sidebar) | `Chartreuse310` | 原生侧栏：每日笔记、文件快捷入口与任务进度 · 最后更新 2026-10 |
 | [LeetCode Chinese](https://github.com/chenjieya/leetcode-chinese) | `chenjieya` | 在 Obsidian 中浏览力扣中国站题目、编写与提交解答，生成中文 AI 复盘和关联笔记. · 最后更新 2026-10 |
+| [PDF Mark Link](https://github.com/chenyemanbu/pdf-mark-link) | `chenyemanbu` | PDF 标注与笔记链接，简体中文操作界面。 |
 | [XXL-Job Flow Atlas](https://github.com/chenzjm/xxljob-flow-atlas) | `chenzjm` | 把 xxl-job 导出的任务定义导入库内，生成任务流、任务笔记与依赖图 · 最后更新 2026-10 |
 | [PDF Sync Scroll](https://github.com/chmod777h/pdf-sync-scroll) | `chmod777h` | 多个 PDF 窗格与弹窗同步滚动，支持页面对齐、阅读进度与手动偏移 · 最后更新 2026-10 |
 | [Pen Canvas](https://github.com/church06/pen-canvas) | `church06` | Obsidian 无限画布 + 手写插件。电脑和安卓平板都能用。 · 最后更新 2026-11 |
