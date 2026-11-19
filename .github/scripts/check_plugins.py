@@ -1906,10 +1906,14 @@ def write_needs_desc_report(needs_desc):
             "| --- | --- | --- | --- | --- | --- |",
         ]
         for i, r in enumerate(needs_desc, 1):
+            # Rows come from the scan, but keep the writer tolerant so partial
+            # dicts (tests, future callers) cannot break the report.
+            repo = r.get("repo") or ""
             raw_desc = (r.get("raw") or "").replace("|", "\\|").replace("\n", " ")
+            cell = f"[{repo}](https://github.com/{repo})" if repo else ""
             lines.append(
-                f"| {i} | {r['name']} | [{r['repo']}](https://github.com/{r['repo']}) "
-                f"| {r['author']} | {r['problem']} | {raw_desc} |"
+                f"| {i} | {r.get('name', '')} | {cell} "
+                f"| {r.get('author', '')} | {r.get('problem', '')} | {raw_desc} |"
             )
     else:
         lines.append("当前没有积压。")
