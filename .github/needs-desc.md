@@ -8,7 +8,7 @@
 `"<插件名>": "<一句话中文描述>",`，合入后下一轮扫描会自动把它放进
 「新插件观察区」。
 
-最后更新：2026-11-21 07:16 UTC · 积压 138 条
+最后更新：2026-11-23 07:48 UTC · 积压 149 条
 
 | # | 插件 | 仓库 | 作者 | 自动清洗结果 | 上游描述片段 |
 | --- | --- | --- | --- | --- | --- |
@@ -30,7 +30,7 @@
 | 16 | Voice Diary Recorder | [jem-code-sss/obsidian-voice-diary-recorder](https://github.com/jem-code-sss/obsidian-voice-diary-recorder) | jem-code-sss | placeholder | Record audio into a configurable vault folder. Pair with a d |
 | 17 | Rakkan | [kivisolipse/Rakkan](https://github.com/kivisolipse/Rakkan) | Kivisolipse | not-chinese | Mark which characters were written by you, by an AI, or quot |
 | 18 | Life Map | [moyanmoyu/obsidian-life-map](https://github.com/moyanmoyu/obsidian-life-map) | moyanmoyu | not-chinese | Plot notes, GeoJSON, CSV and any JSON API on one map, with l |
-| 19 | Knowledge Map | [xidianhush/knowledge-graph-obsidian-plugin](https://github.com/xidianhush/knowledge-graph-obsidian-plugin) | xidianhush | placeholder | Explore folders, notes and headings as a nested map with lin |
+| 19 | Knowledge Map | [xidianhush/knowledge-graph-obsidian-plugin](https://github.com/xidianhush/knowledge-graph-obsidian-plugin) | xidianhush | placeholder | Explore and arrange your Obsidian knowledge map. Layout sync |
 | 20 | Note Blog Publisher | [bits4747/obsidian-blog-publisher](https://github.com/bits4747/obsidian-blog-publisher) | bits4747 | not-chinese | Publish selected notes as a static blog: toggle which notes  |
 | 21 | note-transit | [maxwellding/obsidian-note-transit](https://github.com/maxwellding/obsidian-note-transit) | MaxwellDing | placeholder | Keep block references, heading references and moved selectio |
 | 22 | Under the Sun | [0xtack/obsidian-under-the-sun](https://github.com/0xtack/obsidian-under-the-sun) | 0xTack | placeholder | Read RSS and hotlists, build a trackable daily digest, with  |
@@ -147,7 +147,18 @@
 | 133 | Wolai Migration | [irvinfaith/wolai-migration](https://github.com/irvinfaith/wolai-migration) | Irvinfaith | placeholder | Move Wolai notes to Obsidian from one HTML ZIP, with page hi |
 | 134 | Sub Page | [astudymachine/sub-page](https://github.com/astudymachine/sub-page) | aStudyMachine | not-chinese | Turn your vault into a tree of nested pages: create, rename, |
 | 135 | Strongbox | [senjanson/obsidian-strongbox](https://github.com/senjanson/obsidian-strongbox) | senjanson | placeholder | Keep selected text, files with their attachments, folders or |
-| 136 | Citation Range Preview | [lyingtree/obsidian-citation-range-preview](https://github.com/lyingtree/obsidian-citation-range-preview) | lyingTree | not-chinese | Preview all references in a numeric citation range or group  |
-| 137 | RowStitch | [tanjialin-labs/rowstitch](https://github.com/tanjialin-labs/rowstitch) | tanjialin-labs | not-chinese | Bulk edit properties and tags in Obsidian Bases. Preview cha |
-| 138 | 3D Model Gallery | [paipa03/obsidian-three-d-model-gallery](https://github.com/paipa03/obsidian-three-d-model-gallery) | Paipa03 | not-chinese | View 3D models in notes and flip through every model in a fo |
+| 136 | RowStitch | [tanjialin-labs/rowstitch](https://github.com/tanjialin-labs/rowstitch) | tanjialin-labs | not-chinese | Bulk edit properties and tags in Obsidian Bases. Preview cha |
+| 137 | 3D Model Gallery | [paipa03/obsidian-three-d-model-gallery](https://github.com/paipa03/obsidian-three-d-model-gallery) | Paipa03 | not-chinese | View 3D models in notes and flip through every model in a fo |
+| 138 | Knowledge Base Manager | [psiqaq/obsidian-kb-manager](https://github.com/psiqaq/obsidian-kb-manager) | psiQAQ | not-chinese | Manage knowledge bases, review changes and sync each Git rep |
+| 139 | InkNote Highlight | [aiwlgp/obsidian-inknote-highlight](https://github.com/aiwlgp/obsidian-inknote-highlight) | AIwlgp | placeholder | Structural syntax highlighting for Chinese notes: book title |
+| 140 | Vault Archive | [fenchd/vault-archive](https://github.com/fenchd/vault-archive) | FenchD | not-chinese | Move older notes and their attachments to a separate vault w |
+| 141 | Todolite | [newkingyeah/obsidian-todolite](https://github.com/newkingyeah/obsidian-todolite) | newkingyeah | placeholder | Organize tasks, habits, deadlines, and agent handoffs in a l |
+| 142 | yuhanbo-editing | [yuhanbo758/obsidian-yuhanb-editing](https://github.com/yuhanbo758/obsidian-yuhanb-editing) | yuhanbo758 | placeholder | Edit headings, links, and Markdown with shortcuts, Chinese t |
+| 143 | Right-click Menu | [liushenn/ob-right-click-menu](https://github.com/liushenn/ob-right-click-menu) | liushenn | placeholder | Choose which items appear in the editor right-click menu, an |
+| 144 | Pineapple Cantonese Listening | [louiseleeai/pineapple-cantonese](https://github.com/louiseleeai/pineapple-cantonese) | louiseleeAI | placeholder | Listen to Cantonese podcasts sentence by sentence with autom |
+| 145 | Diff Sync (WebDAV) | [sylvaire/obsidian-diff-sync](https://github.com/sylvaire/obsidian-diff-sync) | sylvaire | not-chinese | Content-defined-chunk differential sync over WebDAV. Only ch |
+| 146 | flomo Link Preview | [qiujv/obsidian_flomo_preview](https://github.com/qiujv/obsidian_flomo_preview) | Qiujv | placeholder | Preview private flomo memo links without changing your notes |
+| 147 | Semantic Map | [newkingyeah/obsidian-semantic-map](https://github.com/newkingyeah/obsidian-semantic-map) | newkingyeah | not-chinese | Find and visualize related Markdown notes using cached embed |
+| 148 | Struct LaTeX | [linxruan/Struct-LaTeX](https://github.com/linxruan/Struct-LaTeX) | LinXruan | not-chinese | Structure-aware LaTeX editing - This plugin has not been man |
+| 149 | Selection Comments | [kexue-nju/selection-comments](https://github.com/kexue-nju/selection-comments) | KeXue-NJU | placeholder | Annotate selected text and whole notes with local discussion |
 
