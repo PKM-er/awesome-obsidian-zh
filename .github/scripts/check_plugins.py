@@ -266,8 +266,11 @@ def gh_get(url):
         status = getattr(getattr(e, "response", None), "status_code", None)
         auth = "GITHUB_TOKEN set" if GITHUB_TOKEN else "GITHUB_TOKEN absent (unauthenticated)"
         print(f"WARN: request failed for {url}: {e} [HTTP {status}, {auth}]", file=sys.stderr)
-        return None
+        # Record the failure BEFORE returning: this line used to sit after
+        # `return None` in the try body, where it was unreachable, so a scan
+        # that lost API calls looked clean and persisted a partial result.
         API_FAILURES.append(url)
+        return None
 
 
 def verify_api_auth(context=""):
@@ -1783,10 +1786,13 @@ def follow_repo_rename(repo, full_name):
 
     `repo_meta` follows GitHub's 301, so a row whose URL still carries the old
     owner is detectable. Returns `repo` unchanged when the answer is missing or
-    identical (a case-only difference counts as identical)."""
+    identical. A case-only difference IS a difference: GitHub keeps serving the
+    lowercase URL today, but the canonical spelling is what the owner actually
+    uses, and a URL that differs from it by case alone is one more thing to
+    repair by hand when the owner later renames the account."""
     if not full_name or not isinstance(full_name, str) or "/" not in full_name:
         return repo
-    if full_name.casefold() == (repo or "").casefold():
+    if full_name == (repo or ""):
         return repo
     return full_name
 

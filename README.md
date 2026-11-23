@@ -234,7 +234,6 @@
 
 | 插件 | 作者 | 核心功能 |
 | --- | --- | --- |
-| [Thinker TomaTodo](https://github.com/depthinker925/Thinker-TomaToDo) | `Depthinker925` | 把 Thinkers 计时会话镜像到番茄ToDo 桌面端，一边开始另一边也开始 · 最后更新 2026-10 |
 | [File Ignore](https://github.com/feng6611/Obsidian-File-Ignore) | `Feng6611` | 用点前缀管理文件索引，真正隐藏或排除文件，体验类似 .gitignore · 最后更新 2026-10 |
 | [WebNovel Assistant](https://github.com/hatanochihiro/obsidian-webnovel-assistant) | `HatanoChihiro` | 为网络小说与故事创作者打造的 Obsidian 一站式写作套件。<br / · 最后更新 2026-11 |
 | [Screenshot Selection](https://github.com/hwy1dot0/obsidian-screenshot-selection) | `HWY1dot0` | 把选中的内容截成 PNG 并复制到剪贴板 · 最后更新 2026-10 |
@@ -248,7 +247,7 @@
 > 新收录的插件先在此观察；达到活跃标准后自动转入上方的主题表格，长期没有动静的自动移出。
 
 <details>
-<summary>展开查看观察中的插件（250）</summary>
+<summary>展开查看观察中的插件（249）</summary>
 
 | 插件 | 作者 | 核心功能 |
 | --- | --- | --- |
@@ -410,7 +409,6 @@
 | [Margin Cards](https://github.com/quinn-7777/margin-cards) | `QUINN-7777` | <summary<strong中文说明（点击展开）</strong</summary · 最后更新 2026-11 |
 | [QYY Baidu Sync](https://github.com/qyy542/qyy-baidu-sync) | `QYY542` | 通过百度网盘增量同步笔记和附件，保留冲突版本并记录待同步改动. · 最后更新 2026-11 |
 | [QYY Folder Notes](https://github.com/qyy542/qyy-folder-notes) | `QYY542` | 创建空白文件夹笔记，保存冲突版本，并管理可同步的废纸篓. · 最后更新 2026-11 |
-| [Collis](https://github.com/r529/collis) | `R529` | 随手记录卡片笔记并保留多行排版，按月存入 Markdown 文件，支持标签联想与父子标签聚合. · 最后更新 2026-11 |
 | [Noval](https://github.com/r529/Noval) | `R529` | 本地工作台：模块视图、速记卡片与画布集合并为一个插件. · 最后更新 2026-11 |
 | [BrainOS Graph](https://github.com/radical7vii/brainos-obsidian) | `Radical7VII` | 用 Markdown 列表记录思路路径，在可编辑的图谱里浏览 · 最后更新 2026-10 |
 | [Flomo Quick Capture](https://github.com/raymond0316/flomo-quick-capture) | `raymond0316` | 文字、录音和图片快速记录，支持腾讯云转写、年度 noteCount、附件清理与今日重逢。 · 最后更新 2026-10 |
@@ -533,11 +531,11 @@
 
 |插件|汉化文件路径|
 |---|---|
-|[Admonition](https://github.com/valentine195/obsidian-admonition)|`src/lang/locale/zh-cn.ts`|
-|[Commander](https://github.com/phibr0/obsidian-commander)|`locale/zh-cn.json`|
+|[Admonition](https://github.com/ebullient/obsidian-admonition)|`src/lang/locale/zh-cn.ts`|
+|[Commander](https://github.com/jsmorabito/obsidian-commander)|`locale/zh-cn.json`|
 |[DB Folder](https://github.com/RafaelGB/obsidian-db-folder)|`src/lang/locale/zh-cn.ts`|
 |[Excalidraw](https://github.com/zsviczian/obsidian-excalidraw-plugin)|`src/lang/locale/zh-cn.ts`|
-|[Kanban](https://github.com/mgmeyers/obsidian-kanban)|`src/lang/locale/zh-cn.ts`|
+|[Kanban](https://github.com/community-archive/obsidian-kanban)|`src/lang/locale/zh-cn.ts`|
 |[RSS Reader](https://github.com/joethei/obsidian-rss)|`src/l10n/locales/zh.ts`|
 |[Spaced Repetition](https://github.com/st3v3nmw/obsidian-spaced-repetition)|`src/lang/locale/zh-cn.ts`|
 

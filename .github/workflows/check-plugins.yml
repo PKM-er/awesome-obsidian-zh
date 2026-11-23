@@ -157,6 +157,23 @@ jobs:
             git push origin HEAD:${GITHUB_REF_NAME}
           fi
 
+      - name: Dispatch the README recheck
+        # The recheck workflow has its own daily schedule, but GitHub drops
+        # scheduled runs on a quiet repository without a trace — issue #39 sat
+        # open for a week because no run was ever scheduled. Dispatching it
+        # here gives the failure ticket a verdict on every scan cycle.
+        # A dispatch failure must not fail the scan: the scan has already
+        # done its work, and the daily schedule still covers the recheck.
+        if: success()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh workflow run recheck.yml --ref "${{ github.event.repository.default_branch }}"; then
+            echo "recheck dispatched"
+          else
+            echo "::warning::could not dispatch recheck.yml; the daily schedule still covers it"
+          fi
+
       - name: Close failure ticket on success
         # The prune step deletes failed runs at the next successful scan, so a
         # tracking issue is the only durable record of a failure. Close it here.

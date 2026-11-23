@@ -1685,8 +1685,11 @@ class TestFollowRepoRename(unittest.TestCase):
     def test_same_name_is_unchanged(self):
         self.assertEqual(cp.follow_repo_rename("a/b", "a/b"), "a/b")
 
-    def test_case_only_difference_is_not_a_rename(self):
-        self.assertEqual(cp.follow_repo_rename("A/B", "a/b"), "A/B")
+    def test_case_only_difference_follows_the_canonical_spelling(self):
+        # A case-only difference is still a difference: the canonical owner
+        # spelling is what the account actually uses, so a URL that drifts
+        # from it by case alone is one more thing to repair by hand later.
+        self.assertEqual(cp.follow_repo_rename("A/B", "a/b"), "a/b")
 
     def test_moved_repo_returns_the_canonical_name(self):
         self.assertEqual(
