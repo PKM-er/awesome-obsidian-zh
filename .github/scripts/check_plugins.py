@@ -1031,6 +1031,33 @@ CURATED_DESC = {
     "Vim Editing Extensions": "给内置 Vim 模式补上引号与标签文本对象、三明治式增删替换和寄存器替换",
     "Ask Your Notes": "把笔记或选中段落带进侧边栏问答，可接 OpenAI 兼容接口，不自动索引整个库",
     "Attachment Cards": "把 PDF、Word 等文档嵌入压成可点的文件卡片，保留原生语法，点击即打开原文件",
+    # 2026-11-24: 24 hand-written descriptions from .github/needs-desc.md
+    "LAN Vault Sync": "局域网内多台设备直连同步笔记与附件，按字符合并双方编辑避免冲突，无需云端与服务器",
+    "MdAssetSync": "将外部 Markdown 文件导入笔记库，按其原始文件夹解析相对路径，把本地图片一并复制到附件目录",
+    "Merchart": "无需手写 Mermaid 语法，按缩进逐行填写节点并实时预览渲染，自动生成标识符并规范全角标点",
+    "Marimo Native": "在 Obsidian 内原生编辑响应式 Python 笔记本，连接本机运行时执行代码单元格并渲染图表和交互控件",
+    "Excerpt Collector": "选中任意笔记中的文字，一次操作即可复制并追加到预设的目标笔记中，原笔记内容保持不变",
+    "Rakkan": "用行内标记区分自己写的、AI 写的与他人引用的文字，按模型着色并在状态栏统计各部分占比",
+    "Life Map": "把笔记属性里的坐标、GeoJSON、CSV 与接口数据汇到一张地图上，支持多图层叠加、搜索筛选与地点聚合",
+    "Note Blog Publisher": "公私笔记同库共存，在文件浏览器逐篇切换公开状态，只提交公开笔记并推送 GitHub 仓库自动构建静态博客",
+    "Any Viewer": "在笔记中插入并预览任意文件，Word、Excel、PPT 可内嵌渲染，其他格式显示文件卡片并用系统应用打开",
+    "Rion Git": "在侧边栏查看改动列表、撰写提交信息并提交推送拉取，点击文件可查看差异对比与提交历史记录",
+    "simply-scroll-next": "记住每个笔记文件的滚动位置，重新打开时自动回到原处，从标题或块链接跳转则交由 Obsidian 定位",
+    "TaskNotes Countdown": "为 TaskNotes 任务的截止日期做倒计时，给出剩余步骤数、所需节奏、应开始日期以及正在等待的对象",
+    "Treehole Diary": "拉取树洞日记手机端发到邮箱的加密邮件，本地解密后按日期合并成库内的日记笔记",
+    "gogoga Table": "把笔记里的表格变成可点击编辑的表格视图，支持单元格配色、合并与公式列，文件内容仍是纯文本表格",
+    "HTML Coursebook": "自动识别含首页的本地网页项目文件夹，在文件列表中折叠成单个可点击文档，并用独立渲染器运行其中脚本",
+    "ARC Hover Sidebar": "像 ARC 浏览器那样，鼠标扫到窗口左边缘时侧边栏滑出，横向划过面板右边界后才收回",
+    "Editor-like Reading View": "阅读视图按编辑器的样子渲染，保留空行、缩进、行内空格以及引用与标注块内的空行缩进，不改动原笔记",
+    "VaultBranch": "在 Obsidian 桌面端内置 Git 版本控制，侧栏可暂存提交、拉取推送、对比编辑差异、解决冲突并浏览提交图",
+    "Co Notes": "把多个文件夹的笔记源放进同一日历视图，用颜色标出每天各来源是否有笔记，点击色块即可打开或新建",
+    "AutoGallery": "自动排布笔记中的图片，连续图片合成等高行，单图按比例定宽并可让文字环绕，排版参数写在图片标题里",
+    "Agent Terminal": "在 Obsidian 内嵌真实终端运行 Claude Code 等 AI 编程助手，支持新会话、续接上次会话与跳过授权",
+    "Virtual Mount": "在文件列表中把真实文件夹或单篇笔记挂载成虚拟子目录，文件不复制不移动，同一文件可出现在多处",
+    "EndNote Cite": "直接读取 EndNote 本地文献库，输入方括号加 @ 可自动补全插入引用，按样式实时渲染并导出文献",
+    "Plan to Day": "本地优先的任务与目标规划插件，把长期目标拆成年度、季度、月度、周计划，再把周目标转为今日任务",
+    # 2026-11-24: one more hand-written description (Chinese README, English metadata)
+    "Note Attachment Folder": "粘贴或拖入的附件自动存进与笔记同名的专属文件夹，笔记改名、移动或删除时同步文件夹与文章内链接",
 }
 
 # Hand-verified section for the plugins that used to live in the catch-all
