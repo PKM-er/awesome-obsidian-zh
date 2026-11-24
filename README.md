@@ -251,7 +251,7 @@
 > 新收录的插件先在此观察；达到活跃标准后自动转入上方的主题表格，长期没有动静的自动移出。
 
 <details>
-<summary>展开查看观察中的插件（374）</summary>
+<summary>展开查看观察中的插件（410）</summary>
 
 | 插件 | 作者 | 核心功能 |
 | --- | --- | --- |
@@ -269,12 +269,15 @@
 | [Wujie Translate](https://github.com/adventurer2008/wujie-translate) | `adventurer2008` | 选中笔记文字即可翻译或查英文单词，弹出带音标释义的英汉词典卡片。 |
 | [Memos Hub](https://github.com/aijacko/memos-hub) | `aijacko` | 与 Memos 备忘双向同步，支持多账户、独立文件或每日日记存储、标签过滤与 AI 整理。 |
 | [MD Annotator](https://github.com/aipmwx/obsidian-md-annotator) | `AIPMwx` | 选中文字写修改意见，以 CriticMarkup 格式写入 Markdown，方便交给 AI 按批注修改。 · 最后更新 2026-11 |
+| [InkNote Highlight](https://github.com/aiwlgp/obsidian-inknote-highlight) | `AIwlgp` | 为中文笔记做结构化语法高亮，自动区分书名号、引号、章节标题、键值对、序号与日期并分层配色。 |
 | [LaC.CostSet](https://github.com/alvinfunborn/lac-costset) | `alvinfunborn` | 用 TOML 管理个人物品清单：价格、日期、标签、回收价值与每日成本趋势 · 最后更新 2026-10 |
+| [Doubao Sync](https://github.com/andyzhengyan/obsidian-doubao-importer) | `AndyZhengyan` | 把豆包对话同步为本地 Markdown 笔记，支持网页登录、手动与定时同步、取消任务和最近 30 天同步日志。 |
 | [WeChat Workbench](https://github.com/anightmonarch/obsidian-wechat-workbench) | `anightmonarch` | 公众号草稿的发布工作台：写作、排版、预览、复制与同步 · 最后更新 2026-11 |
 | [Nebula Focus](https://github.com/anthemzhou/Nebula_Focus) | `AnthemZhou` | 为 Obsidian 提供 Notion-like 的页面侧栏、Bases 表格、卡片和原位编辑。 · 最后更新 2026-11 |
 | [Count By MSWord](https://github.com/aphro-o/count-by-msword-obsidian) | `AphRO-o` | 调用本机 Microsoft Word 统计笔记的字数、字符数与段落数，并把当前笔记另存为 Word 文档。 |
 | [Markup for Agents](https://github.com/apri1qing/obsidian-markup-for-agents) | `Apri1qing` | 把笔记里选中的段落连同批注一起发给终端里的 Claude Code 或 Codex · 最后更新 2026-11 |
 | [AI Connected](https://github.com/arcticat14/obsidian-ai-connected) | `ArctiCat14` | 把 Obsidian 笔记库变成 AI Agent 可直接读写的工作区。 · 最后更新 2026-11 |
+| [Screenplay MD](https://github.com/asdfghjkl524/obsidian-screenplay-md) | `ASDFGHJKL524` | 按 Tab 轮换场景、镜头、动作、人物、对白等剧本行类型，用原生 Markdown 书写并可导出 Word、PDF。 |
 | [Sub Page](https://github.com/astudymachine/sub-page) | `aStudyMachine` | 在侧栏把笔记组织成可展开的页面树，正文可用列表或卡片展示子页面。 |
 | [Vimflow](https://github.com/async23/obsidian-vimflow) | `Async23` | Vimium 式键盘导航，支持连续滚动与字母定位跳转链接、按钮和侧栏项目。 |
 | [Homebound WebDAV](https://github.com/aurastywear3-netizen/homebound-webdav) | `aurastywear3-netizen` | 把加密后的笔记与附件同步到自建 WebDAV 服务器，多个库各用一把独立密钥。 |
@@ -314,6 +317,7 @@
 | [Leafmark Reader](https://github.com/clearner1/leafmark-reader) | `Clearner1` | 在 Obsidian 里阅读 EPUB，划线或写想法，自动生成白板摘录卡片，并能在卡片与原文之间跳转。 · 最后更新 2026-10 |
 | [Clip2MD Desktop Tools](https://github.com/clip2md/clip2md-desktop-tools) | `clip2md` | 为剪藏笔记补充来源元信息、视频、字幕、图片与评论，素材保存至当前知识库. · 最后更新 2026-11 |
 | [Kindle Mail](https://github.com/cloud2025-art/kindle-mail) | `Cloud2025-art` | 把笔记导出成 EPUB，通过自己的 SMTP 邮箱发到 Kindle · 最后更新 2026-10 |
+| [Transfer LaTeX from AI](https://github.com/crazy5/obsidian-transfer-latex-from-AI) | `crazy5` | 一键把 AI 回复里的 LaTeX 公式转成 Obsidian 能渲染的 MathJax 语法。 |
 | [Native File Drag](https://github.com/crisxuan/native-file-drag) | `crisxuan` | 把文件面板中的笔记和附件直接拖到系统文件管理器或桌面应用中。 |
 | [VaultBranch](https://github.com/crli-idea/VaultBranch) | `crli-idea` | 在 Obsidian 桌面端内置 Git 版本控制，侧栏可暂存提交、拉取推送、对比编辑差异、解决冲突并浏览提交图 |
 | [Layer Base](https://github.com/cryingobsidian-co/obsidian-layer-base) | `CryingObsidian-CO` | 用 .layer 文件存多维表格与看板：16 种字段、公式、关联与汇总，表格看板双视图 · 最后更新 2026-11 |
@@ -333,6 +337,7 @@
 | [I Have a Rock](https://github.com/dodo13114arch/i-have-a-rock) | `dodo13114arch` | 连接 Zotero 与 Obsidian：仅本机读取文献与批注图，不联网上传 · 最后更新 2026-11 |
 | [Bingo Garden](https://github.com/dtta520-cpu/bingo-garden) | `dtta520-cpu` | 把想做的事情放进一张棋盘：完成一项，点亮一格；横、竖、对角线连成一线，就收获一次 Bingo。 · 最后更新 2026-11 |
 | [Fleeting Notes Capture](https://github.com/duany2026/obsidian-fleeting-notes) | `duany2026` | 快速记录闪念笔记，支持按月/周/年归档，支持手机端。 |
+| [Health Record](https://github.com/duany2026/obsidian-health-record) | `duany2026` | 侧边栏一键记录睡眠与自定义习惯，按日周月复盘，数据全部写成库内 Markdown 文件，可手工编辑。 |
 | [Important Days](https://github.com/duany2026/important-days) | `duany2026` | 1. 打开本仓库的 Releases 页面，下载最新版本里的 important-days-<版本号.zip · 最后更新 2026-11 |
 | [Monthly Tasks](https://github.com/duany2026/obsidian-monthly-tasks) | `duany2026` | 一款为 Obsidian 打造的滴答清单风格月视图任务管理插件，支持农历显示、节假日标注和调休信息展示。 · 最后更新 2026-11 |
 | [EduAIoT AI Notes](https://github.com/eduaiot/eduaiot-ai-notes) | `eduaiot` | 基于自己笔记做 AI 问答与语义检索，带每日回顾、周报和笔记整理建议 · 最后更新 2026-11 |
@@ -345,6 +350,7 @@
 | [Synology QuickSync](https://github.com/fangjing2021/obsidian-synology-sync) | `fangjing2021` | 通过群晖 File Station 与 QuickConnect 把笔记库双向同步到 NAS |
 | [SmartTask](https://github.com/fat-pumpkin/SmarTask) | `fat-pumpkin` | 高性能、易操作的智能任务管理插件。支持多视图、快速创建、智能查询。 · 最后更新 2026-10 |
 | [Vault Archive](https://github.com/fenchd/vault-archive) | `FenchD` | 把长期未修改的笔记及附件按原目录归档到另一个库，减轻同步负担。 |
+| [Meeting Recorder](https://github.com/fengqing-tw/obsidian-meeting-recorder) | `FengQing-TW` | 在 Obsidian 里一键录制系统声音与麦克风，生成实时逐字稿，并把截图投影片按时间轴对齐到对应语句。 |
 | [Annex Gallery](https://github.com/flmaximwang/ObsidianPlugin-AnnexGallery) | `flmaximwang` | 一份数据一张卡，封面、名称与关键元数据并排铺开，按样品、日期、参数一筛就只剩你关心的那几张。 · 最后更新 2026-11 |
 | [Hypomnema](https://github.com/floernt/hypomnema) | `Floernt` | 在段落或某个点上写批注、回复并分类，批注以纯文本存回笔记，可全库搜索 · 最后更新 2026-11 |
 | [LaTeX Super Converter](https://github.com/fqm1149/latex-super-converter) | `fqm1149` | 一键把 AI 输出的不规范 LaTeX 改成可渲染写法，转换定界符并识别无定界符的裸公式，不动表格与代码块。 |
@@ -356,6 +362,7 @@
 | [ArticleWriter](https://github.com/gengbl/articlewriter-obsidian) | `gengbl` | Obsidian 写书工具：建书建卷建章、多种 AI 协作、实时字数统计 · 最后更新 2026-11 |
 | [Knowledge Workbench](https://github.com/gintmos/knowledge-workbench) | `Gintmos` | 三种方式任选其一： · 最后更新 2026-11 |
 | [Remember Settings Window](https://github.com/github-xzhi/obsidian-remember-settings-window) | `GitHub-Xzhi` | 记住并恢复【在独立窗口中打开设置】窗口的尺寸和位置。 · 最后更新 2026-08 |
+| [fakecard](https://github.com/godfatherlg/fakecard) | `godfatherlg` | 从笔记生成间隔重复卡片，卡片单独存在库内文件夹，原始笔记只读不会被改动。 |
 | [Daylight](https://github.com/gonsix/daylight) | `Gonsix` | 用时间轴、看板和项目页管理每日任务与工作时段，数据都存成 Markdown 笔记 |
 | [ARC Hover Sidebar](https://github.com/goodends/arc-hover-sidebar) | `goodends` | 像 ARC 浏览器那样，鼠标扫到窗口左边缘时侧边栏滑出，横向划过面板右边界后才收回 |
 | [Folder Forge](https://github.com/gowntn/obsidian-folder-forge) | `Gowntn` | 从缩进文本或名称列表批量生成文件夹与 Markdown 笔记。 · 最后更新 2026-11 |
@@ -384,7 +391,9 @@
 | [Nihong AI explaination](https://github.com/iikira/obsidian-nihong-ai-explain) | `iikira` | 选中日语词句，生成 AI 讲解笔记、语法拆解、翻译、离线词典与朗读 · 最后更新 2026-11 |
 | [Tuopan](https://github.com/incredible404-rgb/tuopan) | `incredible404-rgb` | 让 Obsidian 常驻系统托盘：开机隐藏启动、关窗不退出、再启动不弹选库窗 · 最后更新 2026-10 |
 | [Image Flow Gallery](https://github.com/iris-lover/obsidian-image-flow) | `Iris-lover` | 把库内文章、图片与视频以瀑布流预览，支持筛选、搜索与时间排序 |
+| [Wolai Migration](https://github.com/irvinfaith/wolai-migration) | `Irvinfaith` | 把 wolai 导出的 HTML ZIP 拖入即可迁移笔记，重建子页面层级、分栏折叠与表格，并附带图片附件和内链。 |
 | [Vault Dock](https://github.com/ivansushkin/obsidian-vault-dock) | `Ivansushkin` | 在侧边栏为每个已登记仓库生成磁贴，点击即可一键切换仓库并把对应窗口调到前台。 |
+| [WeChat Layout](https://github.com/jackiechan24/WeChat_gzh_studio) | `Jackiechan24` | 在 Obsidian 里给公众号文章套用六套排版风格，图文一起复制到公众号编辑器。 |
 | [XHS Cards](https://github.com/jackiechan24/xhs_card_studio) | `Jackiechan24` | 用一篇已有的教程、工作复盘或学习笔记做底稿，在同一个工作台完成封面编辑、正文分页和图片导出。 · 最后更新 2026-11 |
 | [gogoga Table](https://github.com/jackweigogoga/gogoga-table) | `JackWeiGogoga` | 把笔记里的表格变成可点击编辑的表格视图，支持单元格配色、合并与公式列，文件内容仍是纯文本表格 |
 | [Dragon Scroll Home](https://github.com/jackyoung022/Obsidian-WJLL-plugin) | `jackyoung022` | 以古籍龙鳞装为灵感的首页插件，每个目录是一卷书、每篇笔记是一张竖排书页，悬停展开摘要、可展开子卷并搜索定位。 |
@@ -409,8 +418,11 @@
 | [Marimo Native](https://github.com/kains2866/obsidian-marimo) | `kains2866` | 在 Obsidian 内原生编辑响应式 Python 笔记本，连接本机运行时执行代码单元格并渲染图表和交互控件 |
 | [Temporary Markdown Preview](https://github.com/kakak001/temporary-markdown-preview) | `kakak001` | 把本地 Markdown 文件拖进 Obsidian，在临时标签页里阅读。 · 最后更新 2026-11 |
 | [Pinyin Companion](https://github.com/katananananna/pinyin-companion) | `katananananna` | 局限于 ju xian yu → 局限于 jú xiàn yú · 最后更新 2026-11 |
+| [Vault Catalog and Guides](https://github.com/kendall051021/obsidian-plugin-catalog) | `Kendall051021` | 侧边栏实时列出已安装插件，自动维护插件目录总览，并为每个插件生成中文使用指南。 |
+| [Selection Comments](https://github.com/kexue-nju/selection-comments) | `KeXue-NJU` | 给选中文字或整篇笔记添加评论讨论，引用、回复与解决状态存在侧栏本地，原始 Markdown 保持完整。 |
 | [Hover Image](https://github.com/keyoneway/hover-image) | `keyoneway` | 给笔记里的文字或链接绑定库内图片，鼠标悬停即可预览，不占正文空间 · 最后更新 2026-11 |
 | [Locally Save](https://github.com/kflho/obsidian-locally-save) | `Kflho` | 把整个仓库（或只把自上次完整副本以来改动的那部分）打成一个 .lsave 文件， · 最后更新 2026-11 |
+| [LifePilot](https://github.com/khk-nl/LifePilot) | `Khk-NL` | 在 Obsidian 里制定每周学习计划、记录每日习惯打卡与行动成果，并查看分数和复盘报告。 |
 | [Merchart](https://github.com/kiefeng/merchart) | `kiefeng` | 无需手写 Mermaid 语法，按缩进逐行填写节点并实时预览渲染，自动生成标识符并规范全角标点 |
 | [Fault Tree Mini](https://github.com/killpeterandtime/fault-tree-mini-obsidian) | `KillPeterAndTime` | 在 Obsidian 笔记库中直接绘制、计算和存储故障树（FTA）。左侧边栏点图标即可打开编辑器。 · 最后更新 2026-11 |
 | [DeepSeek Chat](https://github.com/kivenbig/obsidian-deepseek-chat) | `KivenBig` | 自带 API Key 在 Obsidian 里用 DeepSeek 对话，支持联网与深度搜索 · 最后更新 2026-11 |
@@ -419,12 +431,14 @@
 | [Virtual Mount](https://github.com/ko-ani/obsidian-virtual-mount) | `ko-Ani` | 在文件列表中把真实文件夹或单篇笔记挂载成虚拟子目录，文件不复制不移动，同一文件可出现在多处 |
 | [OneNote Like Navigator](https://github.com/kofkino/onenote-like-navigator) | `KOFKINO` | 以 OneNote 风格浏览文件夹，左栏显示子目录右栏显示直属笔记，可直接管理真实文件。 |
 | [Lacan Translation Helper](https://github.com/kotoba-rin/LCTPlugin) | `kotoba-rin` | 阅读拉康研讨班法文原译文的助手，支持法中双语对照、逐段编辑、章节笔记与法语查词。 |
+| [Blueee Notes](https://github.com/kristinblue/blueee-notes) | `Kristinblue` | 在多台设备间加密同步所选笔记、附件与插件清单，支持仅拉取、仅推送或双向同步并能自动合并冲突。 |
 | [Mind Map Canvas](https://github.com/kryon-4y4/mindmap-canvas) | `Kryon-4Y4` | 在 Obsidian 中创建和编辑思维导图。基于 Markdown 嵌套列表存储结构，提供可缩放、可拖拽的无限画布。 · 最后更新 2026-10 |
 | [Refactor Lens](https://github.com/lacemou/RefactorLens) | `lacemou` | 在编辑器内比对两版稿件，行内标出增删与段落搬移，可恢复删除文字、暂存灵感，并调用 Codex 改写。 |
 | [PaperMark](https://github.com/laginae/papermark) | `laginae` | 把图片合成 PDF、加可搜索的 OCR 文字并编辑书签，默认本地处理 · 最后更新 2026-11 |
 | [Book Media Editor](https://github.com/le-soleil-se-couche/book-media-editor) | `le-soleil-se-couche` | 在实时阅览中编辑折叠块、选中文字添加批注并互相回复，数据保存在当前 Markdown 笔记中。 |
 | [Mapdown](https://github.com/leftlive/mapdown) | `leftlive` | 把 Markdown 笔记当思维导图编辑，图与正文共用同一文件、双向同步，可嵌入笔记 · 最后更新 2026-11 |
 | [CSV Workbench](https://github.com/leifwebber/digital-tutor-csv-editor) | `LeifWebber` | 在标签页内编辑 CSV 与 TSV 文件，可直接改单元格或源码与预览并排，列宽行高随内容自适应。 |
+| [Quick Date Entry](https://github.com/leoray1990/obsidian-quick-date-entry) | `leoray1990` | 在编辑器里输入触发字符弹出日历和常用日期，用键盘快速插入指定格式的日期。 |
 | [Dedao Book Sync](https://github.com/leschamy4-del/obsidian-dedao-book-sync) | `leschamy4-del` | 把「得到」电子书的划线与批注按书同步成 Obsidian 里的 Markdown · 最后更新 2026-11 |
 | [Bases Calendar](https://github.com/lesk-org/obsidian-bases-calendar) | `lesk-org` | 为 Obsidian Bases 提供日历与议程视图：把带日期属性的笔记集合显示在月历上，或按日期排成议程列表。 · 最后更新 2026-11 |
 | [Fluid Sidebar](https://github.com/letheli710/obsidian-fluid-sidebar) | `letheli710` | 让手机版 Obsidian 的侧边栏像原生 App 一样跟手，笔记缩成圆角卡片推开 |
@@ -432,11 +446,14 @@
 | [Workspace File Redirect](https://github.com/lihuu/obsidian-workspace-file-redirect) | `lihuu` | 把工作区布局文件改写到笔记库之外，避免网盘反复同步与冲突副本。 |
 | [Struct LaTeX](https://github.com/linxruan/Struct-LaTeX) | `LinXruan` | 基于解析树的 LaTeX 编辑，支持按层级整块删除公式结构、光标跳转与内联实时渲染。 |
 | [Folder Focus Collapse](https://github.com/lishuai1993/Folder-Focus-Collapse) | `lishuai1993` | 笔记被激活时收拢无关目录，把当前文件行定位到稳定位置并高亮显示。 |
+| [Right-click Menu](https://github.com/liushenn/ob-right-click-menu) | `liushenn` | 整理编辑器右键菜单：自动收集出现过的菜单项供你隐藏，也可把常用命令固定到菜单顶部并加分隔线。 |
 | [Media Speed Enhancer](https://github.com/liyifan2004/obsidian-media-speed-enhancer) | `liyifan2004` | 给原生音视频播放器加后退前进与按住倍速，可自定义倍速菜单 |
+| [Vault Doctor](https://github.com/ll905518294/obsidian-vault-doctor) | `ll905518294` | 扫描笔记库的九类健康问题如失效链接、未引用资源与重复文件，安全清理并顺带压缩图片。 |
 | [Grove Reader](https://github.com/llllccc/grove-reader) | `LLllCCC` | 支持多种电子书格式的阅读与划线批注，一键生成可回跳原文的笔记。 |
 | [Documents Activity Tracker](https://github.com/lmce72/documents-activity-tracker) | `lmce72` | 跟踪每个文档的阅读时长（区分窗口内/脱离窗口），并提供独立的手动计时；侧栏统一查看，数据存于 SQLite。 · 最后更新 2026-11 |
 | [IntelliScroll](https://github.com/lmce72/intelliscroll) | `lmce72` | 按间隔重复把旧笔记重新推到你面前，像刷信息流一样 · 最后更新 2026-10 |
 | [Zh Search](https://github.com/louis-1448-2/obsidian-zh-search) | `louis-1448-2` | 面向中文的全文搜索：分词、BM25 相关度排序与摘要预览 · 最后更新 2026-11 |
+| [Pineapple Cantonese Listening](https://github.com/louiseleeai/pineapple-cantonese) | `louiseleeAI` | 粤语播客精听插件：逐句自动标粤拼、点词查义与生词本，支持单句循环、跟读录音和字幕搜索。 |
 | [Pineapple English Listening](https://github.com/louiseleeai/pineapple-english) | `louiseleeAI` | 英语播客与 Newsletter 的精听精读台，做成 Obsidian 插件。 · 最后更新 2026-11 |
 | [Inkwright](https://github.com/luoxin9510/inkwright) | `luoxin9510` | 在 Obsidian 里写、试玩与调试 ink 互动小说，可导出网页 · 最后更新 2026-11 |
 | [Monthly Markdown Calendar](https://github.com/lwg342/obsidian-monthly-view) | `lwg342` | 轻量月历插件，数据存于普通 Markdown 文件，桌面双栏、手机单列显示，点击日期用原生编辑器打开。 |
@@ -454,6 +471,7 @@
 | [YPP Book Shelf](https://github.com/mazaoshe/ypp-book-shelf) | `mazaoshe` | 把知识库里的书籍笔记显示成封面书架，并从微信读书 / 豆瓣补全封面与书籍属性。 · 最后更新 2026-11 |
 | [Home Dashboard](https://github.com/memoryl7/home-dashboard) | `MemoryL7` | 随手记 Home 仪表盘。 · 最后更新 2026-11 |
 | [Prism Studio](https://github.com/menoking/Prism-Studio) | `menoking` | 多套配色与玻璃材质、独立界面与笔记字体、章节滚动条、图片堆叠、任务管理与内容工作台。 · 最后更新 2026-11 |
+| [Better Folder Notes](https://github.com/menomemo/better-folder-notes) | `menomemo` | 把任意一篇笔记变成某个文件夹的目录页，可展开层级、拖动排序并就地新建文件。 |
 | [Chinese Glossary Hover](https://github.com/mffeiron-ai/obsidian-chinese-glossary-hover) | `mffeiron-ai` | 从 Markdown 词典读取词条，在阅读视图与实时预览中悬浮显示解释。 · 最后更新 2026-11 |
 | [Rion Git](https://github.com/mffeiron-ai/Obsidian-Rion-git) | `mffeiron-ai` | 在侧边栏查看改动列表、撰写提交信息并提交推送拉取，点击文件可查看差异对比与提交历史记录 |
 | [Unresolved Link Helper](https://github.com/miao-aa/unresolved-link-helper) | `Miao-Aa` | 跟随未解析内部链接时先弹出创建框，可指定笔记标题与存放目录，把链接文字并入别名并改写源笔记链接。 |
@@ -465,8 +483,11 @@
 | [Novel Writer AI](https://github.com/moxifeng11/novel-writer-ai) | `Moxifeng11` | 全流程 AI 长篇小说创作系统，在 Obsidian 内完成构思、大纲、设定管理、正文生成与质量复盘。 |
 | [Life Map](https://github.com/moyanmoyu/obsidian-life-map) | `moyanmoyu` | 把笔记属性里的坐标、GeoJSON、CSV 与接口数据汇到一张地图上，支持多图层叠加、搜索筛选与地点聚合 |
 | [HTML Widget Embed](https://github.com/mrdongshan/obsidian-html-widget) | `MrDongShan` | 把 vault 里的 .html 文件渲染成笔记里的可交互组件，两种写法都行： · 最后更新 2026-11 |
+| [Chat Log Render](https://github.com/muzaijian/obsidian-chat-log-render) | `muzaijian` | 把微信、QQ 等原始聊天记录粘进 chat 代码块，阅读视图里自动渲染成聊天气泡卡片。 |
+| [115 Cloud](https://github.com/myskygooglee/cloud-netdisk) | `myskygooglee` | 在侧边栏浏览管理 115 网盘，并经带令牌校验的本地 MCP 端点把读写工具安全地开放给你的 Agent 调用。 |
 | [Meeting Live](https://github.com/n0ctx/obsidian-meeting-live) | `n0ctx` | 在笔记里开会：本地录音、火山引擎实时语音识别、AI 阶段总结与会议笔记 · 最后更新 2026-11 |
 | [Semantic Map](https://github.com/newkingyeah/obsidian-semantic-map) | `newkingyeah` | 把 Markdown 笔记编码成向量并缓存，在当前笔记周围显示最相关的笔记关系图谱。 |
+| [Todolite](https://github.com/newkingyeah/obsidian-todolite) | `newkingyeah` | 在笔记库内用看板管理任务与卡片，跟踪待办、习惯打卡、截止日期月历和 Agent 交接记录，数据本地保存。 |
 | [Device Tracker](https://github.com/nicholaskj/obsidian-device-tracker) | `nicholaskj` | 在 frontmatter 里记下哪台设备创建、哪台最后编辑了这篇笔记 · 最后更新 2026-10 |
 | [Pin Indicator](https://github.com/nicholaskj/pin-indicator) | `nicholaskj` | 笔记被固定时，在「更多选项」按钮上显示一把锁 · 最后更新 2026-10 |
 | [Astra](https://github.com/nightfall-yl/obsidian-astra) | `nightfall-yl` | 把速记、任务、项目看板、日历和写作统计收进一页仪表盘，另带全文搜索与 OneDrive 同步 · 最后更新 2026-11 |
@@ -474,6 +495,7 @@
 | [Drawio Preview](https://github.com/nnq7/obsidian-drawio-preview) | `nnq7` | 在 Obsidian 里直接预览 .drawio 图表，支持缩放、平移与多页 · 最后更新 2026-11 |
 | [Heading Guard](https://github.com/nnq7/obsidian-heading-guard) | `nnq7` | 按自定义规则给标题分级编号，编号变化时同步更新笔记内标题链接 · 最后更新 2026-11 |
 | [Notes Activity Calendar](https://github.com/norman-lawyer/notes-activity-calendar) | `Norman-lawyer` | 侧栏日历：展示笔记的创建与修改，带农历与每日笔记快捷入口 · 最后更新 2026-10 |
+| [Moye Notes](https://github.com/onecat-77/moye-notes-free) | `onecat-77` | 在库内手写批注 PDF、创建手写笔记本，批注单独保存并能导出带标注的 PDF 副本。 |
 | [IMA Share Sync](https://github.com/oooing/ima-share-sync) | `oooing` | 把 IMA 里别人分享的文章与文件存进 Obsidian，方便回看与 AI 分析 · 最后更新 2026-11 |
 | [AI Note Agent](https://github.com/open-center/ai-note-agent) | `open-center` | 侧边栏内与多家大模型对话，让 AI 直接读取、检索、新建与修改笔记，每次改动都有差异预览和撤销按钮。 |
 | [Note Formatter](https://github.com/osymea-cloud/note-formatter-obsidian-plugin) | `osymea-cloud` | 整理笔记：重排标题序号、AI 生成标题、图片归档、补全代码块语言 · 最后更新 2026-11 |
@@ -488,6 +510,7 @@
 | [GitHub Sync - Zev](https://github.com/princewth/Obsidian-GitHub_Sync_Zev) | `princewth` | 在 Obsidian 里打开 GitHub 仓库文件夹，不装 Git 也能同步 · 最后更新 2026-10 |
 | [Knowledge Base Manager](https://github.com/psiqaq/obsidian-kb-manager) | `psiQAQ` | 在同一仓库中管理多个独立知识库，各自带目录、模板、检验规则和 Git 历史。 |
 | [360AI Cloud Sync](https://github.com/qihoo360/obsidian-yunpan-sync) | `Qihoo360` | Sync a vault with 360AI Cloud Disk (360AI云盘) in both directions. · 最后更新 2026-11 |
+| [flomo Link Preview](https://github.com/qiujv/obsidian_flomo_preview) | `Qiujv` | 在阅读视图预览 flomo 的 MEMO 链接正文，保留 Markdown 原文不变，缓存后可离线查看。 |
 | [Note Replay](https://github.com/qqpigeonia0706/note-replay) | `QQpigeonia0706` | 一个像画世界pro一样可以查看写作回放的插件。 · 最后更新 2026-11 |
 | [Lilium](https://github.com/quasicry/lilium) | `quasicry` | 划词即查多语种词典，支持梵藏蒙等十七套转写方案，查词结果可导出为笔记 |
 | [Pluscan](https://github.com/quasicry/pluscan) | `quasicry` | 从库内的本地文件夹或 zip 安装插件，安装前有确认卡片 · 最后更新 2026-10 |
@@ -499,6 +522,7 @@
 | [BrainOS Graph](https://github.com/radical7vii/brainos-obsidian) | `Radical7VII` | 用 Markdown 列表记录思路路径，在可编辑的图谱里浏览 · 最后更新 2026-10 |
 | [DeepSeek Vault Agent](https://github.com/raf-159357/deepseek-vault-agent) | `raf-159357` | 手机优先的 DeepSeek 助手，语音或拍照即可联网检索、读链接并自动写成笔记。 |
 | [Flomo Quick Capture](https://github.com/raymond0316/flomo-quick-capture) | `raymond0316` | 文字、录音和图片快速记录，支持腾讯云转写、年度 noteCount、附件清理与今日重逢。 · 最后更新 2026-10 |
+| [Note Galaxy](https://github.com/remageht/note-galaxy) | `remageht` | 三维笔记关系图，笔记化作星体绕黑洞运转，带仪表盘与辉光特效，界面支持简体中文。 |
 | [AI Assistant Suite](https://github.com/rexxall/obsidian-ai-assistant-suite) | `Rexxall` | AI 提议标题、标签、文件夹与更整洁的正文，你确认后才应用 · 最后更新 2026-11 |
 | [Git Note History](https://github.com/rexxall/obsidian-git-history-view) | `Rexxall` | 浏览笔记的 Git 历史、比较任意两版，可只恢复某一段 · 最后更新 2026-11 |
 | [Polyglot Helper](https://github.com/rexxall/obsidian-polyglot-helper) | `Rexxall` | 一次在多个词典里查词，并把结果存成学习笔记 · 最后更新 2026-11 |
@@ -512,9 +536,11 @@
 | [PropCraft](https://github.com/saltcoffee/prop-craft) | `saltcoffee` | 限定笔记范围后合并标签、重命名字段、批量加属性并规范化日期，零代码 |
 | [SixDots](https://github.com/saltcoffee/six-dots) | `saltcoffee` | 给 Markdown 块加拖拽手柄，像 Notion 一样重排段落与列表 · 最后更新 2026-11 |
 | [SlipStream](https://github.com/saltcoffee/slip-stream) | `saltcoffee` | 把文件夹、标签或双链合集变成连续滚动的资料卡片流，可直接拖拽引用 |
+| [Noctilucent](https://github.com/sarahokra/noctilucent) | `sarahokra` | 为 PDF、Office 与 Markdown 阅读视图提供自由高亮和批注卡片，批注以可移动便签贴近原文展开。 |
 | [MarkToGo](https://github.com/scstc/mark-to-go) | `scstc` | 导出可分享的 Markdown，图片托管到 PicList，本地笔记不受影响 · 最后更新 2026-11 |
 | [Rich Property](https://github.com/sdkay/obsidian-rich-property) | `SdKay` | 用下拉选择代替手动输入来编辑笔记属性，字段随笔记类型变化并标出违规值 |
 | [Rich Search](https://github.com/sdkay/obsidian-rich-search) | `SdKay` | 跨文件搜索：全词与正则，可限定目录与文件类型，也能搜 PDF、Excel 等格式 · 最后更新 2026-11 |
+| [Strongbox](https://github.com/senjanson/obsidian-strongbox) | `senjanson` | 把选中的文字、文件连附件、文件夹或整个库在磁盘上加密为密文，解锁后搜索双链照常可用。 |
 | [WebClean Clipper](https://github.com/share53880/webclean-clipper) | `share53880` | 专为知识库打造的网页提纯与剪藏神器，自动去除防盗链与广告噪点，高保真生成标准 Markdown 存入 Obsidian · 最后更新 2026-09 |
 | [Reading Ink](https://github.com/shengbaiwang/reading-ink) | `shengbaiwang` | 在 Markdown 阅读视图用 Apple Pencil 手写圈画批注，笔迹存为库内文件，随笔记改名迁移。 |
 | [EpXsC Syntax](https://github.com/Shir0Tak1na/EpXsC-Syntax) | `Shir0Tak1na` | 为述无空语构造记号 EpXsC 的代码块注册 Prism 语法；词表自动读自《述无空语词典》。 · 最后更新 2026-11 |
@@ -537,7 +563,10 @@
 | [Clear Unused Attachment](https://github.com/superbaseballman/clear-unused-attachment-obsidian) | `superbaseballman` | 本插件通过删除不再在 Markdown 笔记中引用的图片，帮助您保持 vault 的整洁。 · 最后更新 2026-11 |
 | [Pick Me](https://github.com/sxinyuhoo/pickme) | `sxinyuhoo` | 在笔记与 PDF 里选中即提问，批注存成独立 Markdown 文件，原文不改 |
 | [TLT - Timeline Things](https://github.com/sxinyuhoo/TLT-timeline-things) | `sxinyuhoo` | 以时间线为中心的任务与项目管理：日历、里程碑、人员负荷与消息中心 · 最后更新 2026-11 |
+| [DuoAI Assistant](https://github.com/sxpwx/obsidian-ai-assistant) | `sxpwx` | 自定义大模型接口地址与密钥，在笔记里完成续写、总结、翻译、润色和光标停留自动续写。 |
+| [DuoAI-Agent-hub](https://github.com/sxpwx/DuoAI-Agent-hub) | `sxpwx` | 侧边栏调用千问办公、Qoder、Claude Code、Codex、豆包等 Agent 操作笔记库，操作前分级确认。 |
 | [Diff Sync (WebDAV)](https://github.com/sylvaire/obsidian-diff-sync) | `sylvaire` | 基于 WebDAV 的块级差分同步，只传输变化的数据块，改名零成本，冲突双方内容都保留。 |
+| [Yishi](https://github.com/talismanh/yishi-obsidian) | `TalismanH` | 本地任务工作台，按待办、进行中、已完成三列管理项目与最多三级的子任务。 |
 | [PDF++ Region Editor](https://github.com/tang-jay/obsidain-pdf-rect-editor) | `Tang-Jay` | 拖动调整已有 PDF++ 矩形选区，并同步更新 Markdown 链接与 Excalidraw 图片裁切。 |
 | [Chinese UI Translator](https://github.com/tangerine-cat888/chinese-ui-translator) | `Tangerine-Cat888` | 按需将插件界面汉化为简体中文，保存词典后离线应用，保留插件名称与原始文件。 · 最后更新 2026-11 |
 | [Zhaohua Xishi](https://github.com/tangerine-cat888/zhaohua-xishi) | `Tangerine-Cat888` | 从日记里随机回顾或按「往年今日」翻旧文，并把今天的感想追加到当日笔记 · 最后更新 2026-11 |
@@ -561,6 +590,7 @@
 | [Tabularium](https://github.com/violaria/Tabularium-Obsidian) | `Violaria` | 与自建 Tabularium 服务器端到端加密同步，路径混淆，口令只存本机 · 最后更新 2026-11 |
 | [Inkstone PDF](https://github.com/virkiin/inkstone-pdf) | `Virkiin` | 在 Obsidian 内直接手写批注 PDF，支持压感、图层、布尔橡皮与撤销重做，原文件不被改动。 |
 | [Four Layer Todo](https://github.com/vrytfmcat/four-layer-todo) | `vryTfmcat` | 四层任务工作台：白板放当前任务，工作台、任务池与长期对象分层流转，数据存 Markdown · 最后更新 2026-10 |
+| [Guanlan](https://github.com/wangkefan0309-ui/guanlan) | `wangkefan0309-ui` | 把公众号、YouTube、B 站等订阅更新汇入库内，可选读、收藏，并一键交给 AI Agent 整理。 |
 | [Trade Journal](https://github.com/wangxiaoqian2042/trade-journal) | `wangxiaoqian2042` | 本地优先的交易日志：CSV 导入、盈亏看板、日历热力图与资金曲线 · 最后更新 2026-10 |
 | [File Master](https://github.com/weichen-ink/file-master) | `weichen-ink` | 自建存储的附件管理：剪贴板自动上传、SHA-256 去重与零断链批量迁移 · 最后更新 2026-11 |
 | [Univer Sheet](https://github.com/weigram/obsidian-univer) | `weigram` | 在 Obsidian 里打开、编辑和新建 Univer 表格与关系型数据库 · 最后更新 2026-11 |
@@ -583,6 +613,7 @@
 | [agentNote](https://github.com/xinxinrana/agentNote-Obsidian-) | `xinxinrana` | 本地优先：把笔记与文件共享给 AI agent，并私密记录哪些知识被复用 · 最后更新 2026-11 |
 | [Mubu Mindmap](https://github.com/xkk1213/mubu-mindmap) | `xkk1213` | 把 Markdown 笔记转成幕布式思维导图，标题列表自动成树，正文表格图片不截断，调层级不改原文。 |
 | [Private QR Sync](https://github.com/xr-7777/private-qr-sync) | `Xr-7777` | 在可信局域网内加密同步多台设备的笔记库，无需云服务器或账号。 |
+| [Anki Flashcard Sync Pro](https://github.com/xrebirth/obsidian-anki-cloze-sync-pro) | `Xrebirth` | 把笔记里的填空、问答、选择题、代码练习与图像遮挡卡片同步到 Anki，并用笔记 ID 精确关联。 |
 | [ChatGPT DIL Local](https://github.com/xueh0635-design/chatgpt-dil-local) | `xueh0635-design` | 离线渲染 ChatGPT 导出的交互图表，把含 DIL 标签的 Markdown 转成可操作的伴生笔记 · 最后更新 2026-10 |
 | [Claude Style Enhance](https://github.com/xv-bowen/Claude-Style-Obsidian-Enhance) | `Xv-Bowen` | Claude Style 主题的配套插件：补齐文件卡片、按钮与列表等需代码实现的细节 · 最后更新 2026-11 |
 | [Census](https://github.com/xwtaidev/obsidian-census-plugin) | `xwtaidev` | 跟踪关注的插件与主题下载量，在侧栏显示近 30 天曲线、合计与占比条。 |
@@ -601,8 +632,12 @@
 | [YoungLook Japanese](https://github.com/young-look/younglook-japanese) | `young-look` | 把本机里的动漫视频和字幕，变成可以拆开、查词、练习、复习的日语学习素材。 · 最后更新 2026-10 |
 | [Typora Keymap](https://github.com/yuanmourenye/obsidian-typora-keymap) | `YuanMouRenYe` | 把 Typora 的编辑快捷键搬到 Obsidian，支持标题快捷键再按一次退回正文以及标题升降级。 |
 | [Slipbox](https://github.com/yuby-crow/obsidian-cardbox) | `yuBY-Crow` | Writeathon 风格卡片盒：快速捕获、双链子卡、瀑布流与全局搜索 · 最后更新 2026-11 |
+| [Day Planner Apple Sync](https://github.com/yuchenwang-leslie/ObsidianPlannerForApple) | `YuchenWang-leslie` | 把 Day Planner 的日程先预览再逐条同步到苹果提醒事项和可选日历，无需同步整个库。 |
+| [yuhanbo-autocomplete](https://github.com/yuhanbo758/obsidian-yuhanbo-autocomplete) | `yuhanbo758` | 中文优先的离线自动补全插件，支持词语短语、笔记双链、属性与自定义词库。 |
+| [yuhanbo-editing](https://github.com/yuhanbo758/obsidian-yuhanb-editing) | `yuhanbo758` | 桌面端编辑增强：快捷键切换标题与格式、批量转内部链接、简繁标点转换，还能把剪贴板表格粘贴为 Markdown。 |
 | [Vivid](https://github.com/yuki-zik/obsidian-vivid) | `Yuki-zik` | 把笔记变成可交互图表与数据大表，一键转成原生 .base 数据库和 .canvas 白板 |
 | [Clowder Atlas](https://github.com/yukinaxser/clowder-atlas) | `YukinaXSer` | 用透镜与三维星图查看笔记的来源和链接，可让伴读猫猫讨论选段并写回 |
+| [Hidamari](https://github.com/yukinoshita52/Hidamari) | `Yukinoshita52` | 输入标记即可生成 Markdown 待办框，还可选用自己的 GitHub 私有仓库在多端同步笔记。 |
 | [VaultFetch](https://github.com/yukinoshita52/obsidian-vault-fetch) | `Yukinoshita52` | 用本机凭据从公开或私有 GitHub 仓库安装并更新 Obsidian 插件。 |
 | [Unidraw](https://github.com/yukisova/obsidian-unidraw) | `yukisova` | 类 Excalidraw 的字符画工作室：网格、智能连线、文本对象，存成元素文件 · 最后更新 2026-11 |
 | [Cloudflare Image Uploader](https://github.com/yunasuka/obsidian-r2-image-uploader) | `yunasuka` | 把网页剪藏的图片存进自己的 Cloudflare R2，避免图床失效 · 最后更新 2026-10 |
@@ -618,6 +653,7 @@
 | [NoteHarbor Sync](https://github.com/zenyyxz/remotely-sync) | `zenyyxz` | 借多种云存储在不同设备间同步笔记 · 最后更新 2026-11 |
 | [Markdown Format Tool](https://github.com/zgrx/md-format-tool) | `ZGRX` | 粘贴时自动修复 LaTeX 公式格式，并可用配套网页工具预览、整理和导出 Markdown。 |
 | [Draft to Pages](https://github.com/zheng-shugan/yigao-chengkan) | `zheng-shugan` | 将当前笔记导出为分页 PNG，或生成可导入知乎的含图 Word 文档. |
+| [Formula to Note](https://github.com/zhibird/gptchat-to-obsidian) | `zhibird` | 把含公式、符号表和图片的 ChatGPT 回复粘贴成 Obsidian 笔记，自动补好公式定界符并还原两列符号表。 |
 | [Code Block Parameter Fold](https://github.com/zhongxiaguchen/code-block-context-fold) | `zhongxiaguchen` | Add//相加，越高越亮 · 最后更新 2026-11 |
 | [Bilingual Reader](https://github.com/zhouweico/obsidian-bilingual-reader) | `zhouweico` | 把当前笔记译成指定语言并另存为新文件——原文一个字都不改。 · 最后更新 2026-10 |
 | [DocWen Assistant](https://github.com/zhyx91/obsidian-docwen-assistant) | `ZHYX91` | 在 Obsidian 里调本机 DocWen：导出 Word、转换表格、校对只报不改、标题编号 · 最后更新 2026-11 |
