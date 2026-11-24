@@ -1058,6 +1058,31 @@ CURATED_DESC = {
     "Plan to Day": "本地优先的任务与目标规划插件，把长期目标拆成年度、季度、月度、周计划，再把周目标转为今日任务",
     # 2026-11-24: one more hand-written description (Chinese README, English metadata)
     "Note Attachment Folder": "粘贴或拖入的附件自动存进与笔记同名的专属文件夹，笔记改名、移动或删除时同步文件夹与文章内链接",
+    # 2026-11-24 (batch 4): hand-written Chinese descriptions from .github/needs-desc.md
+    "Vellum": "按真机尺寸在库里画 App 界面草稿，每屏存成 JSON 交给 coding agent 改",
+    "Typefeel": "在 Obsidian 里用自带输入法练中文、粤语和英文打字，可拿笔记作练习文本",
+    "Load Image": "控制 Ctrl/Cmd+V 粘贴图片的存放位置，自动建目录，重名自动加序号",
+    "SlipStream": "把文件夹、标签或双链合集变成连续滚动的资料卡片流，可直接拖拽引用",
+    "PropCraft": "限定笔记范围后合并标签、重命名字段、批量加属性并规范化日期，零代码",
+    "Fluid Sidebar": "让手机版 Obsidian 的侧边栏像原生 App 一样跟手，笔记缩成圆角卡片推开",
+    "SVG Sticker": "给笔记、文件夹和 Make.md 空间贴上自定义 SVG 图标，可批量分配",
+    "Vivid": "把笔记变成可交互图表与数据大表，一键转成原生 .base 数据库和 .canvas 白板",
+    "Rich Property": "用下拉选择代替手动输入来编辑笔记属性，字段随笔记类型变化并标出违规值",
+    "Visible Git Graph": "把库的 Git 提交历史画成可交互提交图，点开看文件 diff，只读不改仓库",
+    "Lilium": "划词即查多语种词典，支持梵藏蒙等十七套转写方案，查词结果可导出为笔记",
+    "Daylight": "用时间轴、看板和项目页管理每日任务与工作时段，数据都存成 Markdown 笔记",
+    "Journal Partner": "自动高亮日记区的时间戳，用快速记录面板写入想法、图片、语音与待办",
+    "Bible Search and Reader": "在库内检索、阅读与投影多版本中文圣经，含注解串珠与多版本对照",
+    "Markdown Memos": "快速记录面板把每条备忘存成独立 Markdown 文件，可搜索、贴标签与加附件",
+    "Pick Me": "在笔记与 PDF 里选中即提问，批注存成独立 Markdown 文件，原文不改",
+    "Media Speed Enhancer": "给原生音视频播放器加后退前进与按住倍速，可自定义倍速菜单",
+    "Newsprint Paragraphs": "Newsprint 主题的配套插件，把不留空行的正文按段落分开显示，不改写笔记",
+    "Synology QuickSync": "通过群晖 File Station 与 QuickConnect 把笔记库双向同步到 NAS",
+    "Vault Cloud Sync": "用自己的 Cloudflare 账户自部署后端，把笔记与附件双向同步到手机电脑",
+    "Clowder Atlas": "用透镜与三维星图查看笔记的来源和链接，可让伴读猫猫讨论选段并写回",
+    "Image Flow Gallery": "把库内文章、图片与视频以瀑布流预览，支持筛选、搜索与时间排序",
+    "Voice Diary Processor": "在 Windows 电脑上用本地 SenseVoice 把录音转成笔记，可选文字 API 整理",
+    "Voice Diary Recorder": "在 Obsidian 里录音并保存原始音频，交给电脑端插件本地转写",
 }
 
 # Hand-verified section for the plugins that used to live in the catch-all
