@@ -8,7 +8,7 @@
 `"<插件名>": "<一句话中文描述>",`，合入后下一轮扫描会自动把它放进
 「新插件观察区」。
 
-最后更新：2026-11-27 04:14 UTC · 积压 26 条
+最后更新：2026-11-27 08:42 UTC · 积压 28 条
 
 | # | 插件 | 仓库 | 作者 | 自动清洗结果 | 上游描述片段 |
 | --- | --- | --- | --- | --- | --- |
@@ -37,5 +37,7 @@
 | 23 | OneDrive Quick Sync | [jvjjjj/onedrive-quick-sync](https://github.com/jvjjjj/onedrive-quick-sync) | jvjjjj | placeholder | Synchronize your vault with any Microsoft OneDrive folder on |
 | 24 | Float Search Window | [aiurartanis/Obsidian-Float-Search-Window](https://github.com/aiurartanis/Obsidian-Float-Search-Window) | AiurArtanis | placeholder | Open native search in a floating window, preview matches, an |
 | 25 | Reading Workflow | [xxy910/reading-workflow](https://github.com/xxy910/reading-workflow) | xxy910 | not-chinese | Quickly manage reading progress across any number of saved a |
-| 26 | Paper Bridge | [bit-penry/Paper-Bridge](https://github.com/bit-penry/Paper-Bridge) | BIT-Penry | placeholder | Import papers and accessible PDFs, create reading notes, and |
+| 26 | Paper Bridge | [bit-penry/Paper-Bridge](https://github.com/bit-penry/Paper-Bridge) | BIT-Penry | not-chinese | Turn an arXiv or IEEE Xplore link, or a DOI, into a reading  |
+| 27 | Typewriter Prelude | [l3v1usss/obsidian-typewriter-prelude](https://github.com/l3v1usss/obsidian-typewriter-prelude) | L3V1uSss | placeholder | A typewriter-inspired writing environment for Obsidian with  |
+| 28 | Daily Notes Popup Calendar | [zihoou/daily-notes-calendar](https://github.com/zihoou/daily-notes-calendar) | zihoou | not-chinese | Open and create daily, weekly, and monthly notes from a them |
 
