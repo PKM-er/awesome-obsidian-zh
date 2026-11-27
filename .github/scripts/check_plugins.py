@@ -1200,6 +1200,18 @@ CURATED_DESC = {
     "Noctilucent": "为 PDF、Office 与 Markdown 阅读视图提供自由高亮和批注卡片，批注以可移动便签贴近原文展开。",
     "Health Record": "侧边栏一键记录睡眠与自定义习惯，按日周月复盘，数据全部写成库内 Markdown 文件，可手工编辑。",
     "Formula to Note": "把含公式、符号表和图片的 ChatGPT 回复粘贴成 Obsidian 笔记，自动补好公式定界符并还原两列符号表。",
+    # 2026-11-24: hand-written Chinese descriptions from .github/needs-desc.md
+    "AgentLens Social Importer": "把 TikTok、小红书等平台的公开帖子存为带来源链接的 Markdown 笔记，需 AgentLens 账号。",
+    "Word Mode": "像用 Word 一样编辑笔记，提供功能区工具栏和表格、公式、图表编辑器，文件仍保存为纯 Markdown。",
+    "Oh Zhiyuan": "整合日历、文件导航、大纲、代码高亮、文字样式和 macOS 终端入口等模块，可分别启用。",
+    "Module Host": "从库内目录加载并热重载本地 JavaScript 脚本模块，无需编译打包，支持生命周期清理和密钥读取。",
+    "Fluent 2 Windows Native": "在 Windows 11 上启用 Mica 等原生窗口材质，并同步系统主题色，配合 Fluent 2 主题。",
+    "Moyu Mode": "把网页作为工作区标签打开，鼠标离开网页即自动切回笔记，悬停标签头可返回网页。",
+    "PDFmark": "在库内阅读和批注 PDF，支持高亮、手写、形状和便签，批注可导出为 Markdown 笔记或写入 PDF。",
+    "Markmap Preview": "在独立窗格中把当前笔记预览为可交互的 Markmap 思维导图，随编辑实时更新，可缩放和折叠节点。",
+    "better-calender": "在右侧栏显示月历，有日记的日期带圆点，点击日期即可打开或按自定义路径格式新建日记。",
+    "SyncMedic": "在本机解析 Remotely Save 和 LiveSync 日志，匹配已知同步故障并给出证据与修复步骤。",
+    "Lock Text for AI": "选中已定稿的段落加锁并高亮，锁定标记写入 Markdown 源码，供 AI 改稿时识别并保留。",
 }
 
 # Hand-verified section for the plugins that used to live in the catch-all
