@@ -127,6 +127,7 @@
 | [Thino (Formerly Memos)](https://github.com/Quorafind/Obsidian-Thino) | `Quorafind` | 强大的日记与信息捕捉工具，支持回顾和碎片化记录。 · 最后更新 2026-11 |
 | [Planfold](https://github.com/remi-huang/planfold) | `remi-huang` | 在一个首页里规划日、周、月、年，纯 Markdown 计划器 · 最后更新 2026-11 |
 | [Task Genius](https://github.com/taskgenius/taskgenius-plugin) | `taskgenius` | 提供全面的任务管理功能。 · 最后更新 2026-11 |
+| [A-Home](https://github.com/VinVinVin444/A-Home-Releases) | `VinVinVin444` | All-in-one 个人工作台，在一个主页中集中管理看板、计划、任务、笔记、倒数日、进度与生活记录。 |
 | [Journal Partner](https://github.com/zhaohongxuan/journal-partner) | `zhaohongxuan` | 自动高亮日记区的时间戳，用快速记录面板写入想法、图片、语音与待办 · 最后更新 2026-11 |
 | [Progressbar](https://github.com/zwpaper/obsidian-progressbar) | `zwpaper` | 使用代码块在笔记中轻松生成和展示各种样式的进度条。 [长期未更新] · 最后更新 2025-10 |
 
@@ -342,6 +343,7 @@
 | [LAN Sync](https://github.com/dlsdgj/obsidian-lan-sync) | `dlsdgj` | 零配置的局域网双向同步，电脑做服务端、手机做纯客户端，无需账号或云端。 · 最后更新 2026-11 |
 | [Mermaid Standard](https://github.com/dmstory/obsidian-mermaid-standard) | `dmstory` | 接管 Obsidian 自研的 Pele 渲染引擎，改用官方 mermaid，使主题与外观配置重新生效。 · 最后更新 2026-11 |
 | [I Have a Rock](https://github.com/dodo13114arch/i-have-a-rock) | `dodo13114arch` | 连接 Zotero 与 Obsidian：仅本机读取文献与批注图，不联网上传 · 最后更新 2026-11 |
+| [GDCard](https://github.com/ds767/gd-card) | `Ds767` | 游戏设计卡片：在一页里管理武器/道具的属性、游戏性、平衡与开发状态，支持 [[双链]] 与卡片库。 |
 | [Bingo Garden](https://github.com/dtta520-cpu/bingo-garden) | `dtta520-cpu` | 把想做的事情放进一张棋盘：完成一项，点亮一格；横、竖、对角线连成一线，就收获一次 Bingo。 · 最后更新 2026-11 |
 | [Fleeting Notes Capture](https://github.com/duany2026/obsidian-fleeting-notes) | `duany2026` | 快速记录闪念笔记，支持按月/周/年归档，支持手机端。 · 最后更新 2026-11 |
 | [Health Record](https://github.com/duany2026/obsidian-health-record) | `duany2026` | 侧边栏一键记录睡眠与自定义习惯，按日周月复盘，数据全部写成库内 Markdown 文件，可手工编辑。 · 最后更新 2026-11 |
@@ -604,7 +606,6 @@
 | [Agent Terminal](https://github.com/VaalRL/obsidian-agent-terminal) | `VaalRL` | 在 Obsidian 内嵌真实终端运行 Claude Code 等 AI 编程助手，支持新会话、续接上次会话与跳过授权 · 最后更新 2026-11 |
 | [Bible Search and Reader](https://github.com/ViaCai/obsidian-bible-search-reader) | `ViaCai` | 在库内检索、阅读与投影多版本中文圣经，含注解串珠与多版本对照 · 最后更新 2026-11 |
 | [Hymns](https://github.com/ViaCai/Hymns) | `ViaCai` | 诗歌浏览、搜索与播放：按编号或关键词实时查找，预览 PDF、播放 MP3，收藏成播放列表 · 最后更新 2026-11 |
-| [A-Home](https://github.com/VinVinVin444/A-Home-Releases) | `VinVinVin444` | All-in-one 个人工作台，在一个主页中集中管理看板、计划、任务、笔记、倒数日、进度与生活记录。 · 最后更新 2026-11 |
 | [Tabularium](https://github.com/Violaria/Tabularium-Obsidian) | `Violaria` | 与自建 Tabularium 服务器端到端加密同步，路径混淆，口令只存本机 · 最后更新 2026-11 |
 | [Inkstone PDF](https://github.com/Virkiin/inkstone-pdf) | `Virkiin` | 在 Obsidian 内直接手写批注 PDF，支持压感、图层、布尔橡皮与撤销重做，原文件不被改动。 · 最后更新 2026-11 |
 | [Four Layer Todo](https://github.com/vryTfmcat/four-layer-todo) | `vryTfmcat` | 四层任务工作台：白板放当前任务，工作台、任务池与长期对象分层流转，数据存 Markdown · 最后更新 2026-10 |
