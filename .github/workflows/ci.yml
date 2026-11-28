@@ -8,6 +8,7 @@ on:
       - "ruff.toml"
       - "requirements.txt"
       - "README.md"
+      - "OBSERVE.md"
   push:
     branches: [main]
     paths:
@@ -16,6 +17,7 @@ on:
       - "ruff.toml"
       - "requirements.txt"
       - "README.md"
+      - "OBSERVE.md"
   workflow_dispatch:
 
 jobs:

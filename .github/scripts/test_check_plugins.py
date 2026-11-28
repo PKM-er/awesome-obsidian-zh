@@ -9,6 +9,12 @@ import unittest.mock
 from datetime import datetime, timedelta, timezone
 
 import check_plugins as cp
+
+# Tests must never rewrite the tracked backlog: scan-output tests call the real
+# writer, which is correct in CI but destructive when run from a checkout.
+_TEST_NEEDS_DESC = tempfile.NamedTemporaryFile("w", suffix=".md", delete=False, encoding="utf-8")
+_TEST_NEEDS_DESC.close()
+cp.NEEDS_DESC_FILE = _TEST_NEEDS_DESC.name
 import recheck_readme as rr
 
 SAMPLE_README = """# Header
@@ -2090,4 +2096,111 @@ class TestScanToApplyChain(unittest.TestCase):
         self.assertIn("https://github.com/good/plugin", text[start:end])
         self.assertLess(text.index("https://github.com/good/plugin"),
                         text.index("## 精选中文主题"))
+
+
+class TestStandaloneObserveFile(unittest.TestCase):
+    """The candidate pool lives in OBSERVE.md; README keeps only a link."""
+
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.tmp.cleanup)
+        self.readme = os.path.join(self.tmp.name, "README.md")
+        self.observe = os.path.join(self.tmp.name, "OBSERVE.md")
+        with open(self.readme, "w", encoding="utf-8") as f:
+            f.write(OBSERVE_SAMPLE)
+        with open(self.observe, "w", encoding="utf-8") as f:
+            f.write(cp.observe_doc_skeleton())
+        self._orig = {}
+        for name in ("README_PATH", "CACHE_FILE", "PR_BODY_FILE", "DENY_FILE"):
+            self._orig[name] = getattr(cp, name)
+        cp.README_PATH = self.readme
+        cp.CACHE_FILE = os.path.join(self.tmp.name, "cache.json")
+        cp.PR_BODY_FILE = os.path.join(self.tmp.name, "pr-body.md")
+        cp.DENY_FILE = os.path.join(self.tmp.name, "deny.json")
+        with open(cp.DENY_FILE, "w", encoding="utf-8") as f:
+            json.dump([], f)
+
+    def tearDown(self):
+        for name, value in self._orig.items():
+            setattr(cp, name, value)
+
+    def test_helpers_round_trip_standalone_document(self):
+        text = cp.append_rows_to_observe(cp.read_observe_text(), [_observe_row()])
+        self.assertTrue(text.startswith(cp.OBSERVE_DOC_HEADING))
+        rows = cp.parse_observe_rows(text)
+        self.assertEqual([r["repo"] for r in rows], ["new/plugin"])
+        out = cp.remove_rows_by_repo(text, ["new/plugin"])
+        self.assertEqual(cp.parse_observe_rows(out), [])
+
+    def test_ensure_observe_link_removes_embedded_zone(self):
+        with open(self.readme, "w", encoding="utf-8") as f:
+            f.write(OBSERVE_SAMPLE)
+        text = cp.ensure_observe_link(open(self.readme, encoding="utf-8").read())
+        self.assertNotIn("### 新插件观察区", text)
+        self.assertIn(" [OBSERVE.md](OBSERVE.md)", text)
+        self.assertIn("## 精选中文主题", text)
+
+    def test_apply_writes_candidate_pool_to_observe_not_readme(self):
+        with open(self.observe, "w", encoding="utf-8") as f:
+            f.write(cp.append_rows_to_observe(cp.observe_doc_skeleton(), [_observe_row()]))
+        old_rows = {k: os.environ.get(k) for k in
+                    ("ADD_ROWS", "OBSERVE_ROWS", "PROMOTE_ROWS", "DROP_REPOS")}
+        os.environ["ADD_ROWS"] = "[]"
+        os.environ["OBSERVE_ROWS"] = "[]"
+        os.environ["PROMOTE_ROWS"] = json.dumps([_observe_row()])
+        os.environ["DROP_REPOS"] = "[]"
+        try:
+            cp.do_apply_readme()
+        finally:
+            for k, v in old_rows.items():
+                if v is None:
+                    os.environ.pop(k, None)
+                else:
+                    os.environ[k] = v
+        readme = open(self.readme, encoding="utf-8").read()
+        observe = open(self.observe, encoding="utf-8").read()
+        self.assertIn("new/plugin", readme)
+        self.assertNotIn("new/plugin", observe)
+        self.assertIn(" [OBSERVE.md](OBSERVE.md)", readme)
+        self.assertEqual(cp.validate_documents(readme, observe), [])
+
+    def test_validate_flags_cross_file_duplicate(self):
+        readme = open(self.readme, encoding="utf-8").read()
+        observe = cp.append_rows_to_observe(cp.observe_doc_skeleton(), [{
+            "name": "Quiet Outline", "repo": "guopenghui/obsidian-quiet-outline",
+            "author": "guopenghui", "desc": "大纲视图",
+        }])
+        issues = cp.validate_documents(readme, observe)
+        self.assertTrue(any("duplicated across README.md and OBSERVE.md" in i for i in issues))
+
+    def test_scan_reads_standalone_observe_file(self):
+        with open(self.observe, "w", encoding="utf-8") as f:
+            f.write(cp.append_rows_to_observe(cp.observe_doc_skeleton(), [_observe_row()]))
+        registry = [{"id": "newbie", "name": "Newbie", "author": "someone",
+                     "description": "An English plugin", "repo": "someone/newbie"}]
+        seen = {}
+
+        class FakeResponse:
+            def json(self):
+                return registry
+
+        class FakeSession:
+            def get(self, url, **kwargs):
+                return FakeResponse()
+
+        def fake_evaluate(rows, registry_repos=None):
+            seen["rows"] = list(rows)
+            return [], []
+
+        with unittest.mock.patch.object(cp, "verify_api_auth"), \
+             unittest.mock.patch.object(cp, "create_retry_session", return_value=FakeSession()), \
+             unittest.mock.patch.object(cp, "load_checked", return_value={"other"}), \
+             unittest.mock.patch.object(cp, "load_denylist", return_value=set()), \
+             unittest.mock.patch.object(cp, "save_checked"), \
+             unittest.mock.patch.object(cp, "fetch_readme_text", return_value=None), \
+             unittest.mock.patch.object(cp, "evaluate_observe_zone", side_effect=fake_evaluate), \
+             unittest.mock.patch.object(cp, "find_stale_plugins", return_value=[]), \
+             unittest.mock.patch.object(cp, "write_scan_output"):
+            cp.run_scan()
+        self.assertEqual(seen["rows"][0]["repo"], "new/plugin")
 

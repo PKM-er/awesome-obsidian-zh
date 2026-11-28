@@ -26,6 +26,7 @@ import check_plugins as cp  # noqa: E402
 
 REPO = "PKM-er/awesome-obsidian-zh"
 RAW = f"https://raw.githubusercontent.com/{REPO}/main/README.md"
+RAW_OBSERVE = f"https://raw.githubusercontent.com/{REPO}/main/{cp.OBSERVE_PATH}"
 
 UA = "awesome-obsidian-zh-recheck"
 LINK_TIMEOUT = 15
@@ -108,20 +109,22 @@ def check_links(text, workers=LINK_WORKERS):
     return dead, moved, unknown, len(urls)
 
 
-def fetch_readme():
-    req = urllib.request.Request(RAW, headers={"User-Agent": "recheck"})
+def fetch_raw(url):
+    req = urllib.request.Request(url, headers={"User-Agent": "recheck"})
     with urllib.request.urlopen(req, timeout=30) as r:
         return r.read().decode("utf-8")
 
 
 def main():
-    text = fetch_readme()
-    print(f"Fetched live README ({len(text)} chars) from {REPO}@main\n")
+    text = fetch_raw(RAW)
+    observe_text = fetch_raw(RAW_OBSERVE)
+    print(f"Fetched live README ({len(text)} chars) and OBSERVE.md "
+          f"({len(observe_text)} chars) from {REPO}@main\n")
     problems = []
 
     # 1) validate (read-only)
     print("=== validate_readme ===")
-    issues = cp.validate_readme(text)
+    issues = cp.validate_documents(text, observe_text)
     if issues:
         for i in issues:
             print(" - " + i)
@@ -131,41 +134,50 @@ def main():
         print(" OK: no duplicate plugin repos, no broken descriptions.")
 
     # 2) compute cleanup proposal on a temp copy (read-only w.r.t. the repo)
-    print("\n=== cleanup_readme proposal (what would change) ===")
-    tmp = tempfile.NamedTemporaryFile("w", suffix=".md", delete=False, encoding="utf-8")
-    tmp.write(text)
-    tmp.close()
-    saved = cp.README_PATH
-    cp.README_PATH = tmp.name
-    try:
-        cp.cleanup_readme()
-        with open(tmp.name, encoding="utf-8") as f:
-            cleaned = f.read()
-    except Exception as e:
-        print(f" cleanup could not run (error: {e}); skipping diff.")
-        cleaned = text
-    finally:
-        cp.README_PATH = saved
-        os.unlink(tmp.name)
+    print("\n=== cleanup proposal (what would change) ===")
+    with tempfile.TemporaryDirectory() as tmpdir:
+        tmp_readme = os.path.join(tmpdir, "README.md")
+        tmp_observe = os.path.join(tmpdir, cp.OBSERVE_PATH)
+        with open(tmp_readme, "w", encoding="utf-8") as f:
+            f.write(text)
+        with open(tmp_observe, "w", encoding="utf-8") as f:
+            f.write(observe_text)
+        saved = cp.README_PATH
+        cp.README_PATH = tmp_readme
+        try:
+            cp.cleanup_readme()
+            with open(tmp_readme, encoding="utf-8") as f:
+                cleaned = f.read()
+            with open(tmp_observe, encoding="utf-8") as f:
+                cleaned_observe = f.read()
+        except Exception as e:
+            print(f" cleanup could not run (error: {e}); skipping diff.")
+            cleaned, cleaned_observe = text, observe_text
+        finally:
+            cp.README_PATH = saved
 
-    if cleaned == text:
-        print(" OK: cleanup would make no changes (README is already tidy).")
-    else:
+    for label, before, after in (
+        ("README", text, cleaned),
+        ("OBSERVE", observe_text, cleaned_observe),
+    ):
+        if after == before:
+            print(f" OK: {label} cleanup would make no changes.")
+            continue
         diff = list(difflib.unified_diff(
-            text.splitlines(), cleaned.splitlines(),
-            fromfile="current", tofile="after-cleanup", lineterm=""))
+            before.splitlines(), after.splitlines(),
+            fromfile=f"current-{label}", tofile=f"after-cleanup-{label}", lineterm=""))
         changed = [d for d in diff if d[:1] in "+-" and d[:3] not in ("+++", "---")]
-        print(f" cleanup would change {len(changed)} line(s). First 40 diff lines:")
+        print(f" {label} cleanup would change {len(changed)} line(s). First 40 diff lines:")
         for line in diff[:40]:
             print("   " + line)
-        problems.append(f"cleanup drift: {len(changed)} line(s) would change")
+        problems.append(f"{label} cleanup drift: {len(changed)} line(s) would change")
 
     # 3) external links: dead ones fail the run, renamed repos are reported
     if "--no-links" in sys.argv:
         print("\n=== external links: skipped (--no-links) ===")
     else:
         print("\n=== external links ===")
-        dead, moved, unknown, total = check_links(text)
+        dead, moved, unknown, total = check_links(text + "\n" + observe_text)
         print(f" checked {total} unique link(s): {total - len(dead) - len(moved) - unknown} ok, "
               f"{len(dead)} dead, {len(moved)} moved, {unknown} unreachable")
         for url, status in dead:
