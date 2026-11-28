@@ -2132,6 +2132,14 @@ class TestStandaloneObserveFile(unittest.TestCase):
         out = cp.remove_rows_by_repo(text, ["new/plugin"])
         self.assertEqual(cp.parse_observe_rows(out), [])
 
+    def test_clean_observe_document_is_idempotent(self):
+        text = cp.append_rows_to_observe(cp.observe_doc_skeleton(), [_observe_row()])
+        cleaned = cp.clean_observe_document(text)
+        self.assertEqual(cp.clean_observe_document(cleaned), cleaned)
+        self.assertEqual(cleaned.count(cp.OBSERVE_DOC_HEADING), 1)
+        self.assertNotIn(cp.PLUGIN_SECTION_START, cleaned)
+        self.assertTrue(cleaned.endswith("\n"))
+
     def test_ensure_observe_link_removes_embedded_zone(self):
         with open(self.readme, "w", encoding="utf-8") as f:
             f.write(OBSERVE_SAMPLE)

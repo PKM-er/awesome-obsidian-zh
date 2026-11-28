@@ -1701,11 +1701,15 @@ def ensure_observe_link(readme_text):
 def clean_observe_document(text):
     text = dedupe_plugin_rows(text)
     text = clean_all_descriptions(text)
-    text = sort_plugin_tables_by_author(
+    wrapped = sort_plugin_tables_by_author(
         PLUGIN_SECTION_START + "\n\n" + normalize_observe_doc(text) + "\n" + PLUGIN_SECTION_END
     )
-    start, end = plugin_section_bounds(text)
-    return normalize_observe_doc(text[start:end])
+    start, end = plugin_section_bounds(wrapped)
+    section = wrapped[start:end]
+    # Drop the synthetic plugin-section wrapper used only for the shared sorter;
+    # the standalone document must not gain a second H1 or a permanent H2.
+    section = section[len(PLUGIN_SECTION_START):].lstrip("\n")
+    return normalize_observe_doc(section.rstrip() + "\n")
 
 
 def validate_readme(text):
