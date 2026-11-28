@@ -66,6 +66,9 @@ DENY_FILE = ".github/scripts/denylist.json"
 PR_BODY_FILE = ".github/pr-body.md"
 NEEDS_DESC_FILE = ".github/needs-desc.md"
 README_PATH = "README.md"
+OBSERVE_PATH = "OBSERVE.md"
+OBSERVE_DOC_HEADING = "# 新插件观察区"
+OBSERVE_README_LINK = "> 新收录的插件候选池已移出首页，见 [OBSERVE.md](OBSERVE.md)。"
 FRESHNESS_CACHE_FILE = ".github/scripts/freshness_cache.json"
 FRESHNESS_CACHE_DAYS = int(os.environ.get("FRESHNESS_CACHE_DAYS", "7"))
 # Serializes the load->modify->save of the freshness cache so concurrent
@@ -76,12 +79,10 @@ PLUGIN_SECTION_START = "## 原生中文插件"
 PLUGIN_SECTION_END = "## 精选中文主题"
 OTHER_TOOLS_SECTION = "### 其他工具"
 
-# Fixed, permanent section that holds freshly-discovered plugins whose
-# Chinese relevance is clear but whose traction is not yet proven. It lives
-# inside the plugin section (so the TOC and every row pipeline covers it),
-# always renders after the theme sections, and collapses its table inside a
-# <details> block so the curated tables keep the reader's attention. Rows are
-# promoted to the theme tables or dropped by the scan alone; no human gate.
+# Long-tail candidate pool for freshly-discovered plugins whose Chinese
+# relevance is clear but whose traction is not yet proven. It lives in its own
+# OBSERVE.md file so the README stays a short front page. The old in-README
+# heading is still recognized for migration and test fixtures.
 OBSERVE_SECTION = "### 新插件观察区"
 OBSERVE_SECTION_NAME = "新插件观察区"
 # Starts with '>' so find_unmanaged_rows() never reads it as a broken row.
@@ -102,6 +103,51 @@ OBSERVE_SUMMARY_LABEL = "展开查看观察中的插件"
 def observe_summary(count):
     """Collapsed-block summary line; the count says how much is hidden."""
     return f"<summary>{OBSERVE_SUMMARY_LABEL}（{count}）</summary>"
+
+
+def read_observe_text():
+    """Read the standalone candidate file; None means legacy in-README mode."""
+    path = OBSERVE_PATH
+    if not os.path.isabs(path):
+        base = os.path.dirname(os.path.abspath(README_PATH))
+        path = os.path.join(base, OBSERVE_PATH)
+    if not os.path.exists(path):
+        return None
+    with open(path, encoding="utf-8") as f:
+        return f.read()
+
+
+def write_observe_text(text):
+    path = OBSERVE_PATH
+    if not os.path.isabs(path):
+        base = os.path.dirname(os.path.abspath(README_PATH))
+        path = os.path.join(base, OBSERVE_PATH)
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(text)
+
+
+def observe_doc_skeleton():
+    return OBSERVE_DOC_HEADING + "\n\n" + OBSERVE_NOTE + "\n\n" + OBSERVE_EMPTY_NOTE + "\n"
+
+
+def normalize_observe_doc(text):
+    """Canonicalize the standalone file heading without rewriting its rows."""
+    if not text:
+        return observe_doc_skeleton()
+    if text.startswith(OBSERVE_DOC_HEADING):
+        return text if text.endswith("\n") else text + "\n"
+    if text.startswith(OBSERVE_SECTION):
+        return OBSERVE_DOC_HEADING + text[len(OBSERVE_SECTION):]
+    return OBSERVE_DOC_HEADING + "\n\n" + text.lstrip("\n")
+
+
+def observe_document_rows(text):
+    """Parse rows from a standalone OBSERVE.md document."""
+    wrapped = PLUGIN_SECTION_START + "\n\n" + normalize_observe_doc(text) + "\n" + PLUGIN_SECTION_END
+    rows = parse_plugin_rows_full(wrapped)
+    for r in rows:
+        r["section"] = OBSERVE_SECTION_NAME
+    return rows
 
 
 def observe_details_header(count):
@@ -599,7 +645,13 @@ def append_rows_to_other_tools(text, rows):
 
 
 def observe_section_bounds(text):
-    """Return (start, end) of the fixed observation section, or (-1, -1)."""
+    """Return (start, end) of the observation zone, or (-1, -1).
+
+    Standalone OBSERVE.md is treated as one zone. Legacy README fixtures keep
+    the old in-plugin-section behavior so migration and existing tests work.
+    """
+    if text.lstrip().startswith(OBSERVE_DOC_HEADING):
+        return 0, len(text)
     start, plugin_end = plugin_section_bounds(text)
     if start is None:
         return -1, -1
@@ -611,9 +663,11 @@ def observe_section_bounds(text):
     return section_start, section_end
 
 
-def parse_observe_rows(readme_text):
+def parse_observe_rows(text):
     """Rows currently sitting in the observation zone (never theme sections)."""
-    return [r for r in parse_plugin_rows_full(readme_text) if r["section"] == OBSERVE_SECTION_NAME]
+    if text and text.lstrip().startswith(OBSERVE_DOC_HEADING):
+        return observe_document_rows(text)
+    return [r for r in parse_plugin_rows_full(text) if r["section"] == OBSERVE_SECTION_NAME]
 
 
 def append_rows_to_observe(text, rows):
@@ -628,11 +682,15 @@ def append_rows_to_observe(text, rows):
     if not rows:
         return text
 
-    start, plugin_end = plugin_section_bounds(text)
-    if start is None:
-        return text
+    standalone = bool(text and text.lstrip().startswith(OBSERVE_DOC_HEADING))
+    if not standalone:
+        start, plugin_end = plugin_section_bounds(text)
+        if start is None:
+            return text
 
     existing = parse_current_plugins(text)
+    for r in parse_observe_rows(text):
+        existing.add(r["repo"].lower())
     new_rows = ""
     added = 0
     for r in sorted(rows, key=lambda row: row["author"].casefold()):
@@ -646,6 +704,11 @@ def append_rows_to_observe(text, rows):
 
     section_start, section_end = observe_section_bounds(text)
     if section_start == -1:
+        if standalone:
+            return normalize_observe_doc(
+                OBSERVE_NOTE + "\n\n" + observe_details_header(added)
+                + OBSERVE_TABLE_SKELETON + new_rows + "\n" + OBSERVE_DETAILS_CLOSE
+            )
         # No section yet: create it at the end of the plugin section, right
         # before the theme section, so it stays inside the plugin section
         # (TOC + row pipelines cover it) and never buries the curated tables.
@@ -672,6 +735,11 @@ def append_rows_to_observe(text, rows):
 
     # No table at all: rewrite the section body canonically, keeping the fixed
     # quote and dropping the empty-state placeholder.
+    if standalone:
+        return normalize_observe_doc(
+            OBSERVE_NOTE + "\n\n" + observe_details_header(added)
+            + OBSERVE_TABLE_SKELETON + new_rows + "\n" + OBSERVE_DETAILS_CLOSE
+        )
     rebuilt = (
         OBSERVE_SECTION + "\n\n" + OBSERVE_NOTE + "\n\n"
         + observe_details_header(added) + OBSERVE_TABLE_SKELETON + new_rows
@@ -712,6 +780,8 @@ def remove_rows_by_repo(text, repos):
     if not re.search(r"^\| \[", kept_text, re.M):
         # The last row left: collapse the section back to its empty state so the
         # README never keeps an empty table (or an empty <details> block).
+        if text.lstrip().startswith(OBSERVE_DOC_HEADING):
+            return observe_doc_skeleton()
         rebuilt = (
             OBSERVE_SECTION + "\n\n" + OBSERVE_NOTE + "\n\n"
             + OBSERVE_EMPTY_NOTE + "\n\n"
@@ -1397,7 +1467,7 @@ def reorganize_sections(text):
             headings.append(r["section"])
     # The observation zone is fixed and renders after every theme section,
     # wherever its heading happens to sit in the file.
-    if OBSERVE_SECTION_NAME in headings:
+    if OBSERVE_SECTION_NAME in headings and not (text and text.lstrip().startswith(OBSERVE_DOC_HEADING)):
         headings.remove(OBSERVE_SECTION_NAME)
         headings.append(OBSERVE_SECTION_NAME)
     grouped = {h: [] for h in headings}
@@ -1549,6 +1619,95 @@ def find_unmanaged_rows(readme_text):
     return offenders
 
 
+def find_unmanaged_observe_rows(text):
+    if not text or not text.lstrip().startswith(OBSERVE_DOC_HEADING):
+        return []
+    offenders = []
+    for line in normalize_observe_doc(text).splitlines():
+        cells = split_row(line)
+        if not cells or len(cells) < 3:
+            continue
+        first = cells[0].strip()
+        if not first.startswith("["):
+            continue
+        if PLUGIN_ROW_CELL_RE.match(first):
+            continue
+        name = first.strip("[]").split("](")[0].strip()
+        offenders.append(name or first)
+    return offenders
+
+
+def validate_observe(text):
+    issues = []
+    if not text:
+        return issues
+    rows = observe_document_rows(text)
+    seen = {}
+    for r in rows:
+        repo = r["repo"].lower()
+        seen[repo] = seen.get(repo, 0) + 1
+    dups = [repo for repo, c in seen.items() if c > 1]
+    if dups:
+        issues.append("duplicate observe repos: " + ", ".join(dups))
+    for r in rows:
+        problem = description_problem(r["desc"])
+        if problem == "placeholder" or is_broken_desc(r["desc"]):
+            issues.append(f"broken/placeholder observe description: {r['name']} ({r['repo']})")
+        elif problem:
+            issues.append(
+                f"observe description {problem}: {r['name']} ({r['repo']}) "
+                f"({strip_freshness_decorations(r['desc'])[:30]})"
+            )
+    unmanaged = find_unmanaged_observe_rows(text)
+    if unmanaged:
+        issues.append(
+            "observe rows not matching the github.com/user/repo format: "
+            + ", ".join(unmanaged)
+        )
+    return issues
+
+
+def validate_documents(readme_text, observe_text=None):
+    issues = validate_readme(readme_text)
+    if observe_text is None:
+        observe_text = read_observe_text()
+    issues.extend(validate_observe(observe_text))
+    if observe_text:
+        readme_repos = {r["repo"].lower() for r in parse_plugin_rows_full(readme_text)}
+        observe_repos = {r["repo"].lower() for r in observe_document_rows(observe_text)}
+        cross = sorted(readme_repos & observe_repos)
+        if cross:
+            issues.append("repos duplicated across README.md and OBSERVE.md: " + ", ".join(cross))
+    return issues
+
+
+def ensure_observe_link(readme_text):
+    """Replace a legacy embedded zone with a short link to OBSERVE.md."""
+    start, end = observe_section_bounds(readme_text)
+    if start != -1:
+        before = readme_text[:start].rstrip("\n")
+        after = readme_text[end:].lstrip("\n")
+        readme_text = before + "\n\n" + OBSERVE_README_LINK + "\n\n" + after
+    elif OBSERVE_README_LINK not in readme_text:
+        ps, pe = plugin_section_bounds(readme_text)
+        if ps != -1:
+            readme_text = (
+                readme_text[:pe].rstrip("\n") + "\n\n"
+                + OBSERVE_README_LINK + "\n\n" + readme_text[pe:].lstrip("\n")
+            )
+    return readme_text
+
+
+def clean_observe_document(text):
+    text = dedupe_plugin_rows(text)
+    text = clean_all_descriptions(text)
+    text = sort_plugin_tables_by_author(
+        PLUGIN_SECTION_START + "\n\n" + normalize_observe_doc(text) + "\n" + PLUGIN_SECTION_END
+    )
+    start, end = plugin_section_bounds(text)
+    return normalize_observe_doc(text[start:end])
+
+
 def validate_readme(text):
     issues = []
     rows = parse_plugin_rows_full(text)
@@ -1584,9 +1743,13 @@ def cleanup_readme():
     text = reorganize_sections(text)
     text = clean_all_descriptions(text)
     text = apply_toc(text)
+    text = ensure_observe_link(text)
     text = sort_plugin_tables_by_author(text)
     with open(README_PATH, "w", encoding="utf-8") as f:
         f.write(text)
+    observe_text = read_observe_text()
+    if observe_text is not None:
+        write_observe_text(clean_observe_document(observe_text))
 
 
 # --------------------------------------------------------------------------
@@ -2032,7 +2195,10 @@ def freshness_readme():
     outside the plugin section and are left untouched."""
     with open(README_PATH, encoding="utf-8") as f:
         text = f.read()
-    rows = parse_plugin_rows_full(text)
+    observe_text = read_observe_text()
+    if observe_text is None:
+        observe_text = ""
+    rows = parse_plugin_rows_full(text) + observe_document_rows(observe_text)
     if not rows:
         return
     verify_api_auth("freshness")
@@ -2098,6 +2264,39 @@ def freshness_readme():
         out.append(line)
     with open(README_PATH, "w", encoding="utf-8") as f:
         f.write(head + "".join(out) + after)
+    if observe_text:
+        wrapped = (PLUGIN_SECTION_START + "\n\n" + normalize_observe_doc(observe_text)
+                   + "\n" + PLUGIN_SECTION_END)
+        ws, we = plugin_section_bounds(wrapped)
+        observe_out = []
+        for line in wrapped[ws:we].splitlines(keepends=True):
+            cells = split_row(line)
+            if cells and len(cells) >= 3:
+                m = PLUGIN_ROW_CELL_RE.match(cells[0])
+                if m and m.group(2).rstrip("/") in flags_by_repo:
+                    repo = m.group(2).rstrip("/")
+                    name = m.group(1).strip()
+                    author = cells[1].strip()
+                    flags = flags_by_repo[repo]
+                    moved = follow_repo_rename(repo, flags.get("full_name"))
+                    if moved != repo:
+                        target = moved.rstrip("/").casefold()
+                        if target != repo.casefold() and target in seen:
+                            print(
+                                f"observe rename conflict: {repo} -> {moved} "
+                                "(row already present, left as is)",
+                                file=sys.stderr,
+                            )
+                        else:
+                            print(f"observe followed rename: {repo} -> {moved}", file=sys.stderr)
+                            repo = moved
+                            author = f"`{moved.split('/')[0]}`"
+                            seen.add(target)
+                    desc = decorate_row_freshness(cells[2].strip(), flags).replace("|", "\\|")
+                    line = f'| [{name}](https://github.com/{repo}) | {author} | {desc} |\n'
+            observe_out.append(line)
+        observe_text = normalize_observe_doc("".join(observe_out))
+        write_observe_text(observe_text)
 
 
 # --------------------------------------------------------------------------
@@ -2168,7 +2367,12 @@ def write_needs_desc_report(needs_desc):
     else:
         lines.append("当前没有积压。")
     lines.append("")
-    with open(NEEDS_DESC_FILE, "w", encoding="utf-8", newline="\n") as f:
+    needs_desc_path = NEEDS_DESC_FILE
+    readme_dir = os.path.dirname(os.path.abspath(README_PATH))
+    if not os.path.isabs(needs_desc_path) and readme_dir != os.getcwd():
+        needs_desc_path = os.path.join(readme_dir, ".github", "needs-desc.md")
+    os.makedirs(os.path.dirname(os.path.abspath(needs_desc_path)), exist_ok=True)
+    with open(needs_desc_path, "w", encoding="utf-8", newline="\n") as f:
         f.write("\n".join(lines) + "\n")
 
 
@@ -2398,8 +2602,11 @@ def run_scan(skip_stale=False):
     # row alone (decide_observe_action degrades to keep), so neither a rate
     # limit nor a network blip can delete anything.
     registry_repos = {p["repo"].casefold() for p in all_plugins if p.get("repo")}
+    observe_text = read_observe_text()
+    if observe_text is None:
+        observe_text = main_readme
     promote_rows, drop_repos = evaluate_observe_zone(
-        parse_observe_rows(main_readme), registry_repos
+        parse_observe_rows(observe_text), registry_repos
     )
     has_review = bool(observe_rows)
 
@@ -2511,16 +2718,32 @@ def do_apply_readme():
     with open(README_PATH, encoding="utf-8") as f:
         text = f.read()
 
-    text = remove_rows_by_repo(text, list(drop_repos) + promote_repos)
-    text = append_rows_to_other_tools(text, add_rows + promote_rows)
-    text = append_rows_to_observe(text, observe_rows)
-    text = dedupe_plugin_rows(text)
-    text = reorganize_sections(text)
-    text = clean_all_descriptions(text)
-    text = apply_toc(text)
-    text = sort_plugin_tables_by_author(text)
+    observe_text = read_observe_text()
+    if observe_text is None:
+        # Legacy mode: the README still owns the embedded zone.
+        text = remove_rows_by_repo(text, list(drop_repos) + promote_repos)
+        text = append_rows_to_other_tools(text, add_rows + promote_rows)
+        text = append_rows_to_observe(text, observe_rows)
+        text = dedupe_plugin_rows(text)
+        text = reorganize_sections(text)
+        text = clean_all_descriptions(text)
+        text = apply_toc(text)
+        text = sort_plugin_tables_by_author(text)
+    else:
+        text = append_rows_to_other_tools(text, add_rows + promote_rows)
+        text = dedupe_plugin_rows(text)
+        text = reorganize_sections(text)
+        text = ensure_observe_link(text)
+        text = clean_all_descriptions(text)
+        text = apply_toc(text)
+        text = sort_plugin_tables_by_author(text)
+        observe_text = remove_rows_by_repo(observe_text, list(drop_repos) + promote_repos)
+        observe_text = append_rows_to_observe(observe_text, observe_rows)
+        observe_text = clean_observe_document(observe_text)
     with open(README_PATH, "w", encoding="utf-8") as f:
         f.write(text)
+    if observe_text is not None:
+        write_observe_text(observe_text)
 
     added = len(add_rows) + len(promote_rows) + len(observe_rows)
     title = update_title(added, utcnow().strftime("%Y%m%d"))
@@ -2541,7 +2764,8 @@ def main():
     elif "--validate" in args:
         with open(README_PATH, encoding="utf-8") as f:
             text = f.read()
-        issues = validate_readme(text)
+        observe_text = read_observe_text()
+        issues = validate_documents(text, observe_text)
         if issues:
             print("README validation FAILED:")
             for i in issues:

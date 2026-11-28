@@ -94,7 +94,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
-          git add README.md
+          git add README.md OBSERVE.md
           if git diff --cached --quiet; then
             # Scan said content changed but apply landed as a no-op (e.g. a
             # candidate dropped late). Skip instead of crashing on an empty
@@ -149,7 +149,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
-          git add README.md .github/scripts/freshness_cache.json .github/scripts/checked_plugins.json
+          git add README.md OBSERVE.md .github/scripts/freshness_cache.json .github/scripts/checked_plugins.json
           if git diff --cached --quiet; then
             echo "no freshness/cache changes to commit"
           else
